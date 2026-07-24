@@ -36,42 +36,30 @@ import {
 // ── Data Fetching ─────────────────────────────────────────────────────────────
 
 async function getDashboardStats() {
-  const [
-    totalPosts,
-    publishedPosts,
-    draftPosts,
-    trendingPosts,
-    totalViews,
-    totalUsers,
-    totalMessages,
-    unreadMessages,
-    totalCategories,
-    totalBreakingNews,
-    totalUmkm,
-    totalWisata,
-    totalGaleri,
-    totalInfografis,
-    desaCount,
-    recentPosts,
-    recentMessages,
-  ] = await Promise.all([
+  // Batch queries to avoid exhausting the Neon connection pool
+  // with too many concurrent requests.
+  const batch1 = await Promise.all([
     prisma.post.count(),
     prisma.post.count({ where: { published: true } }),
     prisma.post.count({ where: { published: false } }),
     prisma.post.count({ where: { trending: true } }),
     prisma.post.aggregate({ _sum: { views: true } }),
     prisma.user.count(),
+  ]);
+
+  const batch2 = await Promise.all([
     prisma.message.count(),
     prisma.message.count({ where: { isRead: false } }),
     prisma.category.count(),
     prisma.breakingNews.count({ where: { isActive: true } }),
     prisma.uMKM.count(),
     prisma.wisata.count(),
+  ]);
+
+  const batch3 = await Promise.all([
     prisma.galeri.count(),
     prisma.infografis.count(),
     prisma.desa.count(),
-
-    // 5 most recent posts
     prisma.post.findMany({
       orderBy: { createdAt: "desc" },
       take: 5,
@@ -87,8 +75,6 @@ async function getDashboardStats() {
         authors: { select: { name: true } },
       },
     }),
-
-    // 5 most recent messages
     prisma.message.findMany({
       orderBy: { createdAt: "desc" },
       take: 5,
@@ -104,23 +90,23 @@ async function getDashboardStats() {
   ]);
 
   return {
-    totalPosts,
-    publishedPosts,
-    draftPosts,
-    trendingPosts,
-    totalViews: totalViews._sum.views ?? 0,
-    totalUsers,
-    totalMessages,
-    unreadMessages,
-    totalCategories,
-    totalBreakingNews,
-    totalUmkm,
-    totalWisata,
-    totalGaleri,
-    totalInfografis,
-    desaCount,
-    recentPosts,
-    recentMessages,
+    totalPosts: batch1[0],
+    publishedPosts: batch1[1],
+    draftPosts: batch1[2],
+    trendingPosts: batch1[3],
+    totalViews: batch1[4]._sum.views ?? 0,
+    totalUsers: batch1[5],
+    totalMessages: batch2[0],
+    unreadMessages: batch2[1],
+    totalCategories: batch2[2],
+    totalBreakingNews: batch2[3],
+    totalUmkm: batch2[4],
+    totalWisata: batch2[5],
+    totalGaleri: batch3[0],
+    totalInfografis: batch3[1],
+    desaCount: batch3[2],
+    recentPosts: batch3[3],
+    recentMessages: batch3[4],
   };
 }
 
