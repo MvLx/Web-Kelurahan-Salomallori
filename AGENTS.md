@@ -684,7 +684,7 @@ export async function POST(req: NextRequest) {
 - [x] 23. Testing end-to-end (semua CRUD, auth, tampilan)
 - [x] 24. Responsive testing (mobile, tablet, desktop)
 - [x] 25. Dark mode testing
-- [ ] 26. Deploy ke Vercel
+- [x] 26. Deploy ke Vercel
 - [ ] 27. Dokumentasi serah terima ke perangkat kelurahan
 
 ### Fase 5 — Tracking Pelayanan (Hari 15–19)
