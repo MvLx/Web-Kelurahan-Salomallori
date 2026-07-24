@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 import { Mail, Phone, MapPin, Clock, MessageCircle } from "lucide-react";
 import { SiInstagram } from "react-icons/si";
 import { Separator } from "@/components/ui/separator";
@@ -14,6 +17,12 @@ const navLinks = [
 ];
 
 export default function Footer() {
+  const [year, setYear] = useState<number | null>(null);
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
+
   return (
     <footer className="bg-graphite-night dark:bg-graphite-night text-white pt-16 pb-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -139,7 +148,7 @@ export default function Footer() {
 
         <div className="pt-6 flex flex-col items-center gap-3 text-sm text-white/60 sm:flex-row sm:justify-between">
           <p>
-            &copy; {new Date().getFullYear()} Website Kelurahan Salomallori.
+            &copy; {year ?? "2026"} Website Kelurahan Salomallori.
             Hak cipta dilindungi.
           </p>
           <div className="flex gap-4">
