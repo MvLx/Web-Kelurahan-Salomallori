@@ -125,11 +125,11 @@ export default function ChartView({ item }: { item: ChartItem }) {
         return (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {data.map((d: DataPoint, index: number) => (
-              <div key={index} className="bg-paper dark:bg-[#1a1a1a] border border-sage dark:border-[#414943] rounded-[12px] p-4 text-center">
-                <p className="font-display text-headline-medium text-obsidian dark:text-white font-semibold">
+              <div key={index} className="bg-card border border-border rounded-xl p-4 text-center">
+                <p className="text-2xl font-bold text-foreground">
                   {d.value.toLocaleString()}
                 </p>
-                <p className="font-body text-body-small text-iron mt-1">{d.label}</p>
+                <p className="text-sm text-muted-foreground mt-1">{d.label}</p>
               </div>
             ))}
           </div>
