@@ -170,7 +170,7 @@ export default function Navbar({ variant = "public" }: NavbarProps) {
         {/* ── Logo & Title ── */}
         <Link href="/" className="flex shrink-0 items-center gap-3">
           <Image
-            src="/logo.png"
+            src="/logo.svg"
             alt="Logo Kelurahan Salomallori"
             width={36}
             height={36}

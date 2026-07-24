@@ -20,7 +20,7 @@ export function GaleriSection() {
       try {
         const res = await fetch("/api/galeri");
         const json = await res.json();
-        setItems(json ?? []);
+        setItems(Array.isArray(json) ? json : []);
       } catch {
         setItems([]);
       } finally {

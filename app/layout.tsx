@@ -19,9 +19,8 @@ export const metadata: Metadata = {
   description:
     "Website resmi Kelurahan Salomallori, Kec. Mattiro Bulu, Kab. Pinrang. Menyajikan informasi profil kelurahan, UMKM, wisata, galeri, dan pelayanan publik.",
   icons: {
-    icon: "/favicon-16x16.png",
-    shortcut: "/favicon-32x32.png",
-    apple: "/apple-touch-icon.png",
+    icon: "/favicon.svg",
+    apple: "/apple-touch-icon.svg",
   },
 };
 

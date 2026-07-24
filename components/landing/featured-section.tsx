@@ -170,11 +170,11 @@ export function FeaturedSection() {
 
         if (umkmRes.ok) {
           const umkmData = await umkmRes.json();
-          setUmkm(umkmData);
+          setUmkm(Array.isArray(umkmData) ? umkmData : []);
         }
         if (wisataRes.ok) {
           const wisataData = await wisataRes.json();
-          setWisata(wisataData);
+          setWisata(Array.isArray(wisataData) ? wisataData : []);
         }
       } catch (error) {
         console.error("Failed to load featured data:", error);
