@@ -166,6 +166,42 @@ async function main() {
     await prisma.infografis.create({ data: inf });
   }
 
+  // --- ADMIN USER ---
+  const adminEmail = "adminsalomallori@gmail.com";
+  const existingAdmin = await prisma.user.findUnique({
+    where: { email: adminEmail },
+  });
+
+  if (!existingAdmin) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { hashPassword }: any = await import("@better-auth/utils/password");
+    const hashedPassword = await hashPassword("admin123");
+
+    const adminUser = await prisma.user.create({
+      data: {
+        id: "admin-salomallori",
+        name: "Admin Salomallori",
+        email: adminEmail,
+        emailVerified: true,
+        role: "ADMIN",
+      },
+    });
+
+    await prisma.account.create({
+      data: {
+        id: "acc-admin-salomallori",
+        accountId: adminEmail,
+        providerId: "email",
+        userId: adminUser.id,
+        password: hashedPassword,
+      },
+    });
+
+    console.log(`✅ Admin user created: ${adminEmail}`);
+  } else {
+    console.log(`ℹ️ Admin user already exists: ${adminEmail}`);
+  }
+
   console.log("✅ Seed data berhasil!");
 }
 
