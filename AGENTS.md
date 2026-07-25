@@ -685,49 +685,51 @@ export async function POST(req: NextRequest) {
 - [x] 24. Responsive testing (mobile, tablet, desktop)
 - [x] 25. Dark mode testing
 - [x] 26. Deploy ke Vercel
-- [ ] 27. Dokumentasi serah terima ke perangkat kelurahan
+- [x] 27. Dokumentasi serah terima ke perangkat kelurahan
 
-### Fase 5 — Tracking Pelayanan (Hari 15–19)
+### ~~Fase 5 — Tracking Pelayanan (Skipped)~~
 
-#### 5A — Database & Setup
-- [ ] 28a. Tambah model `Layanan`, `FormField`, `Permohonan`, `PermohonanData`, `ProgressHistory` + enum `StatusPermohonan`, `JenisAjuan`, `FieldType` ke `prisma/schema.prisma`
-- [ ] 28b. Modifikasi model `User`: tambah field `nik String?` dan `phoneNumber String?` + relasi `permohonan Permohonan[]` dan `progress ProgressHistory[]`
-- [ ] 28c. Jalankan migrasi: `npx prisma migrate dev --name add_layanan_models`
-- [ ] 28d. Buat seed data layanan contoh (KK, Surat Tanah, Surat Keterangan Domisili) dengan form fields masing-masing
+> **Fase ini di-skip berdasarkan keputusan tim.** Fitur Tracking Pelayanan tidak diimplementasikan. Projek tetap aman dan tidak ada dependensi kode terhadap Fase 5.
 
-#### 5B — API Routes
-- [ ] 28e. API routes untuk Layanan (list, create, get, update, delete)
-- [ ] 28f. API routes untuk FormField per Layanan (list, create, get, update, delete)
-- [ ] 28g. API routes untuk Permohonan (list + filter, create + generate nomor tiket)
-- [ ] 28h. API routes untuk ProgressHistory per Permohonan (list, create)
-- [ ] 28i. API route untuk user profile (GET, PUT: nik, phoneNumber)
-- [ ] 28j. API route untuk kirim email (POST: nodemailer Gmail SMTP)
+#### ~~5A — Database & Setup~~
+- [x] ~skipped~ 28a. Tambah model `Layanan`, `FormField`, `Permohonan`, `PermohonanData`, `ProgressHistory` + enum
+- [x] ~skipped~ 28b. Modifikasi model `User`: tambah field `nik` & `phoneNumber`
+- [x] ~skipped~ 28c. Jalankan migrasi: `add_layanan_models`
+- [x] ~skipped~ 28d. Buat seed data layanan contoh
 
-#### 5C — Dashboard User
-- [ ] 29a. Buat halaman dashboard user (`/akun/dashboard`) — profil ringkas + 5 permohonan terbaru + tombol ajukan
-- [ ] 29b. Buat halaman edit profil user (`/akun/dashboard/profil`) — edit NIK, telepon
-- [ ] 29c. Buat halaman riwayat permohonan user (`/akun/dashboard/permohonan`)
-- [ ] 29d. Buat halaman detail tracking permohonan user (`/akun/dashboard/permohonan/[id]`) — timeline progress + tombol batalkan jika MENUNGGU
-- [ ] 29e. Buat halaman pengajuan baru (`/akun/dashboard/ajukan`) — pilih offline/online, lalu pilih layanan, isi form dinamis, submit
+#### ~~5B — API Routes~~
+- [x] ~skipped~ 28e. API routes untuk Layanan
+- [x] ~skipped~ 28f. API routes untuk FormField
+- [x] ~skipped~ 28g. API routes untuk Permohonan
+- [x] ~skipped~ 28h. API routes untuk ProgressHistory
+- [x] ~skipped~ 28i. API route untuk user profile
+- [x] ~skipped~ 28j. API route untuk kirim email
 
-#### 5D — Admin Panel Pelayanan
-- [ ] 30a. Buat halaman CRUD Layanan (`/dashboard/layanan`) — list + new + edit
-- [ ] 30b. Buat halaman Form Builder (`/dashboard/layanan/[id]/form`) — kelola FormField
-- [ ] 30c. Buat halaman daftar permohonan (`/dashboard/permohonan`) — filter status/layanan/tanggal, search
-- [ ] 30d. Buat halaman detail permohonan admin (`/dashboard/permohonan/[id]`)
+#### ~~5C — Dashboard User~~
+- [x] ~skipped~ 29a. Halaman dashboard user (`/akun/dashboard`)
+- [x] ~skipped~ 29b. Halaman edit profil user (`/akun/dashboard/profil`)
+- [x] ~skipped~ 29c. Halaman riwayat permohonan user
+- [x] ~skipped~ 29d. Halaman detail tracking permohonan user
+- [x] ~skipped~ 29e. Halaman pengajuan baru
 
-#### 5E — Integrasi
-- [ ] 31a. Update dashboard admin overview — card ringkasan permohonan
-- [ ] 31b. Update AdminSidebar — menu Layanan & Permohonan
-- [ ] 31c. Kirim email notifikasi SELESAI/DITOLAK (Nodemailer)
-- [ ] 31d. In-web notifikasi toast (sonner)
+#### ~~5D — Admin Panel Pelayanan~~
+- [x] ~skipped~ 30a. Halaman CRUD Layanan
+- [x] ~skipped~ 30b. Halaman Form Builder
+- [x] ~skipped~ 30c. Halaman daftar permohonan
+- [x] ~skipped~ 30d. Halaman detail permohonan admin
 
-#### 5F — Testing
-- [ ] 32a. Testing flow pengajuan online
-- [ ] 32b. Testing flow pengajuan offline
-- [ ] 32c. Testing CRUD layanan & form builder
-- [ ] 32d. Testing email notifikasi
-- [ ] 32e. Testing batalkan ticket
+#### ~~5E — Integrasi~~
+- [x] ~skipped~ 31a. Update dashboard admin overview
+- [x] ~skipped~ 31b. Update AdminSidebar
+- [x] ~skipped~ 31c. Kirim email notifikasi
+- [x] ~skipped~ 31d. In-web notifikasi toast
+
+#### ~~5F — Testing~~
+- [x] ~skipped~ 32a. Testing flow pengajuan online
+- [x] ~skipped~ 32b. Testing flow pengajuan offline
+- [x] ~skipped~ 32c. Testing CRUD layanan & form builder
+- [x] ~skipped~ 32d. Testing email notifikasi
+- [x] ~skipped~ 32e. Testing batalkan ticket
 
 ---
 
