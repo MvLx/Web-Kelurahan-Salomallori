@@ -70,19 +70,16 @@ const profilDropdown: NavDropdown = {
   children: [
     { label: "Sejarah Kelurahan", href: "/profil/sejarah-kelurahan", icon: History },
     { label: "Pejabat Kelurahan", href: "/profil/pejabat-kelurahan", icon: UserCheck },
-    { label: "Visi & Misi", href: "/profil/visi-misi", icon: Target },
   ],
 };
 
 const publicLinks: NavItem[] = [
   { label: "Beranda", href: "/" },
   profilDropdown,
-  { label: "Visi & Misi", href: "/profil/visi-misi" },
   { label: "UMKM", href: "/umkm" },
   { label: "Wisata", href: "/wisata" },
   { label: "Galeri", href: "/galeri" },
   { label: "Infografis", href: "/infografis" },
-  { label: "IDM", href: "/idm" },
   { label: "Kontak & Aduan", href: "/aduan" },
 ];
 
