@@ -179,7 +179,7 @@ export default function Navbar({ variant = "public" }: NavbarProps) {
               Kelurahan Salomallori
             </span>
             <span className="text-[10px] font-bold tracking-wide text-foreground/70">
-              Kec. Mattiro Bulu, Kab. Pinrang
+              Kec. Dua Pitue, Kab. Sidenreng Rappang
             </span>
           </div>
         </Link>
