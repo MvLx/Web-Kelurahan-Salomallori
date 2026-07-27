@@ -118,6 +118,8 @@ export default function ProfilPage() {
     // Skip if already fetched for this id
     if (lastFetchedId.current === id) return;
     lastFetchedId.current = id;
+    setLoading(true);
+    setNotFound(false);
 
     fetch(`/api/profile/${id}`)
       .then(async (res) => {
@@ -125,11 +127,20 @@ export default function ProfilPage() {
           setNotFound(true);
           return;
         }
+        if (!res.ok) {
+          const errorText = await res.text();
+          console.error(`Profile fetch error (${res.status}):`, errorText);
+          setNotFound(true);
+          return;
+        }
         const data: ProfileData = await res.json();
         setProfile(data);
         setNameInput(data.name);
       })
-      .catch(() => setNotFound(true))
+      .catch((err) => {
+        console.error("Profile fetch exception:", err);
+        setNotFound(true);
+      })
       .finally(() => setLoading(false));
   }, [id]);
 
@@ -181,7 +192,12 @@ export default function ProfilPage() {
       }
 
       // Keep better-auth session image in sync
-      await authClient.updateUser({ image: newImageUrl });
+      try {
+        await authClient.updateUser({ image: newImageUrl });
+      } catch (syncErr) {
+        // Non-critical: better-auth may fail if session just expired
+        console.warn("Failed to sync avatar with better-auth session:", syncErr);
+      }
 
       setProfile((prev) => (prev ? { ...prev, image: newImageUrl } : prev));
       toast.success("Foto profil berhasil diperbarui.");
@@ -210,12 +226,20 @@ export default function ProfilPage() {
     setSaveError(null);
 
     // Use better-auth's built-in updateUser to keep session in sync
-    const result = await authClient.updateUser({ name: trimmed });
+    let betterAuthError: string | undefined;
+    try {
+      const updateResult = await authClient.updateUser({ name: trimmed });
+      if (updateResult.error) {
+        betterAuthError = String(updateResult.error?.message ?? updateResult.error);
+      }
+    } catch (syncErr) {
+      console.warn("Failed to sync name with better-auth session:", syncErr);
+      // Continue anyway — we'll still update via our own API
+    }
 
-    if (result.error) {
-      setSaveError(result.error.message ?? "Gagal menyimpan perubahan.");
-      setSaving(false);
-      return;
+    if (betterAuthError) {
+      // Don't block — try the direct API update as fallback
+      console.warn("better-auth updateUser error (non-fatal):", betterAuthError);
     }
 
     // Also hit our own API to be consistent

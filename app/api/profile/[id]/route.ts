@@ -54,7 +54,8 @@ export async function GET(
       emailVerified: isOwner ? user.emailVerified : null,
       providers: isOwner ? providers : [],
     });
-  } catch {
+  } catch (error) {
+    console.error("Error fetching profile:", error);
     return NextResponse.json(
       { error: "Gagal mengambil profil pengguna" },
       { status: 500 },
@@ -112,7 +113,8 @@ export async function PATCH(
     });
 
     return NextResponse.json(updated);
-  } catch {
+  } catch (error) {
+    console.error("Error updating profile:", error);
     return NextResponse.json(
       { error: "Gagal memperbarui profil" },
       { status: 500 },
