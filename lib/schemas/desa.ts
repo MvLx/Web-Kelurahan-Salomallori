@@ -114,7 +114,8 @@ export const updateDesaSchema = z
     ),
   })
   .extend({
-    id: z.string().cuid("ID tidak valid"),
+    // ID diambil dari database (seed menggunakan "desa-salomallori", bukan CUID)
+    id: z.string().min(1, "ID tidak valid"),
   });
 
 export type CreateDesaInput = z.infer<typeof createDesaSchema>;
