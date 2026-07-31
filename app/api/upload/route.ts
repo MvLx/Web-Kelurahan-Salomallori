@@ -5,13 +5,13 @@ import { uploadLimiter, getClientIp } from "@/lib/api-rate-limit";
 
 // Debug: hanya log ada/tidaknya nilai env — bukan isi secret-nya.
 console.error("[upload] Env check:", {
-  cloudName: process.env.CLOUDINARY_CLOUD_NAME ? "SET" : "MISSING",
+  cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME ? "SET" : "MISSING",
   apiKey: process.env.CLOUDINARY_API_KEY ? "SET" : "MISSING",
   apiSecret: process.env.CLOUDINARY_API_SECRET ? "SET" : "MISSING",
 });
 
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
