@@ -111,7 +111,7 @@ export function NewsSection() {
   useEffect(() => {
     async function load() {
       try {
-        const res = await fetch("/api/posts?status=published&limit=6");
+        const res = await fetch("/api/posts?status=published&limit=5");
         if (res.ok) {
           const json = await res.json();
           setPosts(Array.isArray(json.data) ? json.data : []);
