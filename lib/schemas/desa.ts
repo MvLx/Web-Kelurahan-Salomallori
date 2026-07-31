@@ -10,6 +10,17 @@ function emptyToUndefined<T extends z.ZodTypeAny>(schema: T) {
   return z.preprocess((val) => (val === "" ? undefined : val), schema);
 }
 
+/**
+ * Helper: ubah NaN menjadi undefined pada update schema.
+ * Input number kosong di browser sering menghasilkan NaN dari parseFloat/parseInt.
+ */
+function nanToUndefined<T extends z.ZodTypeAny>(schema: T) {
+  return z.preprocess(
+    (val) => (typeof val === "number" && Number.isNaN(val) ? undefined : val),
+    schema,
+  );
+}
+
 export const createDesaSchema = z.object({
   nama: z
     .string()
@@ -58,29 +69,37 @@ export const updateDesaSchema = z
     misi: emptyToUndefined(
       z.string().min(10, "Misi minimal 10 karakter").optional(),
     ),
-    luasWilayah: z
-      .number()
-      .positive("Luas wilayah harus positif")
-      .nullish()
-      .optional(),
-    jumlahPenduduk: z
-      .number()
-      .int()
-      .positive("Jumlah penduduk harus positif")
-      .nullish()
-      .optional(),
-    jumlahKK: z
-      .number()
-      .int()
-      .positive("Jumlah KK harus positif")
-      .nullish()
-      .optional(),
-    jumlahDusun: z
-      .number()
-      .int()
-      .positive("Jumlah dusun harus positif")
-      .nullish()
-      .optional(),
+    luasWilayah: nanToUndefined(
+      z
+        .number()
+        .positive("Luas wilayah harus positif")
+        .nullish()
+        .optional(),
+    ),
+    jumlahPenduduk: nanToUndefined(
+      z
+        .number()
+        .int()
+        .positive("Jumlah penduduk harus positif")
+        .nullish()
+        .optional(),
+    ),
+    jumlahKK: nanToUndefined(
+      z
+        .number()
+        .int()
+        .positive("Jumlah KK harus positif")
+        .nullish()
+        .optional(),
+    ),
+    jumlahDusun: nanToUndefined(
+      z
+        .number()
+        .int()
+        .positive("Jumlah dusun harus positif")
+        .nullish()
+        .optional(),
+    ),
     batasUtara: emptyToUndefined(z.string().max(200).nullish()),
     batasTimur: emptyToUndefined(z.string().max(200).nullish()),
     batasSelatan: emptyToUndefined(z.string().max(200).nullish()),

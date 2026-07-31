@@ -151,7 +151,14 @@ export default function ProfilDesaPage() {
         await loadData();
       } else {
         const json = await res.json();
-        toast.error(json.error ?? "Gagal menyimpan");
+        if (json.details) {
+          const messages = Object.entries(json.details)
+            .map(([field, errors]) => `${field}: ${(errors as string[]).join(", ")}`)
+            .join(" | ");
+          toast.error(messages || json.error || "Gagal menyimpan");
+        } else {
+          toast.error(json.error ?? "Gagal menyimpan");
+        }
       }
     } catch {
       toast.error("Tidak dapat menghubungi server");
@@ -323,16 +330,16 @@ export default function ProfilDesaPage() {
                   <Input value={desa.nama} onChange={(e) => setDesa({ ...desa, nama: e.target.value })} />
                 </Field>
                 <Field label="Luas Wilayah (km²)">
-                  <Input type="number" value={desa.luasWilayah ?? ""} onChange={(e) => setDesa({ ...desa, luasWilayah: e.target.value ? parseFloat(e.target.value) : null })} />
+                  <Input type="number" value={desa.luasWilayah ?? ""} onChange={(e) => { const v = parseFloat(e.target.value); setDesa({ ...desa, luasWilayah: Number.isNaN(v) ? null : v }); }} />
                 </Field>
                 <Field label="Jumlah Penduduk">
-                  <Input type="number" value={desa.jumlahPenduduk ?? ""} onChange={(e) => setDesa({ ...desa, jumlahPenduduk: e.target.value ? parseInt(e.target.value) : null })} />
+                  <Input type="number" value={desa.jumlahPenduduk ?? ""} onChange={(e) => { const v = parseInt(e.target.value); setDesa({ ...desa, jumlahPenduduk: Number.isNaN(v) ? null : v }); }} />
                 </Field>
                 <Field label="Jumlah KK">
-                  <Input type="number" value={desa.jumlahKK ?? ""} onChange={(e) => setDesa({ ...desa, jumlahKK: e.target.value ? parseInt(e.target.value) : null })} />
+                  <Input type="number" value={desa.jumlahKK ?? ""} onChange={(e) => { const v = parseInt(e.target.value); setDesa({ ...desa, jumlahKK: Number.isNaN(v) ? null : v }); }} />
                 </Field>
                 <Field label="Jumlah Dusun">
-                  <Input type="number" value={desa.jumlahDusun ?? ""} onChange={(e) => setDesa({ ...desa, jumlahDusun: e.target.value ? parseInt(e.target.value) : null })} />
+                  <Input type="number" value={desa.jumlahDusun ?? ""} onChange={(e) => { const v = parseInt(e.target.value); setDesa({ ...desa, jumlahDusun: Number.isNaN(v) ? null : v }); }} />
                 </Field>
               </div>
             </div>
