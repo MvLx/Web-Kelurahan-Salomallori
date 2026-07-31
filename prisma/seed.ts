@@ -221,6 +221,23 @@ async function main() {
     console.log(`ℹ️ Admin user already exists: ${adminEmail}`);
   }
 
+  // --- DATA KONTAK ---
+  await prisma.kontak.upsert({
+    where: { id: "kontak-salomallori" },
+    update: {},
+    create: {
+      id: "kontak-salomallori",
+      alamat:
+        "Kantor Kelurahan Salomallori, Kec. Dua Pitue, Kab. Sidenreng Rappang, Sulawesi Selatan",
+      telepon: null,
+      whatsapp: null,
+      email: "kelurahansalomallori@gmail.com",
+      jamKerja: "Senin - Jumat: 08.00 - 16.00 WITA",
+      mapsEmbed: null,
+    },
+  });
+  console.log("✅ Data kontak berhasil di-seed");
+
   console.log("✅ Seed data berhasil!");
 }
 

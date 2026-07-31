@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import Navbar from "@/components/custom/navbar";
 import Footer from "@/components/custom/footer";
@@ -17,6 +17,41 @@ interface FormState {
 
 type FieldErrors = Partial<Record<keyof FormState, string>>;
 
+interface KontakData {
+  id: string;
+  alamat: string;
+  telepon: string | null;
+  whatsapp: string | null;
+  email: string | null;
+  jamKerja: string | null;
+  mapsEmbed: string | null;
+}
+
+// Data placeholder — akan ditimpa dari API /api/kontak setelah load
+const defaultKontak: KontakData = {
+  id: "default",
+  alamat: "Kantor Kelurahan Salomallori\nKecamatan Mattiro Bulu, Kabupaten Pinrang\nSulawesi Selatan",
+  telepon: "(0421) 123456",
+  whatsapp: "+62 812-3456-7890",
+  email: "kelurahansalomallori@gmail.com",
+  jamKerja: "Senin – Jumat: 08.00 – 16.00 WITA",
+  mapsEmbed:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15899.234567!2d119.6!3d-3.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM8KwNTQnMDAuMCJTIDExOcKwMzYnMDAuMCJF!5e1!3m2!1sid!2sid!4v1",
+};
+
+// Kelola format WA: terima "+62 812-3456-7890", "081234567890", dst → "6281234567890"
+function waLink(wa: string | null): string {
+  if (!wa) return "https://wa.me/";
+  const digits = wa.replace(/[^\d]/g, "");
+  const normalized = digits.startsWith("0") ? "62" + digits.slice(1) : digits.replace(/^\+/, "");
+  return "https://wa.me/" + normalized;
+}
+
+function telLink(telp: string | null): string {
+  if (!telp) return "#";
+  return "tel:" + telp.replace(/[^\d+]/g, "");
+}
+
 export default function AduanPage() {
   const [form, setForm] = useState<FormState>({
     fullName: "",
@@ -26,6 +61,23 @@ export default function AduanPage() {
   });
   const [submitting, setSubmitting] = useState(false);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const [kontak, setKontak] = useState<KontakData>(defaultKontak);
+
+  // Ambil data kontak dari API (fallback ke defaultKontak jika gagal)
+  useEffect(() => {
+    let canceled = false;
+    fetch("/api/kontak")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data: KontakData | null) => {
+        if (!canceled && data) setKontak(data);
+      })
+      .catch(() => {
+        // Abaikan — tetap pakai defaultKontak
+      });
+    return () => {
+      canceled = true;
+    };
+  }, []);
 
   function validateClient(data: FormState): FieldErrors {
     const errors: FieldErrors = {};
@@ -163,10 +215,8 @@ export default function AduanPage() {
                   </div>
                   <div>
                     <h3 className="mb-1 font-bold">Alamat Kantor</h3>
-                    <p className="leading-relaxed text-muted-foreground">
-                      Kantor Kelurahan Salomallori<br />
-                      Kecamatan Mattiro Bulu, Kabupaten Pinrang<br />
-                      Sulawesi Selatan
+                    <p className="leading-relaxed text-muted-foreground whitespace-pre-line">
+                      {kontak.alamat}
                     </p>
                   </div>
                 </div>
@@ -178,12 +228,16 @@ export default function AduanPage() {
                   </div>
                   <div>
                     <h3 className="mb-1 font-bold">Nomor Telepon</h3>
-                    <a
-                      href="tel:+6281234567890"
-                      className="text-muted-foreground transition-colors hover:text-secondary"
-                    >
-                      (0421) 123456
-                    </a>
+                    {kontak.telepon ? (
+                      <a
+                        href={telLink(kontak.telepon)}
+                        className="text-muted-foreground transition-colors hover:text-secondary"
+                      >
+                        {kontak.telepon}
+                      </a>
+                    ) : (
+                      <p className="text-muted-foreground">-</p>
+                    )}
                   </div>
                 </div>
 
@@ -194,15 +248,19 @@ export default function AduanPage() {
                   </div>
                   <div>
                     <h3 className="mb-1 font-bold">WhatsApp</h3>
-                    <a
-                      href="https://wa.me/6281234567890"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-green-600 dark:hover:text-green-400"
-                    >
-                      <MessageCircle className="h-4 w-4" />
-                      +62 812-3456-7890
-                    </a>
+                    {kontak.whatsapp ? (
+                      <a
+                        href={waLink(kontak.whatsapp)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-green-600 dark:hover:text-green-400"
+                      >
+                        <MessageCircle className="h-4 w-4" />
+                        {kontak.whatsapp}
+                      </a>
+                    ) : (
+                      <p className="text-muted-foreground">-</p>
+                    )}
                   </div>
                 </div>
 
@@ -213,12 +271,16 @@ export default function AduanPage() {
                   </div>
                   <div>
                     <h3 className="mb-1 font-bold">Email Resmi</h3>
-                    <a
-                      href="mailto:kelurahansalomallori@gmail.com"
-                      className="text-muted-foreground transition-colors hover:text-secondary"
-                    >
-                      kelurahansalomallori@gmail.com
-                    </a>
+                    {kontak.email ? (
+                      <a
+                        href={`mailto:${kontak.email}`}
+                        className="text-muted-foreground transition-colors hover:text-secondary"
+                      >
+                        {kontak.email}
+                      </a>
+                    ) : (
+                      <p className="text-muted-foreground">-</p>
+                    )}
                   </div>
                 </div>
 
@@ -229,9 +291,13 @@ export default function AduanPage() {
                   </div>
                   <div>
                     <h3 className="mb-1 font-bold">Jam Operasional</h3>
-                    <p className="leading-relaxed text-muted-foreground">
-                      Senin – Jumat: 08.00 – 16.00 WITA
-                    </p>
+                    {kontak.jamKerja ? (
+                      <p className="leading-relaxed text-muted-foreground whitespace-pre-line">
+                        {kontak.jamKerja}
+                      </p>
+                    ) : (
+                      <p className="text-muted-foreground">-</p>
+                    )}
                   </div>
                 </div>
               </div>
@@ -339,7 +405,7 @@ export default function AduanPage() {
           {/* Map */}
           <div className="mt-8 overflow-hidden rounded-2xl shadow-lg border border-sage">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15899.234567!2d119.6!3d-3.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM8KwNTQnMDAuMCJTIDExOcKwMzYnMDAuMCJF!5e1!3m2!1sid!2sid!4v1"
+              src={kontak.mapsEmbed ?? defaultKontak.mapsEmbed ?? ""}
               className="w-full"
               style={{ height: "clamp(300px, 41.67vw, 500px)", border: 0 }}
               allowFullScreen

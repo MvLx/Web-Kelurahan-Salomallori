@@ -27,6 +27,7 @@ import {
   BarChart3,
   Building2,
   Newspaper,
+  Phone,
 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
@@ -98,6 +99,7 @@ const dashboardLinks: NavLink[] = [
   { label: "Wisata", href: "/dashboard/wisata" },
   { label: "Galeri", href: "/dashboard/galeri" },
   { label: "Profil Desa", href: "/dashboard/profil-desa" },
+  { label: "Kontak", href: "/dashboard/kontak" },
   { label: "Infografis", href: "/dashboard/infografis" },
   { label: "Breaking News", href: "/dashboard/breaking-news" },
   { label: "Pengguna", href: "/dashboard/users" },
@@ -112,6 +114,7 @@ const dashboardIcons: Record<string, React.ElementType> = {
   "/dashboard/wisata": MapPin,
   "/dashboard/galeri": ImageIcon,
   "/dashboard/profil-desa": Building2,
+  "/dashboard/kontak": Phone,
   "/dashboard/infografis": BarChart3,
   "/dashboard/breaking-news": Bell,
   "/dashboard/users": Users,

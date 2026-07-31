@@ -87,6 +87,12 @@ export async function POST(req: NextRequest) {
     const parsed = createMessageSchema.safeParse(body);
 
     if (!parsed.success) {
+      // Log detail validasi untuk diagnosa di Vercel
+      console.error("[Messages] Validasi gagal:", {
+        body,
+        issues: parsed.error.issues,
+        fieldErrors: z.flattenError(parsed.error).fieldErrors,
+      });
       return NextResponse.json(
         {
           error: "Validasi gagal",

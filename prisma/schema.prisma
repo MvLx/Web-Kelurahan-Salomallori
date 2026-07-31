@@ -244,6 +244,20 @@ model Galeri {
   @@map("galeri")
 }
 
+model Kontak {
+  id        String   @id @default(cuid())
+  alamat    String   @db.Text
+  telepon   String?
+  whatsapp  String?
+  email     String?
+  jamKerja  String?
+  mapsEmbed String?  @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("kontak")
+}
+
 enum ChartType {
   BAR_CHART
   LINE_CHART
