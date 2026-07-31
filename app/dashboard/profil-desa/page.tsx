@@ -91,6 +91,7 @@ export default function ProfilDesaPage() {
   const [saving, setSaving] = useState(false);
   const [desa, setDesa] = useState<DesaData>(EMPTY_DESA);
   const [perangkat, setPerangkat] = useState<Perangkat[]>([]);
+  const [tab, setTab] = useState("desa");
 
   // Perangkat dialog
   const [perangkatOpen, setPerangkatOpen] = useState(false);
@@ -313,7 +314,7 @@ export default function ProfilDesaPage() {
       </div>
 
       <main className="mx-auto max-w-4xl px-4 pt-28 pb-16">
-        <Tabs defaultValue="desa">
+        <Tabs value={tab} onValueChange={setTab}>
           <TabsList className="mb-6">
             <TabsTrigger value="desa"><Building2 className="mr-1.5 size-4" /> Data Desa</TabsTrigger>
             <TabsTrigger value="perangkat"><Users className="mr-1.5 size-4" /> Perangkat Desa</TabsTrigger>
