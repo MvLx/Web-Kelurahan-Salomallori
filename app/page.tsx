@@ -5,6 +5,7 @@ import Navbar from "@/components/custom/navbar";
 import Footer from "@/components/custom/footer";
 import { HeroSection } from "@/components/landing/hero-section";
 import { StatsSection } from "@/components/landing/stats-section";
+import { NewsSection } from "@/components/landing/news-section";
 import { FeaturedSection } from "@/components/landing/featured-section";
 import { BreakingNewsSection } from "@/components/landing/breaking-news-section";
 import { GaleriSection } from "@/components/landing/galeri-section";
@@ -27,6 +28,9 @@ function BerandaContent() {
 
         {/* Stats Section */}
         <StatsSection />
+
+        {/* Berita Terbaru */}
+        <NewsSection />
 
         {/* Featured UMKM + Wisata */}
         <FeaturedSection />

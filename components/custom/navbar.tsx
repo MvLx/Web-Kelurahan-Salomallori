@@ -21,13 +21,12 @@ import {
   ChevronDown,
   History,
   UserCheck,
-  Network,
-  Target,
   Store,
   MapPin,
   Image as ImageIcon,
   BarChart3,
   Building2,
+  Newspaper,
 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
@@ -73,12 +72,21 @@ const profilDropdown: NavDropdown = {
   ],
 };
 
+const galeriDropdown: NavDropdown = {
+  label: "Galeri",
+  href: "/galeri",
+  children: [
+    { label: "Berita", href: "/news", icon: Newspaper },
+    { label: "Galeri Foto", href: "/galeri", icon: ImageIcon },
+  ],
+};
+
 const publicLinks: NavItem[] = [
   { label: "Beranda", href: "/" },
   profilDropdown,
   { label: "UMKM", href: "/umkm" },
   { label: "Wisata", href: "/wisata" },
-  { label: "Galeri", href: "/galeri" },
+  galeriDropdown,
   { label: "Infografis", href: "/infografis" },
   { label: "Kontak & Aduan", href: "/aduan" },
 ];
@@ -121,7 +129,9 @@ export default function Navbar({ variant = "public" }: NavbarProps) {
   const router = useRouter();
   const { data: session } = authClient.useSession();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobileProfilOpen, setMobileProfilOpen] = useState(false);
+  const [mobileOpenDropdown, setMobileOpenDropdown] = useState<string | null>(
+    null,
+  );
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -410,10 +420,15 @@ export default function Navbar({ variant = "public" }: NavbarProps) {
             {links.map((link) => {
               if (isDropdown(link)) {
                 const dropdownActive = pathname.startsWith(link.href);
+                const dropdownOpen = mobileOpenDropdown === link.href;
                 return (
                   <li key={link.href}>
                     <button
-                      onClick={() => setMobileProfilOpen((o) => !o)}
+                      onClick={() =>
+                        setMobileOpenDropdown((current) =>
+                          current === link.href ? null : link.href,
+                        )
+                      }
                       className={cn(
                         "flex w-full items-center justify-between rounded-md px-3 py-2 text-sm font-semibold transition-colors",
                         dropdownActive
@@ -425,14 +440,14 @@ export default function Navbar({ variant = "public" }: NavbarProps) {
                       <ChevronDown
                         className={cn(
                           "size-4 transition-transform",
-                          mobileProfilOpen && "rotate-180",
+                          dropdownOpen && "rotate-180",
                         )}
                       />
                     </button>
                     <div
                       className={cn(
                         "overflow-hidden transition-all duration-200 ease-in-out",
-                        mobileProfilOpen ? "max-h-60" : "max-h-0",
+                        dropdownOpen ? "max-h-60" : "max-h-0",
                       )}
                     >
                       <ul className="ml-2 flex flex-col gap-0.5 border-l-2 border-foreground/10 pl-3 pt-1">
@@ -445,7 +460,7 @@ export default function Navbar({ variant = "public" }: NavbarProps) {
                                 href={child.href}
                                 onClick={() => {
                                   setMobileOpen(false);
-                                  setMobileProfilOpen(false);
+                                  setMobileOpenDropdown(null);
                                 }}
                                 className={cn(
                                   "flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors",
