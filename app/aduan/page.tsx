@@ -6,6 +6,7 @@ import Navbar from "@/components/custom/navbar";
 import Footer from "@/components/custom/footer";
 import Image from "next/image";
 import { MapPin, Phone, Mail, Clock, Loader2, MessageCircle } from "lucide-react";
+import { createMessageSchema } from "@/lib/schemas/message";
 
 interface FormState {
   fullName: string;
@@ -13,6 +14,8 @@ interface FormState {
   phoneNumber: string;
   content: string;
 }
+
+type FieldErrors = Partial<Record<keyof FormState, string>>;
 
 export default function AduanPage() {
   const [form, setForm] = useState<FormState>({
@@ -22,20 +25,63 @@ export default function AduanPage() {
     content: "",
   });
   const [submitting, setSubmitting] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+
+  function validateClient(data: FormState): FieldErrors {
+    const errors: FieldErrors = {};
+    const result = createMessageSchema.safeParse(data);
+    if (!result.success) {
+      for (const issue of result.error.issues) {
+        const key = issue.path[0] as keyof FormState;
+        if (key && !errors[key]) {
+          errors[key] = issue.message;
+        }
+      }
+    }
+    return errors;
+  }
+
+  function handleFieldChange(field: keyof FormState, value: string) {
+    setForm((f) => ({ ...f, [field]: value }));
+    // Hapus error field saat user mulai mengetik ulang
+    setFieldErrors((prev) => {
+      if (!prev[field]) return prev;
+      const next = { ...prev };
+      delete next[field];
+      return next;
+    });
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const trimmed: FormState = {
+      fullName: form.fullName.trim(),
+      email: form.email.trim(),
+      phoneNumber: form.phoneNumber.trim(),
+      content: form.content.trim(),
+    };
+
+    // Validasi client-side terlebih dahulu
+    const clientErrors = validateClient(trimmed);
+    if (Object.keys(clientErrors).length > 0) {
+      setFieldErrors(clientErrors);
+      const firstError = Object.values(clientErrors)[0];
+      toast.error(firstError ?? "Periksa kembali isian Anda.");
+      return;
+    }
+
+    const payload = {
+      ...trimmed,
+      phoneNumber: trimmed.phoneNumber || null,
+    };
+
     setSubmitting(true);
+    setFieldErrors({});
     try {
       const res = await fetch("/api/messages", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          fullName: form.fullName.trim(),
-          email: form.email.trim(),
-          phoneNumber: form.phoneNumber.trim() || null,
-          content: form.content.trim(),
-        }),
+        body: JSON.stringify(payload),
       });
       if (res.ok) {
         toast.success(
@@ -44,7 +90,23 @@ export default function AduanPage() {
         setForm({ fullName: "", email: "", phoneNumber: "", content: "" });
       } else {
         const json = await res.json();
-        toast.error((json.error as string) ?? "Gagal mengirim pesan.");
+        // Tampilkan detail error per field jika ada
+        if (json.details) {
+          const serverErrors: FieldErrors = {};
+          for (const [key, messages] of Object.entries(json.details)) {
+            const field = key as keyof FormState;
+            if (field in trimmed && Array.isArray(messages) && messages.length > 0) {
+              serverErrors[field] = messages[0] as string;
+            }
+          }
+          setFieldErrors(serverErrors);
+          const firstServerError = Object.values(serverErrors)[0];
+          toast.error(
+            firstServerError ?? (json.error as string) ?? "Gagal mengirim pesan.",
+          );
+        } else {
+          toast.error((json.error as string) ?? "Gagal mengirim pesan.");
+        }
       }
     } catch {
       toast.error("Terjadi kesalahan. Silakan coba lagi.");
@@ -52,6 +114,13 @@ export default function AduanPage() {
       setSubmitting(false);
     }
   }
+
+  const inputClass = (hasError: boolean) =>
+    `w-full rounded-xs border bg-background px-4 py-3 text-foreground outline-none transition-all placeholder:text-muted-foreground/50 focus:ring-1 ${
+      hasError
+        ? "border-destructive focus:border-destructive focus:ring-destructive/20"
+        : "border-input focus:border-primary focus:ring-primary/10"
+    }`;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -171,7 +240,7 @@ export default function AduanPage() {
             {/* Contact Form */}
             <div className="rounded-2xl bg-card p-8 shadow-xl border border-sage">
               <h2 className="mb-6 text-2xl font-bold font-display">Kirim Pesan</h2>
-              <form className="space-y-5" onSubmit={handleSubmit}>
+              <form className="space-y-5" onSubmit={handleSubmit} noValidate>
                 <div>
                   <label
                     htmlFor="name"
@@ -186,11 +255,12 @@ export default function AduanPage() {
                     placeholder="Masukkan nama lengkap Anda"
                     required
                     value={form.fullName}
-                    onChange={(e) =>
-                      setForm((f) => ({ ...f, fullName: e.target.value }))
-                    }
-                    className="w-full rounded-xs border border-input bg-background px-4 py-3 text-foreground outline-none transition-all placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-primary/10"
+                    onChange={(e) => handleFieldChange("fullName", e.target.value)}
+                    className={inputClass(!!fieldErrors.fullName)}
                   />
+                  {fieldErrors.fullName && (
+                    <p className="mt-1 text-sm text-destructive">{fieldErrors.fullName}</p>
+                  )}
                 </div>
                 <div>
                   <label
@@ -206,11 +276,12 @@ export default function AduanPage() {
                     placeholder="contoh@email.com"
                     required
                     value={form.email}
-                    onChange={(e) =>
-                      setForm((f) => ({ ...f, email: e.target.value }))
-                    }
-                    className="w-full rounded-xs border border-input bg-background px-4 py-3 text-foreground outline-none transition-all placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-primary/10"
+                    onChange={(e) => handleFieldChange("email", e.target.value)}
+                    className={inputClass(!!fieldErrors.email)}
                   />
+                  {fieldErrors.email && (
+                    <p className="mt-1 text-sm text-destructive">{fieldErrors.email}</p>
+                  )}
                 </div>
                 <div>
                   <label
@@ -225,11 +296,12 @@ export default function AduanPage() {
                     name="phone"
                     placeholder="08xx xxxx xxxx"
                     value={form.phoneNumber}
-                    onChange={(e) =>
-                      setForm((f) => ({ ...f, phoneNumber: e.target.value }))
-                    }
-                    className="w-full rounded-xs border border-input bg-background px-4 py-3 text-foreground outline-none transition-all placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-primary/10"
+                    onChange={(e) => handleFieldChange("phoneNumber", e.target.value)}
+                    className={inputClass(!!fieldErrors.phoneNumber)}
                   />
+                  {fieldErrors.phoneNumber && (
+                    <p className="mt-1 text-sm text-destructive">{fieldErrors.phoneNumber}</p>
+                  )}
                 </div>
                 <div>
                   <label
@@ -245,11 +317,12 @@ export default function AduanPage() {
                     placeholder="Tulis pesan Anda di sini..."
                     required
                     value={form.content}
-                    onChange={(e) =>
-                      setForm((f) => ({ ...f, content: e.target.value }))
-                    }
-                    className="w-full resize-none rounded-xs border border-input bg-background px-4 py-3 text-foreground outline-none transition-all placeholder:text-muted-foreground/50 focus:border-primary focus:ring-1 focus:ring-primary/10"
+                    onChange={(e) => handleFieldChange("content", e.target.value)}
+                    className={inputClass(!!fieldErrors.content)}
                   />
+                  {fieldErrors.content && (
+                    <p className="mt-1 text-sm text-destructive">{fieldErrors.content}</p>
+                  )}
                 </div>
                 <button
                   type="submit"
