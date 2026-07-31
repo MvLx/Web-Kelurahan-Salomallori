@@ -1,22 +1,15 @@
 "use client";
 
-import { useState } from "react";
 import Navbar from "@/components/custom/navbar";
 import Footer from "@/components/custom/footer";
-import { BarChart3, Loader2 } from "lucide-react";
+import { BarChart3 } from "lucide-react";
 import ChartView from "./chart-view";
-
-interface DataPoint {
-  label: string;
-  value: number;
-  color?: string;
-}
 
 interface InfografisItem {
   id: string;
   judul: string;
   tahun: number;
-  dataJson: DataPoint[];
+  dataJson: unknown;
   chartType: string;
   createdAt: string;
   updatedAt: string;
@@ -25,11 +18,10 @@ interface InfografisItem {
 interface InfografisClientProps {
   items: InfografisItem[];
   error: string | null;
+  loading?: boolean;
 }
 
-export default function InfografisClient({ items, error }: InfografisClientProps) {
-  const [loading] = useState(false);
-
+export default function InfografisClient({ items, error, loading = false }: InfografisClientProps) {
   if (loading) {
     return (
       <div className="min-h-screen bg-background text-foreground">

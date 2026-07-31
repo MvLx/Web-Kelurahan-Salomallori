@@ -27,7 +27,7 @@ interface ChartItem {
   id: string;
   judul: string;
   tahun: number;
-  dataJson: DataPoint[];
+  dataJson: unknown;
   chartType: string;
   createdAt: string;
   updatedAt: string;
@@ -35,8 +35,69 @@ interface ChartItem {
 
 const COLORS = ["#006496", "#2D6A4F", "#F59E0B", "#BA1A1A", "#6B7280", "#171717"];
 
+type UnknownRecord = Record<string, unknown>;
+
+function humanizeKey(key: string): string {
+  const spaced = key.replace(/([A-Z])/g, " $1").replace(/[_-]+/g, " ");
+  return spaced.charAt(0).toUpperCase() + spaced.slice(1);
+}
+
+function isDataPointArray(value: unknown): value is DataPoint[] {
+  if (!Array.isArray(value)) return false;
+  return value.every(
+    (v) =>
+      v !== null &&
+      typeof v === "object" &&
+      "label" in v &&
+      "value" in v &&
+      typeof (v as Record<string, unknown>).label === "string" &&
+      typeof (v as Record<string, unknown>).value === "number"
+  );
+}
+
+/**
+ * Normalisasi dataJson agar kompatibel dengan Recharts (DataPoint[]).
+ * Mendukung 3 format:
+ *  1. DataPoint[]  — [{ label, value }]  (format baru / yang dipakai admin)
+ *  2. Chart.js     — { labels: [], datasets: [{ data: [] }] }  (format seed lama)
+ *  3. Flat object  — { totalPenduduk: 1599, jumlahKK: 561 }  (STAT_CARDS seed lama)
+ */
+function normalizeData(dataJson: unknown): DataPoint[] {
+  // Format 1: sudah DataPoint[]
+  if (isDataPointArray(dataJson)) {
+    return dataJson.filter(
+      (d) => typeof d.label === "string" && typeof d.value === "number" && !Number.isNaN(d.value)
+    );
+  }
+
+  if (dataJson !== null && typeof dataJson === "object") {
+    const obj = dataJson as UnknownRecord;
+
+    // Format 2: Chart.js style { labels: [...], datasets: [{ data: [...] }] }
+    if (Array.isArray(obj.labels) && Array.isArray(obj.datasets) && obj.datasets.length > 0) {
+      const labels = obj.labels as string[];
+      const firstDataset = obj.datasets[0] as UnknownRecord;
+      const values = Array.isArray(firstDataset?.data) ? (firstDataset.data as number[]) : [];
+      return labels
+        .map((label, i) => ({ label: String(label), value: Number(values[i] ?? 0) }))
+        .filter((d) => !Number.isNaN(d.value));
+    }
+
+    // Format 3: Flat object → DataPoint[] (mis. untuk STAT_CARDS)
+    const entries = Object.entries(obj);
+    if (entries.length > 0 && entries.every(([, v]) => typeof v === "number")) {
+      return entries.map(([key, value]) => ({
+        label: humanizeKey(key),
+        value: Number(value),
+      }));
+    }
+  }
+
+  return [];
+}
+
 export default function ChartView({ item }: { item: ChartItem }) {
-  const data = Array.isArray(item.dataJson) ? item.dataJson : [];
+  const data = normalizeData(item.dataJson);
 
   if (data.length === 0) {
     return (

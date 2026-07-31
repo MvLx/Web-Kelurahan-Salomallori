@@ -1,17 +1,11 @@
 import { prisma } from "@/lib/prisma";
 import InfografisClient from "@/components/infografis/infografis-client";
 
-interface DataPoint {
-  label: string;
-  value: number;
-  color?: string;
-}
-
 interface InfografisItem {
   id: string;
   judul: string;
   tahun: number;
-  dataJson: DataPoint[];
+  dataJson: unknown;
   chartType: string;
   createdAt: string;
   updatedAt: string;
@@ -31,8 +25,7 @@ export default async function InfografisPage() {
       id: item.id,
       judul: item.judul,
       tahun: item.tahun,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      dataJson: ((item.dataJson as unknown) as any[]) || [],
+      dataJson: item.dataJson,
       chartType: item.chartType,
       createdAt: item.createdAt.toISOString(),
       updatedAt: item.updatedAt.toISOString(),

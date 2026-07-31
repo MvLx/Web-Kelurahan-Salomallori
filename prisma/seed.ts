@@ -127,38 +127,57 @@ async function main() {
   }
 
   // --- INFOGRAFIS ---
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const infografisData: any[] = [
+  // dataJson menggunakan format DataPoint[]: [{ label, value }]
+  // (kompatibel dengan recharts di components/infografis/chart-view.tsx)
+  type ChartType =
+    | "BAR_CHART"
+    | "LINE_CHART"
+    | "PIE_CHART"
+    | "DOUGHNUT_CHART"
+    | "AREA_CHART"
+    | "STAT_CARDS";
+
+  const infografisData: Array<{
+    judul: string;
+    tahun: number;
+    chartType: ChartType;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    dataJson: any[];
+  }> = [
     {
       judul: "Statistik Penduduk Kelurahan Salomallori",
       tahun: 2026,
       chartType: "STAT_CARDS",
-      dataJson: {
-        totalPenduduk: 1599,
-        jumlahKK: 561,
-        luasWilayah: 2.75,
-        jumlahDusun: 3,
-        lakiLaki: 802,
-        perempuan: 797,
-      },
+      dataJson: [
+        { label: "Total Penduduk", value: 1599 },
+        { label: "Jumlah KK", value: 561 },
+        { label: "Luas Wilayah (km²)", value: 2.75 },
+        { label: "Jumlah Dusun", value: 3 },
+        { label: "Laki-laki", value: 802 },
+        { label: "Perempuan", value: 797 },
+      ],
     },
     {
       judul: "Komposisi Penduduk per Dusun",
       tahun: 2026,
       chartType: "BAR_CHART",
-      dataJson: {
-        labels: ["Dusun I", "Dusun II", "Dusun III"],
-        datasets: [{ label: "Jumlah Penduduk", data: [550, 530, 519] }],
-      },
+      dataJson: [
+        { label: "Dusun I", value: 550 },
+        { label: "Dusun II", value: 530 },
+        { label: "Dusun III", value: 519 },
+      ],
     },
     {
       judul: "Mata Pencaharian",
       tahun: 2026,
       chartType: "PIE_CHART",
-      dataJson: {
-        labels: ["Petani", "Peternak", "Pedagang", "PNS", "Lainnya"],
-        datasets: [{ label: "Persentase", data: [45, 20, 15, 10, 10] }],
-      },
+      dataJson: [
+        { label: "Petani", value: 45 },
+        { label: "Peternak", value: 20 },
+        { label: "Pedagang", value: 15 },
+        { label: "PNS", value: 10 },
+        { label: "Lainnya", value: 10 },
+      ],
     },
   ];
 
