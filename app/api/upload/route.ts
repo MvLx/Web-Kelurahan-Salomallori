@@ -3,6 +3,13 @@ import { v2 as cloudinary } from "cloudinary";
 import { requireAuth } from "@/lib/dal";
 import { uploadLimiter, getClientIp } from "@/lib/api-rate-limit";
 
+// Debug: hanya log ada/tidaknya nilai env — bukan isi secret-nya.
+console.error("[upload] Env check:", {
+  cloudName: process.env.CLOUDINARY_CLOUD_NAME ? "SET" : "MISSING",
+  apiKey: process.env.CLOUDINARY_API_KEY ? "SET" : "MISSING",
+  apiSecret: process.env.CLOUDINARY_API_SECRET ? "SET" : "MISSING",
+});
+
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -71,7 +78,8 @@ export async function POST(req: NextRequest) {
       url: result.secure_url,
       publicId: result.public_id,
     });
-  } catch {
+  } catch (error) {
+    console.error("[upload] Error detail:", error);
     return NextResponse.json(
       { error: "Gagal mengunggah gambar. Coba lagi." },
       { status: 500 },
