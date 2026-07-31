@@ -73,7 +73,7 @@ const profilDropdown: NavDropdown = {
 };
 
 const galeriDropdown: NavDropdown = {
-  label: "Galeri",
+  label: "Publikasi",
   href: "/galeri",
   children: [
     { label: "Berita", href: "/news", icon: Newspaper },
