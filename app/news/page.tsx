@@ -6,6 +6,8 @@ import Navbar from "@/components/custom/navbar";
 import Footer from "@/components/custom/footer";
 import type { Metadata } from "next";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Berita — Kelurahan Salomallori",
   description: "Berita dan informasi terbaru dari Kelurahan Salomallori",
