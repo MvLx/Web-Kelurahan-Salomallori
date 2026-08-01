@@ -53,7 +53,7 @@ export function NewsCard({ post, priority = false }: NewsCardProps) {
         </div>
 
         {/* Cover image */}
-        <div className="overflow-hidden">
+        <div className="aspect-video overflow-hidden">
           <Image
             src={post.image}
             alt={post.title}
@@ -61,7 +61,7 @@ export function NewsCard({ post, priority = false }: NewsCardProps) {
             height={0}
             sizes="100vw"
             priority={priority}
-            className="h-auto w-full object-cover transition duration-300 group-hover:scale-105"
+            className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
           />
         </div>
 
