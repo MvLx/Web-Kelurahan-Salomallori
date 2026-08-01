@@ -731,6 +731,66 @@ export async function POST(req: NextRequest) {
 - [x] ~skipped~ 32d. Testing email notifikasi
 - [x] ~skipped~ 32e. Testing batalkan ticket
 
+### Fase 6 — Peta Interaktif (Coming Soon — Masih Ide)
+
+> **Status: IDE** — Fase ini adalah rencana fitur tambahan, belum dikerjakan. Dikerjakan setelah file GeoJSON batas dusun dan titik penting sudah disediakan oleh tim GIS.
+
+#### 6A — Data & Setup
+- [ ] 33. Install `leaflet` + `react-leaflet` + `@types/leaflet`
+- [ ] 34. Siapkan file `public/data/batas-dusun.geojson` (polygon 3 dusun, properti: `nama`, `warna`, `deskripsi`) — **disediakan tim GIS dari ArcGIS/QGIS**
+- [ ] 35. Siapkan file `public/data/titik-penting.geojson` (marker: kantor kelurahan, masjid, sekolah, puskesmas, dll.) — **disediakan tim GIS dari ArcGIS/QGIS**
+
+#### 6B — Komponen Peta
+- [ ] 36. Buat `components/peta/peta-client.tsx` — komponen utama Leaflet dengan:
+  - Tile layer: OpenStreetMap (light) / CartoDB Dark Matter (dark mode)
+  - Polygon 3 dusun dari GeoJSON, warna berbeda per dusun
+  - Popup: klik polygon → tampilkan nama + luas + jumlah penduduk
+  - Legend panel (pojok kanan bawah): nama dusun + kotak warna
+  - Toggle layer: checkbox per dusun di legend
+  - Marker titik penting dengan icon kustom per kategori
+  - Zoom control + fit-to-bounds otomatis saat load
+- [ ] 37. Buat `app/peta-wilayah/page.tsx` — halaman peta interaktif full-height
+
+#### 6C — Integrasi Navbar
+- [ ] 38. Modifikasi `components/custom/navbar.tsx`:
+  - Ubah item `Infografis` (single link) menjadi **dropdown "Informasi Umum"**
+  - Dropdown berisi: **Infografis** (`/infografis`) + **Peta Wilayah** (`/peta-wilayah`)
+  - Gunakan icon `Map` dari lucide-react
+
+#### 6D — Testing
+- [ ] 39. Testing peta interaktif (zoom, popup, legend, toggle layer)
+- [ ] 40. Testing responsive (mobile, tablet, desktop)
+- [ ] 41. Testing dark mode (tile gelap vs terang)
+
+**Tech Stack untuk Fase 6:**
+
+| Komponen | Teknologi |
+|---|---|
+| Map Engine | Leaflet 1.x |
+| React Binding | react-leaflet 5.x |
+| Tile Provider | OpenStreetMap (gratis, tanpa API key) |
+| Dark Mode Tile | CartoDB Dark Matter |
+| Data Format | GeoJSON (file statis di `public/data/`) |
+| Tidak perlu database / API routes / API key |
+
+**Rute Baru:**
+
+| Route | File | Keterangan |
+|---|---|---|
+| `/peta-wilayah` | `app/peta-wilayah/page.tsx` | Peta interaktif full-height |
+
+**Perubahan Navbar:**
+
+| Sebelum | Sesudah |
+|---|---|
+| Infografis (link sendiri) | **Informasi Umum ▼** → Infografis + Peta Wilayah |
+
+**Prasyarat Sebelum Dikerjakan:**
+1. Tim GIS harus mengekspor dari ArcGIS/QGIS ke file GeoJSON:
+   - `batas-dusun.geojson` — polygon 3 dusun
+   - `titik-penting.geojson` — marker titik penting
+2. Jika file belum siap, agent bisa buat **placeholder / dummy data** GeoJSON untuk testing, kemudian ditimpa dengan data asli
+
 ---
 
 ## 9. Konvensi Coding
