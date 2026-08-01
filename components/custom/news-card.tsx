@@ -25,8 +25,8 @@ interface NewsCardProps {
 
 export function NewsCard({ post, priority = false }: NewsCardProps) {
   return (
-    <Link href={`/news/${post.slug}`} className="group block">
-      <Card className="overflow-hidden border-foreground/10 bg-card py-0 transition hover:border-primary">
+    <Link href={`/news/${post.slug}`} className="group block h-full">
+      <Card className="flex h-full flex-col overflow-hidden border-foreground/10 bg-card py-0 transition hover:border-primary">
         {/* Top bar: author + category */}
         <div className="flex items-center justify-between gap-2 px-4 py-3">
           <div className="flex items-center gap-2 overflow-hidden">
@@ -66,7 +66,7 @@ export function NewsCard({ post, priority = false }: NewsCardProps) {
         </div>
 
         {/* Bottom content */}
-        <CardContent className="px-4 py-3">
+        <CardContent className="flex-1 px-4 py-3">
           <h2 className="line-clamp-2 text-sm font-bold leading-snug text-foreground transition-colors group-hover:text-primary sm:text-base">
             {post.title}
           </h2>
