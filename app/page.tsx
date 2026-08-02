@@ -6,7 +6,7 @@ import Footer from "@/components/custom/footer";
 import { HeroSection } from "@/components/landing/hero-section";
 import { StatsSection } from "@/components/landing/stats-section";
 import { NewsSection } from "@/components/landing/news-section";
-import { FeaturedSection } from "@/components/landing/featured-section";
+import { SejarahSection } from "@/components/landing/sejarah-section";
 import { BreakingNewsSection } from "@/components/landing/breaking-news-section";
 import { GaleriSection } from "@/components/landing/galeri-section";
 import { ScrollToTopButton } from "@/components/custom/scroll-to-top";
@@ -32,8 +32,8 @@ function BerandaContent() {
         {/* Berita Terbaru */}
         <NewsSection />
 
-        {/* Featured UMKM + Wisata */}
-        <FeaturedSection />
+        {/* Sejarah Kelurahan */}
+        <SejarahSection />
 
         {/* Galeri Foto */}
         <GaleriSection />

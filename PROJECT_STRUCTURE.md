@@ -123,6 +123,7 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 │   │   ├── stats-section.tsx               # Statistik kelurahan
 │   │   ├── breaking-news-section.tsx       # Marquee pengumuman
 │   │   ├── news-section.tsx                # Berita terbaru
+│   │   ├── sejarah-section.tsx             # Sejarah kelurahan
 │   │   ├── featured-section.tsx            # UMKM + Wisata unggulan
 │   │   └── galeri-section.tsx              # Galeri foto grid
 │   ├── galeri/                             # Komponen galeri
@@ -190,7 +191,7 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 
 | # | Route | Tipe | Status | File | Catatan |
 |---|---|---|---|---|---|
-| 1 | `/` | Beranda | ✅ Aktif | `app/page.tsx` | Hero + stats + berita + UMKM/Wisata + galeri + breaking news |
+| 1 | `/` | Beranda | ✅ Aktif | `app/page.tsx` | Hero + stats + berita + sejarah + galeri + breaking news |
 | 2 | `/profil` | Profil | ✅ Aktif | `app/profil/page.tsx` | Profil kelurahan (data Desa) |
 | 3 | `/profil/sejarah-kelurahan` | Sejarah | ✅ Aktif | `app/profil/sejarah-kelurahan/` | Submenu Profil |
 | 4 | `/profil/pejabat-kelurahan` | Pejabat | ✅ Aktif | `app/profil/pejabat-kelurahan/` | Submenu Profil |
@@ -320,7 +321,8 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 | `StatsSection` | ✅ Aktif | Statistik kelurahan (luas, penduduk, KK, dusun) — data dari `/api/desa` |
 | `BreakingNewsSection` | ✅ Aktif | Marquee pengumuman kelurahan |
 | `NewsSection` | ✅ Aktif | Grid berita terbaru di beranda |
-| `FeaturedSection` | ✅ Aktif | Grid UMKM + Wisata unggulan |
+| `SejarahSection` | ✅ Aktif | Section sejarah kelurahan di beranda — data dari `/api/desa` |
+| `FeaturedSection` | ⚠️ Tidak dipakai | Grid UMKM + Wisata unggulan (tidak lagi di-import di beranda; halaman `/umkm` & `/wisata` tetap aktif) |
 | `GaleriSection` | ✅ Aktif | Galeri foto grid di beranda |
 
 ### 5.2 Custom Components (`components/custom/`)
