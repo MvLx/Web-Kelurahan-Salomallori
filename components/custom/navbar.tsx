@@ -65,11 +65,12 @@ function isDropdown(item: NavItem): item is NavDropdown {
 }
 
 const profilDropdown: NavDropdown = {
-  label: "Profil Kelurahan",
+  label: "Profil",
   href: "/profil",
   children: [
     { label: "Sejarah Kelurahan", href: "/profil/sejarah-kelurahan", icon: History },
     { label: "Pejabat Kelurahan", href: "/profil/pejabat-kelurahan", icon: UserCheck },
+    { label: "Infografis", href: "/infografis", icon: BarChart3 },
   ],
 };
 
@@ -88,8 +89,7 @@ const publicLinks: NavItem[] = [
   { label: "UMKM", href: "/umkm" },
   { label: "Wisata", href: "/wisata" },
   galeriDropdown,
-  { label: "Infografis", href: "/infografis" },
-  { label: "Kontak & Aduan", href: "/aduan" },
+  { label: "Kontak", href: "/aduan" },
 ];
 
 const dashboardLinks: NavLink[] = [
