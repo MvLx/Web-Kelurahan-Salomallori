@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import {
   LogOut,
   User,
@@ -17,7 +17,6 @@ import {
   Menu,
   X,
   LayoutDashboard,
-  Search,
   ChevronDown,
   History,
   UserCheck,
@@ -31,7 +30,6 @@ import {
 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ThemeToggle } from "./theme-toggle";
 import {
@@ -74,6 +72,15 @@ const profilDropdown: NavDropdown = {
   ],
 };
 
+const potensiDropdown: NavDropdown = {
+  label: "Potensi",
+  href: "/umkm",
+  children: [
+    { label: "UMKM", href: "/umkm", icon: Store },
+    { label: "Wisata", href: "/wisata", icon: MapPin },
+  ],
+};
+
 const galeriDropdown: NavDropdown = {
   label: "Publikasi",
   href: "/galeri",
@@ -86,8 +93,7 @@ const galeriDropdown: NavDropdown = {
 const publicLinks: NavItem[] = [
   { label: "Beranda", href: "/" },
   profilDropdown,
-  { label: "UMKM", href: "/umkm" },
-  { label: "Wisata", href: "/wisata" },
+  potensiDropdown,
   galeriDropdown,
   { label: "Kontak", href: "/aduan" },
 ];
@@ -135,24 +141,6 @@ export default function Navbar({ variant = "public" }: NavbarProps) {
   const [mobileOpenDropdown, setMobileOpenDropdown] = useState<string | null>(
     null,
   );
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
-  const searchInputRef = useRef<HTMLInputElement>(null);
-
-  // Focus input when panel opens
-  useEffect(() => {
-    if (searchOpen) {
-      setTimeout(() => searchInputRef.current?.focus(), 50);
-    }
-  }, [searchOpen]);
-
-  function handleSearchSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const q = searchValue.trim();
-    router.push(q ? `/?q=${encodeURIComponent(q)}` : "/");
-    setSearchOpen(false);
-    setSearchValue("");
-  }
 
   const userRole = session?.user?.role;
   const isPrivileged = userRole === "EDITOR" || userRole === "ADMIN";
@@ -172,10 +160,7 @@ export default function Navbar({ variant = "public" }: NavbarProps) {
   }
 
   return (
-    <header
-      className="fixed top-0 left-0 right-0 z-50 border-b border-foreground/10 bg-card/70 backdrop-blur-md"
-      data-search-open={searchOpen}
-    >
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-foreground/10 bg-card/70 backdrop-blur-md">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 md:px-8">
         {/* ── Logo & Title ── */}
         <Link href="/" className="flex shrink-0 items-center gap-3">
@@ -269,20 +254,6 @@ export default function Navbar({ variant = "public" }: NavbarProps) {
 
         {/* ── Right Side: Theme + Avatar ── */}
         <div className="flex shrink-0 items-center gap-1">
-          {pathname === "/" && (
-            <Button
-              variant="ghost"
-              size="icon"
-              className={cn(
-                "size-9 transition-colors",
-                searchOpen && "bg-primary/10 text-primary",
-              )}
-              onClick={() => setSearchOpen((o) => !o)}
-              aria-label="Cari berita"
-            >
-              <Search className="size-4" />
-            </Button>
-          )}
           <ThemeToggle />
 
           {/* Avatar Dropdown */}
@@ -375,46 +346,6 @@ export default function Navbar({ variant = "public" }: NavbarProps) {
           </Button>
         </div>
       </nav>
-
-      {/* ── Search Dropdown ── */}
-      {pathname === "/" && (
-        <div
-          className={cn(
-            "overflow-hidden border-foreground/10 bg-card/90 backdrop-blur-md transition-all duration-300 ease-in-out",
-            searchOpen ? "max-h-20 border-t py-3" : "max-h-0 border-t-0 py-0",
-          )}
-        >
-          <form
-            onSubmit={handleSearchSubmit}
-            className="mx-auto flex max-w-7xl items-center gap-3 px-4 md:px-8"
-          >
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-foreground/40" />
-              <Input
-                ref={searchInputRef}
-                type="search"
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-                onKeyDown={(e) => e.key === "Escape" && setSearchOpen(false)}
-                placeholder="Cari berita..."
-                className="pl-9"
-              />
-            </div>
-            <Button type="submit" size="sm" className="shrink-0">
-              Cari
-            </Button>
-            <Button
-              type="button"
-              variant="ghost"
-              size="sm"
-              className="shrink-0"
-              onClick={() => setSearchOpen(false)}
-            >
-              Batal
-            </Button>
-          </form>
-        </div>
-      )}
 
       {/* ── Mobile Menu ── */}
       {mobileOpen && (
