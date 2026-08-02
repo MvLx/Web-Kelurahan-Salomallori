@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "@/components/custom/navbar";
 import Footer from "@/components/custom/footer";
-import { MapPin, Users, Home, TreesIcon as Grass } from "lucide-react";
+import { MapPin, Users, Home, Trees } from "lucide-react";
 
 interface DesaData {
   id: string;
@@ -91,7 +91,7 @@ export default function SejarahKelurahanPage() {
     {
       label: "Jumlah Dusun",
       value: `${desa.jumlahDusun ?? "—"} Dusun`,
-      icon: Grass,
+      icon: Trees,
     },
   ];
 

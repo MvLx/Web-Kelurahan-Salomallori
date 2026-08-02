@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { X, ChevronLeft, ChevronRight, ImageIcon } from "lucide-react";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface Galeri {
   id: string;
@@ -20,7 +20,15 @@ export function GaleriSection() {
       try {
         const res = await fetch("/api/galeri");
         const json = await res.json();
-        setItems(Array.isArray(json) ? json : []);
+        // API galeri mengembalikan { data: items, total, ... }
+        // fallback juga untuk response bentuk array (kompatibel)
+        setItems(
+          Array.isArray(json)
+            ? json
+            : Array.isArray(json?.data)
+              ? json.data
+              : [],
+        );
       } catch {
         setItems([]);
       } finally {
