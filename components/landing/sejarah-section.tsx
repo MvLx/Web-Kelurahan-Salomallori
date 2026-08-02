@@ -2,11 +2,31 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { History, ArrowRight, ScrollText } from "lucide-react";
+import {
+  History,
+  ArrowRight,
+  ScrollText,
+  MapPin,
+  Landmark,
+  Users,
+  Home,
+  Trees,
+  Ruler,
+  Compass,
+} from "lucide-react";
 
 type DesaData = {
   nama: string;
   sejarah: string | null;
+  luasWilayah: number | null;
+  jumlahPenduduk: number | null;
+  jumlahKK: number | null;
+  jumlahDusun: number | null;
+  batasUtara: string | null;
+  batasTimur: string | null;
+  batasSelatan: string | null;
+  batasBarat: string | null;
+  fotoKepalaDesa: string | null;
 };
 
 function SkeletonCard() {
@@ -18,6 +38,54 @@ function SkeletonCard() {
         <div className="h-4 w-full animate-pulse rounded bg-ash dark:bg-[#2e2e2e]" />
         <div className="h-4 w-3/4 animate-pulse rounded bg-ash dark:bg-[#2e2e2e]" />
       </div>
+    </div>
+  );
+}
+
+function StatItem({
+  icon: Icon,
+  label,
+  value,
+}: {
+  icon: React.ElementType;
+  label: string;
+  value: string;
+}) {
+  return (
+    <div className="flex items-start gap-3">
+      <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-[8px] bg-fog text-hudson-blue dark:bg-[#2e2e2e] dark:text-[#7fc8ff]">
+        <Icon className="h-4 w-4" />
+      </div>
+      <div className="min-w-0">
+        <p className="font-body text-label-medium font-semibold text-iron dark:text-[#c2c8bd]">
+          {label}
+        </p>
+        <p className="truncate font-body text-body-medium font-semibold text-obsidian dark:text-[#e1e3e0]">
+          {value}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function BorderItem({
+  arah,
+  value,
+}: {
+  arah: string;
+  value: string;
+}) {
+  return (
+    <div className="flex items-center justify-between gap-3 border-b border-sage/60 pb-2.5 last:border-0 last:pb-0 dark:border-[#414943]/60">
+      <div className="flex items-center gap-2">
+        <Compass className="h-4 w-4 text-hudson-blue dark:text-[#7fc8ff]" />
+        <span className="font-body text-label-medium font-semibold text-obsidian dark:text-[#e1e3e0]">
+          {arah}
+        </span>
+      </div>
+      <span className="text-right font-body text-body-small text-iron dark:text-[#c2c8bd]">
+        {value}
+      </span>
     </div>
   );
 }
@@ -70,10 +138,102 @@ export function SejarahSection() {
             <p className="font-body text-body-medium">Data sejarah belum tersedia</p>
           </div>
         ) : (
-          <div className="rounded-[12px] border border-sage bg-paper p-6 shadow-paper-sm dark:border-[#414943] dark:bg-[#1a1a1a] md:p-8">
-            <p className="whitespace-pre-line font-body text-body-medium leading-relaxed text-iron dark:text-[#c2c8bd]">
-              {desa.sejarah}
-            </p>
+          <div className="grid gap-6 lg:grid-cols-5">
+            {/* Kiri — Sejarah */}
+            <div className="overflow-hidden rounded-[12px] border border-sage bg-paper shadow-paper-sm dark:border-[#414943] dark:bg-[#1a1a1a] lg:col-span-3">
+              {desa.fotoKepalaDesa ? (
+                <div className="relative h-56 w-full overflow-hidden md:h-72">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={desa.fotoKepalaDesa}
+                    alt={`Kantor Kelurahan ${desa.nama}`}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              ) : (
+                <div className="flex h-48 w-full items-center justify-center bg-fog dark:bg-[#2e2e2e] md:h-56">
+                  <div className="flex flex-col items-center gap-3 text-iron dark:text-[#c2c8bd]">
+                    <Landmark className="h-14 w-14" />
+                    <span className="font-body text-label-large font-semibold">
+                      Kelurahan {desa.nama}
+                    </span>
+                  </div>
+                </div>
+              )}
+              <div className="p-6 md:p-8">
+                <p className="whitespace-pre-line font-body text-body-medium leading-relaxed text-iron dark:text-[#c2c8bd]">
+                  {desa.sejarah}
+                </p>
+                <div className="mt-6 border-t border-sage pt-6 dark:border-[#414943]">
+                  <Link
+                    href="/profil/sejarah-kelurahan"
+                    className="inline-flex items-center gap-1.5 rounded-xs bg-obsidian px-5 py-2.5 font-body text-label-large font-semibold text-white transition-colors hover:bg-obsidian/90 dark:bg-white dark:text-black dark:hover:bg-white/90"
+                  >
+                    Baca Sejarah Lengkap
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Kanan — Sidebar */}
+            <div className="space-y-6 lg:col-span-2">
+              {/* Batas Wilayah */}
+              <div className="rounded-[12px] border border-sage bg-paper p-5 shadow-paper-sm dark:border-[#414943] dark:bg-[#1a1a1a]">
+                <div className="mb-4 flex items-center gap-2.5">
+                  <MapPin className="h-5 w-5 text-hudson-blue dark:text-[#7fc8ff]" />
+                  <h3 className="font-display text-headline-small font-semibold text-obsidian dark:text-white">
+                    Batas Wilayah
+                  </h3>
+                </div>
+                <div className="space-y-3">
+                  {desa.batasUtara && <BorderItem arah="Utara" value={desa.batasUtara} />}
+                  {desa.batasTimur && <BorderItem arah="Timur" value={desa.batasTimur} />}
+                  {desa.batasSelatan && <BorderItem arah="Selatan" value={desa.batasSelatan} />}
+                  {desa.batasBarat && <BorderItem arah="Barat" value={desa.batasBarat} />}
+                </div>
+              </div>
+
+              {/* Sekilas Kelurahan */}
+              <div className="rounded-[12px] border border-sage bg-paper p-5 shadow-paper-sm dark:border-[#414943] dark:bg-[#1a1a1a]">
+                <div className="mb-4 flex items-center gap-2.5">
+                  <Ruler className="h-5 w-5 text-hudson-blue dark:text-[#7fc8ff]" />
+                  <h3 className="font-display text-headline-small font-semibold text-obsidian dark:text-white">
+                    Sekilas Kelurahan
+                  </h3>
+                </div>
+                <div className="grid grid-cols-1 gap-4">
+                  {desa.luasWilayah != null && (
+                    <StatItem
+                      icon={Ruler}
+                      label="Luas Wilayah"
+                      value={`${desa.luasWilayah.toLocaleString("id-ID")} km²`}
+                    />
+                  )}
+                  {desa.jumlahPenduduk != null && (
+                    <StatItem
+                      icon={Users}
+                      label="Jumlah Penduduk"
+                      value={`${desa.jumlahPenduduk.toLocaleString("id-ID")} Jiwa`}
+                    />
+                  )}
+                  {desa.jumlahKK != null && (
+                    <StatItem
+                      icon={Home}
+                      label="Kepala Keluarga"
+                      value={`${desa.jumlahKK.toLocaleString("id-ID")} KK`}
+                    />
+                  )}
+                  {desa.jumlahDusun != null && (
+                    <StatItem
+                      icon={Trees}
+                      label="Jumlah Dusun"
+                      value={`${desa.jumlahDusun.toLocaleString("id-ID")} Dusun`}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </div>
