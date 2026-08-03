@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Newspaper, ArrowRight, ImageOff } from "lucide-react";
+import { Newspaper, ArrowRight } from "lucide-react";
+import { NewsCard, type NewsCardPost } from "@/components/custom/news-card";
 
 // ─── Types ──────────────────────────────────────────
 type PostItem = {
@@ -32,25 +33,6 @@ function CardSkeleton() {
   );
 }
 
-// ─── Placeholder Image ──────────────────────────────
-function ItemImage({ src, alt }: { src: string | null; alt: string }) {
-  if (!src) {
-    return (
-      <div className="flex aspect-video items-center justify-center rounded-[8px] bg-fog dark:bg-[#2e2e2e]">
-        <ImageOff className="h-8 w-8 text-iron" />
-      </div>
-    );
-  }
-  return (
-    <div
-      className="aspect-video w-full rounded-[8px] bg-cover bg-center"
-      style={{ backgroundImage: `url('${src}')` }}
-      role="img"
-      aria-label={alt}
-    />
-  );
-}
-
 // ─── News Grid ──────────────────────────────────────
 function NewsGrid({ items }: { items: PostItem[] }) {
   if (items.length === 0) {
@@ -62,42 +44,28 @@ function NewsGrid({ items }: { items: PostItem[] }) {
     );
   }
 
+  const cards: NewsCardPost[] = items.map((item) => ({
+    id: item.id,
+    slug: item.slug,
+    title: item.title,
+    excerpt: item.summary,
+    category: {
+      name: item.category?.name ?? "Berita",
+      color: item.category?.color ?? null,
+    },
+    author: item.authors[0]?.name ?? "Redaksi",
+    date: new Date(item.createdAt).toLocaleDateString("id-ID", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }),
+    image: item.image ?? `https://picsum.photos/seed/${item.slug}/800/500`,
+  }));
+
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {items.map((item) => (
-        <Link
-          key={item.id}
-          href={`/news/${item.slug}`}
-          className="group rounded-[12px] border border-sage bg-paper p-4 shadow-paper-sm transition-all duration-200 hover:shadow-paper-md dark:border-[#414943] dark:bg-[#1a1a1a]"
-        >
-          <ItemImage src={item.image} alt={item.title} />
-          <div className="mt-3">
-            <div className="flex items-center gap-2">
-              {item.category && (
-                <span className="rounded-full bg-sage/30 px-2.5 py-0.5 font-body text-label-medium text-hudson-blue dark:bg-[#414943] dark:text-[#84bd3a]">
-                  {item.category.name}
-                </span>
-              )}
-              <span className="font-body text-body-small text-steel">
-                {new Date(item.createdAt).toLocaleDateString("id-ID", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </span>
-            </div>
-            <h3 className="mt-1 font-display text-headline-small font-semibold text-obsidian dark:text-white line-clamp-2">
-              {item.title}
-            </h3>
-            <p className="mt-1 font-body text-body-medium text-iron line-clamp-2">
-              {item.summary}
-            </p>
-            <div className="mt-3 flex items-center gap-1 font-body text-label-large font-semibold text-hudson-blue dark:text-[#84bd3a]">
-              Baca selengkapnya
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </div>
-          </div>
-        </Link>
+    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {cards.map((card) => (
+        <NewsCard key={card.id} post={card} />
       ))}
     </div>
   );

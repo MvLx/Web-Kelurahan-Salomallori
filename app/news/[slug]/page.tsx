@@ -88,11 +88,11 @@ export async function generateMetadata({
   });
 
   if (!post) {
-    return { title: "Berita Tidak Ditemukan — InfoKodim" };
+    return { title: "Berita Tidak Ditemukan — Kelurahan Salomallori" };
   }
 
   return {
-    title: `${post.title} — InfoKodim`,
+    title: `${post.title} — Kelurahan Salomallori`,
     description: post.summary,
     openGraph: {
       title: post.title,
