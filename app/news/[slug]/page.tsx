@@ -3,7 +3,7 @@ import { after } from "next/server";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { CalendarDays, ChevronRight } from "lucide-react";
+import { CalendarDays, ChevronRight, ArrowRight, User } from "lucide-react";
 import { prisma } from "@/lib/prisma";
 import Navbar from "@/components/custom/navbar";
 import Footer from "@/components/custom/footer";
@@ -159,28 +159,36 @@ export default async function NewsDetailPage({ params }: PageProps) {
   const primaryAuthor = post.authors[0];
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-linen dark:bg-[#111411]">
       <Navbar variant="public" />
 
-      <main className="pb-16 pt-20">
+      <main className="pb-4xl pt-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumb */}
+          {/* ── Breadcrumb ── */}
           <nav
             aria-label="Breadcrumb"
-            className="mb-6 flex items-center gap-1.5 text-sm text-foreground/50"
+            className="mb-6 flex items-center gap-1.5 font-body text-body-small text-steel"
           >
-            <Link href="/" className="transition-colors hover:text-primary">
+            <Link
+              href="/"
+              className="transition-colors hover:text-[#32735f] dark:hover:text-[#84bd3a]"
+            >
               Beranda
             </Link>
-            <ChevronRight className="size-4 shrink-0" />
-            <span className="line-clamp-1 text-foreground/70">
-              {post.title}
-            </span>
+            <ChevronRight className="h-3.5 w-3.5 shrink-0" />
+            <Link
+              href="/news"
+              className="transition-colors hover:text-[#32735f] dark:hover:text-[#84bd3a]"
+            >
+              Berita
+            </Link>
+            <ChevronRight className="h-3.5 w-3.5 shrink-0" />
+            <span className="line-clamp-1 text-iron">{post.title}</span>
           </nav>
 
-          {/* Cover Image */}
+          {/* ── Cover Image ── */}
           {post.image && (
-            <div className="mb-8 overflow-hidden rounded-2xl shadow-2xl">
+            <div className="mb-8 overflow-hidden rounded-[16px] shadow-paper-md">
               <Image
                 src={post.image}
                 alt={post.title}
@@ -192,7 +200,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
             </div>
           )}
 
-          {/* Article Header */}
+          {/* ── Article Header ── */}
           <header className="mb-8">
             <div className="mb-4 flex flex-wrap items-center gap-3">
               <CategoryBadge
@@ -201,83 +209,104 @@ export default async function NewsDetailPage({ params }: PageProps) {
               />
             </div>
 
-            <h1 className="mb-4 text-3xl font-black leading-tight md:text-4xl">
+            <h1 className="mb-4 font-display text-headline-large font-semibold tracking-tight text-obsidian dark:text-white md:text-[40px] md:leading-[48px]">
               {post.title}
             </h1>
 
             {/* Author & Date Row */}
             <div className="flex flex-wrap items-center gap-4">
               <div className="flex items-center gap-2">
-                <Avatar className="size-9">
+                <Avatar className="h-9 w-9">
                   <AvatarImage
                     src={primaryAuthor?.image ?? ""}
                     alt={primaryAuthor?.name ?? "Redaksi"}
                   />
-                  <AvatarFallback className="bg-primary text-xs text-primary-foreground">
+                  <AvatarFallback className="bg-[#32735f] text-xs text-white">
                     {(primaryAuthor?.name ?? "R")[0]}
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="text-sm font-semibold">
+                  <p className="font-body text-body-medium font-semibold text-obsidian dark:text-white">
                     {primaryAuthor?.name ?? "Redaksi"}
                   </p>
-                  <p className="text-xs text-foreground/50">Penulis</p>
+                  <p className="font-body text-body-small text-iron">Penulis</p>
                 </div>
               </div>
 
               <Separator
                 orientation="vertical"
-                className="hidden h-8 sm:block"
+                className="hidden h-8 sm:block bg-sage dark:bg-[#414943]"
               />
 
-              <div className="flex items-center gap-1.5 text-sm text-foreground/50">
-                <CalendarDays className="size-4 shrink-0" />
+              <div className="flex items-center gap-1.5 font-body text-body-small text-iron">
+                <CalendarDays className="h-4 w-4 shrink-0" />
                 <span>{formatDate(post.createdAt)}</span>
               </div>
             </div>
           </header>
 
-          {/* Full Content */}
-          <article
-            className="prose prose-neutral mb-12 max-w-none dark:prose-invert prose-headings:font-bold prose-a:text-primary prose-img:rounded-xl"
-            dangerouslySetInnerHTML={{ __html: post.fullContent }}
-          />
+          {/* ── Full Content ── */}
+          <article className="mb-4xl rounded-[12px] border border-sage bg-paper p-md shadow-paper-sm dark:border-[#414943] dark:bg-[#1a1a1a] sm:p-lg">
+            <div
+              className="font-body text-body-medium leading-relaxed text-obsidian dark:text-[#e1e3e0]
+                prose prose-neutral max-w-none dark:prose-invert
+                prose-headings:font-display prose-headings:font-semibold prose-headings:tracking-tight prose-headings:text-obsidian dark:prose-headings:text-white
+                prose-p:text-obsidian prose-p:dark:text-[#e1e3e0]
+                prose-a:text-[#32735f] prose-a:dark:text-[#84bd3a] prose-a:font-medium prose-a:no-underline hover:prose-a:underline
+                prose-img:rounded-[8px]
+                prose-blockquote:border-l-[#84bd3a] prose-blockquote:bg-linen prose-blockquote:dark:bg-[#2e2e2e] prose-blockquote:rounded-r-[8px] prose-blockquote:px-4 prose-blockquote:py-2
+                prose-strong:text-obsidian prose-strong:dark:text-white"
+              dangerouslySetInnerHTML={{ __html: post.fullContent }}
+            />
+          </article>
 
-          {/* Multiple Authors */}
+          {/* ── Multiple Authors ── */}
           {post.authors.length > 1 && (
-            <div className="mb-12">
-              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-foreground/50">
+            <div className="mb-4xl">
+              <p className="mb-4 font-body text-label-medium font-semibold uppercase tracking-widest text-iron">
                 Ditulis oleh
               </p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-3">
                 {post.authors.map((author) => (
-                  <div key={author.id} className="flex items-center gap-2">
-                    <Avatar className="size-8">
-                      <AvatarImage src={author.image ?? ""} alt={author.name} />
-                      <AvatarFallback className="bg-foreground/20 text-xs text-foreground">
+                  <div
+                    key={author.id}
+                    className="flex items-center gap-2.5 rounded-[12px] border border-sage bg-paper px-4 py-2.5 shadow-paper-sm dark:border-[#414943] dark:bg-[#1a1a1a]"
+                  >
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage
+                        src={author.image ?? ""}
+                        alt={author.name}
+                      />
+                      <AvatarFallback className="bg-[#32735f]/15 text-xs text-[#32735f] dark:text-[#84bd3a]">
                         {author.name[0]}
                       </AvatarFallback>
                     </Avatar>
-                    <span className="text-sm font-medium">{author.name}</span>
+                    <span className="font-body text-body-medium font-medium text-obsidian dark:text-white">
+                      {author.name}
+                    </span>
                   </div>
                 ))}
               </div>
             </div>
           )}
 
-          {/* Related Posts */}
+          {/* ── Related Posts ── */}
           {relatedPosts.length > 0 && (
             <section>
               <div className="mb-6 flex items-center justify-between">
-                <h2 className="text-2xl font-black">Berita Terkait</h2>
+                <h2 className="flex items-center gap-2 font-display text-headline-medium font-semibold text-obsidian dark:text-white">
+                  <User className="h-6 w-6 text-[#32735f] dark:text-[#84bd3a]" />
+                  Berita Terkait
+                </h2>
                 <Link
-                  href="/"
-                  className="text-sm font-semibold text-primary transition-colors hover:text-primary/80"
+                  href="/news"
+                  className="inline-flex items-center gap-1.5 font-body text-label-large font-semibold text-[#32735f] transition-colors hover:text-[#32735f]/80 dark:text-[#84bd3a] dark:hover:text-[#84bd3a]/80"
                 >
-                  Lihat semua
+                  Lihat Semua
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
                 {relatedPosts.map((rel) => (
                   <NewsCard key={rel.id} post={rel} />
                 ))}
