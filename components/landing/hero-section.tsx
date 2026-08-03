@@ -30,7 +30,7 @@ export function HeroSection() {
         </p>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <Link
-            href="/profil"
+            href="/profil/sejarah-kelurahan"
             className="inline-flex h-12 items-center gap-2 rounded-[4px] bg-white px-8 font-body text-sm font-semibold text-[#171717] shadow-paper-sm transition-all hover:bg-gray-100"
           >
             Jelajahi Profil
