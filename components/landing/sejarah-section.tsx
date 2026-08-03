@@ -8,20 +8,12 @@ import {
   ScrollText,
   MapPin,
   Landmark,
-  Users,
-  Home,
-  Trees,
-  Ruler,
   Compass,
 } from "lucide-react";
 
 type DesaData = {
   nama: string;
   sejarah: string | null;
-  luasWilayah: number | null;
-  jumlahPenduduk: number | null;
-  jumlahKK: number | null;
-  jumlahDusun: number | null;
   batasUtara: string | null;
   batasTimur: string | null;
   batasSelatan: string | null;
@@ -37,32 +29,6 @@ function SkeletonCard() {
         <div className="h-4 w-full animate-pulse rounded bg-ash dark:bg-[#2e2e2e]" />
         <div className="h-4 w-full animate-pulse rounded bg-ash dark:bg-[#2e2e2e]" />
         <div className="h-4 w-3/4 animate-pulse rounded bg-ash dark:bg-[#2e2e2e]" />
-      </div>
-    </div>
-  );
-}
-
-function StatItem({
-  icon: Icon,
-  label,
-  value,
-}: {
-  icon: React.ElementType;
-  label: string;
-  value: string;
-}) {
-  return (
-    <div className="flex items-start gap-3">
-      <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-[8px] bg-fog text-hudson-blue dark:bg-[#2e2e2e] dark:text-[#84bd3a]">
-        <Icon className="h-4 w-4" />
-      </div>
-      <div className="min-w-0">
-        <p className="font-body text-label-medium font-semibold text-iron dark:text-[#c2c8bd]">
-          {label}
-        </p>
-        <p className="truncate font-body text-body-medium font-semibold text-obsidian dark:text-[#e1e3e0]">
-          {value}
-        </p>
       </div>
     </div>
   );
@@ -177,7 +143,7 @@ export function SejarahSection() {
             </div>
 
             {/* Kanan — Sidebar */}
-            <div className="space-y-6 lg:col-span-2">
+            <div className="lg:col-span-2">
               {/* Batas Wilayah */}
               <div className="rounded-[12px] border border-sage bg-paper p-5 shadow-paper-sm dark:border-[#414943] dark:bg-[#1a1a1a]">
                 <div className="mb-4 flex items-center gap-2.5">
@@ -191,46 +157,6 @@ export function SejarahSection() {
                   {desa.batasTimur && <BorderItem arah="Timur" value={desa.batasTimur} />}
                   {desa.batasSelatan && <BorderItem arah="Selatan" value={desa.batasSelatan} />}
                   {desa.batasBarat && <BorderItem arah="Barat" value={desa.batasBarat} />}
-                </div>
-              </div>
-
-              {/* Sekilas Kelurahan */}
-              <div className="rounded-[12px] border border-sage bg-paper p-5 shadow-paper-sm dark:border-[#414943] dark:bg-[#1a1a1a]">
-                <div className="mb-4 flex items-center gap-2.5">
-                  <Ruler className="h-5 w-5 text-hudson-blue dark:text-[#84bd3a]" />
-                  <h3 className="font-display text-headline-small font-semibold text-obsidian dark:text-white">
-                    Sekilas Kelurahan
-                  </h3>
-                </div>
-                <div className="grid grid-cols-1 gap-4">
-                  {desa.luasWilayah != null && (
-                    <StatItem
-                      icon={Ruler}
-                      label="Luas Wilayah"
-                      value={`${desa.luasWilayah.toLocaleString("id-ID")} km²`}
-                    />
-                  )}
-                  {desa.jumlahPenduduk != null && (
-                    <StatItem
-                      icon={Users}
-                      label="Jumlah Penduduk"
-                      value={`${desa.jumlahPenduduk.toLocaleString("id-ID")} Jiwa`}
-                    />
-                  )}
-                  {desa.jumlahKK != null && (
-                    <StatItem
-                      icon={Home}
-                      label="Kepala Keluarga"
-                      value={`${desa.jumlahKK.toLocaleString("id-ID")} KK`}
-                    />
-                  )}
-                  {desa.jumlahDusun != null && (
-                    <StatItem
-                      icon={Trees}
-                      label="Jumlah Dusun"
-                      value={`${desa.jumlahDusun.toLocaleString("id-ID")} Dusun`}
-                    />
-                  )}
                 </div>
               </div>
             </div>
