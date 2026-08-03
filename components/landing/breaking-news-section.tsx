@@ -35,51 +35,58 @@ export function BreakingNewsSection() {
 
   if (loading || news.length === 0 || !visible) return null;
 
+  // Ambil item pertama sebagai teks utama marquee (sesuai desain Stitch)
+  const first = news[0];
+
   return (
-    <section className="w-full">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="relative flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4 dark:border-amber-800/40 dark:bg-amber-950/30">
-          <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-amber-600 dark:text-amber-400" />
-          <div className="flex-1 space-y-1.5">
-            <p className="text-sm font-semibold text-amber-800 dark:text-amber-200">
-              Pengumuman
-            </p>
-            {news.map((item) => (
-              <div key={item.id}>
-                {item.post ? (
-                  <Link
-                    href={`/news/${item.post.slug}`}
-                    className="text-sm text-amber-700 underline-offset-2 hover:underline dark:text-amber-300"
-                  >
-                    {item.text}
-                    {item.labelLink && (
-                      <span className="ml-1.5 font-medium">
-                        → {item.labelLink}
-                      </span>
-                    )}
-                  </Link>
-                ) : (
-                  <p className="text-sm text-amber-700 dark:text-amber-300">
-                    {item.text}
-                    {item.labelLink && (
-                      <span className="ml-1.5 font-medium">
-                        → {item.labelLink}
-                      </span>
-                    )}
-                  </p>
-                )}
-              </div>
-            ))}
-          </div>
-          <button
-            onClick={() => setVisible(false)}
-            className="shrink-0 rounded-lg p-1 text-amber-500 transition-colors hover:bg-amber-100 hover:text-amber-700 dark:hover:bg-amber-900/50 dark:hover:text-amber-300"
-            aria-label="Tutup pengumuman"
-          >
-            <X className="h-4 w-4" />
-          </button>
+    <div className="border-y border-amber-100 bg-amber-50 px-6 py-3 dark:border-amber-900/50 dark:bg-amber-950/30">
+      <div className="mx-auto flex max-w-6xl items-center gap-4">
+        <div className="flex shrink-0 items-center gap-2 whitespace-nowrap text-sm font-semibold text-amber-800 dark:text-amber-500">
+          <AlertTriangle className="h-[18px] w-[18px]" />
+          Pengumuman
         </div>
+        <div className="h-4 w-px bg-amber-200 dark:bg-amber-800" />
+        <div className="flex min-w-0 flex-1 items-center gap-4">
+          {first.post ? (
+            <Link
+              href={`/news/${first.post.slug}`}
+              className="truncate text-sm text-obsidian transition-colors hover:text-primary dark:text-[#e1e3e0] dark:hover:text-primary"
+            >
+              {first.text}
+              {first.labelLink && (
+                <span className="ml-1.5 font-medium">→ {first.labelLink}</span>
+              )}
+            </Link>
+          ) : (
+            <p className="truncate text-sm text-obsidian transition-colors hover:text-primary dark:text-[#e1e3e0] dark:hover:text-primary">
+              {first.text}
+              {first.labelLink && (
+                <span className="ml-1.5 font-medium">→ {first.labelLink}</span>
+              )}
+            </p>
+          )}
+          {/* Item tambahan (jika ada) tersembunyi di mobile, tampil di desktop */}
+          {news.length > 1 && (
+            <div className="hidden min-w-0 flex-1 items-center gap-4 lg:flex">
+              {news.slice(1).map((item) => (
+                <span
+                  key={item.id}
+                  className="truncate text-sm text-iron dark:text-[#a0a0a0]"
+                >
+                  {item.text}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+        <button
+          onClick={() => setVisible(false)}
+          className="shrink-0 rounded-lg p-1 text-amber-500 transition-colors hover:bg-amber-100 hover:text-amber-700 dark:hover:bg-amber-900/50 dark:hover:text-amber-300"
+          aria-label="Tutup pengumuman"
+        >
+          <X className="h-4 w-4" />
+        </button>
       </div>
-    </section>
+    </div>
   );
 }

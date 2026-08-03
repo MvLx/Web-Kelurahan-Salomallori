@@ -112,18 +112,18 @@ export function SejarahSection() {
   }, []);
 
   return (
-    <section className="bg-linen py-4xl dark:bg-[#111411]">
+    <section className="border-y border-sage bg-paper py-20 dark:border-[#414943] dark:bg-[#1a1a1a]">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="mb-6 flex items-center justify-between">
+        <div className="mb-12 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <History className="h-7 w-7 text-hudson-blue dark:text-[#84bd3a]" />
-            <h2 className="font-display text-display-small font-semibold text-obsidian dark:text-white">
-              Sejarah Kelurahan
+            <h2 className="font-display text-[36px] font-semibold text-obsidian dark:text-white">
+              Jejak Sejarah Salomallori
             </h2>
           </div>
           <Link
             href="/profil/sejarah-kelurahan"
-            className="inline-flex items-center gap-1.5 font-body text-label-large font-semibold text-hudson-blue transition-colors hover:text-hudson-blue/80 dark:text-[#84bd3a] dark:hover:text-[#84bd3a]/80"
+            className="hidden items-center gap-1.5 font-body text-label-large font-semibold text-hudson-blue transition-colors hover:text-hudson-blue/80 dark:text-[#84bd3a] dark:hover:text-[#84bd3a]/80 md:inline-flex"
           >
             Selengkapnya
             <ArrowRight className="h-4 w-4" />

@@ -22,9 +22,7 @@ function BerandaContent() {
         <HeroSection />
 
         {/* Breaking News / Pengumuman */}
-        <section className="py-6">
-          <BreakingNewsSection />
-        </section>
+        <BreakingNewsSection />
 
         {/* Stats Section */}
         <StatsSection />

@@ -5,35 +5,39 @@ import { ChevronDown } from "lucide-react";
 
 export function HeroSection() {
   return (
-    <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat"
+    <section
+      className="relative flex min-h-[70vh] items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: `url('/images/hero-bg.jpg')`,
       }}
     >
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/60" />
+      {/* Overlays */}
+      <div className="absolute inset-0 bg-black/60 mix-blend-multiply" />
+      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
-        <h1 className="font-display text-display-small md:text-display-medium text-white leading-tight tracking-tight">
+      <div className="relative z-10 mx-auto mt-12 flex max-w-3xl flex-col items-center px-6 text-center">
+        <h2 className="font-display text-[36px] leading-[1.2] text-white/90">
           Selamat Datang di
-        </h1>
-        <p className="font-display text-display-medium md:text-display-large text-white font-semibold leading-tight tracking-tight mt-2">
+        </h2>
+        <h1 className="font-display text-[38px] font-semibold leading-[1.1] text-white md:text-[57px] md:tracking-tight mb-6">
           Kelurahan Salomallori
-        </p>
-        <p className="font-body text-body-large md:text-title-large text-white/80 mt-6 max-w-2xl mx-auto leading-relaxed">
-          Kecamatan Pitumpanua, Kabupaten Wajo, Sulawesi Selatan
+        </h1>
+        <p className="max-w-xl font-body text-lg leading-relaxed text-white/80 md:text-xl">
+          Kecamatan Pitumpanua, Kabupaten Wajo. Desa Maju, Mandiri, dan
+          Sejahtera. Menghadirkan pelayanan profesional dengan tetap menjaga
+          kehangatan komunal dan kelestarian alam warisan leluhur.
         </p>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <Link
             href="/profil"
-            className="inline-flex h-12 items-center gap-2 rounded-[4px] bg-white px-8 font-body text-sm font-semibold text-[#171717] transition-all hover:bg-white/90"
+            className="inline-flex h-12 items-center gap-2 rounded-[4px] bg-white px-8 font-body text-sm font-semibold text-[#171717] shadow-paper-sm transition-all hover:bg-gray-100"
           >
             Jelajahi Profil
           </Link>
           <Link
             href="/news"
-            className="inline-flex h-12 items-center gap-2 rounded-[4px] border border-white/30 px-8 font-body text-sm font-semibold text-white transition-all hover:bg-white/10"
+            className="inline-flex h-12 items-center gap-2 rounded-[4px] border border-white px-8 font-body text-sm font-semibold text-white transition-all hover:bg-white/10"
           >
             Lihat Berita
           </Link>
@@ -41,8 +45,8 @@ export function HeroSection() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 animate-bounce">
-        <ChevronDown className="h-6 w-6 text-white/60" />
+      <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 animate-bounce text-white/70">
+        <ChevronDown className="h-8 w-8" />
       </div>
     </section>
   );

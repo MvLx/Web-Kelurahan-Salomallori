@@ -47,35 +47,35 @@ export function StatsSection() {
     {
       icon: Home,
       value: desa?.jumlahKK ? desa.jumlahKK.toLocaleString("id-ID") : "-",
-      label: "Kepala Keluarga",
+      label: "Jumlah KK",
     },
     {
       icon: Trees,
       value: desa?.jumlahDusun ? `${desa.jumlahDusun} Dusun` : "-",
-      label: "Dusun",
+      label: "Jumlah Dusun",
     },
   ];
 
   return (
-    <section className="bg-linen dark:bg-[#111411] py-4xl">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+    <section className="bg-linen py-20 dark:bg-[#111411]">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
               <div
                 key={index}
-                className="flex flex-col items-center justify-center rounded-[12px] border border-sage bg-paper p-6 shadow-paper-sm transition-shadow hover:shadow-paper-md dark:border-[#414943] dark:bg-[#1a1a1a]"
+                className="flex flex-col items-center rounded-[12px] border border-sage bg-paper p-6 text-center shadow-paper-sm transition-shadow hover:shadow-paper-md dark:border-[#414943] dark:bg-[#1a1a1a]"
               >
-                <Icon className="mb-3 h-8 w-8 text-hudson-blue dark:text-[#84bd3a]" />
+                <Icon className="mb-4 h-8 w-8 text-hudson-blue dark:text-[#84bd3a]" />
                 {loading ? (
                   <div className="h-8 w-20 animate-pulse rounded bg-ash dark:bg-[#2e2e2e]" />
                 ) : (
-                  <p className="font-display text-headline-medium font-semibold text-obsidian dark:text-white">
+                  <h3 className="font-display text-headline-medium font-semibold text-obsidian dark:text-white">
                     {stat.value}
-                  </p>
+                  </h3>
                 )}
-                <p className="font-body text-body-small text-iron dark:text-[#c2c8bd] mt-1">
+                <p className="mt-1 font-body text-sm text-iron dark:text-[#c2c8bd]">
                   {stat.label}
                 </p>
               </div>
