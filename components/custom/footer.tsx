@@ -12,7 +12,6 @@ const navLinks = [
   { label: "Profil Kelurahan", href: "/profil" },
   { label: "Visi & Misi", href: "/profil/visi-misi" },
   { label: "UMKM", href: "/umkm" },
-  { label: "Wisata", href: "/wisata" },
   { label: "Kontak", href: "/aduan" },
 ];
 

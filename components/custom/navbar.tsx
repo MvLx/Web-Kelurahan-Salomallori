@@ -21,7 +21,6 @@ import {
   History,
   UserCheck,
   Store,
-  MapPin,
   Image as ImageIcon,
   BarChart3,
   Building2,
@@ -72,15 +71,6 @@ const profilDropdown: NavDropdown = {
   ],
 };
 
-const potensiDropdown: NavDropdown = {
-  label: "Potensi",
-  href: "/umkm",
-  children: [
-    { label: "UMKM", href: "/umkm", icon: Store },
-    { label: "Wisata", href: "/wisata", icon: MapPin },
-  ],
-};
-
 const galeriDropdown: NavDropdown = {
   label: "Publikasi",
   href: "/galeri",
@@ -93,7 +83,7 @@ const galeriDropdown: NavDropdown = {
 const publicLinks: NavItem[] = [
   { label: "Beranda", href: "/" },
   profilDropdown,
-  potensiDropdown,
+  { label: "UMKM", href: "/umkm" },
   galeriDropdown,
   { label: "Kontak", href: "/aduan" },
 ];
@@ -102,7 +92,6 @@ const dashboardLinks: NavLink[] = [
   { label: "Dashboard", href: "/dashboard" },
   { label: "Postingan", href: "/dashboard/posts" },
   { label: "UMKM", href: "/dashboard/umkm" },
-  { label: "Wisata", href: "/dashboard/wisata" },
   { label: "Galeri", href: "/dashboard/galeri" },
   { label: "Profil Desa", href: "/dashboard/profil-desa" },
   { label: "Kontak", href: "/dashboard/kontak" },
@@ -117,7 +106,6 @@ const dashboardIcons: Record<string, React.ElementType> = {
   "/dashboard": LayoutDashboard,
   "/dashboard/posts": FileText,
   "/dashboard/umkm": Store,
-  "/dashboard/wisata": MapPin,
   "/dashboard/galeri": ImageIcon,
   "/dashboard/profil-desa": Building2,
   "/dashboard/kontak": Phone,
