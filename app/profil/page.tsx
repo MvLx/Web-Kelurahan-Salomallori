@@ -8,7 +8,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Profil — Kelurahan Salomallori",
-  description: "Profil Kelurahan Salomallori, Kec. Mattiro Bulu, Kab. Pinrang",
+  description:
+    "Profil Kelurahan Salomallori, Kec. Dua Pitue, Kab. Sidenreng Rappang",
 };
 
 export default async function ProfilPage() {

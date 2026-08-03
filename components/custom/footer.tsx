@@ -42,7 +42,7 @@ export default function Footer() {
                     Kelurahan Salomallori
                   </span>
                   <span className="text-[10px] font-bold tracking-wide text-white/60">
-                    Kec. Mattiro Bulu, Kab. Pinrang
+                    Kec. Dua Pitue, Kab. Sidenreng Rappang
                   </span>
                 </div>
               </div>
@@ -135,8 +135,8 @@ export default function Footer() {
               <p className="flex items-start gap-2">
                 <MapPin size={16} className="text-gold mt-0.5 shrink-0" />
                 <span className="text-white/60">
-                  Kelurahan Salomallori, Kec. Mattiro Bulu, Kab. Pinrang,
-                  Sulawesi Selatan
+                  Kelurahan Salomallori, Kec. Dua Pitue, Kab. Sidenreng
+                  Rappang, Sulawesi Selatan
                 </span>
               </p>
             </div>

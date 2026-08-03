@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Kelurahan Salomallori — Website Profil & Pelayanan",
   description:
-    "Website resmi Kelurahan Salomallori, Kec. Mattiro Bulu, Kab. Pinrang. Menyajikan informasi profil kelurahan, UMKM, wisata, galeri, dan pelayanan publik.",
+    "Website resmi Kelurahan Salomallori, Kec. Dua Pitue, Kab. Sidenreng Rappang. Menyajikan informasi profil kelurahan, UMKM, wisata, galeri, dan pelayanan publik.",
   icons: {
     icon: "/favicon.svg",
     apple: "/apple-touch-icon.svg",

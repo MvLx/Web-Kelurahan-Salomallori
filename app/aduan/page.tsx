@@ -30,7 +30,7 @@ interface KontakData {
 // Data placeholder — akan ditimpa dari API /api/kontak setelah load
 const defaultKontak: KontakData = {
   id: "default",
-  alamat: "Kantor Kelurahan Salomallori\nKecamatan Mattiro Bulu, Kabupaten Pinrang\nSulawesi Selatan",
+  alamat: "Kantor Kelurahan Salomallori\nKecamatan Dua Pitue, Kabupaten Sidenreng Rappang\nSulawesi Selatan",
   telepon: "(0421) 123456",
   whatsapp: "+62 812-3456-7890",
   email: "kelurahansalomallori@gmail.com",
@@ -198,7 +198,7 @@ export default function AduanPage() {
               Kontak & Lokasi
             </h1>
             <p className="text-xl font-semibold text-secondary">
-              Kelurahan Salomallori, Kecamatan Mattiro Bulu, Kabupaten Pinrang
+              Kelurahan Salomallori, Kecamatan Dua Pitue, Kabupaten Sidenreng Rappang
             </p>
           </div>
 

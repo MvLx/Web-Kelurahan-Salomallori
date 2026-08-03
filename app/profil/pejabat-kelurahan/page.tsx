@@ -49,7 +49,7 @@ export default function PejabatKelurahanPage() {
 
             <p className="mb-10 text-lg leading-relaxed text-foreground/70">
               Berikut adalah daftar perangkat yang bertugas di Kantor Kelurahan
-              Salomallori, Kecamatan Mattiro Bulu, Kabupaten Pinrang.
+              Salomallori, Kecamatan Dua Pitue, Kabupaten Sidenreng Rappang.
             </p>
 
             {loading ? (
