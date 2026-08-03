@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Navbar from "@/components/custom/navbar";
+
 import { prisma } from "@/lib/prisma";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -211,7 +211,7 @@ export default async function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar variant="dashboard" />
+
 
       <main className="mx-auto max-w-7xl space-y-8 px-4 py-10 pt-24 sm:px-6 lg:px-8">
         {/* Header */}

@@ -6,7 +6,7 @@ import { z } from "zod";
 import { ArrowLeft, Loader2, MapPin } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
-import Navbar from "@/components/custom/navbar";
+
 import { ImageUpload } from "@/components/custom/image-upload";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -85,7 +85,7 @@ export default function CreateWisataPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar variant="dashboard" />
+
       <div className="fixed left-0 right-0 top-16 z-40 border-b border-foreground/10 bg-card/80 px-4 py-3 backdrop-blur-md">
         <div className="mx-auto flex max-w-3xl items-center justify-between gap-4">
           <div className="flex items-center gap-3">

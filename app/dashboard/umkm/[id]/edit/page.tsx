@@ -6,7 +6,7 @@ import { z } from "zod";
 import { ArrowLeft, Loader2, Package } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
-import Navbar from "@/components/custom/navbar";
+
 import { ImageUpload } from "@/components/custom/image-upload";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -153,7 +153,7 @@ export default function EditUMKMPage() {
   if (loadingData) {
     return (
       <div className="min-h-screen bg-background">
-        <Navbar variant="dashboard" />
+
         <main className="mx-auto max-w-3xl px-4 pt-36 pb-16">
           <div className="flex flex-col gap-4">
             <Skeleton className="h-8 w-48" />
@@ -169,7 +169,7 @@ export default function EditUMKMPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar variant="dashboard" />
+
 
       {/* Sticky top bar */}
       <div className="fixed left-0 right-0 top-16 z-40 border-b border-foreground/10 bg-card/80 px-4 py-3 backdrop-blur-md">

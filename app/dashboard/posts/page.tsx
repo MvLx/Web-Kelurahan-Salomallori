@@ -14,7 +14,7 @@ import {
   Eye,
   Sparkles,
 } from "lucide-react";
-import Navbar from "@/components/custom/navbar";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
@@ -309,7 +309,7 @@ export default function PostsPage() {
         </DialogContent>
       </Dialog>
 
-      <Navbar variant="dashboard" />
+
 
       {/* Sticky top bar */}
       <div className="fixed left-0 right-0 top-16 z-40 border-b border-foreground/10 bg-card/80 px-4 py-3 backdrop-blur-md">

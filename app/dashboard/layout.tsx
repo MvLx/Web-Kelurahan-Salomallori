@@ -8,11 +8,12 @@
  *   2. This layout   — full server-side session validation via the DAL,
  *                      plus role enforcement (ADMIN | EDITOR only).
  *
- * Because this is a Server Component it runs before any client code is
- * hydrated, so even a tampered cookie cannot expose protected UI.
+ * Also provides the shared shell: fixed AdminSidebar (client) + scrollable
+ * content area offset by the sidebar width on desktop.
  */
 import { redirect } from "next/navigation";
 import { verifySession, STAFF_ROLES, type SessionUser } from "@/lib/dal";
+import AdminSidebar from "@/components/custom/admin-sidebar";
 
 export default async function DashboardLayout({
   children,
@@ -29,5 +30,12 @@ export default async function DashboardLayout({
     redirect("/");
   }
 
-  return <>{children}</>;
+  return (
+    <div className="min-h-screen bg-linen dark:bg-[#111411]">
+      <AdminSidebar />
+      <main className="lg:pl-64">
+        <div className="px-4 py-5 sm:px-6 lg:px-8 lg:py-6">{children}</div>
+      </main>
+    </div>
+  );
 }

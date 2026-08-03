@@ -10,7 +10,7 @@ import {
   PieChart,
 } from "lucide-react";
 import { toast } from "sonner";
-import Navbar from "@/components/custom/navbar";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -164,7 +164,7 @@ export default function InfografisPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-background">
-        <Navbar variant="dashboard" />
+
         <main className="mx-auto max-w-5xl px-4 pt-24 pb-16">
           <Skeleton className="h-8 w-48" />
           <Skeleton className="mt-6 h-64 w-full rounded-lg" />
@@ -238,7 +238,7 @@ export default function InfografisPage() {
         </DialogContent>
       </Dialog>
 
-      <Navbar variant="dashboard" />
+
 
       {/* Sticky top bar */}
       <div className="fixed left-0 right-0 top-16 z-40 border-b border-foreground/10 bg-card/80 px-4 py-3 backdrop-blur-md">

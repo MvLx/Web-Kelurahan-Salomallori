@@ -6,7 +6,7 @@ import { z } from "zod";
 import { ArrowLeft, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { toast } from "sonner";
-import Navbar from "@/components/custom/navbar";
+
 import { ImageUpload } from "@/components/custom/image-upload";
 import {
   UserMultiSelect,
@@ -170,7 +170,7 @@ export default function CreatePostPage() {
   // ── Render ────────────────────────────────────────────────────────────────
   return (
     <div className="min-h-screen bg-background">
-      <Navbar variant="dashboard" />
+
 
       {/* Sticky top bar */}
       <div className="fixed left-0 right-0 top-16 z-40 border-b border-foreground/10 bg-card/80 px-4 py-3 backdrop-blur-md">

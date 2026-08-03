@@ -14,7 +14,7 @@ import {
   ChevronsUpDown,
 } from "lucide-react";
 import { toast } from "sonner";
-import Navbar from "@/components/custom/navbar";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -296,7 +296,7 @@ export default function CreateBreakingNewsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar variant="dashboard" />
+
 
       {/* Sticky top bar */}
       <div className="fixed left-0 right-0 top-16 z-40 border-b border-foreground/10 bg-card/80 px-4 py-3 backdrop-blur-md">
