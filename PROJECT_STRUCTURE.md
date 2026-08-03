@@ -111,7 +111,7 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 │   │   ├── date-range-picker.tsx
 │   │   ├── footer.tsx
 │   │   ├── image-upload.tsx
-│   │   ├── navbar.tsx                      # Navbar public + dashboard (floating island)
+│   │   ├── navbar.tsx                      # Navbar public + dashboard (fixed top, bg graphite-night)
 │   │   ├── news-card.tsx
 │   │   ├── posts-grid.tsx
 │   │   ├── scroll-to-top.tsx
@@ -203,8 +203,8 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 | 10 | `/news/[slug]` | Detail Berita | ✅ Aktif | `app/news/[slug]/` | Detail artikel |
 | 11 | `/umkm` | UMKM | ✅ Aktif | `app/umkm/page.tsx` | Grid + filter + pencarian |
 | 12 | `/umkm/[id]` | Detail UMKM | ✅ Aktif | `app/umkm/[id]/` | Detail produk |
-| 13 | `/wisata` | Wisata | ✅ Aktif | `app/wisata/page.tsx` | Grid + filter kategori |
-| 14 | `/wisata/[id]` | Detail Wisata | ✅ Aktif | `app/wisata/[id]/` | Detail destinasi |
+| 13 | `/wisata` | Wisata | ✅ Aktif (tidak di-link navbar) | `app/wisata/page.tsx` | Grid + filter kategori — halaman ada & bisa diakses langsung, tapi tidak tampil di navbar/footer |
+| 14 | `/wisata/[id]` | Detail Wisata | ✅ Aktif (tidak di-link navbar) | `app/wisata/[id]/` | Detail destinasi — halaman ada & bisa diakses langsung |
 | 15 | `/galeri` | Galeri | ✅ Aktif | `app/galeri/page.tsx` | Grid + lightbox + filter |
 | 16 | `/infografis` | Infografis | ✅ Aktif | `app/infografis/page.tsx` | Visualisasi data statistik |
 | 17 | `/kontak` | Kontak | ✅ Aktif | `app/aduan/page.tsx` | Kontak + Google Maps + WhatsApp |
@@ -329,7 +329,7 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 
 | Komponen | Status | Fungsi |
 |---|---|---|
-| `Navbar` | ✅ Aktif | Navigasi utama (public + dashboard variant, floating island) |
+| `Navbar` | ✅ Aktif | Navigasi utama (public + dashboard variant, fixed top + backdrop blur) |
 | `Footer` | ✅ Aktif | Footer halaman public |
 | `BreakingNews` | ✅ Aktif | Breaking news ticker |
 | `NewsCard` | ✅ Aktif | Card berita untuk daftar artikel |
@@ -374,7 +374,8 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 ## 6. Konvensi
 
 - **Naming:** File/route kebab-case, komponen PascalCase, fungsi/variabel camelCase.
-- **Navbar:** Floating navigation island (Graphite Night #282834) — struktur menu: Beranda | Profil ▼ | Potensi ▼ | Publikasi ▼ | Kontak.
+- **Navbar:** Fixed top bar (background `#0b2b40` Graphite Night, backdrop blur) — struktur menu: Beranda | Profil ▼ | UMKM | Publikasi ▼ | Kontak.
+- **Color palette:** Brand colors `#0b2b40` (Graphite Night), `#84bd3a` (Primary Green), `#32735f` (Teal Dark), `#febe0d` (Gold) — lihat `DESIGN.md` Section 2.
 - **Dark mode:** via `components/custom/theme-provider.tsx` (next-themes).
 - **Upload:** Cloudinary via `app/api/upload/route.ts`.
 - **Error handling:** API route try-catch 500, toast (sonner) untuk CRUD, loading/empty/skeleton state.

@@ -53,7 +53,7 @@ function StatItem({
 }) {
   return (
     <div className="flex items-start gap-3">
-      <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-[8px] bg-fog text-hudson-blue dark:bg-[#2e2e2e] dark:text-[#7fc8ff]">
+      <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-[8px] bg-fog text-hudson-blue dark:bg-[#2e2e2e] dark:text-[#84bd3a]">
         <Icon className="h-4 w-4" />
       </div>
       <div className="min-w-0">
@@ -78,7 +78,7 @@ function BorderItem({
   return (
     <div className="flex items-center justify-between gap-3 border-b border-sage/60 pb-2.5 last:border-0 last:pb-0 dark:border-[#414943]/60">
       <div className="flex items-center gap-2">
-        <Compass className="h-4 w-4 text-hudson-blue dark:text-[#7fc8ff]" />
+        <Compass className="h-4 w-4 text-hudson-blue dark:text-[#84bd3a]" />
         <span className="font-body text-label-medium font-semibold text-obsidian dark:text-[#e1e3e0]">
           {arah}
         </span>
@@ -116,14 +116,14 @@ export function SejarahSection() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <History className="h-7 w-7 text-hudson-blue dark:text-[#7fc8ff]" />
+            <History className="h-7 w-7 text-hudson-blue dark:text-[#84bd3a]" />
             <h2 className="font-display text-display-small font-semibold text-obsidian dark:text-white">
               Sejarah Kelurahan
             </h2>
           </div>
           <Link
             href="/profil/sejarah-kelurahan"
-            className="inline-flex items-center gap-1.5 font-body text-label-large font-semibold text-hudson-blue transition-colors hover:text-hudson-blue/80 dark:text-[#7fc8ff] dark:hover:text-[#7fc8ff]/80"
+            className="inline-flex items-center gap-1.5 font-body text-label-large font-semibold text-hudson-blue transition-colors hover:text-hudson-blue/80 dark:text-[#84bd3a] dark:hover:text-[#84bd3a]/80"
           >
             Selengkapnya
             <ArrowRight className="h-4 w-4" />
@@ -181,7 +181,7 @@ export function SejarahSection() {
               {/* Batas Wilayah */}
               <div className="rounded-[12px] border border-sage bg-paper p-5 shadow-paper-sm dark:border-[#414943] dark:bg-[#1a1a1a]">
                 <div className="mb-4 flex items-center gap-2.5">
-                  <MapPin className="h-5 w-5 text-hudson-blue dark:text-[#7fc8ff]" />
+                  <MapPin className="h-5 w-5 text-hudson-blue dark:text-[#84bd3a]" />
                   <h3 className="font-display text-headline-small font-semibold text-obsidian dark:text-white">
                     Batas Wilayah
                   </h3>
@@ -197,7 +197,7 @@ export function SejarahSection() {
               {/* Sekilas Kelurahan */}
               <div className="rounded-[12px] border border-sage bg-paper p-5 shadow-paper-sm dark:border-[#414943] dark:bg-[#1a1a1a]">
                 <div className="mb-4 flex items-center gap-2.5">
-                  <Ruler className="h-5 w-5 text-hudson-blue dark:text-[#7fc8ff]" />
+                  <Ruler className="h-5 w-5 text-hudson-blue dark:text-[#84bd3a]" />
                   <h3 className="font-display text-headline-small font-semibold text-obsidian dark:text-white">
                     Sekilas Kelurahan
                   </h3>

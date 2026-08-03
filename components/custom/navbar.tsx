@@ -148,7 +148,7 @@ export default function Navbar({ variant = "public" }: NavbarProps) {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-foreground/10 bg-card/70 backdrop-blur-md">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-foreground/10 bg-graphite-night/90 backdrop-blur-md">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 md:px-8">
         {/* ── Logo & Title ── */}
         <Link href="/" className="flex shrink-0 items-center gap-3">
@@ -161,11 +161,11 @@ export default function Navbar({ variant = "public" }: NavbarProps) {
             priority
           />
           <div className="flex flex-col leading-tight">
-            <span className="text-[15px] font-extrabold tracking-tight">
+            <span className="text-[15px] font-extrabold tracking-tight text-white">
               Kelurahan Salomallori
             </span>
-            <span className="text-[10px] font-bold tracking-wide text-foreground/70">
-              Kec. Dua Pitue, Kab. Sidenreng Rappang
+            <span className="text-[10px] font-bold tracking-wide text-white/70">
+              Kec. Mattiro Bulu, Kab. Pinrang
             </span>
           </div>
         </Link>
@@ -184,10 +184,10 @@ export default function Navbar({ variant = "public" }: NavbarProps) {
                           "flex items-center gap-1 rounded-md px-3 py-1.5 text-sm font-medium transition-colors outline-none",
                           dropdownActive
                             ? "bg-primary/10 text-primary"
-                            : "text-foreground hover:bg-foreground/10",
-                        )}
-                      >
-                        {link.label}
+            : "text-white/90 hover:bg-white/10",
+          )}
+        >
+          {link.label}
                         <ChevronDown className="size-3.5" />
                       </button>
                     </DropdownMenuTrigger>
@@ -228,8 +228,8 @@ export default function Navbar({ variant = "public" }: NavbarProps) {
                   className={cn(
                     "flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
                     active
-                      ? "bg-primary/10 text-primary"
-                      : "text-foreground hover:bg-foreground/10",
+                      ? "bg-primary/15 text-primary"
+                      : "text-white/90 hover:bg-white/10",
                   )}
                 >
                   {Icon && <Icon className="size-4 shrink-0" />}

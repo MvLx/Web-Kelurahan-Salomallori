@@ -67,7 +67,7 @@ export function StatsSection() {
                 key={index}
                 className="flex flex-col items-center justify-center rounded-[12px] border border-sage bg-paper p-6 shadow-paper-sm transition-shadow hover:shadow-paper-md dark:border-[#414943] dark:bg-[#1a1a1a]"
               >
-                <Icon className="mb-3 h-8 w-8 text-hudson-blue dark:text-[#7fc8ff]" />
+                <Icon className="mb-3 h-8 w-8 text-hudson-blue dark:text-[#84bd3a]" />
                 {loading ? (
                   <div className="h-8 w-20 animate-pulse rounded bg-ash dark:bg-[#2e2e2e]" />
                 ) : (

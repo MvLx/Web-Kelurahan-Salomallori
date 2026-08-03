@@ -74,7 +74,7 @@ function NewsGrid({ items }: { items: PostItem[] }) {
           <div className="mt-3">
             <div className="flex items-center gap-2">
               {item.category && (
-                <span className="rounded-full bg-sage/30 px-2.5 py-0.5 font-body text-label-medium text-hudson-blue dark:bg-[#414943] dark:text-[#7fc8ff]">
+                <span className="rounded-full bg-sage/30 px-2.5 py-0.5 font-body text-label-medium text-hudson-blue dark:bg-[#414943] dark:text-[#84bd3a]">
                   {item.category.name}
                 </span>
               )}
@@ -92,7 +92,7 @@ function NewsGrid({ items }: { items: PostItem[] }) {
             <p className="mt-1 font-body text-body-medium text-iron line-clamp-2">
               {item.summary}
             </p>
-            <div className="mt-3 flex items-center gap-1 font-body text-label-large font-semibold text-hudson-blue dark:text-[#7fc8ff]">
+            <div className="mt-3 flex items-center gap-1 font-body text-label-large font-semibold text-hudson-blue dark:text-[#84bd3a]">
               Baca selengkapnya
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </div>
@@ -130,14 +130,14 @@ export function NewsSection() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="mb-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Newspaper className="h-7 w-7 text-hudson-blue dark:text-[#7fc8ff]" />
+            <Newspaper className="h-7 w-7 text-hudson-blue dark:text-[#84bd3a]" />
             <h2 className="font-display text-display-small font-semibold text-obsidian dark:text-white">
               Berita Terbaru
             </h2>
           </div>
           <Link
             href="/news"
-            className="inline-flex items-center gap-1.5 font-body text-label-large font-semibold text-hudson-blue transition-colors hover:text-hudson-blue/80 dark:text-[#7fc8ff] dark:hover:text-[#7fc8ff]/80"
+            className="inline-flex items-center gap-1.5 font-body text-label-large font-semibold text-hudson-blue transition-colors hover:text-hudson-blue/80 dark:text-[#84bd3a] dark:hover:text-[#84bd3a]/80"
           >
             Lihat Semua
             <ArrowRight className="h-4 w-4" />

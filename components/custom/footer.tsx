@@ -23,7 +23,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="bg-graphite-night dark:bg-graphite-night text-white pt-16 pb-8">
+    <footer className="bg-[#0b2b40] text-white pt-16 pb-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 mb-12">
           {/* Brand */}
@@ -77,14 +77,14 @@ export default function Footer() {
             </h4>
             <div className="space-y-3 text-sm">
               <div className="flex items-start gap-2">
-                <Clock size={16} className="text-hudson-blue mt-0.5 shrink-0" />
+                <Clock size={16} className="text-gold mt-0.5 shrink-0" />
                 <div>
                   <p className="text-white/80">Senin - Jumat</p>
                   <p className="text-white/60">07.30 - 16.00 WITA</p>
                 </div>
               </div>
               <div className="flex items-start gap-2">
-                <Clock size={16} className="text-hudson-blue mt-0.5 shrink-0" />
+                <Clock size={16} className="text-gold mt-0.5 shrink-0" />
                 <div>
                   <p className="text-white/80">Sabtu</p>
                   <p className="text-white/60">07.30 - 12.00 WITA</p>
@@ -98,7 +98,7 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4">Kontak</h4>
             <div className="space-y-3 text-sm">
               <p className="flex items-center gap-2">
-                <Mail size={16} className="text-hudson-blue shrink-0" />
+                <Mail size={16} className="text-gold shrink-0" />
                 <a
                   href="mailto:kelurahansalomallori@gmail.com"
                   className="text-white/60 hover:text-white transition-colors"
@@ -107,11 +107,11 @@ export default function Footer() {
                 </a>
               </p>
               <p className="flex items-center gap-2">
-                <Phone size={16} className="text-hudson-blue shrink-0" />
+                <Phone size={16} className="text-gold shrink-0" />
                 <span className="text-white/60">-</span>
               </p>
               <p className="flex items-center gap-2">
-                <MessageCircle size={16} className="text-hudson-blue shrink-0" />
+                <MessageCircle size={16} className="text-gold shrink-0" />
                 <a
                   href="https://wa.me/628xxxxxx"
                   target="_blank"
@@ -122,7 +122,7 @@ export default function Footer() {
                 </a>
               </p>
               <p className="flex items-center gap-2">
-                <SiInstagram size={16} className="text-hudson-blue shrink-0" />
+                <SiInstagram size={16} className="text-gold shrink-0" />
                 <a
                   href="https://instagram.com/kelurahansalomallori"
                   target="_blank"
@@ -133,7 +133,7 @@ export default function Footer() {
                 </a>
               </p>
               <p className="flex items-start gap-2">
-                <MapPin size={16} className="text-hudson-blue mt-0.5 shrink-0" />
+                <MapPin size={16} className="text-gold mt-0.5 shrink-0" />
                 <span className="text-white/60">
                   Kelurahan Salomallori, Kec. Mattiro Bulu, Kab. Pinrang,
                   Sulawesi Selatan

@@ -54,14 +54,14 @@ export default async function ProfilPage() {
             {desa.luasWilayah && (
               <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
                 <div className="rounded-[8px] bg-linen p-4 text-center dark:bg-[#111411]">
-                  <p className="font-display text-headline-medium font-bold text-hudson-blue dark:text-[#7fc8ff]">
+                  <p className="font-display text-headline-medium font-bold text-hudson-blue dark:text-[#84bd3a]">
                     {desa.luasWilayah} km²
                   </p>
                   <p className="font-body text-body-small text-iron">Luas Wilayah</p>
                 </div>
                 {desa.jumlahPenduduk && (
                   <div className="rounded-[8px] bg-linen p-4 text-center dark:bg-[#111411]">
-                    <p className="font-display text-headline-medium font-bold text-hudson-blue dark:text-[#7fc8ff]">
+                    <p className="font-display text-headline-medium font-bold text-hudson-blue dark:text-[#84bd3a]">
                       {desa.jumlahPenduduk.toLocaleString("id-ID")}
                     </p>
                     <p className="font-body text-body-small text-iron">Penduduk</p>
@@ -69,7 +69,7 @@ export default async function ProfilPage() {
                 )}
                 {desa.jumlahKK && (
                   <div className="rounded-[8px] bg-linen p-4 text-center dark:bg-[#111411]">
-                    <p className="font-display text-headline-medium font-bold text-hudson-blue dark:text-[#7fc8ff]">
+                    <p className="font-display text-headline-medium font-bold text-hudson-blue dark:text-[#84bd3a]">
                       {desa.jumlahKK.toLocaleString("id-ID")}
                     </p>
                     <p className="font-body text-body-small text-iron">Kepala Keluarga</p>
@@ -77,7 +77,7 @@ export default async function ProfilPage() {
                 )}
                 {desa.jumlahDusun && (
                   <div className="rounded-[8px] bg-linen p-4 text-center dark:bg-[#111411]">
-                    <p className="font-display text-headline-medium font-bold text-hudson-blue dark:text-[#7fc8ff]">
+                    <p className="font-display text-headline-medium font-bold text-hudson-blue dark:text-[#84bd3a]">
                       {desa.jumlahDusun}
                     </p>
                     <p className="font-body text-body-small text-iron">Dusun</p>
@@ -94,7 +94,7 @@ export default async function ProfilPage() {
             href="/profil/sejarah-kelurahan"
             className="flex items-center gap-4 rounded-[12px] border border-sage bg-paper p-5 shadow-paper-sm transition-all hover:shadow-paper-md dark:border-[#414943] dark:bg-[#1a1a1a]"
           >
-            <History className="h-8 w-8 text-hudson-blue dark:text-[#7fc8ff]" />
+            <History className="h-8 w-8 text-hudson-blue dark:text-[#84bd3a]" />
             <div className="flex-1">
               <h3 className="font-display text-headline-small font-semibold text-obsidian dark:text-white">
                 Sejarah
@@ -108,7 +108,7 @@ export default async function ProfilPage() {
             href="/profil/pejabat-kelurahan"
             className="flex items-center gap-4 rounded-[12px] border border-sage bg-paper p-5 shadow-paper-sm transition-all hover:shadow-paper-md dark:border-[#414943] dark:bg-[#1a1a1a]"
           >
-            <UserCheck className="h-8 w-8 text-hudson-blue dark:text-[#7fc8ff]" />
+            <UserCheck className="h-8 w-8 text-hudson-blue dark:text-[#84bd3a]" />
             <div className="flex-1">
               <h3 className="font-display text-headline-small font-semibold text-obsidian dark:text-white">
                 Pejabat Kelurahan
@@ -122,7 +122,7 @@ export default async function ProfilPage() {
             href="/profil/visi-misi"
             className="flex items-center gap-4 rounded-[12px] border border-sage bg-paper p-5 shadow-paper-sm transition-all hover:shadow-paper-md dark:border-[#414943] dark:bg-[#1a1a1a]"
           >
-            <Target className="h-8 w-8 text-hudson-blue dark:text-[#7fc8ff]" />
+            <Target className="h-8 w-8 text-hudson-blue dark:text-[#84bd3a]" />
             <div className="flex-1">
               <h3 className="font-display text-headline-small font-semibold text-obsidian dark:text-white">
                 Visi & Misi

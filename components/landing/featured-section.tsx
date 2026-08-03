@@ -75,7 +75,7 @@ function UMKMGrid({ items }: { items: UMKMItem[] }) {
               {item.deskripsi}
             </p>
             <div className="mt-2 flex items-center justify-between">
-              <span className="font-body text-label-large text-hudson-blue dark:text-[#7fc8ff]">
+              <span className="font-body text-label-large text-hudson-blue dark:text-[#84bd3a]">
                 {item.harga || "Hubungi"}
               </span>
               <span className="font-body text-body-small text-steel">{item.pemilik}</span>
@@ -117,14 +117,14 @@ export function FeaturedSection() {
         <div>
           <div className="mb-6 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <Store className="h-7 w-7 text-hudson-blue dark:text-[#7fc8ff]" />
+              <Store className="h-7 w-7 text-hudson-blue dark:text-[#84bd3a]" />
               <h2 className="font-display text-display-small font-semibold text-obsidian dark:text-white">
                 UMKM Unggulan
               </h2>
             </div>
             <Link
               href="/umkm"
-              className="inline-flex items-center gap-1.5 font-body text-label-large font-semibold text-hudson-blue transition-colors hover:text-hudson-blue/80 dark:text-[#7fc8ff] dark:hover:text-[#7fc8ff]/80"
+              className="inline-flex items-center gap-1.5 font-body text-label-large font-semibold text-hudson-blue transition-colors hover:text-hudson-blue/80 dark:text-[#84bd3a] dark:hover:text-[#84bd3a]/80"
             >
               Lihat Semua
               <ArrowRight className="h-4 w-4" />

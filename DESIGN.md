@@ -26,16 +26,25 @@ Panduan desain visual dan komponen untuk Website Profil Desa Padangloang, KKN Un
 
 ---
 
-## 2. Color Palette (Stitch Natural Design System)
+## 2. Color Palette (Kelurahan Salomallori)
 
-Stitch menghasilkan palet dengan seed color `#2D6A4F` (hijau alami) dan varian **EXPRESSIVE**, namun tema **Editorial-First** mendominasi dengan pendekatan monokrom + aksen biru.
+> **Otoritatif.** Palet resmi Kelurahan Salomallori — digunakan di seluruh aplikasi.
+> Warna-warna Stitch lama (`#2D6A4F`, `#006496`, `#282834`) telah diganti/di-migrasi ke palet di bawah.
 
-### 2.1 Named Colors (Stitch Natural)
+### 2.1 Brand Colors (Resmi)
+
+| Nama | Hex | Usage |
+|---|---|---|
+| **Primary Green** | `#84bd3a` | Warna utama aplikasi: button, link, active state, ring focus, chart utama |
+| **Teal Dark** | `#32735f` | Sekunder: aksen profil, border dark mode, teal gelap |
+| **Midnight Blue** | `#0b2b40` | Surface gelap: navbar, footer, dark mode background, teks di atas primary |
+| **Gold** | `#febe0d` | Aksen emas: highlight, badge menu, secondary di dark mode |
+
+### 2.2 Named Colors (Netral — dipertahankan)
 
 | Nama | Hex | Usage |
 |---|---|---|
 | **Obsidian** | `#171717` | Heading, teks utama dark mode |
-| **Graphite Night** | `#282834` | Navbar, footer, dark surface |
 | **Paper** | `#ffffff` | Card, surface, modal background |
 | **Linen** | `#f9faf7` | Background utama, surface variant light |
 | **Sage** | `#dee2de` | Border, outline, divider |
@@ -45,19 +54,20 @@ Stitch menghasilkan palet dengan seed color `#2D6A4F` (hijau alami) dan varian *
 | **Steel** | `#9ca3af` | Placeholder, icon muted |
 | **Carbon** | `#000000` | Primary (dark) |
 | **Mist** | `#e5e7eb` | Border subtle, input border |
-| **Hudson Blue** | `#006496` | Secondary accent, link, CTA |
 
-### 2.2 Core Dynamic Colors (Material 3 Tokens)
+*Catatan: `graphite-night` CSS token kini bernilai `#0b2b40` (Midnight Blue), dan `hudson-blue` CSS token kini bernilai `#32735f` (Teal Dark).*
+
+### 2.3 Core Dynamic Colors (Material 3 Tokens)
 
 | Token | Light Mode | Dark Mode | Usage |
 |---|---|---|---|
-| **Primary** | `#000000` (Carbon) | `#ffffff` (White) | Aksi utama, navbar active, heading |
-| **On Primary** | `#ffffff` | `#000000` | Teks di atas primary |
-| **Primary Container** | `#e8e8e8` | `#2e2e2e` | Background elemen primary |
-| **On Primary Container** | `#000000` | `#ffffff` | Teks di atas primary container |
-| **Secondary** | `#006496` (Hudson Blue) | `#7fc8ff` | Aksi sekunder, link, badge |
-| **Secondary Container** | `#cae6ff` | `#004a73` | Background elemen sekunder |
-| **Tertiary** | `#000000` | `#ffffff` | Aksen komplementer |
+| **Primary** | `#84bd3a` (Primary Green) | `#84bd3a` (Primary Green) | Aksi utama, navbar active, heading |
+| **On Primary** | `#0b2b40` (Midnight Blue) | `#0b2b40` (Midnight Blue) | Teks di atas primary |
+| **Primary Container** | `#e8f5d7` | `#2e4a1e` | Background elemen primary |
+| **On Primary Container** | `#0b2b40` | `#ffffff` | Teks di atas primary container |
+| **Secondary** | `#32735f` (Teal Dark) | `#febe0d` (Gold) | Aksi sekunder, link, badge |
+| **Secondary Container** | `#d5e8e0` | `#23503f` | Background elemen sekunder |
+| **Tertiary** | `#febe0d` (Gold) | `#febe0d` (Gold) | Aksen komplementer |
 | **Error** | `#ba1a1a` | `#ffb4ab` | Validasi, destructive actions |
 | **Error Container** | `#ffdad6` | `#93000a` | Background error |
 
@@ -202,7 +212,7 @@ Menggunakan paket ikon **Lucide React** sesuai konteks:
 | **Filled Primary (Obsidian)** | `bg-[#171717] text-white hover:bg-black/90 h-10 px-6 font-semibold text-sm tracking-wide` | 4px |
 | **Outlined** | `border border-sage text-obsidian hover:bg-linen h-10 px-6 font-semibold text-sm` | 4px |
 | **Ghost / Text** | `text-obsidian hover:bg-linen h-10 px-3 font-semibold text-sm` | 4px |
-| **Secondary (Hudson Blue)** | `bg-[#006496] text-white hover:bg-[#006496]/90 h-10 px-6 font-semibold text-sm` | 4px |
+| **Secondary (Teal Dark)** | `bg-[#32735f] text-white hover:bg-[#32735f]/90 h-10 px-6 font-semibold text-sm` | 4px |
 | **Icon Button** | `w-10 h-10 flex items-center justify-center hover:bg-linen rounded-full` | Full |
 
 ### 8.2 Cards
@@ -411,10 +421,10 @@ Container max-width: **1200px** (content), dengan padding samping `spacing-lg` (
 
 | Type | Background | Border | Ikon |
 |---|---|---|---|
-| Success | `bg-white` | `border-l-4 border-[#2D6A4F]` | `CheckCircle` (hijau) |
+| Success | `bg-white` | `border-l-4 border-[#84bd3a]` | `CheckCircle` (hijau) |
 | Error | `bg-white` | `border-l-4 border-error` | `AlertCircle` (merah) |
 | Warning | `bg-white` | `border-l-4 border-[#F59E0B]` | `AlertTriangle` (kuning) |
-| Info | `bg-white` | `border-l-4 border-hudson-blue` | `Info` (biru) |
+| Info | `bg-white` | `border-l-4 border-[#32735f]` | `Info` (teal) |
 
 ---
 

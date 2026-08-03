@@ -33,7 +33,7 @@ interface ChartItem {
   updatedAt: string;
 }
 
-const COLORS = ["#006496", "#2D6A4F", "#F59E0B", "#BA1A1A", "#6B7280", "#171717"];
+const COLORS = ["#84bd3a", "#32735f", "#febe0d", "#0b2b40", "#6B7280", "#BA1A1A"];
 
 type UnknownRecord = Record<string, unknown>;
 
@@ -117,7 +117,7 @@ export default function ChartView({ item }: { item: ChartItem }) {
               <XAxis dataKey="label" tick={{ fontSize: 12 }} stroke="#6b7280" />
               <YAxis tick={{ fontSize: 12 }} stroke="#6b7280" />
               <Tooltip contentStyle={{ backgroundColor: "#fff", border: "1px solid #dee2de", borderRadius: "8px" }} />
-              <Line type="monotone" dataKey="value" stroke="#006496" strokeWidth={2} dot={{ fill: "#006496", r: 4 }} />
+              <Line type="monotone" dataKey="value" stroke="#32735f" strokeWidth={2} dot={{ fill: "#32735f", r: 4 }} />
             </LineChart>
           </ResponsiveContainer>
         );
@@ -177,7 +177,7 @@ export default function ChartView({ item }: { item: ChartItem }) {
               <XAxis dataKey="label" tick={{ fontSize: 12 }} stroke="#6b7280" />
               <YAxis tick={{ fontSize: 12 }} stroke="#6b7280" />
               <Tooltip contentStyle={{ backgroundColor: "#fff", border: "1px solid #dee2de", borderRadius: "8px" }} />
-              <Area type="monotone" dataKey="value" stroke="#2D6A4F" fill="#2D6A4F" fillOpacity={0.2} strokeWidth={2} />
+              <Area type="monotone" dataKey="value" stroke="#84bd3a" fill="#84bd3a" fillOpacity={0.2} strokeWidth={2} />
             </AreaChart>
           </ResponsiveContainer>
         );

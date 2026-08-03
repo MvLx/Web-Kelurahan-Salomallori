@@ -62,7 +62,7 @@ export default async function NewsPage() {
                 )}
                 <div className="flex items-center gap-2 text-body-small text-steel">
                   {post.category && (
-                    <span className="rounded-full bg-sage/30 px-2.5 py-0.5 font-body text-label-medium text-hudson-blue dark:bg-[#414943] dark:text-[#7fc8ff]">
+                    <span className="rounded-full bg-sage/30 px-2.5 py-0.5 font-body text-label-medium text-hudson-blue dark:bg-[#414943] dark:text-[#84bd3a]">
                       {post.category.name}
                     </span>
                   )}
@@ -80,7 +80,7 @@ export default async function NewsPage() {
                 <p className="mt-1 font-body text-body-medium text-iron line-clamp-2">
                   {post.summary}
                 </p>
-                <div className="mt-3 flex items-center gap-1 font-body text-label-large font-semibold text-hudson-blue dark:text-[#7fc8ff]">
+                <div className="mt-3 flex items-center gap-1 font-body text-label-large font-semibold text-hudson-blue dark:text-[#84bd3a]">
                   Baca selengkapnya
                   <ChevronRight className="h-4 w-4" />
                 </div>
