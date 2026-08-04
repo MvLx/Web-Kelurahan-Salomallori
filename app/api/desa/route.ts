@@ -10,7 +10,7 @@ export async function GET() {
   try {
     const desa = await prisma.desa.findFirst();
     if (!desa) {
-      return NextResponse.json({ error: "Data desa tidak ditemukan" }, { status: 404 });
+      return NextResponse.json({ error: "Data kelurahan tidak ditemukan" }, { status: 404 });
     }
     return NextResponse.json(desa);
   } catch {
@@ -36,7 +36,7 @@ export async function PUT(req: NextRequest) {
 
     const desa = await prisma.desa.findFirst();
     if (!desa) {
-      return NextResponse.json({ error: "Data desa tidak ditemukan" }, { status: 404 });
+      return NextResponse.json({ error: "Data kelurahan tidak ditemukan" }, { status: 404 });
     }
 
     const parsed = updateDesaSchema.safeParse({ ...body, id: desa.id });

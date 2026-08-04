@@ -24,7 +24,7 @@ export function HeroSection() {
           Kelurahan Salomallori
         </h1>
         <p className="max-w-xl font-body text-lg leading-relaxed text-white/80 md:text-xl">
-          Kecamatan Dua Pitue, Kabupaten Sidenreng Rappang. Desa Maju,
+          Kecamatan Dua Pitue, Kabupaten Sidenreng Rappang. Kelurahan Maju,
           Mandiri, dan Sejahtera. Menghadirkan pelayanan profesional dengan
           tetap menjaga
           kehangatan komunal dan kelestarian alam warisan leluhur.

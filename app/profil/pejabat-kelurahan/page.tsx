@@ -65,7 +65,7 @@ export default function PejabatKelurahanPage() {
               <div className="rounded-xl border border-border bg-card p-12 text-center">
                 <Users className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
                 <p className="text-lg text-muted-foreground">
-                  Data perangkat desa belum tersedia.
+                  Data perangkat kelurahan belum tersedia.
                 </p>
               </div>
             ) : (

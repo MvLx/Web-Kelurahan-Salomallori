@@ -92,7 +92,7 @@ const dashboardLinks: NavLink[] = [
   { label: "Postingan", href: "/dashboard/posts" },
   { label: "UMKM", href: "/dashboard/umkm" },
   { label: "Galeri", href: "/dashboard/galeri" },
-  { label: "Profil Desa", href: "/dashboard/profil-desa" },
+  { label: "Profil Kelurahan", href: "/dashboard/profil-desa" },
   { label: "Kontak", href: "/dashboard/kontak" },
   { label: "Infografis", href: "/dashboard/infografis" },
   { label: "Pengguna", href: "/dashboard/users" },

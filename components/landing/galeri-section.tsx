@@ -65,7 +65,7 @@ export function GaleriSection() {
         {/* Header */}
         <div className="mb-12 text-center">
           <h2 className="font-display text-[36px] font-semibold text-obsidian dark:text-white">
-            Potret Desa
+            Potret Kelurahan
           </h2>
           <p className="mx-auto mt-4 max-w-2xl font-body text-iron dark:text-[#a0a0a0]">
             Menjelajahi kekayaan alam dan kreativitas warga yang menjadi pilar

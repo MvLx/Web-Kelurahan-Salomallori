@@ -42,7 +42,7 @@ export const createDesaSchema = z.object({
   jumlahDusun: z
     .number()
     .int()
-    .positive("Jumlah dusun harus positif")
+    .positive("Jumlah lingkungan harus positif")
     .nullish(),
   batasUtara: z.string().max(200).nullish(),
   batasTimur: z.string().max(200).nullish(),
@@ -96,7 +96,7 @@ export const updateDesaSchema = z
       z
         .number()
         .int()
-        .positive("Jumlah dusun harus positif")
+        .positive("Jumlah lingkungan harus positif")
         .nullish()
         .optional(),
     ),

@@ -148,7 +148,7 @@ export default function ProfilDesaPage() {
         }),
       });
       if (res.ok) {
-        toast.success("Data desa berhasil disimpan");
+        toast.success("Data kelurahan berhasil disimpan");
         await loadData();
       } else {
         const json = await res.json();
@@ -261,7 +261,7 @@ export default function ProfilDesaPage() {
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Hapus Perangkat</DialogTitle>
-            <DialogDescription>Apakah kamu yakin ingin menghapus data perangkat desa ini?</DialogDescription>
+            <DialogDescription>Apakah kamu yakin ingin menghapus data perangkat kelurahan ini?</DialogDescription>
           </DialogHeader>
           <DialogFooter className="gap-2">
             <Button variant="outline" disabled={deleting} onClick={() => setConfirmDelete(null)}>Batal</Button>
@@ -277,15 +277,15 @@ export default function ProfilDesaPage() {
       <Dialog open={perangkatOpen} onOpenChange={(o) => { if (!o && !pSubmitting) setPerangkatOpen(false); }}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>{editPerangkatId ? "Edit Perangkat Desa" : "Tambah Perangkat Desa"}</DialogTitle>
-            <DialogDescription>Data perangkat desa akan ditampilkan di halaman profil.</DialogDescription>
+            <DialogTitle>{editPerangkatId ? "Edit Perangkat Kelurahan" : "Tambah Perangkat Kelurahan"}</DialogTitle>
+            <DialogDescription>Data perangkat kelurahan akan ditampilkan di halaman profil.</DialogDescription>
           </DialogHeader>
           <form id="perangkat-form" onSubmit={submitPerangkat} className="flex flex-col gap-4">
             <Field label="Nama">
               <Input value={pNama} onChange={(e) => setPNama(e.target.value)} placeholder="Nama lengkap" disabled={pSubmitting} />
             </Field>
             <Field label="Jabatan">
-              <Input value={pJabatan} onChange={(e) => setPJabatan(e.target.value)} placeholder="Contoh: Kepala Desa, Sekretaris" disabled={pSubmitting} />
+              <Input value={pJabatan} onChange={(e) => setPJabatan(e.target.value)} placeholder="Contoh: Lurah, Sekretaris Lurah" disabled={pSubmitting} />
             </Field>
             <Field label="Foto">
               <ImageUpload value={pFoto} onChange={setPFoto} folder="portal-berita/perangkat" aspectRatio="video" disabled={pSubmitting} />
@@ -309,25 +309,25 @@ export default function ProfilDesaPage() {
       {/* Sticky top bar */}
       <div className="fixed left-0 right-0 top-16 z-40 border-b border-foreground/10 bg-card/80 px-4 py-3 backdrop-blur-md">
         <div className="mx-auto flex max-w-4xl items-center justify-between gap-4">
-          <h1 className="text-sm font-bold text-foreground">Profil Desa</h1>
+          <h1 className="text-sm font-bold text-foreground">Profil Kelurahan</h1>
         </div>
       </div>
 
       <main className="mx-auto max-w-4xl px-4 pt-28 pb-16">
         <Tabs value={tab} onValueChange={setTab}>
           <TabsList className="mb-6">
-            <TabsTrigger value="desa"><Building2 className="mr-1.5 size-4" /> Data Desa</TabsTrigger>
-            <TabsTrigger value="perangkat"><Users className="mr-1.5 size-4" /> Perangkat Desa</TabsTrigger>
+            <TabsTrigger value="desa"><Building2 className="mr-1.5 size-4" /> Data Kelurahan</TabsTrigger>
+            <TabsTrigger value="perangkat"><Users className="mr-1.5 size-4" /> Perangkat Kelurahan</TabsTrigger>
           </TabsList>
 
           {/* ── Tab 1: Data Desa ── */}
           <TabsContent value="desa" className="space-y-6">
             <div className="rounded-lg border border-foreground/10 bg-card p-4 sm:p-6">
               <h2 className="mb-4 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                Identitas Desa
+                Identitas Kelurahan
               </h2>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                <Field label="Nama Desa">
+                <Field label="Nama Kelurahan">
                   <Input value={desa.nama} onChange={(e) => setDesa({ ...desa, nama: e.target.value })} />
                 </Field>
                 <Field label="Luas Wilayah (km²)">
@@ -339,7 +339,7 @@ export default function ProfilDesaPage() {
                 <Field label="Jumlah KK">
                   <Input type="number" value={desa.jumlahKK ?? ""} onChange={(e) => { const v = parseInt(e.target.value); setDesa({ ...desa, jumlahKK: Number.isNaN(v) ? null : v }); }} />
                 </Field>
-                <Field label="Jumlah Dusun">
+                <Field label="Jumlah Lingkungan">
                   <Input type="number" value={desa.jumlahDusun ?? ""} onChange={(e) => { const v = parseInt(e.target.value); setDesa({ ...desa, jumlahDusun: Number.isNaN(v) ? null : v }); }} />
                 </Field>
               </div>
@@ -385,7 +385,7 @@ export default function ProfilDesaPage() {
               <h2 className="mb-4 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                 Sejarah
               </h2>
-              <Field label="Sejarah Desa">
+              <Field label="Sejarah Kelurahan">
                 <textarea value={desa.sejarah} onChange={(e) => setDesa({ ...desa, sejarah: e.target.value })}
                   rows={6} className="border-input bg-background w-full rounded-md border px-3 py-2 text-sm shadow-xs outline-none transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] resize-none" />
               </Field>
@@ -393,7 +393,7 @@ export default function ProfilDesaPage() {
 
             <div className="rounded-lg border border-foreground/10 bg-card p-4 sm:p-6">
               <h2 className="mb-4 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                Foto Kepala Desa
+                Foto Kepala Kelurahan
               </h2>
               <ImageUpload value={desa.fotoKepalaDesa ?? ""} onChange={(url) => setDesa({ ...desa, fotoKepalaDesa: url })} folder="portal-berita/kepala-desa" aspectRatio="video" />
             </div>
@@ -402,7 +402,7 @@ export default function ProfilDesaPage() {
               <Button onClick={saveDesa} disabled={saving} size="lg">
                 {saving && <Loader2 className="mr-1.5 size-4 animate-spin" />}
                 <Save className="mr-1.5 size-4" />
-                Simpan Data Desa
+                Simpan Data Kelurahan
               </Button>
             </div>
           </TabsContent>
@@ -412,7 +412,7 @@ export default function ProfilDesaPage() {
             {perangkat.length === 0 ? (
               <div className="flex flex-col items-center gap-3 py-16 text-muted-foreground">
                 <Users className="size-12 opacity-30" />
-                <p className="text-sm font-medium">Belum ada data perangkat desa.</p>
+                <p className="text-sm font-medium">Belum ada data perangkat kelurahan.</p>
                 <Button size="sm" onClick={openAddPerangkat}>
                   <Plus className="mr-1.5 size-3.5" /> Tambah Perangkat
                 </Button>

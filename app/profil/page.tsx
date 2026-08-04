@@ -35,7 +35,7 @@ export default async function ProfilPage() {
                 <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-full">
                   <Image
                     src={desa.fotoKepalaDesa}
-                    alt="Kepala Desa"
+                    alt="Kepala Kelurahan"
                     fill
                     className="object-cover"
                   />
@@ -81,7 +81,7 @@ export default async function ProfilPage() {
                     <p className="font-display text-headline-medium font-bold text-hudson-blue dark:text-[#84bd3a]">
                       {desa.jumlahDusun}
                     </p>
-                    <p className="font-body text-body-small text-iron">Dusun</p>
+                    <p className="font-body text-body-small text-iron">Lingkungan</p>
                   </div>
                 )}
               </div>

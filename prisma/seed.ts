@@ -15,7 +15,7 @@ const prisma = new PrismaClient({ adapter });
 async function main() {
   console.log("🌱 Seeding data Kelurahan Salomallori...");
 
-  // --- DATA DESA ---
+  // --- DATA KELURAHAN ---
   await prisma.desa.upsert({
     where: { id: "desa-salomallori" },
     update: {},
@@ -46,9 +46,9 @@ async function main() {
     { nama: "Abdul Rahman", jabatan: "Kasi Pemerintahan", urutan: 3 },
     { nama: "Sitti Nurhaya", jabatan: "Kasi Kesejahteraan", urutan: 4 },
     { nama: "Muhammad Jufri", jabatan: "Kasi Pelayanan", urutan: 5 },
-    { nama: "Sukri", jabatan: "Kepala Dusun I", urutan: 6 },
-    { nama: "Baharuddin", jabatan: "Kepala Dusun II", urutan: 7 },
-    { nama: "Ruslan", jabatan: "Kepala Dusun III", urutan: 8 },
+    { nama: "Sukri", jabatan: "Kepala Lingkungan I", urutan: 6 },
+    { nama: "Baharuddin", jabatan: "Kepala Lingkungan II", urutan: 7 },
+    { nama: "Ruslan", jabatan: "Kepala Lingkungan III", urutan: 8 },
   ];
 
   for (const p of perangkatData) {
@@ -105,7 +105,7 @@ async function main() {
     {
       nama: "Persawahan Salomallori",
       deskripsi: "Hamparan sawah hijau yang membentang luas di Kelurahan Salomallori. Tempat yang sempurna untuk menikmati keindahan alam pedesaan dan matahari terbenam.",
-      lokasi: "Dusun I, Kelurahan Salomallori",
+      lokasi: "Lingkungan I, Kelurahan Salomallori",
       kategori: "WISATA_ALAM",
     },
     {
@@ -152,19 +152,19 @@ async function main() {
         { label: "Total Penduduk", value: 1599 },
         { label: "Jumlah KK", value: 561 },
         { label: "Luas Wilayah (km²)", value: 2.75 },
-        { label: "Jumlah Dusun", value: 3 },
+        { label: "Jumlah Lingkungan", value: 3 },
         { label: "Laki-laki", value: 802 },
         { label: "Perempuan", value: 797 },
       ],
     },
     {
-      judul: "Komposisi Penduduk per Dusun",
+      judul: "Komposisi Penduduk per Lingkungan",
       tahun: 2026,
       chartType: "BAR_CHART",
       dataJson: [
-        { label: "Dusun I", value: 550 },
-        { label: "Dusun II", value: 530 },
-        { label: "Dusun III", value: 519 },
+        { label: "Lingkungan I", value: 550 },
+        { label: "Lingkungan II", value: 530 },
+        { label: "Lingkungan III", value: 519 },
       ],
     },
     {

@@ -19,7 +19,7 @@ export async function GET(
     return NextResponse.json(item);
   } catch {
     return NextResponse.json(
-      { error: "Gagal mengambil data perangkat desa" },
+      { error: "Gagal mengambil data perangkat kelurahan" },
       { status: 500 },
     );
   }
@@ -58,7 +58,7 @@ export async function PUT(
       select: { id: true },
     });
     if (!existing) {
-      return NextResponse.json({ error: "Perangkat desa tidak ditemukan" }, { status: 404 });
+      return NextResponse.json({ error: "Perangkat kelurahan tidak ditemukan" }, { status: 404 });
     }
 
     const { id: _unused, ...updateData } = parsed.data;
@@ -66,7 +66,7 @@ export async function PUT(
     return NextResponse.json(item);
   } catch {
     return NextResponse.json(
-      { error: "Gagal mengupdate perangkat desa" },
+      { error: "Gagal mengupdate perangkat kelurahan" },
       { status: 500 },
     );
   }
@@ -95,14 +95,14 @@ export async function DELETE(
       select: { id: true },
     });
     if (!existing) {
-      return NextResponse.json({ error: "Perangkat desa tidak ditemukan" }, { status: 404 });
+      return NextResponse.json({ error: "Perangkat kelurahan tidak ditemukan" }, { status: 404 });
     }
 
     await prisma.perangkatDesa.delete({ where: { id } });
     return NextResponse.json({ success: true });
   } catch {
     return NextResponse.json(
-      { error: "Gagal menghapus perangkat desa" },
+      { error: "Gagal menghapus perangkat kelurahan" },
       { status: 500 },
     );
   }

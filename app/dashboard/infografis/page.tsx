@@ -201,7 +201,7 @@ export default function InfografisPage() {
           <form id="infografis-form" onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div className="flex flex-col gap-1">
               <Label className="text-xs font-semibold text-muted-foreground">Judul</Label>
-              <Input value={judul} onChange={(e) => setJudul(e.target.value)} placeholder="Contoh: Jumlah Penduduk per Dusun" disabled={submitting} />
+              <Input value={judul} onChange={(e) => setJudul(e.target.value)} placeholder="Contoh: Jumlah Penduduk per Lingkungan" disabled={submitting} />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="flex flex-col gap-1">

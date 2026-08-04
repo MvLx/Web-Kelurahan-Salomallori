@@ -62,7 +62,7 @@ export default function SejarahKelurahanPage() {
           <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
             <div className="rounded-2xl bg-card p-12 text-center shadow-xl">
               <p className="text-lg text-muted-foreground">
-                Data desa belum tersedia.
+                Data kelurahan belum tersedia.
               </p>
             </div>
           </div>
@@ -89,8 +89,8 @@ export default function SejarahKelurahanPage() {
       icon: Home,
     },
     {
-      label: "Jumlah Dusun",
-      value: `${desa.jumlahDusun ?? "—"} Dusun`,
+      label: "Jumlah Lingkungan",
+      value: `${desa.jumlahDusun ?? "—"} Lingkungan`,
       icon: Trees,
     },
   ];

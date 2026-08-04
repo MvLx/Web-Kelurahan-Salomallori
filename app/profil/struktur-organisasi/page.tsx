@@ -61,7 +61,7 @@ export default function VisiMisiPage() {
             ) : !desa ? (
               <div className="rounded-xl border border-border bg-card p-12 text-center">
                 <p className="text-lg text-muted-foreground">
-                  Data desa belum tersedia.
+                  Data kelurahan belum tersedia.
                 </p>
               </div>
             ) : (

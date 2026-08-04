@@ -14,7 +14,7 @@ export async function GET() {
     return NextResponse.json(items);
   } catch {
     return NextResponse.json(
-      { error: "Gagal mengambil data perangkat desa" },
+      { error: "Gagal mengambil data perangkat kelurahan" },
       { status: 500 },
     );
   }
@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(item, { status: 201 });
   } catch {
     return NextResponse.json(
-      { error: "Gagal membuat perangkat desa" },
+      { error: "Gagal membuat perangkat kelurahan" },
       { status: 500 },
     );
   }

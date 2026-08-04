@@ -50,7 +50,7 @@ const dashboardNav: DashboardNavItem[] = [
   { label: "UMKM", href: "/dashboard/umkm", icon: Store },
   { label: "Wisata", href: "/dashboard/wisata", icon: Map },
   { label: "Galeri", href: "/dashboard/galeri", icon: ImageIcon },
-  { label: "Profil Desa", href: "/dashboard/profil-desa", icon: Building2 },
+  { label: "Profil Kelurahan", href: "/dashboard/profil-desa", icon: Building2 },
   { label: "Kontak", href: "/dashboard/kontak", icon: Phone },
   { label: "Infografis", href: "/dashboard/infografis", icon: BarChart3 },
   { label: "Kategori", href: "/dashboard/categories", icon: Tag },

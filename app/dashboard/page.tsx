@@ -173,10 +173,10 @@ export default async function DashboardPage() {
       href: "/dashboard/infografis",
     },
     {
-      label: "Profil Desa",
+      label: "Profil Kelurahan",
       value: stats.desaCount > 0 ? "Ada" : "Belum",
       icon: Building2,
-      description: stats.desaCount > 0 ? "Data desa tersedia" : "Data desa belum diisi",
+      description: stats.desaCount > 0 ? "Data kelurahan tersedia" : "Data kelurahan belum diisi",
       href: "/dashboard/profil-desa",
     },
     {

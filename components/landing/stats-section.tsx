@@ -51,8 +51,8 @@ export function StatsSection() {
     },
     {
       icon: Trees,
-      value: desa?.jumlahDusun ? `${desa.jumlahDusun} Dusun` : "-",
-      label: "Jumlah Dusun",
+      value: desa?.jumlahDusun ? `${desa.jumlahDusun} Lingkungan` : "-",
+      label: "Jumlah Lingkungan",
     },
   ];
 
