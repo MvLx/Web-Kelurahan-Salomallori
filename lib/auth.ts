@@ -10,6 +10,8 @@ export const auth = betterAuth({
   }),
   trustedOrigins: [
     "https://web-kelurahan-salomallori.vercel.app",
+    "https://www.salomallori.web.id",
+    "https://salomallori.web.id",
     "http://localhost:3000",
   ],
   emailAndPassword: {

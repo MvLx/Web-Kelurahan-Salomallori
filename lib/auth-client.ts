@@ -8,7 +8,7 @@ function getBaseUrl() {
     return window.location.origin;
   }
   // Server-side: fallback
-  return process.env.NEXT_PUBLIC_BASE_URL || "https://web-kelurahan-salomallori.vercel.app";
+  return process.env.NEXT_PUBLIC_BASE_URL || "https://www.salomallori.web.id";
 }
 
 export const authClient = createAuthClient({
