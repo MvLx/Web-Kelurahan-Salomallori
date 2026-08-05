@@ -7,7 +7,6 @@ import { HeroSection } from "@/components/landing/hero-section";
 import { StatsSection } from "@/components/landing/stats-section";
 import { NewsSection } from "@/components/landing/news-section";
 import { SejarahSection } from "@/components/landing/sejarah-section";
-import { BreakingNewsSection } from "@/components/landing/breaking-news-section";
 import { GaleriSection } from "@/components/landing/galeri-section";
 import { ScrollToTopButton } from "@/components/custom/scroll-to-top";
 
@@ -20,9 +19,6 @@ function BerandaContent() {
       <main>
         {/* Hero Section */}
         <HeroSection />
-
-        {/* Breaking News / Pengumuman */}
-        <BreakingNewsSection />
 
         {/* Stats Section */}
         <StatsSection />

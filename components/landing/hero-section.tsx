@@ -6,14 +6,13 @@ import { ChevronDown } from "lucide-react";
 export function HeroSection() {
   return (
     <section
-      className="relative flex min-h-[70vh] items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat"
+      className="relative flex min-h-[70vh] items-center justify-center bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: `url('/images/hero-bg.jpg')`,
       }}
     >
       {/* Overlays */}
       <div className="absolute inset-0 bg-black/60 mix-blend-multiply" />
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
 
       {/* Content */}
       <div className="relative z-10 mx-auto mt-12 flex max-w-3xl flex-col items-center px-6 text-center">
@@ -44,6 +43,12 @@ export function HeroSection() {
           </Link>
         </div>
       </div>
+
+      {/* Wave Shape — Elliptical Curve via border-radius */}
+      <div
+        className="absolute bottom-[-70px] left-[-10%] z-[2] h-[180px] w-[120%] rounded-t-[50%] bg-[hsl(var(--background))]"
+        aria-hidden="true"
+      />
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 animate-bounce text-white/70">

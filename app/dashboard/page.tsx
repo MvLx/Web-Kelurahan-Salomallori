@@ -20,7 +20,6 @@ import {
   Tag,
   Eye,
   TrendingUp,
-  Bell,
   CheckCircle2,
   Clock,
   ArrowRight,
@@ -50,7 +49,6 @@ async function getDashboardStats() {
     prisma.message.count(),
     prisma.message.count({ where: { isRead: false } }),
     prisma.category.count(),
-    prisma.breakingNews.count({ where: { isActive: true } }),
     prisma.uMKM.count(),
   ]);
 
@@ -97,8 +95,7 @@ async function getDashboardStats() {
     totalMessages: batch2[0],
     unreadMessages: batch2[1],
     totalCategories: batch2[2],
-    totalBreakingNews: batch2[3],
-    totalUmkm: batch2[4],
+    totalUmkm: batch2[3],
     totalGaleri: batch3[0],
     totalInfografis: batch3[1],
     desaCount: batch3[2],
@@ -189,13 +186,6 @@ export default async function DashboardPage() {
       icon: Tag,
       description: "Kategori konten aktif",
       href: "/dashboard/categories",
-    },
-    {
-      label: "Breaking News",
-      value: formatNumber(stats.totalBreakingNews),
-      icon: Bell,
-      description: "Berita aktif di marquee",
-      href: "/dashboard/breaking-news",
     },
   ];
 
