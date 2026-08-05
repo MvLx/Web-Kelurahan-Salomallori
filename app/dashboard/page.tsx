@@ -27,7 +27,6 @@ import {
   MailOpen,
   Mail,
   Store,
-  MapPin,
   Image as ImageIcon,
   BarChart3,
   Building2,
@@ -53,7 +52,6 @@ async function getDashboardStats() {
     prisma.category.count(),
     prisma.breakingNews.count({ where: { isActive: true } }),
     prisma.uMKM.count(),
-    prisma.wisata.count(),
   ]);
 
   const batch3 = await Promise.all([
@@ -101,7 +99,6 @@ async function getDashboardStats() {
     totalCategories: batch2[2],
     totalBreakingNews: batch2[3],
     totalUmkm: batch2[4],
-    totalWisata: batch2[5],
     totalGaleri: batch3[0],
     totalInfografis: batch3[1],
     desaCount: batch3[2],
@@ -150,13 +147,6 @@ export default async function DashboardPage() {
       icon: Store,
       description: "Produk UMKM terdaftar",
       href: "/dashboard/umkm",
-    },
-    {
-      label: "Wisata",
-      value: formatNumber(stats.totalWisata),
-      icon: MapPin,
-      description: "Destinasi wisata",
-      href: "/dashboard/wisata",
     },
     {
       label: "Galeri",
