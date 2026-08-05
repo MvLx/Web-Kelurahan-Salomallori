@@ -36,8 +36,6 @@ interface DesaData {
   id: string;
   nama: string;
   sejarah: string;
-  visi: string;
-  misi: string;
   luasWilayah: number | null;
   jumlahPenduduk: number | null;
   jumlahKK: number | null;
@@ -62,8 +60,6 @@ const EMPTY_DESA = {
   id: "",
   nama: "",
   sejarah: "",
-  visi: "",
-  misi: "",
   luasWilayah: null,
   jumlahPenduduk: null,
   jumlahKK: null,
@@ -134,8 +130,6 @@ export default function ProfilDesaPage() {
         body: JSON.stringify({
           nama: desa.nama,
           sejarah: desa.sejarah,
-          visi: desa.visi,
-          misi: desa.misi,
           luasWilayah: desa.luasWilayah ?? null,
           jumlahPenduduk: desa.jumlahPenduduk ?? null,
           jumlahKK: desa.jumlahKK ?? null,
@@ -361,22 +355,6 @@ export default function ProfilDesaPage() {
                 </Field>
                 <Field label="Barat">
                   <Input value={desa.batasBarat ?? ""} onChange={(e) => setDesa({ ...desa, batasBarat: e.target.value })} placeholder="Batas barat..." />
-                </Field>
-              </div>
-            </div>
-
-            <div className="rounded-lg border border-foreground/10 bg-card p-4 sm:p-6">
-              <h2 className="mb-4 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                Visi & Misi
-              </h2>
-              <div className="flex flex-col gap-4">
-                <Field label="Visi">
-                  <textarea value={desa.visi} onChange={(e) => setDesa({ ...desa, visi: e.target.value })}
-                    rows={3} className="border-input bg-background w-full rounded-md border px-3 py-2 text-sm shadow-xs outline-none transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] resize-none" />
-                </Field>
-                <Field label="Misi">
-                  <textarea value={desa.misi} onChange={(e) => setDesa({ ...desa, misi: e.target.value })}
-                    rows={4} className="border-input bg-background w-full rounded-md border px-3 py-2 text-sm shadow-xs outline-none transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] resize-none" />
                 </Field>
               </div>
             </div>
