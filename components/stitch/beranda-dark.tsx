@@ -156,7 +156,7 @@ export function BerandaDark({ data }: { data: BerandaData }) {
               </span>
               <div
                 className={`invisible absolute left-1/2 top-full z-50 mt-3 w-56 -translate-x-1/2 rounded-xl border border-[#373a3b] p-2 opacity-0 shadow-xl backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:opacity-100 ${
-                  isScrolled ? "bg-[#0b2b40]/95" : "bg-black/30"
+                  isScrolled ? "bg-[#0b2b40]/95" : "bg-[#0b2b40]/30"
                 }`}
               >
                 <Link
@@ -188,7 +188,7 @@ export function BerandaDark({ data }: { data: BerandaData }) {
               </span>
               <div
                 className={`invisible absolute left-1/2 top-full z-50 mt-3 w-48 -translate-x-1/2 rounded-xl border border-[#373a3b] p-2 opacity-0 shadow-xl backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:opacity-100 ${
-                  isScrolled ? "bg-[#0b2b40]/95" : "bg-black/30"
+                  isScrolled ? "bg-[#0b2b40]/95" : "bg-[#0b2b40]/30"
                 }`}
               >
                 <Link
