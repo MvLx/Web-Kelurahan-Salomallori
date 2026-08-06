@@ -34,6 +34,7 @@ export interface BerandaData {
   posts: BerandaPost[];
   galeri: BerandaGaleri[];
   heroImage: string;
+  fotoSejarah: string | null;
 }
 
 interface BerandaPageClientProps {

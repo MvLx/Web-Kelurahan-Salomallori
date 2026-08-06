@@ -51,6 +51,7 @@ export function BerandaDark({ data }: { data: BerandaData }) {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
@@ -450,10 +451,20 @@ export function BerandaDark({ data }: { data: BerandaData }) {
             <h2 className="mb-6 font-serif text-[36px] font-semibold text-white">
               Jejak Sejarah Salomallori
             </h2>
-            <div
-              className="mb-6 h-full w-full animate-pulse overflow-hidden rounded-xl bg-[#373a3b]/50"
-              style={{ height: 400 }}
-            />
+            {data.fotoSejarah ? (
+              <div className="relative mb-6 h-[400px] w-full overflow-hidden rounded-xl">
+                <img
+                  src={data.fotoSejarah}
+                  alt="Sejarah Kelurahan Salomallori"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            ) : (
+              <div
+                className="mb-6 h-full w-full overflow-hidden rounded-xl bg-[#373a3b]/50"
+                style={{ height: 400 }}
+              />
+            )}
             <p className="mb-6 text-[16px] leading-[1.6] text-[#b0b4b5]">
               {data.desa?.sejarah ??
                 "Kelurahan Salomallori memiliki akar sejarah yang panjang, berawal dari pemukiman agraris yang menjunjung tinggi nilai-nilai kearifan lokal."}

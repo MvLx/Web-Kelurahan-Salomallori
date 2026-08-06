@@ -64,6 +64,7 @@ export default async function BerandaPage() {
       kategori: g.kategori,
     })),
     heroImage: "/images/bg-salomallori.png",
+    fotoSejarah: desa?.fotoKepalaDesa ?? null,
   };
 
   return <BerandaPageClient data={data} />;

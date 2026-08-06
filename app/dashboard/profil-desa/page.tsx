@@ -363,7 +363,7 @@ export default function ProfilDesaPage() {
 
             <div className="rounded-lg border border-foreground/10 bg-card p-4 sm:p-6">
               <h2 className="mb-4 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-                Foto Kepala Kelurahan
+                Foto Sejarah Kelurahan
               </h2>
               <ImageUpload value={desa.fotoKepalaDesa ?? ""} onChange={(url) => setDesa({ ...desa, fotoKepalaDesa: url })} folder="portal-berita/kepala-desa" aspectRatio="video" />
             </div>
