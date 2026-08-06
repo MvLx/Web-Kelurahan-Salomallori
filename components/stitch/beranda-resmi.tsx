@@ -9,7 +9,6 @@ import {
   ArrowRight,
   ArrowUpRight,
   Building2,
-  Camera,
   ChevronDown,
   Clock,
   Home,
@@ -112,6 +111,7 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
   }));
 
   const gallery = data.galeri.map((g) => ({
+    id: g.id,
     category: g.kategori,
     title: g.judul,
     image: g.gambar,
@@ -472,11 +472,11 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
             kebanggaan Kelurahan Salomallori.
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
-          {gallery.map(({ category, title, image }) => (
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          {gallery.map(({ id, category, title, image }) => (
             <Link
-              href="/galeri"
-              key={title}
+              href={`/galeri/${id}`}
+              key={id}
               className="group relative block aspect-square cursor-pointer overflow-hidden rounded-lg bg-[#dee2de]/50"
             >
               <img
@@ -494,18 +494,6 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
               </div>
             </Link>
           ))}
-          <Link
-            href="/galeri"
-            className="relative flex aspect-square cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-[#dee2de] text-[#666666]/30 transition-colors hover:text-[#32735f] dark:bg-[#414943]"
-          >
-            <Camera className="mx-auto h-8 w-8" />
-          </Link>
-          <Link
-            href="/galeri"
-            className="relative hidden aspect-square cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-[#dee2de] text-[#666666]/30 transition-colors hover:text-[#32735f] dark:bg-[#414943] lg:flex"
-          >
-            <Camera className="mx-auto h-8 w-8" />
-          </Link>
         </div>
       </section>
 

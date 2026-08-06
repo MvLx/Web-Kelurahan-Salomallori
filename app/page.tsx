@@ -22,7 +22,6 @@ export default async function BerandaPage() {
     }),
     prisma.galeri.findMany({
       orderBy: { createdAt: "desc" },
-      take: 3,
     }),
   ]);
 
