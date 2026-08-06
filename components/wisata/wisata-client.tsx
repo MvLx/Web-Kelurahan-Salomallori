@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import Navbar from "@/components/custom/navbar";
+import { NavbarBeranda } from "@/components/custom/navbar-beranda";
 import Footer from "@/components/custom/footer";
 import {
   Loader2,
@@ -45,7 +45,7 @@ export function WisataClient({ items, error }: WisataClientProps) {
   if (error) {
     return (
       <div className="min-h-screen bg-background text-foreground">
-        <Navbar variant="public" />
+        <NavbarBeranda />
         <main className="pt-20 pb-16">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 flex items-center justify-center py-24">
             <div className="text-center">
@@ -68,7 +68,7 @@ export function WisataClient({ items, error }: WisataClientProps) {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Navbar variant="public" />
+      <NavbarBeranda />
 
       <main className="pt-20 pb-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">

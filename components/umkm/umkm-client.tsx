@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import Navbar from "@/components/custom/navbar";
+import { NavbarBeranda } from "@/components/custom/navbar-beranda";
 import Footer from "@/components/custom/footer";
 import { Search, X, Store, Tag, User, Phone, Loader2 } from "lucide-react";
 
@@ -42,7 +42,7 @@ export function UMKMClient({ items, error }: UMKMClientProps) {
   if (error) {
     return (
       <div className="min-h-screen bg-background text-foreground">
-        <Navbar variant="public" />
+        <NavbarBeranda />
         <main className="pt-20 pb-16">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 flex items-center justify-center py-24">
             <div className="text-center">
@@ -65,7 +65,7 @@ export function UMKMClient({ items, error }: UMKMClientProps) {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Navbar variant="public" />
+      <NavbarBeranda />
 
       <main className="pt-20 pb-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">

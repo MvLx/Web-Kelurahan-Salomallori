@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
-import Navbar from "@/components/custom/navbar";
+import { NavbarBeranda } from "@/components/custom/navbar-beranda";
 import Footer from "@/components/custom/footer";
 import Image from "next/image";
 import { MapPin, Phone, Mail, Clock, Loader2, MessageCircle } from "lucide-react";
@@ -176,7 +176,7 @@ export default function AduanPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Navbar variant="public" />
+      <NavbarBeranda />
 
       <main className="pt-20 pb-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">

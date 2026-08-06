@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import Image from "next/image";
 import { Newspaper, ArrowRight, ImageOff, User } from "lucide-react";
-import Navbar from "@/components/custom/navbar";
+import { NavbarBeranda } from "@/components/custom/navbar-beranda";
 import Footer from "@/components/custom/footer";
 import { NewsCard, type NewsCardPost } from "@/components/custom/news-card";
 import type { Metadata } from "next";
@@ -60,7 +60,7 @@ export default async function NewsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar variant="public" />
+      <NavbarBeranda />
       <div className="h-16" />
 
       <section className="bg-linen py-4xl dark:bg-[#111411]">

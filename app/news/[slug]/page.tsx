@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CalendarDays, ChevronRight, ArrowRight, User } from "lucide-react";
 import { prisma } from "@/lib/prisma";
-import Navbar from "@/components/custom/navbar";
+import { NavbarBeranda } from "@/components/custom/navbar-beranda";
 import Footer from "@/components/custom/footer";
 import { CategoryBadge } from "@/components/custom/category-badge";
 import { NewsCard, type NewsCardPost } from "@/components/custom/news-card";
@@ -160,7 +160,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
 
   return (
     <div className="min-h-screen bg-linen dark:bg-[#111411]">
-      <Navbar variant="public" />
+      <NavbarBeranda />
 
       <main className="pb-4xl pt-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">

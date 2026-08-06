@@ -2,7 +2,7 @@ import { prisma } from "@/lib/prisma";
 import Image from "next/image";
 import Link from "next/link";
 import { History, UserCheck, Target, ChevronRight } from "lucide-react";
-import Navbar from "@/components/custom/navbar";
+import { NavbarBeranda } from "@/components/custom/navbar-beranda";
 import Footer from "@/components/custom/footer";
 import type { Metadata } from "next";
 
@@ -17,7 +17,7 @@ export default async function ProfilPage() {
 
   return (
     <div className="min-h-screen">
-      <Navbar variant="public" />
+      <NavbarBeranda />
       <div className="h-16" />
 
       <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">

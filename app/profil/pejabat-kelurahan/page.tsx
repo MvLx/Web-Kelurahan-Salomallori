@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Navbar from "@/components/custom/navbar";
+import { NavbarBeranda } from "@/components/custom/navbar-beranda";
 import Footer from "@/components/custom/footer";
 import { Users, ChevronRight } from "lucide-react";
 
@@ -35,7 +35,7 @@ export default function PejabatKelurahanPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Navbar variant="public" />
+      <NavbarBeranda />
 
       <main className="pt-20 pb-16">
         <div className="mx-auto max-w-5xl space-y-16 px-4 sm:px-6 lg:px-8">

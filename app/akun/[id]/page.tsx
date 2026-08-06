@@ -32,7 +32,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import Navbar from "@/components/custom/navbar";
+import { NavbarBeranda } from "@/components/custom/navbar-beranda";
 import { getInitials } from "@/utils/string";
 import { cn } from "@/lib/utils";
 
@@ -268,7 +268,7 @@ export default function ProfilPage() {
   if (loading || sessionLoading) {
     return (
       <div className="min-h-screen bg-background">
-        <Navbar />
+        <NavbarBeranda />
         <div className="flex min-h-[80vh] items-center justify-center">
           <div className="flex flex-col items-center gap-3">
             <div className="size-10 animate-spin rounded-full border-4 border-foreground/20 border-t-foreground" />
@@ -282,7 +282,7 @@ export default function ProfilPage() {
   if (notFound || !profile) {
     return (
       <div className="min-h-screen bg-background">
-        <Navbar />
+        <NavbarBeranda />
         <div className="flex min-h-[80vh] flex-col items-center justify-center gap-4 text-center">
           <AlertCircle className="size-12 text-foreground/40" />
           <h2 className="text-2xl font-bold text-foreground/70">
@@ -298,7 +298,7 @@ export default function ProfilPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
+      <NavbarBeranda />
 
       <main className="mx-auto max-w-3xl px-4 py-24 md:px-8">
         {/* Hidden file input for avatar upload */}

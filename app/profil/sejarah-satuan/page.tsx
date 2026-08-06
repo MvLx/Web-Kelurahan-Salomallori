@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Navbar from "@/components/custom/navbar";
+import { NavbarBeranda } from "@/components/custom/navbar-beranda";
 import Footer from "@/components/custom/footer";
 import { MapPin, Users, Home, TreesIcon as Grass } from "lucide-react";
 
@@ -43,7 +43,7 @@ export default function SejarahPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-background text-foreground">
-        <Navbar variant="public" />
+        <NavbarBeranda />
         <main className="pt-20 pb-16">
           <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
             <SkeletonArticle />
@@ -57,7 +57,7 @@ export default function SejarahPage() {
   if (!desa) {
     return (
       <div className="min-h-screen bg-background text-foreground">
-        <Navbar variant="public" />
+        <NavbarBeranda />
         <main className="pt-20 pb-16">
           <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
             <div className="rounded-2xl bg-card p-12 text-center shadow-xl">
@@ -97,7 +97,7 @@ export default function SejarahPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Navbar variant="public" />
+      <NavbarBeranda />
 
       <main className="pt-20 pb-16">
         <div className="mx-auto max-w-5xl space-y-16 px-4 sm:px-6 lg:px-8">

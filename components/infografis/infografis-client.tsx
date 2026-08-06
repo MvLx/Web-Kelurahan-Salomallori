@@ -1,6 +1,6 @@
 "use client";
 
-import Navbar from "@/components/custom/navbar";
+import { NavbarBeranda } from "@/components/custom/navbar-beranda";
 import Footer from "@/components/custom/footer";
 import { BarChart3 } from "lucide-react";
 import ChartView from "./chart-view";
@@ -25,7 +25,7 @@ export default function InfografisClient({ items, error, loading = false }: Info
   if (loading) {
     return (
       <div className="min-h-screen bg-background text-foreground">
-        <Navbar variant="public" />
+        <NavbarBeranda />
         <main className="pt-20 pb-16">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <div className="animate-pulse space-y-6">
@@ -47,7 +47,7 @@ export default function InfografisClient({ items, error, loading = false }: Info
   if (error) {
     return (
       <div className="min-h-screen bg-background text-foreground">
-        <Navbar variant="public" />
+        <NavbarBeranda />
         <main className="pt-20 pb-16">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 flex items-center justify-center py-24">
             <div className="text-center">
@@ -70,7 +70,7 @@ export default function InfografisClient({ items, error, loading = false }: Info
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Navbar variant="public" />
+      <NavbarBeranda />
 
       <main className="pt-20 pb-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
