@@ -150,7 +150,7 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
             <Link href="/" className="text-white transition-colors hover:text-[#84bd3a]">
               Beranda
             </Link>
-            <div className="group relative">
+            <div className="group relative before:absolute before:inset-x-0 before:top-full before:h-4">
               <span className="flex cursor-pointer items-center gap-1 transition-colors hover:text-[#84bd3a]">
                 Profil <ChevronDown className="h-4 w-4" />
               </span>
@@ -178,7 +178,7 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
             <Link href="/umkm" className="transition-colors hover:text-[#84bd3a]">
               UMKM
             </Link>
-            <div className="group relative">
+            <div className="group relative before:absolute before:inset-x-0 before:top-full before:h-4">
               <span className="flex cursor-pointer items-center gap-1 transition-colors hover:text-[#84bd3a]">
                 Publikasi <ChevronDown className="h-4 w-4" />
               </span>
