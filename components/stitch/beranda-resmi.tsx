@@ -11,7 +11,6 @@ import {
   Building2,
   Camera,
   ChevronDown,
-  ChevronRight,
   Clock,
   Home,
   LayoutDashboard,
@@ -311,7 +310,7 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
             Kelurahan Salomallori
           </h1>
           <p className="mb-3 font-serif text-lg italic text-[#febe0d] sm:text-xl">
-            "Desa Maju, Mandiri, dan Sejahtera"
+            &ldquo;Desa Maju, Mandiri, dan Sejahtera&rdquo;
           </p>
           <p className="mb-8 max-w-2xl text-sm leading-relaxed text-white/80 sm:text-base">
             Website resmi Kelurahan Salomallori menyajikan informasi seputar
