@@ -308,7 +308,7 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
             <span className="mb-4 inline-block rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-white backdrop-blur-sm">
               Kec. Dua Pitue, Kab. Sidenreng Rappang
             </span>
-            <p className="mb-3 font-serif text-lg italic text-[#febe0d] sm:text-xl">
+            <p className="mb-3 font-[family-name:serif] text-lg italic text-[#febe0d] sm:text-xl">
               &ldquo;Satu Kelurahan, Sejuta Harapan&rdquo;
             </p>
             <p className="mb-8 max-w-2xl text-sm leading-relaxed text-white/80 sm:text-base">
