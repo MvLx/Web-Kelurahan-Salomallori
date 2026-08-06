@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
 import {
   ChevronDown,
   LayoutDashboard,
@@ -12,7 +13,6 @@ import {
   User,
   UserPlus,
 } from "lucide-react";
-import { useTheme } from "next-themes";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -27,12 +27,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { getInitials } from "@/utils/string";
-import { cn } from "@/lib/utils";
 
-export function NavbarStitch() {
+export function NavbarBeranda() {
   const router = useRouter();
-  const { data: session } = authClient.useSession();
   const { resolvedTheme } = useTheme();
+  const { data: session } = authClient.useSession();
   const [mounted, setMounted] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -51,10 +50,7 @@ export function NavbarStitch() {
   const isPrivileged = userRole === "EDITOR" || userRole === "ADMIN";
 
   const isDark = resolvedTheme === "dark";
-  const hoverLinkClass = isDark
-    ? "hover:text-[#32735f] [&::after]:bg-[#32735f]"
-    : "hover:text-[#84bd3a] [&::after]:bg-[#84bd3a]";
-  const hoverDropdownClass = isDark ? "hover:text-[#32735f]" : "hover:text-[#84bd3a]";
+  const dropdownBorder = isDark ? "border-[#373a3b]" : "border-white/10";
 
   async function handleSignOut() {
     await authClient.signOut();
@@ -67,7 +63,7 @@ export function NavbarStitch() {
       <div
         className={`pointer-events-auto flex w-full max-w-5xl items-center justify-between rounded-full px-6 py-3 shadow-lg backdrop-blur-xl transition-all duration-500 ${
           isScrolled
-            ? "border border-white/10 bg-[#0b2b40]/90 dark:border-[#373a3b]"
+            ? "border border-white/10 bg-[#0b2b40]/90"
             : "border border-transparent bg-[#0b2b40]/30"
         }`}
       >
@@ -89,26 +85,19 @@ export function NavbarStitch() {
             </span>
           </div>
         </Link>
-
         <div className="hidden items-center space-x-6 text-[13px] font-semibold text-white/90 md:flex">
           <Link
             href="/"
-            className={cn("link-underline text-white transition-colors", hoverLinkClass)}
+            className="link-underline text-white transition-colors hover:text-[#84bd3a] [&::after]:bg-[#84bd3a] dark:hover:text-[#32735f] dark:[&::after]:bg-[#32735f]"
           >
             Beranda
           </Link>
-
           <div className="group relative before:absolute before:inset-x-0 before:top-full before:h-4">
-            <span
-              className={cn(
-                "flex cursor-pointer items-center gap-1 transition-colors",
-                hoverDropdownClass,
-              )}
-            >
+            <span className="flex cursor-pointer items-center gap-1 transition-colors hover:text-[#84bd3a] dark:hover:text-[#32735f]">
               Profil <ChevronDown className="h-4 w-4" />
             </span>
             <div
-              className={`invisible absolute left-1/2 top-full z-50 mt-3 w-56 -translate-x-1/2 rounded-xl border border-white/10 p-2 opacity-0 shadow-xl backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:opacity-100 dark:border-[#373a3b] ${
+              className={`invisible absolute left-1/2 top-full z-50 mt-3 w-56 -translate-x-1/2 rounded-xl border p-2 opacity-0 shadow-xl backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:opacity-100 ${dropdownBorder} ${
                 isScrolled ? "bg-[#0b2b40]/95" : "bg-[#0b2b40]/30"
               }`}
             >
@@ -132,25 +121,18 @@ export function NavbarStitch() {
               </Link>
             </div>
           </div>
-
           <Link
             href="/umkm"
-            className={cn("link-underline transition-colors", hoverLinkClass)}
+            className={`link-underline transition-colors hover:text-[#84bd3a] [&::after]:bg-[#84bd3a] dark:hover:text-[#32735f] dark:[&::after]:bg-[#32735f]`}
           >
             UMKM
           </Link>
-
           <div className="group relative before:absolute before:inset-x-0 before:top-full before:h-4">
-            <span
-              className={cn(
-                "flex cursor-pointer items-center gap-1 transition-colors",
-                hoverDropdownClass,
-              )}
-            >
+            <span className="flex cursor-pointer items-center gap-1 transition-colors hover:text-[#84bd3a] dark:hover:text-[#32735f]">
               Publikasi <ChevronDown className="h-4 w-4" />
             </span>
             <div
-              className={`invisible absolute left-1/2 top-full z-50 mt-3 w-48 -translate-x-1/2 rounded-xl border border-white/10 p-2 opacity-0 shadow-xl backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:opacity-100 dark:border-[#373a3b] ${
+              className={`invisible absolute left-1/2 top-full z-50 mt-3 w-48 -translate-x-1/2 rounded-xl border p-2 opacity-0 shadow-xl backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:opacity-100 ${dropdownBorder} ${
                 isScrolled ? "bg-[#0b2b40]/95" : "bg-[#0b2b40]/30"
               }`}
             >
@@ -168,15 +150,13 @@ export function NavbarStitch() {
               </Link>
             </div>
           </div>
-
           <Link
             href="/aduan"
-            className={cn("link-underline transition-colors", hoverLinkClass)}
+            className="link-underline transition-colors hover:text-[#84bd3a] [&::after]:bg-[#84bd3a] dark:hover:text-[#32735f] dark:[&::after]:bg-[#32735f]"
           >
             Kontak
           </Link>
         </div>
-
         <div className="flex items-center gap-2">
           <ThemeToggle />
           {mounted ? (
