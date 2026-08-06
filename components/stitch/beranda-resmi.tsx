@@ -482,7 +482,7 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
           <div className="lg:col-span-12">
             <Reveal>
               <h2 className="mb-6 font-serif text-[36px] font-semibold text-[#171717] dark:text-white">
-                Jejak Sejarah Salomallori
+                Sejarah Salomallori
               </h2>
             </Reveal>
             <Reveal delay={100}>
