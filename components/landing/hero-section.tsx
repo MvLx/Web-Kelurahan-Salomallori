@@ -8,7 +8,7 @@ export function HeroSection() {
     <section
       className="relative flex min-h-[70vh] items-center justify-center bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: `url('/images/Hero_Salomallori.png')`,
+        backgroundImage: `url('/images/HeroSalomallori.jpeg')`,
       }}
     >
       {/* Overlays */}
