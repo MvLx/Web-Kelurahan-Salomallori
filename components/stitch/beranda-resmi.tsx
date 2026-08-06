@@ -103,6 +103,7 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
   ];
 
   const news = data.posts.map((p) => ({
+    slug: p.slug,
     category: p.category ?? "Berita",
     date: p.dateLabel,
     title: p.title,
@@ -377,8 +378,8 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
           </Link>
         </div>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {news.map(({ category, date, title, excerpt, image }) => (
-            <Link href="/news" key={title} className="group block cursor-pointer">
+          {news.map(({ slug, category, date, title, excerpt, image }) => (
+            <Link href={`/news/${slug}`} key={title} className="group block cursor-pointer">
               <div className="relative mb-4 aspect-video overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-800">
                 <img
                   alt={title}
