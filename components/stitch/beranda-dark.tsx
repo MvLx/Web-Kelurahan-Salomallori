@@ -13,7 +13,6 @@ import {
   ChevronDown,
   ChevronRight,
   Clock,
-  Globe,
   Home,
   LayoutDashboard,
   LogIn,
@@ -22,7 +21,6 @@ import {
   Map,
   MapPin,
   MessageCircle,
-  Mountain,
   Phone,
   User,
   UserPlus,
@@ -507,8 +505,8 @@ export function BerandaDark({ data }: { data: BerandaData }) {
       </section>
 
       {/* Footer */}
-      <footer className="mt-auto border-t border-white/10 bg-[#0b2b40] pb-8 pt-16 text-white">
-        <div className="mx-auto mb-12 grid max-w-6xl grid-cols-1 gap-10 px-6 md:grid-cols-2 lg:grid-cols-4">
+      <footer className="bg-[#0b2b40] pb-8 pt-16 text-white">
+        <div className="mx-auto mb-12 grid max-w-7xl grid-cols-1 gap-10 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
           {/* Brand */}
           <div>
             <div className="mb-4 flex items-center gap-3">
@@ -528,75 +526,44 @@ export function BerandaDark({ data }: { data: BerandaData }) {
                 </span>
               </div>
             </div>
-            <p className="mb-6 text-sm leading-relaxed text-white/70">
+            <p className="text-sm leading-relaxed text-white/60">
               Website resmi Kelurahan Salomallori menyajikan informasi terkini
               seputar kegiatan dan pelayanan kelurahan.
             </p>
-            <div className="flex space-x-4">
-              <Link
-                href="/"
-                aria-label="Website"
-                className="text-white/70 transition-colors hover:text-[#32735f]"
-              >
-                <Globe className="h-5 w-5" />
-              </Link>
-              <Link
-                href="/galeri"
-                aria-label="Galeri"
-                className="text-white/70 transition-colors hover:text-[#32735f]"
-              >
-                <Camera className="h-5 w-5" />
-              </Link>
-              <Link
-                href="mailto:kelurahansalomallori@gmail.com"
-                aria-label="Email"
-                className="text-white/70 transition-colors hover:text-[#32735f]"
-              >
-                <Mail className="h-5 w-5" />
-              </Link>
-              <Link
-                href="https://instagram.com/kelurahansalomallori"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="text-white/70 transition-colors hover:text-[#32735f]"
-              >
-                <SiInstagram className="h-5 w-5" />
-              </Link>
-            </div>
           </div>
 
           {/* Navigasi */}
           <div>
-            <h4 className="mb-4 font-serif text-lg font-semibold text-white">
-              Navigasi
-            </h4>
-            <ul className="space-y-2 text-sm text-white/70">
+            <h4 className="mb-4 font-semibold text-white">Navigasi</h4>
+            <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/" className="transition-colors hover:text-[#32735f]">
+                <Link href="/" className="text-white/60 transition-colors hover:text-white">
                   Beranda
                 </Link>
               </li>
               <li>
                 <Link
                   href="/profil/sejarah-kelurahan"
-                  className="transition-colors hover:text-[#32735f]"
+                  className="text-white/60 transition-colors hover:text-white"
                 >
                   Profil Kelurahan
                 </Link>
               </li>
               <li>
-                <Link href="/umkm" className="transition-colors hover:text-[#32735f]">
+                <Link
+                  href="/profil/visi-misi"
+                  className="text-white/60 transition-colors hover:text-white"
+                >
+                  Visi & Misi
+                </Link>
+              </li>
+              <li>
+                <Link href="/umkm" className="text-white/60 transition-colors hover:text-white">
                   UMKM
                 </Link>
               </li>
               <li>
-                <Link href="/wisata" className="transition-colors hover:text-[#32735f]">
-                  Wisata
-                </Link>
-              </li>
-              <li>
-                <Link href="/aduan" className="transition-colors hover:text-[#32735f]">
+                <Link href="/aduan" className="text-white/60 transition-colors hover:text-white">
                   Kontak
                 </Link>
               </li>
@@ -605,9 +572,7 @@ export function BerandaDark({ data }: { data: BerandaData }) {
 
           {/* Jam Operasional */}
           <div>
-            <h4 className="mb-4 font-serif text-lg font-semibold text-white">
-              Jam Operasional
-            </h4>
+            <h4 className="mb-4 font-semibold text-white">Jam Operasional</h4>
             <div className="space-y-3 text-sm">
               <div className="flex items-start gap-2">
                 <Clock size={16} className="mt-0.5 shrink-0 text-[#febe0d]" />
@@ -628,22 +593,20 @@ export function BerandaDark({ data }: { data: BerandaData }) {
 
           {/* Kontak */}
           <div>
-            <h4 className="mb-4 font-serif text-lg font-semibold text-white">
-              Kontak
-            </h4>
+            <h4 className="mb-4 font-semibold text-white">Kontak</h4>
             <div className="space-y-3 text-sm">
               <p className="flex items-center gap-2">
                 <Mail size={16} className="shrink-0 text-[#febe0d]" />
                 <a
                   href="mailto:kelurahansalomallori@gmail.com"
-                  className="text-white/70 transition-colors hover:text-[#32735f]"
+                  className="text-white/60 transition-colors hover:text-white"
                 >
                   kelurahansalomallori@gmail.com
                 </a>
               </p>
               <p className="flex items-center gap-2">
                 <Phone size={16} className="shrink-0 text-[#febe0d]" />
-                <span className="text-white/70">-</span>
+                <span className="text-white/60">-</span>
               </p>
               <p className="flex items-center gap-2">
                 <MessageCircle size={16} className="shrink-0 text-[#febe0d]" />
@@ -651,7 +614,7 @@ export function BerandaDark({ data }: { data: BerandaData }) {
                   href="https://wa.me/628xxxxxx"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/70 transition-colors hover:text-[#32735f]"
+                  className="text-white/60 transition-colors hover:text-white"
                 >
                   WhatsApp
                 </a>
@@ -662,14 +625,14 @@ export function BerandaDark({ data }: { data: BerandaData }) {
                   href="https://instagram.com/kelurahansalomallori"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/70 transition-colors hover:text-[#32735f]"
+                  className="text-white/60 transition-colors hover:text-white"
                 >
                   @kelurahansalomallori
                 </a>
               </p>
               <p className="flex items-start gap-2">
                 <MapPin size={16} className="mt-0.5 shrink-0 text-[#febe0d]" />
-                <span className="text-white/70">
+                <span className="text-white/60">
                   Kelurahan Salomallori, Kec. Dua Pitue, Kab. Sidenreng
                   Rappang, Sulawesi Selatan
                 </span>
@@ -677,14 +640,23 @@ export function BerandaDark({ data }: { data: BerandaData }) {
             </div>
           </div>
         </div>
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 border-t border-white/10 px-6 pt-8 text-xs text-white/50 md:flex-row">
-          <p>
-            © {new Date().getFullYear()} Kelurahan Salomallori. Hak cipta
-            dilindungi.
-          </p>
-          <p className="flex items-center gap-1">
-            <Mountain className="h-3.5 w-3.5" /> Desa Mandiri Sejahtera
-          </p>
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="border-t border-white/10" />
+          <div className="flex flex-col items-center gap-3 pt-6 text-sm text-white/60 sm:flex-row sm:justify-between">
+            <p>
+              © {new Date().getFullYear()} Website Kelurahan Salomallori. Hak
+              cipta dilindungi.
+            </p>
+            <div className="flex gap-4">
+              <Link href="/aduan" className="transition-colors hover:text-white">
+                Kontak
+              </Link>
+              <Link href="/" className="transition-colors hover:text-white">
+                Beranda
+              </Link>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
