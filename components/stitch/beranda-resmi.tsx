@@ -94,9 +94,9 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
       icon: Building2,
       value:
         data.desa?.jumlahDusun != null
-          ? `${data.desa.jumlahDusun} Dusun`
+          ? `${data.desa.jumlahDusun} Lingkungan`
           : "—",
-      label: "Jumlah Dusun",
+      label: "Jumlah Lingkungan",
     },
   ];
 
