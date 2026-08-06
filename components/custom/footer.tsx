@@ -138,14 +138,9 @@ export default function Footer() {
 
         <Separator className="bg-white/10" />
 
-        <div className="pt-6 flex flex-col items-center gap-3 text-sm text-white/60 sm:flex-row sm:justify-between">
-          <p>
-            &copy; {year ?? "2026"} Website Kelurahan Salomallori.
-            Hak cipta dilindungi.
-          </p>
-          <p className="text-white/60">
-            Dibuat dan dikembangkan oleh KKN-T 116 Universitas Hasanuddin
-          </p>
+        <div className="pt-6 text-center text-sm text-white/60">
+          &copy; {year ?? "2026"} Website Kelurahan Salomallori.
+          Hak cipta dilindungi.
         </div>
       </div>
     </footer>
