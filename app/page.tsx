@@ -1,59 +1,11 @@
 "use client";
 
-import { Suspense } from "react";
-import Navbar from "@/components/custom/navbar";
-import Footer from "@/components/custom/footer";
-import { HeroSection } from "@/components/landing/hero-section";
-import { StatsSection } from "@/components/landing/stats-section";
-import { NewsSection } from "@/components/landing/news-section";
-import { SejarahSection } from "@/components/landing/sejarah-section";
-import { GaleriSection } from "@/components/landing/galeri-section";
-import { ScrollToTopButton } from "@/components/custom/scroll-to-top";
-
-function BerandaContent() {
-  return (
-    <div className="min-h-screen text-foreground">
-      <Navbar variant="public" />
-      <div className="h-16" />
-
-      <main>
-        {/* Hero Section */}
-        <HeroSection />
-
-        {/* Stats Section */}
-        <StatsSection />
-
-        {/* Berita Terbaru */}
-        <NewsSection />
-
-        {/* Sejarah Kelurahan */}
-        <SejarahSection />
-
-        {/* Galeri Foto */}
-        <GaleriSection />
-      </main>
-
-      <Footer />
-      <ScrollToTopButton />
-    </div>
-  );
-}
-
-function BerandaPageFallback() {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="animate-pulse space-y-4">
-        <div className="h-8 w-64 bg-foreground/10 rounded" />
-        <div className="h-4 w-48 bg-foreground/10 rounded" />
-      </div>
-    </div>
-  );
-}
+import { useTheme } from "next-themes";
+import { BerandaResmi } from "@/components/stitch/beranda-resmi";
+import { BerandaDark } from "@/components/stitch/beranda-dark";
 
 export default function BerandaPage() {
-  return (
-    <Suspense fallback={<BerandaPageFallback />}>
-      <BerandaContent />
-    </Suspense>
-  );
+  const { resolvedTheme } = useTheme();
+
+  return resolvedTheme === "dark" ? <BerandaDark /> : <BerandaResmi />;
 }
