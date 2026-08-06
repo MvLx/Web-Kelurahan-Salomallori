@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useTheme } from "next-themes";
+import type { BerandaData } from "./beranda-page-client";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -19,76 +20,61 @@ import {
   Users,
 } from "lucide-react";
 
-const stats = [
-  { icon: Map, value: "2,75 km²", label: "Luas Wilayah" },
-  { icon: Users, value: "1.599 jiwa", label: "Jumlah Penduduk" },
-  { icon: Home, value: "561 KK", label: "Jumlah KK" },
-  { icon: Building2, value: "3 Dusun", label: "Jumlah Dusun" },
-];
 
-const news = [
-  {
-    category: "Pemerintahan",
-    date: "12 Oktober 2024",
-    title: "Program Penghijauan Desa Tahap II Resmi Dimulai",
-    excerpt:
-      "Pemerintah Kelurahan Salomallori bersama warga memulai penanaman 1000 bibit pohon produktif di area perbukitan untuk menjaga ketersediaan air tanah.",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBrKK5W-3EDIHbR8S8YeCSN-i0PxUB2KXmNTwGOQzgLV9XEma2ef5hUTu4eFy_eDHNIrwH-fJmZTNgt37S137XZ_8TtIaMQLrUALRLR2rmiLJ6q3i9OXe5iicNn-O3MO1QiCdNM0lEggXZjWc4-AtgmQOmlxEPHD_NFx7mpk0e8PMokhrCW6oQj4QSr14aFJWeXEBxsf3g49AqV8KT0trcspZgS5yNuID9q3M0ET7QFtYYyVbakCdzcGw",
-  },
-  {
-    category: "Ekonomi Warga",
-    date: "08 Oktober 2024",
-    title: "Bazaar UMKM Mingguan Tarik Perhatian Wisatawan",
-    excerpt:
-      "Produk kerajinan tangan dan kuliner khas Salomallori menjadi primadona pada acara pameran ekonomi kreatif minggu ini.",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCaMCmi5lgjSrepjQqBtxhuia_lBCFsmBF1A_bxms3G-8cY7D_UA_seW9VouMqmANPbIxxRdoBI6nkWzcyTy9djYiRvnJxKjlQThfzAyz87QIto2D_yghaftNbmdK10ouCV_4W-vb9vJK2Uqnv__S-8Q67w6RhHtZooxZsda7QcTIqSYgc8mHyHRFjz7akym50HC0UEvHGssocaP86Y4QwC1uAGN81EN0Vr0mwdX1QbvuCet9BuysVbjQ",
-  },
-  {
-    category: "Kesehatan",
-    date: "02 Oktober 2024",
-    title: "Fasilitas Posyandu Desa Selesai Direnovasi",
-    excerpt:
-      "Peningkatan fasilitas layanan kesehatan primer ini diharapkan dapat menunjang program pengentasan stunting secara lebih optimal.",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuClyDTMyoD1YpZJE55dYPD2GZL8nnVXtRiryjMntdVzdcGQGC_OO3cQKYNOJ9hfS6F5gZQrbKQ5iAA0VR5bHcBdBNh9WDNj1vDdweRs2j5IP-Nqtu7nm2At4CXpUYn8pjJ38cWof5Sqev0MTxVyM6Z4T3_SqcdwqP8JjDxwzXhyDLjAAjpv7gyy49-6NLNNnn3rf94lzgSp2oN3tSNSzsm5UZPevyRtHTOelWX4TOndD3TaODih851jWw",
-  },
-];
-
-const gallery = [
-  {
-    category: "Wisata Alam",
-    title: "Air Terjun Batu Pute",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDDirgf-nh20Qei2emlCtuxcPuqjMbHoDk1eqf2_GoAyVdkYjCWiLquiuTb3AR2R8WtMLiKnd9A0ApCKHsZ5nu-5W-A-HGcZtQCWLAxGxdWot0fjw2_WfZ-mVw04lxUrbv-Y5XvNQHQMYzmBL-9on4-Nmppuj1r1zWaZOi4cFhgytC965s72HDbB8Pjr6JodP7mHYRg9Ke82P30i1Yg8gBvom5XgLYH1s6OtyjYMYvfy4rFskXgCYNeSQ",
-  },
-  {
-    category: "UMKM Kriya",
-    title: "Kerajinan Anyaman",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAYnQLgfvhqgCbEUn5NZIICJAT973_XmcInHXh7Qp7dLawHd8RhjXjipH4Gbq79FtF6MfquGzoWNFlD9_304PLx5-8ZZ2JlWd7cVCUWX34y4t1mHcULxrDXGgz4LtbUiVjNo0bV2tuHINWdEqkr3SwSNoyCX3vlexyYckV1_JbURE-MtEsWIgca4a8dQEnRwW1JA2_w8UZUvJ8FOEgRec7xGfIxSJVqy45dotBIP8lgg-v6sS2f2AbTRg",
-  },
-  {
-    category: "Agrikultur",
-    title: "Kopi Arabika Lokal",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBwGWdJs_U1JcfjfggoxkF4qATNpm2KBA7uS6gdA6e--bBwEEh7kv0g9DPLO-Axs3OgvE7i1JsOwmhHdi6iLr8ZYYfCEyP1JoTSj4SK1ZS_hx7ruL3rK-4lyjvhrv5W1_X-lIRxtQWKguiQ2J06EkrVtehVKMQvdtuUciojz31zsEqT-gZJ8yqGkB8Q5ZVf992eOUXE0uV7vEBQQw_VoHdBQ_bDP4sl_BWmGyK2IfiCYee5TxRfK8vBNQ",
-  },
-];
-
-const heroImage =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuCKOqX_qgthnzWMyvQkifPaxsZvh3OSUr1R807GIOKDkSY3T49EKOuWBqvKBJTdP1kmF6fuEHV4XoPMEdTr2DhVHPJ0BE3g26geJd0NTjlGPUSgLlUnK1zWNEle0p78KX9ebswwxj6WiEwrv99zbSwN4NJEKWTLX0e_z4qYspuFEaAb_GmxnWpeX6-CEh9ABkKQSshH2a1OgqFYDD9akcFFq3NhqzgrwqSuMQKLXNQT_QEITkWWl41s8A";
-
-const batasWilayah = [
-  { arah: "Utara", wilayah: "Desa A" },
-  { arah: "Selatan", wilayah: "Desa B" },
-  { arah: "Timur", wilayah: "Desa C" },
-  { arah: "Barat", wilayah: "Desa D" },
-];
-
-export function BerandaResmi() {
+export function BerandaResmi({ data }: { data: BerandaData }) {
   const { resolvedTheme, setTheme } = useTheme();
+
+  const stats = [
+    {
+      icon: Map,
+      value:
+        data.desa?.luasWilayah != null
+          ? `${String(data.desa.luasWilayah).replace(".", ",")} km²`
+          : "—",
+      label: "Luas Wilayah",
+    },
+    {
+      icon: Users,
+      value:
+        data.desa?.jumlahPenduduk != null
+          ? `${data.desa.jumlahPenduduk.toLocaleString("id-ID")} jiwa`
+          : "—",
+      label: "Jumlah Penduduk",
+    },
+    {
+      icon: Home,
+      value:
+        data.desa?.jumlahKK != null
+          ? `${data.desa.jumlahKK.toLocaleString("id-ID")} KK`
+          : "—",
+      label: "Jumlah KK",
+    },
+    {
+      icon: Building2,
+      value:
+        data.desa?.jumlahDusun != null
+          ? `${data.desa.jumlahDusun} Dusun`
+          : "—",
+      label: "Jumlah Dusun",
+    },
+  ];
+
+  const news = data.posts.map((p) => ({
+    category: p.category ?? "Berita",
+    date: p.dateLabel,
+    title: p.title,
+    excerpt: p.summary,
+    image: p.image ?? "https://picsum.photos/seed/beranda-news/800/500",
+  }));
+
+  const gallery = data.galeri.map((g) => ({
+    category: g.kategori,
+    title: g.judul,
+    image: g.gambar,
+  }));
+
+  const heroImage = data.heroImage;
+  const batasWilayah = data.batasWilayah;
 
   return (
     <div className="min-h-screen bg-[#f9faf7] font-sans text-[#171717] antialiased transition-colors duration-300 dark:bg-[#111411] dark:text-[#e1e3e0]">
@@ -319,12 +305,8 @@ export function BerandaResmi() {
               style={{ height: 400 }}
             />
             <p className="mb-6 text-[16px] leading-[1.6] text-[#666666] dark:text-[#b0b4b5]">
-              Kelurahan Salomallori memiliki akar sejarah yang panjang, berawal
-              dari pemukiman agraris yang menjunjung tinggi nilai-nilai
-              kearifan lokal. Seiring berjalannya waktu, wilayah ini
-              bertransformasi menjadi pusat pemerintahan kelurahan yang
-              dinamis, namun tetap mempertahankan identitas kulturalnya yang
-              kuat.
+              {data.desa?.sejarah ??
+                "Kelurahan Salomallori memiliki akar sejarah yang panjang, berawal dari pemukiman agraris yang menjunjung tinggi nilai-nilai kearifan lokal."}
             </p>
             <Link
               href="/profil"
