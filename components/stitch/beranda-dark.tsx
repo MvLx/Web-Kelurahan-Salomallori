@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useTheme } from "next-themes";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import type { BerandaData } from "./beranda-page-client";
 import {
   ArrowRight,
@@ -12,17 +13,44 @@ import {
   ChevronRight,
   Globe,
   Home,
+  LayoutDashboard,
+  LogIn,
+  LogOut,
   Mail,
   Map,
-  Moon,
   Mountain,
-  Sun,
+  User,
+  UserPlus,
   Users,
 } from "lucide-react";
+import { authClient } from "@/lib/auth-client";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ThemeToggle } from "@/components/custom/theme-toggle";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { getInitials } from "@/utils/string";
 
 
 export function BerandaDark({ data }: { data: BerandaData }) {
-  const { resolvedTheme, setTheme } = useTheme();
+  const router = useRouter();
+  const { data: session } = authClient.useSession();
+
+  const userRole = session?.user?.role;
+  const isPrivileged = userRole === "EDITOR" || userRole === "ADMIN";
+
+  async function handleSignOut() {
+    await authClient.signOut();
+    router.push("/");
+    router.refresh();
+  }
 
   const stats = [
     {
@@ -81,11 +109,23 @@ export function BerandaDark({ data }: { data: BerandaData }) {
       {/* Navigasi (Floating Island) */}
       <nav className="pointer-events-none fixed left-0 right-0 top-6 z-50 flex justify-center px-4">
         <div className="pointer-events-auto flex w-full max-w-5xl items-center justify-between rounded-full border border-[#373a3b] bg-[#0b2b40]/90 px-6 py-3 shadow-lg backdrop-blur-xl">
-          <Link
-            href="/"
-            className="font-serif text-lg font-bold tracking-tight text-white transition-colors hover:text-[#32735f]"
-          >
-            Salomallori
+          <Link href="/" className="flex shrink-0 items-center gap-3">
+            <Image
+              src="/logo.svg"
+              alt="Logo Kelurahan Salomallori"
+              width={36}
+              height={36}
+              className="rounded-sm object-contain"
+              priority
+            />
+            <div className="flex flex-col leading-tight">
+              <span className="text-[14px] font-extrabold tracking-tight text-white">
+                Kelurahan Salomallori
+              </span>
+              <span className="text-[9px] font-bold tracking-wide text-white/70">
+                Kec. Dua Pitue, Kab. Sidenreng Rappang
+              </span>
+            </div>
           </Link>
           <div className="hidden items-center space-x-6 text-[13px] font-semibold text-white/90 md:flex">
             <Link href="/" className="text-white transition-colors hover:text-[#32735f]">
@@ -116,25 +156,9 @@ export function BerandaDark({ data }: { data: BerandaData }) {
                 </Link>
               </div>
             </div>
-            <div className="group relative">
-              <span className="flex cursor-pointer items-center gap-1 transition-colors hover:text-[#32735f]">
-                Potensi <ChevronDown className="h-4 w-4" />
-              </span>
-              <div className="invisible absolute left-1/2 top-full z-50 mt-3 w-48 -translate-x-1/2 rounded-xl border border-[#373a3b] bg-[#0b2b40]/95 p-2 opacity-0 shadow-xl backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
-                <Link
-                  href="/umkm"
-                  className="block rounded-lg px-4 py-2.5 text-sm font-medium text-white/90 transition-colors hover:bg-white/10 hover:text-white"
-                >
-                  UMKM
-                </Link>
-                <Link
-                  href="/wisata"
-                  className="block rounded-lg px-4 py-2.5 text-sm font-medium text-white/90 transition-colors hover:bg-white/10 hover:text-white"
-                >
-                  Wisata
-                </Link>
-              </div>
-            </div>
+            <Link href="/umkm" className="transition-colors hover:text-[#32735f]">
+              UMKM
+            </Link>
             <div className="group relative">
               <span className="flex cursor-pointer items-center gap-1 transition-colors hover:text-[#32735f]">
                 Publikasi <ChevronDown className="h-4 w-4" />
@@ -158,25 +182,79 @@ export function BerandaDark({ data }: { data: BerandaData }) {
               Kontak
             </Link>
           </div>
-          <div className="flex items-center space-x-4">
-            <button
-              type="button"
-              aria-label="Ubah tema"
-              onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-              className="text-white/80 transition-colors hover:text-white"
-            >
-              {resolvedTheme === "dark" ? (
-                <Sun className="h-5 w-5" />
-              ) : (
-                <Moon className="h-5 w-5" />
-              )}
-            </button>
-            <Link
-              href="/auth/signin"
-              className="rounded-full bg-white px-4 py-2 text-[13px] font-semibold text-[#0b2b40] shadow-sm transition-colors hover:bg-gray-100"
-            >
-              Login
-            </Link>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="size-9 rounded-full p-0 focus-visible:ring-2 focus-visible:ring-white/50"
+                >
+                  <Avatar className="size-8">
+                    <AvatarImage
+                      src={session?.user?.image ?? undefined}
+                      alt={session?.user?.name ?? "Pengguna"}
+                    />
+                    <AvatarFallback className="bg-white/20 text-xs text-white">
+                      {getInitials(session?.user?.name)}
+                    </AvatarFallback>
+                  </Avatar>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                {session ? (
+                  <>
+                    <DropdownMenuLabel className="font-normal">
+                      <p className="truncate text-sm font-medium text-foreground">
+                        {session.user.name}
+                      </p>
+                      <p className="truncate text-xs text-muted-foreground">
+                        {session.user.email}
+                      </p>
+                    </DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuGroup>
+                      {isPrivileged && (
+                        <DropdownMenuItem asChild>
+                          <Link href="/dashboard">
+                            <LayoutDashboard />
+                            Dashboard
+                          </Link>
+                        </DropdownMenuItem>
+                      )}
+                      <DropdownMenuItem asChild>
+                        <Link href={`/akun/${session.user.id}`}>
+                          <User />
+                          Profil
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        variant="destructive"
+                        onClick={handleSignOut}
+                      >
+                        <LogOut />
+                        Keluar
+                      </DropdownMenuItem>
+                    </DropdownMenuGroup>
+                  </>
+                ) : (
+                  <DropdownMenuGroup>
+                    <DropdownMenuItem asChild>
+                      <Link href="/auth/signin">
+                        <LogIn />
+                        Masuk
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link href="/auth/signup">
+                        <UserPlus />
+                        Daftar
+                      </Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuGroup>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </nav>
@@ -464,15 +542,6 @@ export function BerandaDark({ data }: { data: BerandaData }) {
                 >
                   <ChevronRight className="h-3 w-3" />
                   UMKM
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/wisata"
-                  className="flex items-center gap-1 transition-colors hover:text-[#32735f]"
-                >
-                  <ChevronRight className="h-3 w-3" />
-                  Wisata
                 </Link>
               </li>
               <li>
