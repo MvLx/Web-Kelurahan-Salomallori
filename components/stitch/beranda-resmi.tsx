@@ -306,18 +306,32 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
           <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[#f9faf7] to-transparent dark:from-[#111411]" />
         </div>
         <div className="relative z-10 mx-auto mt-12 flex max-w-3xl flex-col items-center text-center">
+          <span className="mb-6 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-white backdrop-blur-sm">
+            Kec. Dua Pitue, Kab. Sidenreng Rappang
+          </span>
+          <h1 className="mb-4 font-serif text-4xl font-semibold leading-tight text-white drop-shadow-md sm:text-5xl md:text-6xl">
+            Kelurahan Salomallori
+          </h1>
+          <p className="mb-3 font-serif text-lg italic text-[#febe0d] sm:text-xl">
+            "Desa Maju, Mandiri, dan Sejahtera"
+          </p>
+          <p className="mb-8 max-w-2xl text-sm leading-relaxed text-white/80 sm:text-base">
+            Website resmi Kelurahan Salomallori menyajikan informasi seputar
+            profil, pelayanan, UMKM, hingga potensi wisata. Mari bersama
+            membangun Salomallori yang unggul dan berkelanjutan.
+          </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/profil/sejarah-kelurahan"
-              className="rounded-md bg-white px-6 py-3 font-semibold text-[#0b2b40] shadow-sm transition-colors hover:bg-gray-100"
+              className="inline-flex h-11 items-center gap-2 rounded-[4px] bg-[#84bd3a] px-7 text-sm font-semibold text-[#0b2b40] shadow-sm transition-all duration-200 hover:bg-[#84bd3a]/90 hover:shadow-md"
             >
-              Jelajahi Profil
+              Jelajahi Profil <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/news"
-              className="rounded-md border border-white px-6 py-3 font-semibold text-white transition-colors hover:bg-white/10"
+              className="inline-flex h-11 items-center gap-2 rounded-[4px] border-2 border-white bg-white/10 px-7 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/20"
             >
-              Lihat Berita
+              Lihat Berita <ArrowUpRight className="h-4 w-4" />
             </Link>
           </div>
         </div>
