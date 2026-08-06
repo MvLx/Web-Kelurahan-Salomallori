@@ -12,7 +12,7 @@ export function HeroSection() {
       }}
     >
       {/* Overlays */}
-      <div className="absolute inset-0 bg-black/50 mix-blend-multiply" />
+      <div className="absolute inset-0 bg-black/30 mix-blend-multiply" />
 
       {/* Content */}
       <div className="relative z-10 mx-auto mt-12 flex max-w-3xl flex-col items-center px-6 text-center">

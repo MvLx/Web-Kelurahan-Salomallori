@@ -297,8 +297,8 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
             className="h-full w-full bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url('${heroImage}')` }}
           />
-          <div className="absolute inset-0 bg-black/50 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#f9faf7] via-transparent to-transparent dark:from-[#111411]" />
+          <div className="absolute inset-0 bg-black/30 mix-blend-multiply" />
+          <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[#f9faf7] to-transparent dark:from-[#111411]" />
         </div>
         <div className="relative z-10 mx-auto mt-12 flex max-w-3xl flex-col items-center text-center">
           <div className="flex flex-wrap justify-center gap-4">
