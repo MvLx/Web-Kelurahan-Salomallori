@@ -64,7 +64,7 @@ export default async function BerandaPage() {
       gambar: g.gambar,
       kategori: g.kategori,
     })),
-    heroImage: "/images/Hero_Salomallori.png",
+    heroImage: "/images/HeroSalomallori.jpeg",
   };
 
   return <BerandaPageClient data={data} />;
