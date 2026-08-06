@@ -123,6 +123,11 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
 
   const heroImage = data.heroImage;
   const batasWilayah = data.batasWilayah;
+  const fullSejarah =
+    data.desa?.sejarah ??
+    "Kelurahan Salomallori memiliki akar sejarah yang panjang, berawal dari pemukiman agraris yang menjunjung tinggi nilai-nilai kearifan lokal.";
+  const sejarahPreview =
+    fullSejarah.length > 250 ? fullSejarah.slice(0, 250).trimEnd() + "..." : fullSejarah;
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const openLightbox = useCallback((index: number) => {
@@ -470,8 +475,7 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
               />
             )}
             <p className="mb-6 text-[16px] leading-[1.6] text-[#666666] dark:text-[#b0b4b5]">
-              {data.desa?.sejarah ??
-                "Kelurahan Salomallori memiliki akar sejarah yang panjang, berawal dari pemukiman agraris yang menjunjung tinggi nilai-nilai kearifan lokal."}
+              {sejarahPreview}
             </p>
             <Link
               href="/profil/sejarah-kelurahan"
