@@ -1,3 +1,7 @@
+"use client";
+
+import Link from "next/link";
+import { useTheme } from "next-themes";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -9,6 +13,7 @@ import {
   Home,
   Mail,
   Map,
+  Moon,
   Mountain,
   Sun,
   Users,
@@ -83,54 +88,109 @@ const batasWilayah = [
 ];
 
 export function BerandaResmi() {
+  const { resolvedTheme, setTheme } = useTheme();
+
   return (
     <div className="min-h-screen bg-[#f9faf7] font-sans text-[#171717] antialiased transition-colors duration-300 dark:bg-[#111411] dark:text-[#e1e3e0]">
       {/* Navigasi (Floating Island) */}
       <nav className="pointer-events-none fixed left-0 right-0 top-6 z-50 flex justify-center px-4">
         <div className="pointer-events-auto flex w-full max-w-5xl items-center justify-between rounded-full border border-white/10 bg-[#0b2b40]/90 px-6 py-3 shadow-lg backdrop-blur-xl">
-          <a
-            href="#"
+          <Link
+            href="/"
             className="font-serif text-lg font-bold tracking-tight text-white transition-colors hover:text-[#84bd3a]"
           >
             Salomallori
-          </a>
+          </Link>
           <div className="hidden items-center space-x-6 text-[13px] font-semibold text-white/90 md:flex">
-            <a href="#" className="text-white">
+            <Link href="/" className="text-white transition-colors hover:text-[#84bd3a]">
               Beranda
-            </a>
-            <div className="group relative cursor-pointer">
-              <span className="flex items-center gap-1 transition-colors hover:text-[#84bd3a]">
+            </Link>
+            <div className="group relative">
+              <span className="flex cursor-pointer items-center gap-1 transition-colors hover:text-[#84bd3a]">
                 Profil <ChevronDown className="h-4 w-4" />
               </span>
+              <div className="invisible absolute left-1/2 top-full z-50 mt-3 w-56 -translate-x-1/2 rounded-xl border border-white/10 bg-[#0b2b40]/95 p-2 opacity-0 shadow-xl backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
+                <Link
+                  href="/profil"
+                  className="block rounded-lg px-4 py-2.5 text-sm font-medium text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                >
+                  Sejarah Kelurahan
+                </Link>
+                <Link
+                  href="/profil/pejabat-kelurahan"
+                  className="block rounded-lg px-4 py-2.5 text-sm font-medium text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                >
+                  Pejabat Kelurahan
+                </Link>
+                <Link
+                  href="/infografis"
+                  className="block rounded-lg px-4 py-2.5 text-sm font-medium text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                >
+                  Infografis
+                </Link>
+              </div>
             </div>
-            <div className="group relative cursor-pointer">
-              <span className="flex items-center gap-1 transition-colors hover:text-[#84bd3a]">
+            <div className="group relative">
+              <span className="flex cursor-pointer items-center gap-1 transition-colors hover:text-[#84bd3a]">
                 Potensi <ChevronDown className="h-4 w-4" />
               </span>
+              <div className="invisible absolute left-1/2 top-full z-50 mt-3 w-48 -translate-x-1/2 rounded-xl border border-white/10 bg-[#0b2b40]/95 p-2 opacity-0 shadow-xl backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
+                <Link
+                  href="/umkm"
+                  className="block rounded-lg px-4 py-2.5 text-sm font-medium text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                >
+                  UMKM
+                </Link>
+                <Link
+                  href="/wisata"
+                  className="block rounded-lg px-4 py-2.5 text-sm font-medium text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                >
+                  Wisata
+                </Link>
+              </div>
             </div>
-            <div className="group relative cursor-pointer">
-              <span className="flex items-center gap-1 transition-colors hover:text-[#84bd3a]">
+            <div className="group relative">
+              <span className="flex cursor-pointer items-center gap-1 transition-colors hover:text-[#84bd3a]">
                 Publikasi <ChevronDown className="h-4 w-4" />
               </span>
+              <div className="invisible absolute left-1/2 top-full z-50 mt-3 w-48 -translate-x-1/2 rounded-xl border border-white/10 bg-[#0b2b40]/95 p-2 opacity-0 shadow-xl backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
+                <Link
+                  href="/news"
+                  className="block rounded-lg px-4 py-2.5 text-sm font-medium text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                >
+                  Berita
+                </Link>
+                <Link
+                  href="/galeri"
+                  className="block rounded-lg px-4 py-2.5 text-sm font-medium text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                >
+                  Galeri Foto
+                </Link>
+              </div>
             </div>
-            <a href="#" className="transition-colors hover:text-[#84bd3a]">
+            <Link href="/aduan" className="transition-colors hover:text-[#84bd3a]">
               Kontak
-            </a>
+            </Link>
           </div>
           <div className="flex items-center space-x-4">
             <button
               type="button"
               aria-label="Ubah tema"
+              onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
               className="text-white/80 transition-colors hover:text-white"
             >
-              <Sun className="h-5 w-5" />
+              {resolvedTheme === "dark" ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
             </button>
-            <button
-              type="button"
+            <Link
+              href="/auth/signin"
               className="rounded-full bg-[#32735f] px-4 py-2 text-[13px] font-semibold text-white shadow-sm transition-colors hover:bg-[#84bd3a]"
             >
               Login
-            </button>
+            </Link>
           </div>
         </div>
       </nav>
@@ -158,18 +218,18 @@ export function BerandaResmi() {
             kehangatan komunal dan kelestarian alam warisan leluhur.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <button
-              type="button"
+            <Link
+              href="/profil"
               className="rounded-md bg-white px-6 py-3 font-semibold text-[#0b2b40] shadow-sm transition-colors hover:bg-gray-100"
             >
               Jelajahi Profil
-            </button>
-            <button
-              type="button"
+            </Link>
+            <Link
+              href="/news"
               className="rounded-md border border-white px-6 py-3 font-semibold text-white transition-colors hover:bg-white/10"
             >
               Lihat Berita
-            </button>
+            </Link>
           </div>
         </div>
         <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 animate-bounce text-white/70">
@@ -210,16 +270,16 @@ export function BerandaResmi() {
               Berita dan publikasi terbaru dari Kelurahan Salomallori.
             </p>
           </div>
-          <a
-            href="#"
+          <Link
+            href="/news"
             className="hidden items-center gap-1 text-sm font-semibold text-[#32735f] transition-colors hover:text-[#84bd3a] md:flex"
           >
             Lihat Semua Berita <ArrowRight className="h-4 w-4" />
-          </a>
+          </Link>
         </div>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {news.map(({ category, date, title, excerpt, image }) => (
-            <article key={title} className="group cursor-pointer">
+            <Link href="/news" key={title} className="group block cursor-pointer">
               <div className="relative mb-4 aspect-video overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-800">
                 <img
                   alt={title}
@@ -242,7 +302,7 @@ export function BerandaResmi() {
               <span className="inline-flex items-center gap-1 text-sm font-semibold text-[#32735f] transition-colors group-hover:text-[#84bd3a] dark:text-[#84bd3a] dark:group-hover:text-[#32735f]">
                 Baca selengkapnya <ArrowUpRight className="h-3.5 w-3.5" />
               </span>
-            </article>
+            </Link>
           ))}
         </div>
       </section>
@@ -266,12 +326,12 @@ export function BerandaResmi() {
               dinamis, namun tetap mempertahankan identitas kulturalnya yang
               kuat.
             </p>
-            <button
-              type="button"
-              className="rounded-md bg-[#32735f] px-6 py-3 font-semibold text-white shadow-sm transition-colors hover:bg-[#0b2b40]"
+            <Link
+              href="/profil"
+              className="inline-block rounded-md bg-[#32735f] px-6 py-3 font-semibold text-white shadow-sm transition-colors hover:bg-[#0b2b40]"
             >
               Baca Sejarah Lengkap
-            </button>
+            </Link>
           </div>
           <div className="flex flex-col gap-6 lg:col-span-12">
             <div className="rounded-xl border border-[#dee2de] bg-[#f9faf7] p-6 shadow-sm dark:border-[#414943] dark:bg-[#111411]">
@@ -318,9 +378,10 @@ export function BerandaResmi() {
         </div>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
           {gallery.map(({ category, title, image }) => (
-            <div
+            <Link
+              href="/galeri"
               key={title}
-              className="group relative aspect-square cursor-pointer overflow-hidden rounded-lg bg-[#dee2de]/50"
+              className="group relative block aspect-square cursor-pointer overflow-hidden rounded-lg bg-[#dee2de]/50"
             >
               <img
                 alt={title}
@@ -335,18 +396,20 @@ export function BerandaResmi() {
                   {title}
                 </h4>
               </div>
-            </div>
+            </Link>
           ))}
-          <div className="relative aspect-square animate-pulse cursor-pointer overflow-hidden rounded-lg bg-[#dee2de] dark:bg-[#414943]">
-            <div className="absolute inset-0 flex items-center justify-center text-[#666666]/30">
-              <Camera className="h-8 w-8" />
-            </div>
-          </div>
-          <div className="relative hidden aspect-square animate-pulse cursor-pointer overflow-hidden rounded-lg bg-[#dee2de] dark:bg-[#414943] lg:block">
-            <div className="absolute inset-0 flex items-center justify-center text-[#666666]/30">
-              <Camera className="h-8 w-8" />
-            </div>
-          </div>
+          <Link
+            href="/galeri"
+            className="relative flex aspect-square cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-[#dee2de] text-[#666666]/30 transition-colors hover:text-[#32735f] dark:bg-[#414943]"
+          >
+            <Camera className="mx-auto h-8 w-8" />
+          </Link>
+          <Link
+            href="/galeri"
+            className="relative hidden aspect-square cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-[#dee2de] text-[#666666]/30 transition-colors hover:text-[#32735f] dark:bg-[#414943] lg:flex"
+          >
+            <Camera className="mx-auto h-8 w-8" />
+          </Link>
         </div>
       </section>
 
@@ -354,38 +417,38 @@ export function BerandaResmi() {
       <footer className="border-t border-white/10 bg-[#32735f] pb-8 pt-16 text-white">
         <div className="mx-auto mb-12 grid max-w-6xl grid-cols-1 gap-10 px-6 md:grid-cols-4">
           <div className="md:col-span-2">
-            <a
-              href="#"
+            <Link
+              href="/"
               className="mb-4 inline-block font-serif text-2xl font-bold text-white"
             >
               Salomallori
-            </a>
+            </Link>
             <p className="mb-6 max-w-sm text-sm leading-relaxed text-white/70">
               Membangun tata kelola pemerintahan yang profesional tanpa
               meninggalkan kehangatan komunal desa.
             </p>
             <div className="flex space-x-4">
-              <a
-                href="#"
+              <Link
+                href="/"
                 aria-label="Website"
                 className="text-white/70 transition-colors hover:text-[#84bd3a]"
               >
                 <Globe className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                href="/galeri"
                 aria-label="Galeri"
                 className="text-white/70 transition-colors hover:text-[#84bd3a]"
               >
                 <Camera className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                href="/aduan"
                 aria-label="Email"
                 className="text-white/70 transition-colors hover:text-[#84bd3a]"
               >
                 <Mail className="h-5 w-5" />
-              </a>
+              </Link>
             </div>
           </div>
           <div>
@@ -393,16 +456,24 @@ export function BerandaResmi() {
               Pintasan
             </h4>
             <ul className="space-y-2 text-sm text-white/70">
-              {["Sejarah", "Pejabat", "Berita"].map((item) => (
-                <li key={item}>
-                  <a
-                    href="#"
-                    className="transition-colors hover:text-[#84bd3a]"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <Link href="/profil" className="transition-colors hover:text-[#84bd3a]">
+                  Sejarah
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/profil/pejabat-kelurahan"
+                  className="transition-colors hover:text-[#84bd3a]"
+                >
+                  Pejabat
+                </Link>
+              </li>
+              <li>
+                <Link href="/news" className="transition-colors hover:text-[#84bd3a]">
+                  Berita
+                </Link>
+              </li>
             </ul>
           </div>
           <div>
@@ -410,17 +481,33 @@ export function BerandaResmi() {
               Potensi
             </h4>
             <ul className="space-y-2 text-sm text-white/70">
-              {["UMKM", "Wisata", "Galeri"].map((item) => (
-                <li key={item}>
-                  <a
-                    href="#"
-                    className="flex items-center gap-1 transition-colors hover:text-[#84bd3a]"
-                  >
-                    <ChevronRight className="h-3 w-3" />
-                    {item}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <Link
+                  href="/umkm"
+                  className="flex items-center gap-1 transition-colors hover:text-[#84bd3a]"
+                >
+                  <ChevronRight className="h-3 w-3" />
+                  UMKM
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/wisata"
+                  className="flex items-center gap-1 transition-colors hover:text-[#84bd3a]"
+                >
+                  <ChevronRight className="h-3 w-3" />
+                  Wisata
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/galeri"
+                  className="flex items-center gap-1 transition-colors hover:text-[#84bd3a]"
+                >
+                  <ChevronRight className="h-3 w-3" />
+                  Galeri
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
