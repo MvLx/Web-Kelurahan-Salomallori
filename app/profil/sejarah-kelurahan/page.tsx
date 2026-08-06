@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { NavbarBeranda } from "@/components/custom/navbar-beranda";
 import Footer from "@/components/custom/footer";
+import { Reveal } from "@/components/stitch/reveal";
 import {
   MapPin,
   Users,
@@ -129,27 +130,29 @@ export default function SejarahKelurahanPage() {
       <main className="pt-20 pb-16">
         <div className="mx-auto max-w-5xl space-y-14 px-4 sm:px-6 lg:px-8">
           {/* ── Header ── */}
-          <header className="text-center">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary dark:border-[#32735f]/40 dark:bg-[#32735f]/10 dark:text-[#32735f]">
-              <BookOpen className="h-3.5 w-3.5" />
-              Mengenal Lebih Dekat
-            </div>
-            <h1 className="text-4xl font-black leading-tight tracking-tight md:text-5xl dark:text-white">
-              Sejarah Kelurahan
-            </h1>
-            <p className="mt-3 text-base font-semibold uppercase tracking-widest text-primary dark:text-[#84bd3a]">
-              Kelurahan {desa.nama}
-            </p>
-            <div className="mx-auto mt-6 flex items-center gap-3 text-primary dark:text-[#84bd3a]">
-              <span className="h-px w-16 bg-primary/30 dark:bg-[#84bd3a]/30" />
-              <span className="h-2 w-2 rotate-45 bg-primary dark:bg-[#84bd3a]" />
-              <span className="h-px w-16 bg-primary/30 dark:bg-[#84bd3a]/30" />
-            </div>
-          </header>
+          <Reveal>
+            <header className="text-center">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary dark:border-[#32735f]/40 dark:bg-[#32735f]/10 dark:text-[#32735f]">
+                <BookOpen className="h-3.5 w-3.5" />
+                Mengenal Lebih Dekat
+              </div>
+              <h1 className="text-4xl font-black leading-tight tracking-tight md:text-5xl dark:text-white">
+                Sejarah Kelurahan
+              </h1>
+              <p className="mt-3 text-base font-semibold uppercase tracking-widest text-primary dark:text-[#84bd3a]">
+                Kelurahan {desa.nama}
+              </p>
+              <div className="mx-auto mt-6 flex items-center gap-3 text-primary dark:text-[#84bd3a]">
+                <span className="h-px w-16 bg-primary/30 dark:bg-[#84bd3a]/30" />
+                <span className="h-2 w-2 rotate-45 bg-primary dark:bg-[#84bd3a]" />
+                <span className="h-px w-16 bg-primary/30 dark:bg-[#84bd3a]/30" />
+              </div>
+            </header>
+          </Reveal>
 
           {/* ── Sejarah + Foto ── */}
           <section className="grid items-start gap-8 lg:grid-cols-5">
-            <div className="lg:col-span-3">
+            <Reveal className="lg:col-span-3">
               <div className="rounded-2xl bg-card p-8 shadow-sm ring-1 ring-border md:p-10 dark:bg-[#191c1d] dark:shadow-black/20 dark:ring-[#373a3b]">
                 <div className="mb-6 flex items-center gap-3">
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary dark:bg-[#32735f]/20 dark:text-[#84bd3a]">
@@ -165,9 +168,9 @@ export default function SejarahKelurahanPage() {
                   </p>
                 </div>
               </div>
-            </div>
+            </Reveal>
 
-            <div className="lg:col-span-2 lg:sticky lg:top-24">
+            <Reveal className="lg:col-span-2 lg:sticky lg:top-24" delay={150}>
               {desa.fotoKepalaDesa ? (
                 <figure className="group overflow-hidden rounded-2xl bg-card shadow-lg ring-1 ring-border dark:bg-[#191c1d] dark:shadow-black/30 dark:ring-[#373a3b]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -195,48 +198,51 @@ export default function SejarahKelurahanPage() {
                   </p>
                 </div>
               )}
-            </div>
+            </Reveal>
           </section>
 
           {/* ── Section Divider ── */}
-          <div className="flex items-center gap-4 text-primary/40 dark:text-[#32735f]/60">
-            <span className="h-px flex-1 bg-border dark:bg-[#373a3b]" />
-            <span className="h-2 w-2 rotate-45 bg-primary/40 dark:bg-[#32735f]/60" />
-            <span className="h-px flex-1 bg-border dark:bg-[#373a3b]" />
-          </div>
+          <Reveal>
+            <div className="flex items-center gap-4 text-primary/40 dark:text-[#32735f]/60">
+              <span className="h-px flex-1 bg-border dark:bg-[#373a3b]" />
+              <span className="h-2 w-2 rotate-45 bg-primary/40 dark:bg-[#32735f]/60" />
+              <span className="h-px flex-1 bg-border dark:bg-[#373a3b]" />
+            </div>
+          </Reveal>
 
           {/* ── Statistik ── */}
           <section>
-            <div className="mb-8 text-center">
-              <h2 className="text-2xl font-bold tracking-tight md:text-3xl dark:text-white">
-                Data Wilayah
-              </h2>
-              <p className="mt-2 text-sm text-muted-foreground dark:text-[#b0b4b5]">
-                Statistik umum Kelurahan {desa.nama}
-              </p>
-            </div>
+            <Reveal>
+              <div className="mb-8 text-center">
+                <h2 className="text-2xl font-bold tracking-tight md:text-3xl dark:text-white">
+                  Data Wilayah
+                </h2>
+                <p className="mt-2 text-sm text-muted-foreground dark:text-[#b0b4b5]">
+                  Statistik umum Kelurahan {desa.nama}
+                </p>
+              </div>
+            </Reveal>
 
             <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
-              {stats.map((stat) => {
+              {stats.map((stat, i) => {
                 const Icon = stat.icon;
                 return (
-                  <div
-                    key={stat.label}
-                    className="group relative overflow-hidden rounded-2xl bg-card p-6 shadow-sm ring-1 ring-border transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-primary/30 md:p-8 dark:bg-[#191c1d] dark:shadow-black/20 dark:ring-[#373a3b] dark:hover:border-transparent dark:hover:shadow-black/40 dark:hover:ring-[#32735f]/60"
-                  >
-                    <div className="absolute -right-4 -top-4 h-20 w-20 rounded-full bg-primary/5 transition-transform duration-300 group-hover:scale-150 dark:bg-[#32735f]/10" />
-                    <div className="relative">
-                      <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground dark:bg-[#32735f]/20 dark:text-[#84bd3a] dark:group-hover:bg-[#84bd3a] dark:group-hover:text-[#0b2b40]">
-                        <Icon className="h-5 w-5" />
+                  <Reveal key={stat.label} delay={i * 100}>
+                    <div className="group relative overflow-hidden rounded-2xl bg-card p-6 shadow-sm ring-1 ring-border transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-xl hover:ring-primary/30 md:p-8 dark:bg-[#191c1d] dark:shadow-black/20 dark:ring-[#373a3b] dark:hover:border-transparent dark:hover:shadow-black/40 dark:hover:ring-[#32735f]/60">
+                      <div className="absolute -right-4 -top-4 h-20 w-20 rounded-full bg-primary/5 transition-transform duration-300 group-hover:scale-150 dark:bg-[#32735f]/10" />
+                      <div className="relative">
+                        <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground dark:bg-[#32735f]/20 dark:text-[#84bd3a] dark:group-hover:bg-[#84bd3a] dark:group-hover:text-[#0b2b40]">
+                          <Icon className="h-5 w-5" />
+                        </div>
+                        <p className="text-3xl font-black tracking-tight md:text-4xl dark:text-white">
+                          {stat.value}
+                        </p>
+                        <p className="mt-1.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground dark:text-[#b0b4b5]">
+                          {stat.label}
+                        </p>
                       </div>
-                      <p className="text-3xl font-black tracking-tight md:text-4xl dark:text-white">
-                        {stat.value}
-                      </p>
-                      <p className="mt-1.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground dark:text-[#b0b4b5]">
-                        {stat.label}
-                      </p>
                     </div>
-                  </div>
+                  </Reveal>
                 );
               })}
             </div>
@@ -244,51 +250,54 @@ export default function SejarahKelurahanPage() {
 
           {/* ── Batas Wilayah (Kompas) ── */}
           <section>
-            <div className="mb-8 text-center">
-              <h2 className="text-2xl font-bold tracking-tight md:text-3xl dark:text-white">
-                Batas Wilayah
-              </h2>
-              <p className="mt-2 text-sm text-muted-foreground dark:text-[#b0b4b5]">
-                Posisi Kelurahan {desa.nama} berdasarkan arah mata angin
-              </p>
-            </div>
-
-            <div className="mx-auto max-w-2xl rounded-2xl bg-card p-6 shadow-sm ring-1 ring-border md:p-10 dark:bg-[#191c1d] dark:shadow-black/20 dark:ring-[#373a3b]">
-              <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-6">
-                {/* Center compass (hidden on mobile, shown lg) */}
-                <div className="hidden lg:col-start-2 lg:row-start-2 lg:flex lg:items-center lg:justify-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-primary/20 bg-primary/5 text-primary dark:border-[#32735f]/40 dark:bg-[#32735f]/10 dark:text-[#84bd3a]">
-                    <Compass className="h-7 w-7" />
-                  </div>
-                </div>
-
-                {batas.map((b) => {
-                  const Icon = b.icon;
-                  return (
-                    <div
-                      key={b.arah}
-                      className={`flex flex-col items-center gap-3 rounded-xl border border-border bg-card/80 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md dark:border-[#373a3b] dark:bg-[#191c1d]/80 dark:hover:border-[#32735f]/60 dark:hover:shadow-black/30 ${posMap[b.pos] ?? ""}`}
-                    >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary dark:bg-[#32735f]/20 dark:text-[#84bd3a]">
-                        <Icon className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground dark:text-[#b0b4b5]">
-                          Batas {b.arah}
-                        </p>
-                        <p className="mt-1 font-semibold text-foreground dark:text-white">
-                          {b.wilayah || "—"}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
+            <Reveal>
+              <div className="mb-8 text-center">
+                <h2 className="text-2xl font-bold tracking-tight md:text-3xl dark:text-white">
+                  Batas Wilayah
+                </h2>
+                <p className="mt-2 text-sm text-muted-foreground dark:text-[#b0b4b5]">
+                  Posisi Kelurahan {desa.nama} berdasarkan arah mata angin
+                </p>
               </div>
-            </div>
+            </Reveal>
+
+            <Reveal>
+              <div className="mx-auto max-w-2xl rounded-2xl bg-card p-6 shadow-sm ring-1 ring-border md:p-10 dark:bg-[#191c1d] dark:shadow-black/20 dark:ring-[#373a3b]">
+                <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-6">
+                  {/* Center compass (hidden on mobile, shown lg) */}
+                  <div className="hidden lg:col-start-2 lg:row-start-2 lg:flex lg:items-center lg:justify-center">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-full border-2 border-primary/20 bg-primary/5 text-primary dark:border-[#32735f]/40 dark:bg-[#32735f]/10 dark:text-[#84bd3a]">
+                      <Compass className="h-7 w-7" />
+                    </div>
+                  </div>
+
+                  {batas.map((b, i) => {
+                    const Icon = b.icon;
+                    return (
+                      <Reveal key={b.arah} delay={i * 150} className={posMap[b.pos] ?? ""}>
+                        <div className="flex flex-col items-center gap-3 rounded-xl border border-border bg-card/80 p-6 text-center backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md dark:border-[#373a3b] dark:bg-[#191c1d]/80 dark:hover:border-[#32735f]/60 dark:hover:shadow-black/30">
+                          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary dark:bg-[#32735f]/20 dark:text-[#84bd3a]">
+                            <Icon className="h-5 w-5" />
+                          </div>
+                          <div>
+                            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground dark:text-[#b0b4b5]">
+                              Batas {b.arah}
+                            </p>
+                            <p className="mt-1 font-semibold text-foreground dark:text-white">
+                              {b.wilayah || "—"}
+                            </p>
+                          </div>
+                        </div>
+                      </Reveal>
+                    );
+                  })}
+                </div>
+              </div>
+            </Reveal>
           </section>
 
           {/* ── Quote Penutup ── */}
-          <section>
+          <Reveal>
             <blockquote className="relative overflow-hidden rounded-2xl border-l-4 border-primary bg-primary/5 px-8 py-10 md:px-14 dark:border-[#84bd3a] dark:bg-[#84bd3a]/10">
               <Quote className="absolute -right-3 -top-3 h-24 w-24 text-primary/10 dark:text-[#84bd3a]/10" />
               <div className="relative">
@@ -304,7 +313,7 @@ export default function SejarahKelurahanPage() {
                 </footer>
               </div>
             </blockquote>
-          </section>
+          </Reveal>
         </div>
       </main>
 
