@@ -154,7 +154,11 @@ export function BerandaDark({ data }: { data: BerandaData }) {
               <span className="flex cursor-pointer items-center gap-1 transition-colors hover:text-[#32735f]">
                 Profil <ChevronDown className="h-4 w-4" />
               </span>
-              <div className="invisible absolute left-1/2 top-full z-50 mt-3 w-56 -translate-x-1/2 rounded-xl border border-[#373a3b] bg-[#0b2b40]/95 p-2 opacity-0 shadow-xl backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
+              <div
+                className={`invisible absolute left-1/2 top-full z-50 mt-3 w-56 -translate-x-1/2 rounded-xl border border-[#373a3b] p-2 opacity-0 shadow-xl backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:opacity-100 ${
+                  isScrolled ? "bg-[#0b2b40]/95" : "bg-black/30"
+                }`}
+              >
                 <Link
                   href="/profil/sejarah-kelurahan"
                   className="block rounded-lg px-4 py-2.5 text-sm font-medium text-white/90 transition-colors hover:bg-white/10 hover:text-white"
@@ -182,7 +186,11 @@ export function BerandaDark({ data }: { data: BerandaData }) {
               <span className="flex cursor-pointer items-center gap-1 transition-colors hover:text-[#32735f]">
                 Publikasi <ChevronDown className="h-4 w-4" />
               </span>
-              <div className="invisible absolute left-1/2 top-full z-50 mt-3 w-48 -translate-x-1/2 rounded-xl border border-[#373a3b] bg-[#0b2b40]/95 p-2 opacity-0 shadow-xl backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
+              <div
+                className={`invisible absolute left-1/2 top-full z-50 mt-3 w-48 -translate-x-1/2 rounded-xl border border-[#373a3b] p-2 opacity-0 shadow-xl backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:opacity-100 ${
+                  isScrolled ? "bg-[#0b2b40]/95" : "bg-black/30"
+                }`}
+              >
                 <Link
                   href="/news"
                   className="block rounded-lg px-4 py-2.5 text-sm font-medium text-white/90 transition-colors hover:bg-white/10 hover:text-white"
