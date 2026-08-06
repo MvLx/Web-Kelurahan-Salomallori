@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { NavbarBeranda } from "@/components/custom/navbar-beranda";
 import Footer from "@/components/custom/footer";
 import { Reveal } from "@/components/stitch/reveal";
-import { Users, ChevronRight, UserRound } from "lucide-react";
+import { Users, UserRound } from "lucide-react";
 
 interface Perangkat {
   id: string;
@@ -39,7 +39,7 @@ export default function PejabatKelurahanPage() {
       <NavbarBeranda />
 
       <main className="pt-20 pb-16">
-        <div className="mx-auto max-w-5xl space-y-14 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl space-y-14 px-4 sm:px-6 lg:px-8">
           {/* ── Header ── */}
           <Reveal>
             <header className="text-center">
@@ -70,11 +70,11 @@ export default function PejabatKelurahanPage() {
             </Reveal>
 
             {loading ? (
-              <div className="space-y-4">
-                {Array.from({ length: 5 }).map((_, i) => (
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {Array.from({ length: 6 }).map((_, i) => (
                   <div
                     key={i}
-                    className="h-20 animate-pulse rounded-xl bg-muted dark:bg-[#373a3b]/50"
+                    className="h-56 animate-pulse rounded-xl bg-muted dark:bg-[#373a3b]/50"
                   />
                 ))}
               </div>
@@ -86,13 +86,18 @@ export default function PejabatKelurahanPage() {
                 </p>
               </div>
             ) : (
-              <div className="grid gap-4">
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {items.map((p, idx) => (
                   <Reveal key={p.id} delay={idx * 100}>
-                    <div className="group flex items-center gap-5 rounded-xl border border-border bg-card p-5 shadow-sm transition-all duration-300 hover:border-primary/30 hover:shadow-md hover:scale-[1.01] dark:border-[#373a3b] dark:bg-[#191c1d] dark:hover:border-[#32735f]/60 dark:hover:shadow-black/30">
+                    <div className="group relative flex flex-col items-center rounded-2xl border border-border bg-card p-6 pt-8 text-center shadow-sm transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:scale-[1.03] dark:border-[#373a3b] dark:bg-[#191c1d] dark:hover:border-[#32735f]/60 dark:hover:shadow-black/30">
+                      {/* Nomor urutan */}
+                      <span className="absolute left-4 top-4 rounded-full bg-muted px-3 py-1 text-xs font-semibold text-muted-foreground dark:bg-[#373a3b] dark:text-[#b0b4b5]">
+                        #{idx + 1}
+                      </span>
+
                       {/* Avatar / Foto */}
                       {p.foto ? (
-                        <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full bg-primary/10 ring-2 ring-primary/20 dark:ring-[#32735f]/40">
+                        <div className="relative h-24 w-24 overflow-hidden rounded-full bg-primary/10 ring-4 ring-primary/20 dark:ring-[#32735f]/40">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
                             src={p.foto}
@@ -101,28 +106,18 @@ export default function PejabatKelurahanPage() {
                           />
                         </div>
                       ) : (
-                        <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xl font-bold text-primary dark:bg-[#32735f]/20 dark:text-[#84bd3a]">
+                        <div className="flex h-24 w-24 items-center justify-center rounded-full bg-primary/10 text-3xl font-bold text-primary dark:bg-[#32735f]/20 dark:text-[#84bd3a]">
                           {p.nama.charAt(0).toUpperCase()}
                         </div>
                       )}
 
                       {/* Info */}
-                      <div className="flex-1">
-                        <h3 className="text-lg font-bold dark:text-white">
-                          {p.nama}
-                        </h3>
-                        <p className="text-sm text-muted-foreground dark:text-[#b0b4b5]">
-                          {p.jabatan}
-                        </p>
-                      </div>
-
-                      {/* Urutan */}
-                      <div className="hidden shrink-0 items-center gap-2 text-sm text-muted-foreground sm:flex dark:text-[#b0b4b5]">
-                        <span className="rounded-full bg-muted px-3 py-1 text-xs dark:bg-[#373a3b] dark:text-[#b0b4b5]">
-                          #{idx + 1}
-                        </span>
-                        <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                      </div>
+                      <h3 className="mt-5 text-lg font-bold dark:text-white">
+                        {p.nama}
+                      </h3>
+                      <span className="mt-2 inline-flex rounded-full bg-primary/10 px-4 py-1 text-xs font-semibold uppercase tracking-wider text-primary dark:bg-[#32735f]/20 dark:text-[#84bd3a]">
+                        {p.jabatan}
+                      </span>
                     </div>
                   </Reveal>
                 ))}
