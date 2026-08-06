@@ -83,13 +83,6 @@ export default function Footer() {
                   <p className="text-white/60">07.30 - 16.00 WITA</p>
                 </div>
               </div>
-              <div className="flex items-start gap-2">
-                <Clock size={16} className="text-gold mt-0.5 shrink-0" />
-                <div>
-                  <p className="text-white/80">Sabtu</p>
-                  <p className="text-white/60">07.30 - 12.00 WITA</p>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -150,20 +143,9 @@ export default function Footer() {
             &copy; {year ?? "2026"} Website Kelurahan Salomallori.
             Hak cipta dilindungi.
           </p>
-          <div className="flex gap-4">
-            <Link
-              href="/aduan"
-              className="hover:text-white transition-colors"
-            >
-              Kontak
-            </Link>
-            <Link
-              href="/"
-              className="hover:text-white transition-colors"
-            >
-              Beranda
-            </Link>
-          </div>
+          <p className="text-white/60">
+            Dibuat dan dikembangkan oleh KKN-T 116 Universitas Hasanuddin
+          </p>
         </div>
       </div>
     </footer>
