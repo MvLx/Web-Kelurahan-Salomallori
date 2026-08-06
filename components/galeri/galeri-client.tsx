@@ -3,6 +3,7 @@
 import { useState, useMemo, useCallback, useEffect } from "react";
 import { NavbarBeranda } from "@/components/custom/navbar-beranda";
 import Footer from "@/components/custom/footer";
+import { Reveal } from "@/components/stitch/reveal";
 import {
   Loader2,
   Images,
@@ -79,7 +80,7 @@ export function GaleriClient({ items, error }: GaleriClientProps) {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-background text-foreground">
+      <div className="min-h-screen bg-background text-foreground dark:bg-[#111415] dark:text-[#e1e3e0]">
         <NavbarBeranda />
         <main className="pt-20 pb-16">
           <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 flex items-center justify-center py-24">
@@ -102,22 +103,37 @@ export function GaleriClient({ items, error }: GaleriClientProps) {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground dark:bg-[#111415] dark:text-[#e1e3e0]">
       <NavbarBeranda />
 
       <main className="pt-20 pb-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="mb-10 text-center">
-            <h1 className="text-4xl font-black tracking-tight md:text-5xl">
-              Galeri Foto
-            </h1>
-            <p className="mt-3 text-lg text-muted-foreground">
-              Dokumentasi kegiatan dan potensi Kelurahan Salomallori
-            </p>
-          </div>
+          {/* ── Header ── */}
+          <Reveal>
+            <header className="mb-12 text-center">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary dark:border-[#32735f]/40 dark:bg-[#32735f]/10 dark:text-[#32735f]">
+                <Images className="h-3.5 w-3.5" />
+                Dokumentasi
+              </div>
+              <h1 className="text-4xl font-black leading-tight tracking-tight md:text-5xl dark:text-white">
+                Galeri Foto
+              </h1>
+              <p className="mt-3 text-base font-semibold uppercase tracking-widest text-primary dark:text-[#84bd3a]">
+                Kelurahan Salomallori
+              </p>
+              <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground dark:text-[#b0b4b5]">
+                Mengabadikan kebersamaan, membangun kenangan
+              </p>
+              <div className="mx-auto mt-6 flex items-center gap-3 text-primary dark:text-[#84bd3a]">
+                <span className="h-px w-16 bg-primary/30 dark:bg-[#84bd3a]/30" />
+                <span className="h-2 w-2 rotate-45 bg-primary dark:bg-[#84bd3a]" />
+                <span className="h-px w-16 bg-primary/30 dark:bg-[#84bd3a]/30" />
+              </div>
+            </header>
+          </Reveal>
 
           {/* Filter */}
+          <Reveal delay={80}>
           <div className="mb-8 flex flex-wrap justify-center gap-2">
             {GALERI_KATEGORI.map((k) => (
               <button
@@ -133,9 +149,11 @@ export function GaleriClient({ items, error }: GaleriClientProps) {
               </button>
             ))}
           </div>
+          </Reveal>
 
           {/* Content */}
           {filtered.length === 0 ? (
+            <Reveal>
             <div className="rounded-2xl border border-border bg-card py-24 text-center">
               <Images className="mx-auto mb-4 h-12 w-12 text-muted-foreground" />
               <p className="text-lg text-muted-foreground">
@@ -144,21 +162,22 @@ export function GaleriClient({ items, error }: GaleriClientProps) {
                   : "Tidak ditemukan foto di kategori ini."}
               </p>
             </div>
+            </Reveal>
           ) : (
             <>
               {/* Grid */}
-              <div className="columns-1 gap-4 sm:columns-2 lg:columns-3">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {filtered.map((item, index) => (
+                  <Reveal key={item.id} delay={index * 100}>
                   <button
-                    key={item.id}
                     onClick={() => openLightbox(index)}
-                    className="group mb-4 w-full overflow-hidden rounded-2xl border border-border bg-card text-left transition-all hover:border-primary/30 hover:shadow-lg"
+                    className="group w-full overflow-hidden rounded-2xl border border-border bg-card text-left transition-all hover:border-primary/30 hover:shadow-lg"
                   >
-                    <div className="relative overflow-hidden">
+                    <div className="relative aspect-[4/3] overflow-hidden">
                       <img
                         src={item.gambar}
                         alt={item.judul}
-                        className="h-auto w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                         loading="lazy"
                       />
                     </div>
@@ -173,6 +192,7 @@ export function GaleriClient({ items, error }: GaleriClientProps) {
                       )}
                     </div>
                   </button>
+                  </Reveal>
                 ))}
               </div>
             </>
