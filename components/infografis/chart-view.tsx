@@ -130,7 +130,11 @@ export default function ChartView({ item }: { item: ChartItem }) {
               <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
               <XAxis dataKey="label" tick={{ fontSize: 12 }} stroke={axisStroke} />
               <YAxis tick={{ fontSize: 12 }} stroke={axisStroke} />
-              <Tooltip contentStyle={tooltipStyle} />
+              <Tooltip
+                contentStyle={tooltipStyle}
+                labelStyle={{ color: isDark ? "#e1e3e0" : "#171717" }}
+                itemStyle={{ color: isDark ? "#e1e3e0" : "#171717" }}
+              />
               <Line type="monotone" dataKey="value" stroke="#32735f" strokeWidth={2} dot={{ fill: "#32735f", r: 4 }} />
             </LineChart>
           </ResponsiveContainer>
@@ -154,7 +158,11 @@ export default function ChartView({ item }: { item: ChartItem }) {
                   <Cell key={index} fill={entry.color || COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
-              <Tooltip contentStyle={tooltipStyle} />
+              <Tooltip
+                contentStyle={tooltipStyle}
+                labelStyle={{ color: isDark ? "#e1e3e0" : "#171717" }}
+                itemStyle={{ color: isDark ? "#e1e3e0" : "#171717" }}
+              />
             </PieChart>
           </ResponsiveContainer>
         );
@@ -178,7 +186,11 @@ export default function ChartView({ item }: { item: ChartItem }) {
                   <Cell key={index} fill={entry.color || COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
-              <Tooltip contentStyle={tooltipStyle} />
+              <Tooltip
+                contentStyle={tooltipStyle}
+                labelStyle={{ color: isDark ? "#e1e3e0" : "#171717" }}
+                itemStyle={{ color: isDark ? "#e1e3e0" : "#171717" }}
+              />
             </PieChart>
           </ResponsiveContainer>
         );
@@ -190,7 +202,11 @@ export default function ChartView({ item }: { item: ChartItem }) {
               <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
               <XAxis dataKey="label" tick={{ fontSize: 12 }} stroke={axisStroke} />
               <YAxis tick={{ fontSize: 12 }} stroke={axisStroke} />
-              <Tooltip contentStyle={tooltipStyle} />
+              <Tooltip
+                contentStyle={tooltipStyle}
+                labelStyle={{ color: isDark ? "#e1e3e0" : "#171717" }}
+                itemStyle={{ color: isDark ? "#e1e3e0" : "#171717" }}
+              />
               <Area type="monotone" dataKey="value" stroke="#84bd3a" fill="#84bd3a" fillOpacity={0.2} strokeWidth={2} />
             </AreaChart>
           </ResponsiveContainer>
@@ -220,7 +236,11 @@ export default function ChartView({ item }: { item: ChartItem }) {
               <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
               <XAxis dataKey="label" tick={{ fontSize: 12 }} stroke={axisStroke} />
               <YAxis tick={{ fontSize: 12 }} stroke={axisStroke} />
-              <Tooltip contentStyle={tooltipStyle} />
+              <Tooltip
+                contentStyle={tooltipStyle}
+                labelStyle={{ color: isDark ? "#e1e3e0" : "#171717" }}
+                itemStyle={{ color: isDark ? "#e1e3e0" : "#171717" }}
+              />
               <Bar dataKey="value" radius={[4, 4, 0, 0]}>
                 {data.map((entry: DataPoint, index: number) => (
                   <Cell key={index} fill={entry.color || COLORS[index % COLORS.length]} />
