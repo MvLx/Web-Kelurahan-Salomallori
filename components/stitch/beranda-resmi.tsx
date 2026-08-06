@@ -303,33 +303,32 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
           <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[#f9faf7] to-transparent dark:from-[#111411]" />
         </div>
         <div className="relative z-10 mx-auto mt-12 flex max-w-3xl flex-col items-center text-center">
-          <span className="mb-6 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-white backdrop-blur-sm">
-            Kec. Dua Pitue, Kab. Sidenreng Rappang
-          </span>
-          <h1 className="mb-4 font-serif text-4xl font-semibold leading-tight text-white drop-shadow-md sm:text-5xl md:text-6xl">
-            Kelurahan Salomallori
-          </h1>
-          <p className="mb-3 font-serif text-lg italic text-[#febe0d] sm:text-xl">
-            &ldquo;Satu Kelurahan, Sejuta Harapan&rdquo;
-          </p>
-          <p className="mb-8 max-w-2xl text-sm leading-relaxed text-white/80 sm:text-base">
-            Website resmi Kelurahan Salomallori menyajikan informasi seputar
-            profil, pelayanan, UMKM, hingga potensi daerah. Mari bersama
-            membangun Salomallori yang unggul dan berkelanjutan.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="/profil/sejarah-kelurahan"
-              className="inline-flex h-11 items-center gap-2 rounded-[4px] bg-[#84bd3a] px-7 text-sm font-semibold text-[#0b2b40] shadow-sm transition-all duration-200 hover:bg-[#84bd3a]/90 hover:shadow-md"
-            >
-              Jelajahi Profil <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              href="/news"
-              className="inline-flex h-11 items-center gap-2 rounded-[4px] border-2 border-white bg-white/10 px-7 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/20"
-            >
-              Lihat Berita <ArrowUpRight className="h-4 w-4" />
-            </Link>
+          <div className="w-full rounded-2xl border border-white/20 bg-white/10 p-6 shadow-lg backdrop-blur-md sm:p-8">
+            <span className="mb-4 inline-block rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-white backdrop-blur-sm">
+              Kec. Dua Pitue, Kab. Sidenreng Rappang
+            </span>
+            <p className="mb-3 font-serif text-lg italic text-[#febe0d] sm:text-xl">
+              &ldquo;Satu Kelurahan, Sejuta Harapan&rdquo;
+            </p>
+            <p className="mb-8 max-w-2xl text-sm leading-relaxed text-white/80 sm:text-base">
+              Website resmi Kelurahan Salomallori menyajikan informasi seputar
+              profil, pelayanan, UMKM, hingga potensi daerah. Mari bersama
+              membangun Salomallori yang unggul dan berkelanjutan.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link
+                href="/profil/sejarah-kelurahan"
+                className="inline-flex h-11 items-center gap-2 rounded-[4px] bg-[#84bd3a] px-7 text-sm font-semibold text-[#0b2b40] shadow-sm transition-all duration-200 hover:bg-[#84bd3a]/90 hover:shadow-md"
+              >
+                Jelajahi Profil <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/news"
+                className="inline-flex h-11 items-center gap-2 rounded-[4px] border-2 border-white bg-white/10 px-7 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/20"
+              >
+                Lihat Berita <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
         </div>
         <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 animate-bounce text-white/70">
