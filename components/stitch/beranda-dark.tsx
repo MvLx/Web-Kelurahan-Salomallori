@@ -180,7 +180,7 @@ export function BerandaDark({ data }: { data: BerandaData }) {
         >
           <Link href="/" className="flex shrink-0 items-center gap-3">
             <Image
-              src="/logo.svg"
+              src="/images/logo_kab.png"
               alt="Logo Kelurahan Salomallori"
               width={36}
               height={36}
@@ -635,7 +635,7 @@ export function BerandaDark({ data }: { data: BerandaData }) {
           <div>
             <div className="mb-4 flex items-center gap-3">
               <Image
-                src="/logo.svg"
+                src="/images/logo_kab.png"
                 alt="Logo Kelurahan Salomallori"
                 width={48}
                 height={48}

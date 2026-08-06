@@ -86,7 +86,7 @@ export default function AdminSidebar() {
       <div className="flex h-16 shrink-0 items-center gap-3 border-b border-sage px-4 dark:border-[#414943]">
         <Link href="/" className="flex items-center gap-3">
           <Image
-            src="/logo.svg"
+            src="/images/logo_kab.png"
             alt="Logo Kelurahan Salomallori"
             width={36}
             height={36}

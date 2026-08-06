@@ -30,7 +30,7 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-3 mb-4">
               <Image
-                src="/logo.png"
+                src="/images/logo_kab.png"
                 alt="Logo Kelurahan Salomallori"
                 width={48}
                 height={48}
