@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -42,6 +43,18 @@ import { getInitials } from "@/utils/string";
 export function BerandaResmi({ data }: { data: BerandaData }) {
   const router = useRouter();
   const { data: session } = authClient.useSession();
+  const [mounted, setMounted] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const userRole = session?.user?.role;
   const isPrivileged = userRole === "EDITOR" || userRole === "ADMIN";
@@ -108,7 +121,13 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
     <div className="min-h-screen bg-[#f9faf7] font-sans text-[#171717] antialiased transition-colors duration-300 dark:bg-[#111411] dark:text-[#e1e3e0]">
       {/* Navigasi (Floating Island) */}
       <nav className="pointer-events-none fixed left-0 right-0 top-6 z-50 flex justify-center px-4">
-        <div className="pointer-events-auto flex w-full max-w-5xl items-center justify-between rounded-full border border-white/10 bg-[#0b2b40]/90 px-6 py-3 shadow-lg backdrop-blur-xl">
+        <div
+          className={`pointer-events-auto flex w-full max-w-5xl items-center justify-between rounded-full px-6 py-3 shadow-lg backdrop-blur-xl transition-all duration-500 ${
+            isScrolled
+              ? "border border-white/10 bg-[#0b2b40]/90"
+              : "border border-transparent bg-[#0b2b40]/30"
+          }`}
+        >
           <Link href="/" className="flex shrink-0 items-center gap-3">
             <Image
               src="/logo.svg"
@@ -184,77 +203,81 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
           </div>
           <div className="flex items-center gap-2">
             <ThemeToggle />
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className="size-9 rounded-full p-0 focus-visible:ring-2 focus-visible:ring-white/50"
-                >
-                  <Avatar className="size-8">
-                    <AvatarImage
-                      src={session?.user?.image ?? undefined}
-                      alt={session?.user?.name ?? "Pengguna"}
-                    />
-                    <AvatarFallback className="bg-white/20 text-xs text-white">
-                      {getInitials(session?.user?.name)}
-                    </AvatarFallback>
-                  </Avatar>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48">
-                {session ? (
-                  <>
-                    <DropdownMenuLabel className="font-normal">
-                      <p className="truncate text-sm font-medium text-foreground">
-                        {session.user.name}
-                      </p>
-                      <p className="truncate text-xs text-muted-foreground">
-                        {session.user.email}
-                      </p>
-                    </DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuGroup>
-                      {isPrivileged && (
+            {mounted ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className="size-9 rounded-full p-0 focus-visible:ring-2 focus-visible:ring-white/50"
+                  >
+                    <Avatar className="size-8">
+                      <AvatarImage
+                        src={session?.user?.image ?? undefined}
+                        alt={session?.user?.name ?? "Pengguna"}
+                      />
+                      <AvatarFallback className="bg-white/20 text-xs text-white">
+                        {getInitials(session?.user?.name)}
+                      </AvatarFallback>
+                    </Avatar>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  {session ? (
+                    <>
+                      <DropdownMenuLabel className="font-normal">
+                        <p className="truncate text-sm font-medium text-foreground">
+                          {session.user.name}
+                        </p>
+                        <p className="truncate text-xs text-muted-foreground">
+                          {session.user.email}
+                        </p>
+                      </DropdownMenuLabel>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuGroup>
+                        {isPrivileged && (
+                          <DropdownMenuItem asChild>
+                            <Link href="/dashboard">
+                              <LayoutDashboard />
+                              Dashboard
+                            </Link>
+                          </DropdownMenuItem>
+                        )}
                         <DropdownMenuItem asChild>
-                          <Link href="/dashboard">
-                            <LayoutDashboard />
-                            Dashboard
+                          <Link href={`/akun/${session.user.id}`}>
+                            <User />
+                            Profil
                           </Link>
                         </DropdownMenuItem>
-                      )}
+                        <DropdownMenuItem
+                          variant="destructive"
+                          onClick={handleSignOut}
+                        >
+                          <LogOut />
+                          Keluar
+                        </DropdownMenuItem>
+                      </DropdownMenuGroup>
+                    </>
+                  ) : (
+                    <DropdownMenuGroup>
                       <DropdownMenuItem asChild>
-                        <Link href={`/akun/${session.user.id}`}>
-                          <User />
-                          Profil
+                        <Link href="/auth/signin">
+                          <LogIn />
+                          Masuk
                         </Link>
                       </DropdownMenuItem>
-                      <DropdownMenuItem
-                        variant="destructive"
-                        onClick={handleSignOut}
-                      >
-                        <LogOut />
-                        Keluar
+                      <DropdownMenuItem asChild>
+                        <Link href="/auth/signup">
+                          <UserPlus />
+                          Daftar
+                        </Link>
                       </DropdownMenuItem>
                     </DropdownMenuGroup>
-                  </>
-                ) : (
-                  <DropdownMenuGroup>
-                    <DropdownMenuItem asChild>
-                      <Link href="/auth/signin">
-                        <LogIn />
-                        Masuk
-                      </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
-                      <Link href="/auth/signup">
-                        <UserPlus />
-                        Daftar
-                      </Link>
-                    </DropdownMenuItem>
-                  </DropdownMenuGroup>
-                )}
-              </DropdownMenuContent>
-            </DropdownMenu>
+                  )}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <div className="size-9 rounded-full bg-white/10" />
+            )}
           </div>
         </div>
       </nav>
@@ -266,21 +289,10 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
             className="h-full w-full bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url('${heroImage}')` }}
           />
-          <div className="absolute inset-0 bg-black/60 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-black/50 mix-blend-multiply" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#f9faf7] via-transparent to-transparent dark:from-[#111411]" />
         </div>
         <div className="relative z-10 mx-auto mt-12 flex max-w-3xl flex-col items-center text-center">
-          <h2 className="mb-2 font-serif text-[36px] text-white/90">
-            Selamat Datang di
-          </h2>
-          <h1 className="mb-6 font-serif text-[57px] font-semibold leading-[1.1] text-white">
-            Kelurahan Salomallori
-          </h1>
-          <p className="mb-10 max-w-xl text-[16px] leading-[1.6] text-white/80">
-            Kecamatan Pitumpanua, Kabupaten Wajo. Desa Maju, Mandiri, dan
-            Sejahtera. Menghadirkan pelayanan profesional dengan tetap menjaga
-            kehangatan komunal dan kelestarian alam warisan leluhur.
-          </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/profil/sejarah-kelurahan"
