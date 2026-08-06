@@ -152,8 +152,8 @@ export default function Navbar({ variant = "public" }: NavbarProps) {
           <Image
             src="/images/logo_kab.png"
             alt="Logo Kelurahan Salomallori"
-            width={36}
-            height={36}
+            width={40}
+            height={40}
             className="rounded-sm object-contain"
             priority
           />

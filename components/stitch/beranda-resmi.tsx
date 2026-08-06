@@ -182,8 +182,8 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
             <Image
               src="/images/logo_kab.png"
               alt="Logo Kelurahan Salomallori"
-              width={36}
-              height={36}
+              width={40}
+              height={40}
               className="rounded-sm object-contain"
               priority
             />
@@ -643,8 +643,8 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
               <Image
                 src="/images/logo_kab.png"
                 alt="Logo Kelurahan Salomallori"
-                width={48}
-                height={48}
+                width={56}
+                height={56}
                 className="rounded-full object-contain"
               />
               <div>

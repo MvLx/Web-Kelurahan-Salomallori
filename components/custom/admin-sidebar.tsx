@@ -85,11 +85,11 @@ export default function AdminSidebar() {
       {/* ── Header: Logo + Nama ── */}
       <div className="flex h-16 shrink-0 items-center gap-3 border-b border-sage px-4 dark:border-[#414943]">
         <Link href="/" className="flex items-center gap-3">
-          <Image
-            src="/images/logo_kab.png"
-            alt="Logo Kelurahan Salomallori"
-            width={36}
-            height={36}
+            <Image
+              src="/images/logo_kab.png"
+              alt="Logo Kelurahan Salomallori"
+              width={40}
+              height={40}
             className="rounded-sm object-contain"
             priority
           />

@@ -32,8 +32,8 @@ export default function Footer() {
               <Image
                 src="/images/logo_kab.png"
                 alt="Logo Kelurahan Salomallori"
-                width={48}
-                height={48}
+                width={56}
+                height={56}
                 className="object-contain rounded-full"
               />
               <div>
