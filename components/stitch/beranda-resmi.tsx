@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -10,6 +10,8 @@ import {
   ArrowUpRight,
   Building2,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   Clock,
   Home,
   LayoutDashboard,
@@ -23,6 +25,7 @@ import {
   User,
   UserPlus,
   Users,
+  X,
 } from "lucide-react";
 import { SiInstagram } from "react-icons/si";
 import { authClient } from "@/lib/auth-client";
@@ -119,6 +122,43 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
 
   const heroImage = data.heroImage;
   const batasWilayah = data.batasWilayah;
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const openLightbox = useCallback((index: number) => {
+    setLightboxIndex(index);
+    document.body.style.overflow = "hidden";
+  }, []);
+
+  const closeLightbox = useCallback(() => {
+    setLightboxIndex(null);
+    document.body.style.overflow = "";
+  }, []);
+
+  const goNext = useCallback(() => {
+    setLightboxIndex((prev) =>
+      prev !== null ? (prev + 1) % gallery.length : null
+    );
+  }, [gallery.length]);
+
+  const goPrev = useCallback(() => {
+    setLightboxIndex((prev) =>
+      prev !== null
+        ? (prev - 1 + gallery.length) % gallery.length
+        : null
+    );
+  }, [gallery.length]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowRight") goNext();
+      if (e.key === "ArrowLeft") goPrev();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [lightboxIndex, closeLightbox, goNext, goPrev]);
 
   return (
     <div className="min-h-screen bg-[#f9faf7] font-sans text-[#171717] antialiased transition-colors duration-300 dark:bg-[#111411] dark:text-[#e1e3e0]">
@@ -473,11 +513,11 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
           </p>
         </div>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-          {gallery.map(({ id, category, title, image }) => (
-            <Link
-              href={`/galeri/${id}`}
-              key={id}
-              className="group relative block aspect-square cursor-pointer overflow-hidden rounded-lg bg-[#dee2de]/50"
+          {gallery.map(({ category, title, image }, index) => (
+            <button
+              key={index}
+              onClick={() => openLightbox(index)}
+              className="group relative block aspect-square cursor-pointer overflow-hidden rounded-lg bg-[#dee2de]/50 text-left"
             >
               <img
                 alt={title}
@@ -492,9 +532,57 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
                   {title}
                 </h4>
               </div>
-            </Link>
+            </button>
           ))}
         </div>
+
+        {/* Lightbox */}
+        {lightboxIndex !== null && gallery[lightboxIndex] && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-2 sm:p-4"
+            onClick={closeLightbox}
+          >
+            <div
+              className="relative mx-2 sm:mx-4 max-h-[90vh] max-w-5xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={closeLightbox}
+                className="absolute -top-10 sm:-top-12 right-0 z-10 rounded-full bg-white/10 p-1.5 sm:p-2 text-white transition-colors hover:bg-white/20"
+              >
+                <X className="h-5 w-5 sm:h-6 sm:w-6" />
+              </button>
+              <button
+                onClick={goPrev}
+                className="absolute left-1 sm:left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/10 p-1.5 sm:p-2 text-white transition-colors hover:bg-white/20"
+              >
+                <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
+              </button>
+              <button
+                onClick={goNext}
+                className="absolute right-1 sm:right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/10 p-1.5 sm:p-2 text-white transition-colors hover:bg-white/20"
+              >
+                <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
+              </button>
+              <img
+                src={gallery[lightboxIndex].image}
+                alt={gallery[lightboxIndex].title}
+                className="max-h-[80vh] sm:max-h-[85vh] w-auto rounded-2xl object-contain shadow-2xl"
+              />
+              <div className="absolute -bottom-10 sm:-bottom-12 left-0 right-0 text-center">
+                <p className="text-xs sm:text-sm text-white/80">
+                  {gallery[lightboxIndex].title}
+                  <span className="ml-2 rounded-full bg-white/10 px-2 py-0.5 text-xs">
+                    {gallery[lightboxIndex].category}
+                  </span>
+                </p>
+                <p className="mt-1 text-xs text-white/50">
+                  {lightboxIndex + 1} / {gallery.length}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
 
       {/* Footer */}
