@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import type { BerandaData } from "./beranda-page-client";
+import { Reveal } from "./reveal";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -196,7 +197,10 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
             </div>
           </Link>
           <div className="hidden items-center space-x-6 text-[13px] font-semibold text-white/90 md:flex">
-            <Link href="/" className="text-white transition-colors hover:text-[#84bd3a]">
+            <Link
+              href="/"
+              className="link-underline text-white transition-colors hover:text-[#84bd3a] [&::after]:bg-[#84bd3a]"
+            >
               Beranda
             </Link>
             <div className="group relative before:absolute before:inset-x-0 before:top-full before:h-4">
@@ -228,7 +232,10 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
                 </Link>
               </div>
             </div>
-            <Link href="/umkm" className="transition-colors hover:text-[#84bd3a]">
+            <Link
+              href="/umkm"
+              className="link-underline transition-colors hover:text-[#84bd3a] [&::after]:bg-[#84bd3a]"
+            >
               UMKM
             </Link>
             <div className="group relative before:absolute before:inset-x-0 before:top-full before:h-4">
@@ -254,7 +261,10 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
                 </Link>
               </div>
             </div>
-            <Link href="/aduan" className="transition-colors hover:text-[#84bd3a]">
+            <Link
+              href="/aduan"
+              className="link-underline transition-colors hover:text-[#84bd3a] [&::after]:bg-[#84bd3a]"
+            >
               Kontak
             </Link>
           </div>
@@ -351,27 +361,39 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
         </div>
         <div className="relative z-10 mx-auto mt-12 flex max-w-3xl flex-col items-center text-center">
           <div className="w-full rounded-tl-[48px] rounded-br-[48px] rounded-tr-lg rounded-bl-lg border border-white/20 bg-white/10 p-6 shadow-lg backdrop-blur sm:p-8">
-            <span className="mb-4 inline-block rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-white backdrop-blur-sm">
+            <span
+              className="animate-fade-in-up mb-4 inline-block rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-white backdrop-blur-sm"
+              style={{ animationDelay: "0ms" }}
+            >
               Kec. Dua Pitue, Kab. Sidenreng Rappang
             </span>
-            <p className="mb-3 font-[family-name:serif] text-lg italic text-[#febe0d] sm:text-xl">
+            <p
+              className="animate-fade-in-up mb-3 font-[family-name:serif] text-lg italic text-[#febe0d] sm:text-xl"
+              style={{ animationDelay: "150ms" }}
+            >
               &ldquo;Satu Kelurahan, Sejuta Harapan&rdquo;
             </p>
-            <p className="mb-8 max-w-2xl text-sm leading-relaxed text-white/80 sm:text-base">
+            <p
+              className="animate-fade-in-up mb-8 max-w-2xl text-sm leading-relaxed text-white/80 sm:text-base"
+              style={{ animationDelay: "300ms" }}
+            >
               Website resmi Kelurahan Salomallori menyajikan informasi seputar
               profil, pelayanan, UMKM, hingga potensi daerah. Mari bersama
               membangun Salomallori yang unggul dan berkelanjutan.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div
+              className="animate-fade-in-up flex flex-wrap justify-center gap-4"
+              style={{ animationDelay: "450ms" }}
+            >
               <Link
                 href="/profil/sejarah-kelurahan"
-                className="inline-flex h-11 items-center gap-2 rounded-[4px] bg-[#84bd3a] px-7 text-sm font-semibold text-[#0b2b40] shadow-sm transition-all duration-200 hover:bg-[#84bd3a]/90 hover:shadow-md"
+                className="inline-flex h-11 items-center gap-2 rounded-[4px] bg-[#84bd3a] px-7 text-sm font-semibold text-[#0b2b40] shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#84bd3a]/90 hover:shadow-lg hover:shadow-[#84bd3a]/30"
               >
                 Jelajahi Profil <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/news"
-                className="inline-flex h-11 items-center gap-2 rounded-[4px] border-2 border-white bg-white/10 px-7 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/20"
+                className="inline-flex h-11 items-center gap-2 rounded-[4px] border-2 border-white bg-white/10 px-7 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/20 hover:shadow-lg hover:shadow-white/10"
               >
                 Lihat Berita <ArrowUpRight className="h-4 w-4" />
               </Link>
@@ -386,28 +408,27 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
       {/* Statistik Kelurahan */}
       <section className="mx-auto max-w-6xl px-6 py-20">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {stats.map(({ icon: Icon, value, label }) => (
-            <div
-              key={label}
-              className="flex flex-col items-center rounded-[12px] border border-[#dee2de] bg-white p-6 text-center shadow-sm dark:border-[#414943] dark:bg-[#1a1a1a]"
-            >
-              <div className="mb-4 text-[#32735f]">
-                <Icon className="h-8 w-8" />
+          {stats.map(({ icon: Icon, value, label }, i) => (
+            <Reveal key={label} delay={i * 100}>
+              <div className="flex flex-col items-center rounded-[12px] border border-[#dee2de] bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#32735f]/60 hover:shadow-lg dark:border-[#414943] dark:bg-[#1a1a1a] dark:hover:border-[#84bd3a]/60 dark:hover:shadow-black/30">
+                <div className="mb-4 text-[#32735f] transition-transform duration-300 hover:scale-110">
+                  <Icon className="h-8 w-8" />
+                </div>
+                <h3 className="mb-1 font-serif text-[28px] font-semibold text-[#171717] dark:text-white">
+                  {value}
+                </h3>
+                <p className="text-sm text-[#666666] dark:text-[#b0b4b5]">
+                  {label}
+                </p>
               </div>
-              <h3 className="mb-1 font-serif text-[28px] font-semibold text-[#171717] dark:text-white">
-                {value}
-              </h3>
-              <p className="text-sm text-[#666666] dark:text-[#b0b4b5]">
-                {label}
-              </p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
       {/* Berita Terbaru */}
       <section className="mx-auto max-w-6xl border-t border-[#dee2de] px-6 py-16 dark:border-[#414943]">
-        <div className="mb-10 flex items-end justify-between">
+        <Reveal className="mb-10 flex items-end justify-between">
           <div>
             <h2 className="mb-2 font-serif text-[36px] font-semibold text-[#171717] dark:text-white">
               Kabar Desa
@@ -422,33 +443,35 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
           >
             Lihat Semua Berita <ArrowRight className="h-4 w-4" />
           </Link>
-        </div>
+        </Reveal>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {news.map(({ slug, category, date, title, excerpt, image }) => (
-            <Link href={`/news/${slug}`} key={title} className="group block cursor-pointer">
-              <div className="relative mb-4 aspect-video overflow-hidden rounded-lg bg-gray-200 dark:bg-gray-800">
-                <img
-                  alt={title}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  src={image}
-                />
-                <div className="absolute left-3 top-3 rounded bg-white/90 px-2 py-1 text-[11px] font-bold uppercase tracking-wider text-[#171717] backdrop-blur-sm dark:bg-black/80 dark:text-[#e1e3e0]">
-                  {category}
+          {news.map(({ slug, category, date, title, excerpt, image }, i) => (
+            <Reveal key={title} delay={i * 120}>
+              <Link href={`/news/${slug}`} className="group block cursor-pointer">
+                <div className="relative mb-4 aspect-video overflow-hidden rounded-lg bg-gray-200 transition-shadow duration-300 group-hover:shadow-xl group-hover:shadow-black/10 dark:bg-gray-800 dark:group-hover:shadow-black/40">
+                  <img
+                    alt={title}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    src={image}
+                  />
+                  <div className="absolute left-3 top-3 rounded bg-white/90 px-2 py-1 text-[11px] font-bold uppercase tracking-wider text-[#171717] backdrop-blur-sm dark:bg-black/80 dark:text-[#e1e3e0]">
+                    {category}
+                  </div>
                 </div>
-              </div>
-              <div className="mb-2 text-sm text-[#666666] dark:text-[#b0b4b5]">
-                {date}
-              </div>
-              <h3 className="mb-3 font-serif text-[24px] font-semibold leading-tight text-[#171717] transition-colors group-hover:text-[#32735f] dark:text-white dark:group-hover:text-[#84bd3a]">
-                {title}
-              </h3>
-              <p className="mb-4 line-clamp-2 text-sm text-[#666666] dark:text-[#b0b4b5]">
-                {excerpt}
-              </p>
-              <span className="inline-flex items-center gap-1 text-sm font-semibold text-[#32735f] transition-colors group-hover:text-[#84bd3a] dark:text-[#84bd3a] dark:group-hover:text-[#32735f]">
-                Baca selengkapnya <ArrowUpRight className="h-3.5 w-3.5" />
-              </span>
-            </Link>
+                <div className="mb-2 text-sm text-[#666666] dark:text-[#b0b4b5]">
+                  {date}
+                </div>
+                <h3 className="mb-3 font-serif text-[24px] font-semibold leading-tight text-[#171717] transition-colors group-hover:text-[#32735f] dark:text-white dark:group-hover:text-[#84bd3a]">
+                  {title}
+                </h3>
+                <p className="mb-4 line-clamp-2 text-sm text-[#666666] dark:text-[#b0b4b5]">
+                  {excerpt}
+                </p>
+                <span className="inline-flex items-center gap-1 text-sm font-semibold text-[#32735f] transition-all duration-300 group-hover:gap-2 group-hover:text-[#84bd3a] dark:text-[#84bd3a] dark:group-hover:text-[#32735f]">
+                  Baca selengkapnya <ArrowUpRight className="h-3.5 w-3.5" />
+                </span>
+              </Link>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -457,35 +480,44 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
       <section className="border-y border-[#dee2de] bg-white py-20 dark:border-[#414943] dark:bg-[#1a1a1a]">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 lg:grid-cols-12">
           <div className="lg:col-span-12">
-            <h2 className="mb-6 font-serif text-[36px] font-semibold text-[#171717] dark:text-white">
-              Jejak Sejarah Salomallori
-            </h2>
-            {data.fotoSejarah ? (
-              <div className="relative mb-6 h-[400px] w-full overflow-hidden rounded-xl">
-                <img
-                  src={data.fotoSejarah}
-                  alt="Sejarah Kelurahan Salomallori"
-                  className="h-full w-full object-cover"
+            <Reveal>
+              <h2 className="mb-6 font-serif text-[36px] font-semibold text-[#171717] dark:text-white">
+                Jejak Sejarah Salomallori
+              </h2>
+            </Reveal>
+            <Reveal delay={100}>
+              {data.fotoSejarah ? (
+                <div className="relative mb-6 h-[400px] w-full overflow-hidden rounded-xl">
+                  <img
+                    src={data.fotoSejarah}
+                    alt="Sejarah Kelurahan Salomallori"
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              ) : (
+                <div
+                  className="mb-6 h-full w-full overflow-hidden rounded-xl bg-[#dee2de]/50 dark:bg-[#414943]/50"
+                  style={{ height: 400 }}
                 />
-              </div>
-            ) : (
-              <div
-                className="mb-6 h-full w-full overflow-hidden rounded-xl bg-[#dee2de]/50 dark:bg-[#414943]/50"
-                style={{ height: 400 }}
-              />
-            )}
-            <p className="mb-6 text-[16px] leading-[1.6] text-[#666666] dark:text-[#b0b4b5]">
-              {sejarahPreview}
-            </p>
-            <Link
-              href="/profil/sejarah-kelurahan"
-              className="inline-block rounded-md bg-[#32735f] px-6 py-3 font-semibold text-white shadow-sm transition-colors hover:bg-[#0b2b40]"
-            >
-              Baca Sejarah Lengkap
-            </Link>
+              )}
+            </Reveal>
+            <Reveal delay={200}>
+              <p className="mb-6 text-[16px] leading-[1.6] text-[#666666] dark:text-[#b0b4b5]">
+                {sejarahPreview}
+              </p>
+            </Reveal>
+            <Reveal delay={300}>
+              <Link
+                href="/profil/sejarah-kelurahan"
+                className="inline-block rounded-md bg-[#32735f] px-6 py-3 font-semibold text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0b2b40] hover:shadow-lg hover:shadow-black/10 dark:hover:shadow-black/40"
+              >
+                Baca Sejarah Lengkap
+              </Link>
+            </Reveal>
           </div>
           <div className="flex flex-col gap-6 lg:col-span-12">
-            <div className="rounded-xl border border-[#dee2de] bg-[#f9faf7] p-6 shadow-sm dark:border-[#414943] dark:bg-[#111411]">
+            <Reveal delay={150}>
+              <div className="rounded-xl border border-[#dee2de] bg-[#f9faf7] p-6 shadow-sm transition-colors duration-300 hover:border-[#32735f]/60 dark:border-[#414943] dark:bg-[#111411] dark:hover:border-[#84bd3a]/60">
               <div className="mb-4 flex items-center gap-3">
                 <div className="rounded-lg bg-white p-2 shadow-sm dark:bg-black">
                   <Map className="h-5 w-5 text-[#32735f]" />
@@ -511,14 +543,15 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
                   </li>
                 ))}
               </ul>
-            </div>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* Galeri Foto */}
       <section className="mx-auto max-w-[1400px] px-6 py-20">
-        <div className="mb-12 text-center">
+        <Reveal className="mb-12 text-center">
           <h2 className="mb-4 font-serif text-[36px] font-semibold text-[#171717] dark:text-white">
             Potret Desa
           </h2>
@@ -526,13 +559,13 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
             Menjelajahi kekayaan alam dan kreativitas warga yang menjadi pilar
             kebanggaan Kelurahan Salomallori.
           </p>
-        </div>
+        </Reveal>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {gallery.map(({ category, title, image }, index) => (
-            <button
-              key={index}
+            <Reveal key={index} delay={(index % 5) * 80}>
+              <button
               onClick={() => openLightbox(index)}
-              className="group relative block aspect-square cursor-pointer overflow-hidden rounded-lg bg-[#dee2de]/50 text-left"
+              className="group relative block aspect-square w-full cursor-pointer overflow-hidden rounded-lg bg-[#dee2de]/50 text-left"
             >
               <img
                 alt={title}
@@ -548,6 +581,7 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
                 </h4>
               </div>
             </button>
+            </Reveal>
           ))}
         </div>
 
@@ -633,14 +667,17 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
             <h4 className="mb-4 font-semibold text-white">Navigasi</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/" className="text-white/60 transition-colors hover:text-white">
+                <Link
+                  href="/"
+                  className="link-underline text-white/60 transition-colors hover:text-white [&::after]:bg-white"
+                >
                   Beranda
                 </Link>
               </li>
               <li>
                 <Link
                   href="/profil/sejarah-kelurahan"
-                  className="text-white/60 transition-colors hover:text-white"
+                  className="link-underline text-white/60 transition-colors hover:text-white [&::after]:bg-white"
                 >
                   Profil Kelurahan
                 </Link>
@@ -648,18 +685,24 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
               <li>
                 <Link
                   href="/profil/visi-misi"
-                  className="text-white/60 transition-colors hover:text-white"
+                  className="link-underline text-white/60 transition-colors hover:text-white [&::after]:bg-white"
                 >
                   Visi & Misi
                 </Link>
               </li>
               <li>
-                <Link href="/umkm" className="text-white/60 transition-colors hover:text-white">
+                <Link
+                  href="/umkm"
+                  className="link-underline text-white/60 transition-colors hover:text-white [&::after]:bg-white"
+                >
                   UMKM
                 </Link>
               </li>
               <li>
-                <Link href="/aduan" className="text-white/60 transition-colors hover:text-white">
+                <Link
+                  href="/aduan"
+                  className="link-underline text-white/60 transition-colors hover:text-white [&::after]:bg-white"
+                >
                   Kontak
                 </Link>
               </li>
@@ -745,10 +788,16 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
               cipta dilindungi.
             </p>
             <div className="flex gap-4">
-              <Link href="/aduan" className="transition-colors hover:text-white">
+              <Link
+                href="/aduan"
+                className="link-underline transition-colors hover:text-white [&::after]:bg-white"
+              >
                 Kontak
               </Link>
-              <Link href="/" className="transition-colors hover:text-white">
+              <Link
+                href="/"
+                className="link-underline transition-colors hover:text-white [&::after]:bg-white"
+              >
                 Beranda
               </Link>
             </div>
