@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import { NavbarBeranda } from "@/components/custom/navbar-beranda";
 import Footer from "@/components/custom/footer";
+import { Reveal } from "@/components/stitch/reveal";
 import Image from "next/image";
 import { MapPin, Phone, Mail, Clock, Loader2, MessageCircle } from "lucide-react";
 import { createMessageSchema } from "@/lib/schemas/message";
@@ -168,19 +169,20 @@ export default function AduanPage() {
   }
 
   const inputClass = (hasError: boolean) =>
-    `w-full rounded-xs border bg-background px-4 py-3 text-foreground outline-none transition-all placeholder:text-muted-foreground/50 focus:ring-1 ${
+    `w-full rounded-xs border bg-background px-4 py-3 text-foreground outline-none transition-all placeholder:text-muted-foreground/50 focus:ring-1 dark:border-[#32735f]/30 dark:bg-[#1a1d1e] ${
       hasError
         ? "border-destructive focus:border-destructive focus:ring-destructive/20"
         : "border-input focus:border-primary focus:ring-primary/10"
     }`;
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground dark:bg-[#111415] dark:text-[#e1e3e0]">
       <NavbarBeranda />
 
       <main className="pt-20 pb-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           {/* Hero Image */}
+          <Reveal>
           <div className="mb-12 overflow-hidden rounded-2xl shadow-2xl">
             <Image
               src="/kontak.jpg"
@@ -191,21 +193,25 @@ export default function AduanPage() {
               priority
             />
           </div>
+          </Reveal>
 
           {/* Header */}
+          <Reveal delay={80}>
           <div className="mb-12 text-center">
-            <h1 className="mb-3 text-4xl font-black leading-tight md:text-5xl font-display">
+            <h1 className="mb-3 text-4xl font-black leading-tight md:text-5xl font-display dark:text-white">
               Kontak & Lokasi
             </h1>
             <p className="text-xl font-semibold text-secondary">
               Kelurahan Salomallori, Kecamatan Dua Pitue, Kabupaten Sidenreng Rappang
             </p>
           </div>
+          </Reveal>
 
           {/* Two-column grid */}
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
             {/* Contact Info */}
-            <div className="rounded-2xl bg-card p-8 shadow-xl border border-sage">
+            <Reveal delay={120}>
+            <div className="rounded-2xl bg-card p-8 shadow-xl border border-sage dark:border-[#32735f]/30 dark:bg-[#171a1b]">
               <h2 className="mb-6 text-2xl font-bold font-display">Informasi Kontak</h2>
               <div className="space-y-6">
                 {/* Address */}
@@ -215,7 +221,7 @@ export default function AduanPage() {
                   </div>
                   <div>
                     <h3 className="mb-1 font-bold">Alamat Kantor</h3>
-                    <p className="leading-relaxed text-muted-foreground whitespace-pre-line">
+                    <p className="leading-relaxed text-muted-foreground whitespace-pre-line dark:text-[#b0b4b5]">
                       {kontak.alamat}
                     </p>
                   </div>
@@ -231,7 +237,7 @@ export default function AduanPage() {
                     {kontak.telepon ? (
                       <a
                         href={telLink(kontak.telepon)}
-                        className="text-muted-foreground transition-colors hover:text-secondary"
+                        className="text-muted-foreground transition-colors hover:text-secondary dark:text-[#b0b4b5]"
                       >
                         {kontak.telepon}
                       </a>
@@ -253,7 +259,7 @@ export default function AduanPage() {
                         href={waLink(kontak.whatsapp)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-green-600 dark:hover:text-green-400"
+                        className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-green-600 dark:hover:text-green-400 dark:text-[#b0b4b5]"
                       >
                         <MessageCircle className="h-4 w-4" />
                         {kontak.whatsapp}
@@ -274,7 +280,7 @@ export default function AduanPage() {
                     {kontak.email ? (
                       <a
                         href={`mailto:${kontak.email}`}
-                        className="text-muted-foreground transition-colors hover:text-secondary"
+                        className="text-muted-foreground transition-colors hover:text-secondary dark:text-[#b0b4b5]"
                       >
                         {kontak.email}
                       </a>
@@ -292,7 +298,7 @@ export default function AduanPage() {
                   <div>
                     <h3 className="mb-1 font-bold">Jam Operasional</h3>
                     {kontak.jamKerja ? (
-                      <p className="leading-relaxed text-muted-foreground whitespace-pre-line">
+                      <p className="leading-relaxed text-muted-foreground whitespace-pre-line dark:text-[#b0b4b5]">
                         {kontak.jamKerja}
                       </p>
                     ) : (
@@ -302,15 +308,17 @@ export default function AduanPage() {
                 </div>
               </div>
             </div>
+            </Reveal>
 
             {/* Contact Form */}
-            <div className="rounded-2xl bg-card p-8 shadow-xl border border-sage">
+            <Reveal delay={160}>
+            <div className="rounded-2xl bg-card p-8 shadow-xl border border-sage dark:border-[#32735f]/30 dark:bg-[#171a1b]">
               <h2 className="mb-6 text-2xl font-bold font-display">Kirim Pesan</h2>
               <form className="space-y-5" onSubmit={handleSubmit} noValidate>
                 <div>
                   <label
                     htmlFor="name"
-                    className="mb-2 block text-sm font-semibold text-muted-foreground"
+                    className="mb-2 block text-sm font-semibold text-muted-foreground dark:text-[#b0b4b5]"
                   >
                     Nama Lengkap
                   </label>
@@ -331,7 +339,7 @@ export default function AduanPage() {
                 <div>
                   <label
                     htmlFor="email"
-                    className="mb-2 block text-sm font-semibold text-muted-foreground"
+                    className="mb-2 block text-sm font-semibold text-muted-foreground dark:text-[#b0b4b5]"
                   >
                     Alamat Email
                   </label>
@@ -352,7 +360,7 @@ export default function AduanPage() {
                 <div>
                   <label
                     htmlFor="phone"
-                    className="mb-2 block text-sm font-semibold text-muted-foreground"
+                    className="mb-2 block text-sm font-semibold text-muted-foreground dark:text-[#b0b4b5]"
                   >
                     Nomor Telepon
                   </label>
@@ -372,7 +380,7 @@ export default function AduanPage() {
                 <div>
                   <label
                     htmlFor="message"
-                    className="mb-2 block text-sm font-semibold text-muted-foreground"
+                    className="mb-2 block text-sm font-semibold text-muted-foreground dark:text-[#b0b4b5]"
                   >
                     Pesan Anda
                   </label>
@@ -400,10 +408,12 @@ export default function AduanPage() {
                 </button>
               </form>
             </div>
+            </Reveal>
           </div>
 
           {/* Map */}
-          <div className="mt-8 overflow-hidden rounded-2xl shadow-lg border border-sage">
+          <Reveal delay={200}>
+          <div className="mt-8 overflow-hidden rounded-2xl shadow-lg border border-sage dark:border-[#32735f]/30">
             <iframe
               src={kontak.mapsEmbed ?? defaultKontak.mapsEmbed ?? ""}
               className="w-full"
@@ -414,6 +424,7 @@ export default function AduanPage() {
               title="Lokasi Kelurahan Salomallori"
             />
           </div>
+          </Reveal>
         </div>
       </main>
 
