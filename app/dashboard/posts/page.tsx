@@ -310,16 +310,9 @@ export default function PostsPage() {
       </Dialog>
 
 
-
-      {/* Sticky top bar */}
-      <div className="fixed left-0 right-0 top-16 z-40 border-b border-foreground/10 bg-card/80 px-4 py-3 backdrop-blur-md">
-        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4">
-          <div>
-            <h1 className="text-sm font-bold text-foreground">
-              Manajemen Postingan
-            </h1>
-          </div>
-
+      {/* Content */}
+      <main className="mx-auto max-w-5xl px-4 pt-4 pb-16">
+        <div className="mb-4 flex items-center justify-end">
           <Button asChild size="sm">
             <Link href="/dashboard/posts/create">
               <Plus className="size-3.5" />
@@ -327,10 +320,7 @@ export default function PostsPage() {
             </Link>
           </Button>
         </div>
-      </div>
 
-      {/* Content */}
-      <main className="mx-auto max-w-5xl px-4 pt-36 pb-16">
         {/* Filters row */}
         <div className="mb-4 flex flex-col gap-2 sm:flex-row">
           {/* Search */}

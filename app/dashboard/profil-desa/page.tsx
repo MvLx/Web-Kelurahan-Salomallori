@@ -238,7 +238,7 @@ export default function ProfilDesaPage() {
     return (
       <div className="min-h-screen bg-background">
 
-        <main className="mx-auto max-w-4xl px-4 pt-24 pb-16">
+        <main className="mx-auto max-w-4xl px-4 pt-6 pb-16">
           <div className="flex flex-col gap-4">
             <Skeleton className="h-8 w-48" />
             <Skeleton className="h-96 w-full rounded-lg" />
@@ -299,15 +299,7 @@ export default function ProfilDesaPage() {
       </Dialog>
 
 
-
-      {/* Sticky top bar */}
-      <div className="fixed left-0 right-0 top-16 z-40 border-b border-foreground/10 bg-card/80 px-4 py-3 backdrop-blur-md">
-        <div className="mx-auto flex max-w-4xl items-center justify-between gap-4">
-          <h1 className="text-sm font-bold text-foreground">Profil Kelurahan</h1>
-        </div>
-      </div>
-
-      <main className="mx-auto max-w-4xl px-4 pt-28 pb-16">
+      <main className="mx-auto max-w-4xl px-4 pt-6 pb-16">
         <Tabs value={tab} onValueChange={setTab}>
           <TabsList className="mb-6">
             <TabsTrigger value="desa"><Building2 className="mr-1.5 size-4" /> Data Kelurahan</TabsTrigger>

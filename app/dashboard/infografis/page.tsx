@@ -240,17 +240,14 @@ export default function InfografisPage() {
 
 
 
-      {/* Sticky top bar */}
-      <div className="fixed left-0 right-0 top-16 z-40 border-b border-foreground/10 bg-card/80 px-4 py-3 backdrop-blur-md">
-        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4">
+      <main className="mx-auto max-w-5xl px-4 pt-4 pb-16">
+        <div className="mb-4 flex items-center justify-between gap-4">
           <h1 className="text-sm font-bold text-foreground">Infografis</h1>
           <Button size="sm" onClick={openAdd}>
             <Plus className="mr-1.5 size-3.5" /> Tambah
           </Button>
         </div>
-      </div>
 
-      <main className="mx-auto max-w-5xl px-4 pt-28 pb-16">
         {items.length === 0 ? (
           <div className="flex flex-col items-center gap-4 py-20 text-muted-foreground">
             <BarChart3 className="size-12 opacity-30" />

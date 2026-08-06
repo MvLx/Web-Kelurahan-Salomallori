@@ -141,9 +141,8 @@ export default function KontakPage() {
     <div className="min-h-screen bg-background">
 
 
-      {/* Sticky top bar */}
-      <div className="fixed left-0 right-0 top-16 z-40 border-b border-foreground/10 bg-card/80 px-4 py-3 backdrop-blur-md">
-        <div className="mx-auto flex max-w-2xl items-center justify-between gap-4">
+      <main className="mx-auto max-w-2xl px-4 pt-4 pb-16">
+        <div className="mb-4 flex items-center justify-between gap-4">
           <h1 className="text-sm font-bold text-foreground">Data Kontak</h1>
           <Button size="sm" onClick={saveKontak} disabled={saving}>
             {saving && <Loader2 className="mr-1.5 size-3.5 animate-spin" />}
@@ -151,9 +150,6 @@ export default function KontakPage() {
             Simpan
           </Button>
         </div>
-      </div>
-
-      <main className="mx-auto max-w-2xl px-4 pt-28 pb-16">
         <p className="mb-6 text-sm text-muted-foreground">
           Data ini ditampilkan di halaman <strong>Kontak & Aduan</strong> (publik) dan footer website.
         </p>

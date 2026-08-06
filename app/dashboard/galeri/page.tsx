@@ -207,19 +207,15 @@ export default function GaleriListPage() {
       </Dialog>
 
 
-
-      {/* Sticky top bar */}
-      <div className="fixed left-0 right-0 top-16 z-40 border-b border-foreground/10 bg-card/80 px-4 py-3 backdrop-blur-md">
-        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4">
+      <main className="mx-auto max-w-5xl px-4 pt-4 pb-16">
+        <div className="mb-4 flex items-center justify-between gap-4">
           <h1 className="text-sm font-bold text-foreground">Kelola Galeri</h1>
           <Button size="sm" onClick={() => setUploadOpen(true)}>
             <Plus className="size-3.5" />
             Tambah Gambar
           </Button>
         </div>
-      </div>
 
-      <main className="mx-auto max-w-5xl px-4 pt-28 pb-16">
         {/* Search by category */}
         <div className="mb-4 relative">
           <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />

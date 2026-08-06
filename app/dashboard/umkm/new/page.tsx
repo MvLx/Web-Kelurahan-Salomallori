@@ -120,10 +120,9 @@ export default function CreateUMKMPage() {
   return (
     <div className="min-h-screen bg-background">
 
-
-      {/* Sticky top bar */}
-      <div className="fixed left-0 right-0 top-16 z-40 border-b border-foreground/10 bg-card/80 px-4 py-3 backdrop-blur-md">
-        <div className="mx-auto flex max-w-3xl items-center justify-between gap-4">
+      {/* Form */}
+      <main className="pt-4 pb-16">
+        <div className="mx-auto mb-6 flex max-w-3xl flex-wrap items-center justify-between gap-4 px-4">
           <div className="flex items-center gap-3">
             <Button asChild variant="ghost" size="icon" className="shrink-0">
               <Link href="/dashboard/umkm">
@@ -152,10 +151,7 @@ export default function CreateUMKMPage() {
             Simpan
           </Button>
         </div>
-      </div>
 
-      {/* Form */}
-      <main className="pt-36 pb-16">
         <form
           id="create-umkm-form"
           onSubmit={handleSubmit}

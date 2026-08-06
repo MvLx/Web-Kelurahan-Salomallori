@@ -186,9 +186,9 @@ export default function CategoriesPage() {
       </Dialog>
 
 
-      {/* Sticky top bar */}
-      <div className="fixed left-0 right-0 top-16 z-40 border-b border-foreground/10 bg-card/80 px-4 py-3 backdrop-blur-md">
-        <div className="mx-auto flex max-w-3xl items-center justify-between gap-4">
+      {/* Content */}
+      <main className="mx-auto max-w-3xl px-4 pt-4 pb-16">
+        <div className="mb-4 flex items-center justify-between gap-4">
           <div>
             <h1 className="text-sm font-bold text-foreground">
               Manajemen Kategori
@@ -202,10 +202,7 @@ export default function CategoriesPage() {
             </Link>
           </Button>
         </div>
-      </div>
 
-      {/* Content */}
-      <main className="mx-auto max-w-3xl px-4 pt-36 pb-16">
         {/* Search */}
         <div className="relative mb-4">
           <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
