@@ -5,6 +5,7 @@ import { Newspaper, ArrowRight, ImageOff, User } from "lucide-react";
 import { NavbarBeranda } from "@/components/custom/navbar-beranda";
 import Footer from "@/components/custom/footer";
 import { NewsCard, type NewsCardPost } from "@/components/custom/news-card";
+import { Reveal } from "@/components/stitch/reveal";
 import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
@@ -66,33 +67,45 @@ export default async function NewsPage() {
       <section className="bg-linen py-4xl dark:bg-[#111411]">
         <div className="mx-auto max-w-7xl px-6">
           {/* ── Header ── */}
-          <div className="mb-10 flex items-center gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[12px] bg-primary/10 text-primary dark:bg-[#84bd3a]/15 dark:text-[#84bd3a]">
-              <Newspaper className="h-6 w-6" />
-            </div>
-            <div>
-              <h1 className="font-display text-display-small font-semibold text-obsidian dark:text-white">
-                Berita
+          <Reveal>
+            <header className="mb-12 text-center">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary dark:border-[#32735f]/40 dark:bg-[#32735f]/10 dark:text-[#32735f]">
+                <Newspaper className="h-3.5 w-3.5" />
+                Berita Terbaru
+              </div>
+              <h1 className="text-4xl font-black leading-tight tracking-tight md:text-5xl dark:text-white">
+                Berita Kelurahan
               </h1>
-              <p className="font-body text-body-medium text-iron">
+              <p className="mt-3 text-base font-semibold uppercase tracking-widest text-primary dark:text-[#84bd3a]">
+                Kelurahan Salomallori
+              </p>
+              <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground dark:text-[#b0b4b5]">
                 Informasi dan berita terbaru dari Kelurahan Salomallori
               </p>
-            </div>
-          </div>
+              <div className="mx-auto mt-6 flex items-center gap-3 text-primary dark:text-[#84bd3a]">
+                <span className="h-px w-16 bg-primary/30 dark:bg-[#84bd3a]/30" />
+                <span className="h-2 w-2 rotate-45 bg-primary dark:bg-[#84bd3a]" />
+                <span className="h-px w-16 bg-primary/30 dark:bg-[#84bd3a]/30" />
+              </div>
+            </header>
+          </Reveal>
 
           {posts.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-20 text-iron">
-              <Newspaper className="mb-4 h-12 w-12" />
-              <p className="font-body text-body-medium">Belum ada berita</p>
-            </div>
+            <Reveal>
+              <div className="flex flex-col items-center justify-center py-20 text-iron">
+                <Newspaper className="mb-4 h-12 w-12" />
+                <p className="font-body text-body-medium">Belum ada berita</p>
+              </div>
+            </Reveal>
           ) : (
             <>
               {/* ── Featured Article ── */}
               {featured && (
-                <Link
-                  href={`/news/${featured.slug}`}
-                  className="group mb-10 block outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                >
+                <Reveal>
+                  <Link
+                    href={`/news/${featured.slug}`}
+                    className="group mb-10 block outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                  >
                   <article className="grid overflow-hidden rounded-[16px] border border-sage bg-paper shadow-paper-md transition-all duration-300 group-hover:shadow-paper-lg dark:border-[#414943] dark:bg-[#1a1a1a] md:grid-cols-2">
                     <div className="relative aspect-video overflow-hidden md:aspect-auto md:min-h-[320px]">
                       {featured.image ? (
@@ -149,13 +162,16 @@ export default async function NewsPage() {
                     </div>
                   </article>
                 </Link>
+                </Reveal>
               )}
 
               {/* ── Grid Berita Lainnya ── */}
               {rest.length > 0 && (
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                  {rest.map((post) => (
-                    <NewsCard key={post.id} post={mapToCard(post)} />
+                  {rest.map((post, idx) => (
+                    <Reveal key={post.id} delay={idx * 100}>
+                      <NewsCard post={mapToCard(post)} />
+                    </Reveal>
                   ))}
                 </div>
               )}

@@ -10,6 +10,7 @@ import Footer from "@/components/custom/footer";
 import { CategoryBadge } from "@/components/custom/category-badge";
 import { NewsCard, type NewsCardPost } from "@/components/custom/news-card";
 import { ScrollToTopButton } from "@/components/custom/scroll-to-top";
+import { Reveal } from "@/components/stitch/reveal";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 
@@ -188,6 +189,7 @@ export default async function NewsDetailPage({ params }: PageProps) {
 
           {/* ── Cover Image ── */}
           {post.image && (
+            <Reveal>
             <div className="mb-8 overflow-hidden rounded-[16px] shadow-paper-md">
               <Image
                 src={post.image}
@@ -198,9 +200,11 @@ export default async function NewsDetailPage({ params }: PageProps) {
                 priority
               />
             </div>
+            </Reveal>
           )}
 
           {/* ── Article Header ── */}
+          <Reveal delay={80}>
           <header className="mb-8">
             <div className="mb-4 flex flex-wrap items-center gap-3">
               <CategoryBadge
@@ -244,8 +248,10 @@ export default async function NewsDetailPage({ params }: PageProps) {
               </div>
             </div>
           </header>
+          </Reveal>
 
           {/* ── Full Content ── */}
+          <Reveal delay={120}>
           <article className="mb-4xl rounded-[12px] border border-sage bg-paper p-md shadow-paper-sm dark:border-[#414943] dark:bg-[#1a1a1a] sm:p-lg">
             <div
               className="font-body text-body-medium leading-relaxed text-obsidian dark:text-[#e1e3e0]
@@ -259,9 +265,11 @@ export default async function NewsDetailPage({ params }: PageProps) {
               dangerouslySetInnerHTML={{ __html: post.fullContent }}
             />
           </article>
+          </Reveal>
 
           {/* ── Multiple Authors ── */}
           {post.authors.length > 1 && (
+            <Reveal delay={160}>
             <div className="mb-4xl">
               <p className="mb-4 font-body text-label-medium font-semibold uppercase tracking-widest text-iron">
                 Ditulis oleh
@@ -288,9 +296,11 @@ export default async function NewsDetailPage({ params }: PageProps) {
                 ))}
               </div>
             </div>
+            </Reveal>
           )}
 
           {/* ── Related Posts ── */}
+          <Reveal delay={200}>
           {relatedPosts.length > 0 && (
             <section>
               <div className="mb-6 flex items-center justify-between">
@@ -307,12 +317,15 @@ export default async function NewsDetailPage({ params }: PageProps) {
                 </Link>
               </div>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
-                {relatedPosts.map((rel) => (
-                  <NewsCard key={rel.id} post={rel} />
+                {relatedPosts.map((rel, idx) => (
+                  <Reveal key={rel.id} delay={idx * 100}>
+                    <NewsCard post={rel} />
+                  </Reveal>
                 ))}
               </div>
             </section>
           )}
+          </Reveal>
         </div>
       </main>
 
