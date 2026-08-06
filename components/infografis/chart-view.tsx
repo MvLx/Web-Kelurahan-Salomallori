@@ -1,5 +1,6 @@
 "use client";
 
+import { useTheme } from "next-themes";
 import {
   BarChart,
   Bar,
@@ -97,12 +98,25 @@ function normalizeData(dataJson: unknown): DataPoint[] {
 }
 
 export default function ChartView({ item }: { item: ChartItem }) {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
+
   const data = normalizeData(item.dataJson);
+
+  const tooltipStyle = {
+    backgroundColor: isDark ? "#191c1d" : "#ffffff",
+    border: isDark ? "1px solid #373a3b" : "1px solid #dee2de",
+    borderRadius: "8px",
+    color: isDark ? "#e1e3e0" : "#171717",
+  };
+
+  const gridStroke = isDark ? "#373a3b" : "#dee2de";
+  const axisStroke = isDark ? "#b0b4b5" : "#6b7280";
 
   if (data.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-12 text-center">
-        <p className="text-iron text-sm">Tidak ada data untuk ditampilkan</p>
+        <p className="text-sm text-muted-foreground dark:text-[#b0b4b5]">Tidak ada data untuk ditampilkan</p>
       </div>
     );
   }
@@ -113,10 +127,10 @@ export default function ChartView({ item }: { item: ChartItem }) {
         return (
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={data}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#dee2de" />
-              <XAxis dataKey="label" tick={{ fontSize: 12 }} stroke="#6b7280" />
-              <YAxis tick={{ fontSize: 12 }} stroke="#6b7280" />
-              <Tooltip contentStyle={{ backgroundColor: "#fff", border: "1px solid #dee2de", borderRadius: "8px" }} />
+              <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
+              <XAxis dataKey="label" tick={{ fontSize: 12 }} stroke={axisStroke} />
+              <YAxis tick={{ fontSize: 12 }} stroke={axisStroke} />
+              <Tooltip contentStyle={tooltipStyle} />
               <Line type="monotone" dataKey="value" stroke="#32735f" strokeWidth={2} dot={{ fill: "#32735f", r: 4 }} />
             </LineChart>
           </ResponsiveContainer>
@@ -140,7 +154,7 @@ export default function ChartView({ item }: { item: ChartItem }) {
                   <Cell key={index} fill={entry.color || COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
-              <Tooltip contentStyle={{ backgroundColor: "#fff", border: "1px solid #dee2de", borderRadius: "8px" }} />
+              <Tooltip contentStyle={tooltipStyle} />
             </PieChart>
           </ResponsiveContainer>
         );
@@ -164,7 +178,7 @@ export default function ChartView({ item }: { item: ChartItem }) {
                   <Cell key={index} fill={entry.color || COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
-              <Tooltip contentStyle={{ backgroundColor: "#fff", border: "1px solid #dee2de", borderRadius: "8px" }} />
+              <Tooltip contentStyle={tooltipStyle} />
             </PieChart>
           </ResponsiveContainer>
         );
@@ -173,10 +187,10 @@ export default function ChartView({ item }: { item: ChartItem }) {
         return (
           <ResponsiveContainer width="100%" height={300}>
             <AreaChart data={data}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#dee2de" />
-              <XAxis dataKey="label" tick={{ fontSize: 12 }} stroke="#6b7280" />
-              <YAxis tick={{ fontSize: 12 }} stroke="#6b7280" />
-              <Tooltip contentStyle={{ backgroundColor: "#fff", border: "1px solid #dee2de", borderRadius: "8px" }} />
+              <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
+              <XAxis dataKey="label" tick={{ fontSize: 12 }} stroke={axisStroke} />
+              <YAxis tick={{ fontSize: 12 }} stroke={axisStroke} />
+              <Tooltip contentStyle={tooltipStyle} />
               <Area type="monotone" dataKey="value" stroke="#84bd3a" fill="#84bd3a" fillOpacity={0.2} strokeWidth={2} />
             </AreaChart>
           </ResponsiveContainer>
@@ -186,11 +200,14 @@ export default function ChartView({ item }: { item: ChartItem }) {
         return (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {data.map((d: DataPoint, index: number) => (
-              <div key={index} className="bg-card border border-border rounded-xl p-4 text-center">
-                <p className="text-2xl font-bold text-foreground">
+              <div
+                key={index}
+                className="rounded-xl border border-border bg-card p-4 text-center dark:border-[#373a3b] dark:bg-[#191c1d]"
+              >
+                <p className="text-2xl font-bold text-foreground dark:text-white">
                   {d.value.toLocaleString()}
                 </p>
-                <p className="text-sm text-muted-foreground mt-1">{d.label}</p>
+                <p className="mt-1 text-sm text-muted-foreground dark:text-[#b0b4b5]">{d.label}</p>
               </div>
             ))}
           </div>
@@ -200,10 +217,10 @@ export default function ChartView({ item }: { item: ChartItem }) {
         return (
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={data}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#dee2de" />
-              <XAxis dataKey="label" tick={{ fontSize: 12 }} stroke="#6b7280" />
-              <YAxis tick={{ fontSize: 12 }} stroke="#6b7280" />
-              <Tooltip contentStyle={{ backgroundColor: "#fff", border: "1px solid #dee2de", borderRadius: "8px" }} />
+              <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
+              <XAxis dataKey="label" tick={{ fontSize: 12 }} stroke={axisStroke} />
+              <YAxis tick={{ fontSize: 12 }} stroke={axisStroke} />
+              <Tooltip contentStyle={tooltipStyle} />
               <Bar dataKey="value" radius={[4, 4, 0, 0]}>
                 {data.map((entry: DataPoint, index: number) => (
                   <Cell key={index} fill={entry.color || COLORS[index % COLORS.length]} />
@@ -217,11 +234,11 @@ export default function ChartView({ item }: { item: ChartItem }) {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-4">
+      <div className="mb-4 flex items-center justify-between">
         <div>
-          <p className="font-body text-body-small text-iron">Tahun {item.tahun}</p>
+          <p className="font-body text-body-small text-iron dark:text-[#b0b4b5]">Tahun {item.tahun}</p>
         </div>
-        <span className="bg-fog text-obsidian dark:text-white dark:bg-[#2e2e2e] text-xs font-semibold px-3 py-1 rounded-xs">
+        <span className="rounded-xs bg-fog px-3 py-1 text-xs font-semibold text-obsidian dark:bg-[#32735f]/20 dark:text-[#84bd3a]">
           {item.chartType.replace(/_/g, " ")}
         </span>
       </div>
