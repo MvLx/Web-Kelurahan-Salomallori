@@ -97,7 +97,7 @@ export function BerandaDark({ data }: { data: BerandaData }) {
               </span>
               <div className="invisible absolute left-1/2 top-full z-50 mt-3 w-56 -translate-x-1/2 rounded-xl border border-[#373a3b] bg-[#0b2b40]/95 p-2 opacity-0 shadow-xl backdrop-blur-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
                 <Link
-                  href="/profil"
+                  href="/profil/sejarah-kelurahan"
                   className="block rounded-lg px-4 py-2.5 text-sm font-medium text-white/90 transition-colors hover:bg-white/10 hover:text-white"
                 >
                   Sejarah Kelurahan
@@ -205,7 +205,7 @@ export function BerandaDark({ data }: { data: BerandaData }) {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
-              href="/profil"
+              href="/profil/sejarah-kelurahan"
               className="rounded-md bg-white px-6 py-3 font-semibold text-[#0b2b40] shadow-sm transition-colors hover:bg-gray-100"
             >
               Jelajahi Profil
@@ -305,7 +305,7 @@ export function BerandaDark({ data }: { data: BerandaData }) {
                 "Kelurahan Salomallori memiliki akar sejarah yang panjang, berawal dari pemukiman agraris yang menjunjung tinggi nilai-nilai kearifan lokal."}
             </p>
             <Link
-              href="/profil"
+              href="/profil/sejarah-kelurahan"
               className="inline-block rounded-md bg-[#0b2b40] px-6 py-3 font-semibold text-white shadow-sm transition-colors hover:bg-[#061824]"
             >
               Baca Sejarah Lengkap
@@ -433,7 +433,7 @@ export function BerandaDark({ data }: { data: BerandaData }) {
             </h4>
             <ul className="space-y-2 text-sm text-white/70">
               <li>
-                <Link href="/profil" className="transition-colors hover:text-[#32735f]">
+                <Link href="/profil/sejarah-kelurahan" className="transition-colors hover:text-[#32735f]">
                   Sejarah
                 </Link>
               </li>
