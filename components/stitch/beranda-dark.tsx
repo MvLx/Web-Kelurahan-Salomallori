@@ -673,7 +673,23 @@ export function BerandaDark({ data }: { data: BerandaData }) {
                   href="/profil/sejarah-kelurahan"
                   className="link-underline text-white/60 transition-colors hover:text-white [&::after]:bg-white"
                 >
-                  Profil Kelurahan
+                  Sejarah Kelurahan
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/profil/pejabat-kelurahan"
+                  className="link-underline text-white/60 transition-colors hover:text-white [&::after]:bg-white"
+                >
+                  Pejabat Kelurahan
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/news"
+                  className="link-underline text-white/60 transition-colors hover:text-white [&::after]:bg-white"
+                >
+                  Berita
                 </Link>
               </li>
               <li>
@@ -682,6 +698,22 @@ export function BerandaDark({ data }: { data: BerandaData }) {
                   className="link-underline text-white/60 transition-colors hover:text-white [&::after]:bg-white"
                 >
                   UMKM
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/galeri"
+                  className="link-underline text-white/60 transition-colors hover:text-white [&::after]:bg-white"
+                >
+                  Galeri
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/infografis"
+                  className="link-underline text-white/60 transition-colors hover:text-white [&::after]:bg-white"
+                >
+                  Infografis
                 </Link>
               </li>
               <li>

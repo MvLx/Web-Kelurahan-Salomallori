@@ -9,8 +9,12 @@ import { Separator } from "@/components/ui/separator";
 
 const navLinks = [
   { label: "Beranda", href: "/" },
-  { label: "Profil Kelurahan", href: "/profil" },
+  { label: "Sejarah Kelurahan", href: "/profil/sejarah-kelurahan" },
+  { label: "Pejabat Kelurahan", href: "/profil/pejabat-kelurahan" },
+  { label: "Berita", href: "/news" },
   { label: "UMKM", href: "/umkm" },
+  { label: "Galeri", href: "/galeri" },
+  { label: "Infografis", href: "/infografis" },
   { label: "Kontak", href: "/aduan" },
 ];
 
