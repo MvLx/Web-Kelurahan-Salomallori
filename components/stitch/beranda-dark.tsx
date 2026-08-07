@@ -136,7 +136,7 @@ export function BerandaDark({ data }: { data: BerandaData }) {
             style={{ backgroundImage: `url('${heroImage}')` }}
           />
           <div className="absolute inset-0 bg-black/30 mix-blend-multiply" />
-          <div className="absolute bottom-0 left-0 right-0 h-3/4 bg-gradient-to-t from-[#111415] via-[#111415]/60 to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[#111415] to-transparent" />
         </div>
         <div className="relative z-10 mx-auto mt-12 flex max-w-3xl flex-col items-center text-center">
           <div className="w-full rounded-tl-[48px] rounded-br-[48px] rounded-tr-lg rounded-bl-lg border border-white/20 bg-white/10 p-6 shadow-lg backdrop-blur sm:p-8">
@@ -185,7 +185,7 @@ export function BerandaDark({ data }: { data: BerandaData }) {
       </header>
 
       {/* Sejarah Kelurahan */}
-      <section className="border-y border-[#373a3b] bg-[#191c1d] py-20">
+      <section className="py-20">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 lg:grid-cols-12">
           <div className="lg:col-span-12">
             <Reveal>
@@ -222,7 +222,7 @@ export function BerandaDark({ data }: { data: BerandaData }) {
           </div>
           <div className="flex flex-col gap-6 lg:col-span-12">
             <Reveal delay={150}>
-              <div className="rounded-xl border border-[#373a3b] bg-[#111415] p-6 shadow-sm transition-colors duration-300 hover:border-[#32735f]/60">
+              <div className="rounded-xl border border-[#373a3b] bg-[#191c1d] p-6 shadow-sm transition-colors duration-300 hover:border-[#32735f]/60">
                 <div className="mb-4 flex items-center gap-3">
                   <div className="rounded-lg bg-[#373a3b] p-2 shadow-sm">
                     <Map className="h-5 w-5 text-[#0b2b40]" />

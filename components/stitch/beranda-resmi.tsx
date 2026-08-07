@@ -136,7 +136,7 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
             style={{ backgroundImage: `url('${heroImage}')` }}
           />
           <div className="absolute inset-0 bg-black/30 mix-blend-multiply" />
-          <div className="absolute inset-x-0 bottom-0 h-[65%] bg-gradient-to-t from-[#f9faf7] via-[#f9faf7]/70 via-[#f9faf7]/25 to-transparent dark:from-[#111411] dark:via-[#111411]/70 dark:via-[#111411]/25" />
+          <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[#f9faf7] to-transparent dark:from-[#111411]" />
         </div>
         <div className="relative z-10 mx-auto mt-12 flex max-w-3xl flex-col items-center text-center">
           <div className="w-full rounded-tl-[48px] rounded-br-[48px] rounded-tr-lg rounded-bl-lg border border-white/20 bg-white/10 p-6 shadow-lg backdrop-blur sm:p-8">
@@ -185,7 +185,7 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
       </header>
 
       {/* Sejarah Kelurahan */}
-      <section className="border-y border-[#dee2de] bg-white py-20 dark:border-[#414943] dark:bg-[#1a1a1a]">
+      <section className="py-20">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 lg:grid-cols-12">
           <div className="lg:col-span-12">
             <Reveal>
@@ -222,7 +222,7 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
           </div>
           <div className="flex flex-col gap-6 lg:col-span-12">
             <Reveal delay={150}>
-              <div className="rounded-xl border border-[#dee2de] bg-[#f9faf7] p-6 shadow-sm transition-colors duration-300 hover:border-[#32735f]/60 dark:border-[#414943] dark:bg-[#111411] dark:hover:border-[#84bd3a]/60">
+              <div className="rounded-xl border border-[#dee2de] bg-white p-6 shadow-sm transition-colors duration-300 hover:border-[#32735f]/60 dark:border-[#414943] dark:bg-[#1a1a1a] dark:hover:border-[#84bd3a]/60">
               <div className="mb-4 flex items-center gap-3">
                 <div className="rounded-lg bg-white p-2 shadow-sm dark:bg-black">
                   <Map className="h-5 w-5 text-[#32735f]" />
