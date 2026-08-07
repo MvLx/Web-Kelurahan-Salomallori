@@ -15,6 +15,7 @@ import {
   Mail,
   Save,
   Shield,
+  UserRound,
   X,
   AlertCircle,
 } from "lucide-react";
@@ -24,15 +25,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { NavbarBeranda } from "@/components/custom/navbar-beranda";
+import Footer from "@/components/custom/footer";
+import { Reveal } from "@/components/stitch/reveal";
 import { getInitials } from "@/utils/string";
 import { cn } from "@/lib/utils";
 
@@ -62,7 +58,7 @@ const ROLE_LABELS: Record<string, string> = {
 const ROLE_STYLES: Record<string, string> = {
   ADMIN: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400",
   EDITOR: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
-  USER: "bg-foreground/10 text-foreground/60",
+  USER: "bg-foreground/10 text-foreground/60 dark:bg-[#373a3b]/50 dark:text-[#b0b4b5]",
 };
 
 const PROVIDER_LABELS: Record<string, string> = {
@@ -267,12 +263,14 @@ export default function ProfilPage() {
 
   if (loading || sessionLoading) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background text-foreground dark:bg-[#111415] dark:text-[#e1e3e0]">
         <NavbarBeranda />
         <div className="flex min-h-[80vh] items-center justify-center">
           <div className="flex flex-col items-center gap-3">
-            <div className="size-10 animate-spin rounded-full border-4 border-foreground/20 border-t-foreground" />
-            <p className="text-sm text-foreground/50">Memuat profil…</p>
+            <div className="size-10 animate-spin rounded-full border-4 border-foreground/20 border-t-foreground dark:border-[#373a3b] dark:border-t-[#84bd3a]" />
+            <p className="text-sm text-foreground/50 dark:text-[#b0b4b5]">
+              Memuat profil…
+            </p>
           </div>
         </div>
       </div>
@@ -281,14 +279,14 @@ export default function ProfilPage() {
 
   if (notFound || !profile) {
     return (
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-background text-foreground dark:bg-[#111415] dark:text-[#e1e3e0]">
         <NavbarBeranda />
         <div className="flex min-h-[80vh] flex-col items-center justify-center gap-4 text-center">
-          <AlertCircle className="size-12 text-foreground/40" />
-          <h2 className="text-2xl font-bold text-foreground/70">
+          <AlertCircle className="size-12 text-foreground/40 dark:text-[#b0b4b5]/50" />
+          <h2 className="text-2xl font-bold text-foreground/70 dark:text-white">
             Pengguna tidak ditemukan
           </h2>
-          <p className="text-sm text-foreground/50">
+          <p className="text-sm text-foreground/50 dark:text-[#b0b4b5]">
             Profil yang kamu cari tidak ada atau sudah dihapus.
           </p>
         </div>
@@ -297,99 +295,124 @@ export default function ProfilPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background text-foreground dark:bg-[#111415] dark:text-[#e1e3e0]">
       <NavbarBeranda />
 
-      <main className="mx-auto max-w-3xl px-4 py-24 md:px-8">
-        {/* Hidden file input for avatar upload */}
-        {isOwner && (
-          <input
-            ref={avatarInputRef}
-            type="file"
-            accept="image/jpeg,image/png,image/gif,image/webp"
-            className="hidden"
-            onChange={handleAvatarFileChange}
-            disabled={avatarUploading}
-          />
-        )}
+      {/* Hidden file input for avatar upload */}
+      {isOwner && (
+        <input
+          ref={avatarInputRef}
+          type="file"
+          accept="image/jpeg,image/png,image/gif,image/webp"
+          className="hidden"
+          onChange={handleAvatarFileChange}
+          disabled={avatarUploading}
+        />
+      )}
 
-        {/* ── Hero / Avatar Section ───────────────────────────────────────── */}
-        <div className="mb-8 flex flex-col items-center gap-4 text-center">
-          {/* Avatar with coming-soon overlay for owners */}
-          <div className="group relative">
-            <Avatar className="size-28 ring-4 ring-background shadow-lg">
-              <AvatarImage
-                src={profile.image ?? undefined}
-                alt={profile.name}
-              />
-              <AvatarFallback className="bg-foreground/20 text-2xl font-bold text-foreground">
-                {getInitials(profile.name)}
-              </AvatarFallback>
-            </Avatar>
-
-            {isOwner && (
-              <button
-                type="button"
-                title="Ganti foto profil"
-                onClick={() => avatarInputRef.current?.click()}
-                disabled={avatarUploading}
-                className="absolute inset-0 flex flex-col items-center justify-center rounded-full bg-foreground/50 opacity-0 transition-opacity group-hover:opacity-100 disabled:cursor-not-allowed"
-              >
-                {avatarUploading ? (
-                  <Loader2 className="size-5 animate-spin text-background" />
-                ) : (
-                  <Camera className="size-5 text-background" />
-                )}
-                <span className="mt-1 text-[10px] font-semibold text-background/90">
-                  {avatarUploading ? "Mengunggah…" : "Ubah Foto"}
-                </span>
-              </button>
-            )}
-          </div>
-
-          {/* Name */}
-          <div className="flex flex-col items-center gap-1">
-            <h1 className="text-3xl font-extrabold tracking-tight text-foreground">
-              {profile.name}
+      <main className="mx-auto max-w-3xl px-4 pt-24 pb-16 md:px-8">
+        {/* ── Header ── */}
+        <Reveal>
+          <header className="mb-10 text-center">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary dark:border-[#32735f]/40 dark:bg-[#32735f]/10 dark:text-[#32735f]">
+              <UserRound className="h-3.5 w-3.5" />
+              Profil Pengguna
+            </div>
+            <h1 className="text-4xl font-black leading-tight tracking-tight md:text-5xl dark:text-white">
+              {isOwner ? "Akun Saya" : "Profil Pengguna"}
             </h1>
+            <p className="mt-3 text-base font-semibold uppercase tracking-widest text-primary dark:text-[#84bd3a]">
+              Kelurahan Salomallori
+            </p>
+            <div className="mx-auto mt-6 flex items-center gap-3 text-primary dark:text-[#84bd3a]">
+              <span className="h-px w-16 bg-primary/30 dark:bg-[#84bd3a]/30" />
+              <span className="h-2 w-2 rotate-45 bg-primary dark:bg-[#84bd3a]" />
+              <span className="h-px w-16 bg-primary/30 dark:bg-[#84bd3a]/30" />
+            </div>
+          </header>
+        </Reveal>
 
-            {/* Role badge */}
-            <span
-              className={cn(
-                "mt-1 rounded-full px-3 py-0.5 text-xs font-semibold",
-                ROLE_STYLES[profile.role],
+        {/* ── Hero / Avatar Section ── */}
+        <Reveal delay={100}>
+          <div className="mb-8 flex flex-col items-center gap-4 text-center">
+            {/* Avatar with coming-soon overlay for owners */}
+            <div className="group relative">
+              <Avatar className="size-32 ring-4 ring-[#84bd3a]/30 shadow-lg dark:ring-[#32735f]/40">
+                <AvatarImage
+                  src={profile.image ?? undefined}
+                  alt={profile.name}
+                />
+                <AvatarFallback className="bg-primary/10 text-3xl font-bold text-primary dark:bg-[#32735f]/20 dark:text-[#84bd3a]">
+                  {getInitials(profile.name)}
+                </AvatarFallback>
+              </Avatar>
+
+              {isOwner && (
+                <button
+                  type="button"
+                  title="Ganti foto profil"
+                  onClick={() => avatarInputRef.current?.click()}
+                  disabled={avatarUploading}
+                  className="absolute inset-0 flex flex-col items-center justify-center rounded-full bg-foreground/50 opacity-0 transition-opacity group-hover:opacity-100 disabled:cursor-not-allowed dark:bg-black/60"
+                >
+                  {avatarUploading ? (
+                    <Loader2 className="size-5 animate-spin text-background" />
+                  ) : (
+                    <Camera className="size-5 text-background" />
+                  )}
+                  <span className="mt-1 text-[10px] font-semibold text-background/90">
+                    {avatarUploading ? "Mengunggah…" : "Ubah Foto"}
+                  </span>
+                </button>
               )}
-            >
-              <Shield className="mr-1 inline-block size-3" />
-              {ROLE_LABELS[profile.role] ?? profile.role}
-            </span>
-          </div>
+            </div>
 
-          {/* Stats row */}
-          <div className="mt-2 flex items-center gap-6 text-sm text-foreground/50">
-            <span className="flex items-center gap-1.5">
-              <FileText className="size-4" />
-              {profile.postCount} postingan
-            </span>
-            <span className="flex items-center gap-1.5">
-              <CalendarDays className="size-4" />
-              Bergabung {formatDate(profile.createdAt)}
-            </span>
+            {/* Name */}
+            <div className="flex flex-col items-center gap-1">
+              <h2 className="text-3xl font-extrabold tracking-tight text-foreground dark:text-white">
+                {profile.name}
+              </h2>
+
+              {/* Role badge */}
+              <span
+                className={cn(
+                  "mt-1 rounded-full px-3 py-0.5 text-xs font-semibold",
+                  ROLE_STYLES[profile.role],
+                )}
+              >
+                <Shield className="mr-1 inline-block size-3" />
+                {ROLE_LABELS[profile.role] ?? profile.role}
+              </span>
+            </div>
+
+            {/* Stats row */}
+            <div className="mt-2 flex flex-wrap items-center justify-center gap-6 text-sm text-foreground/50 dark:text-[#b0b4b5]">
+              <span className="flex items-center gap-1.5">
+                <FileText className="size-4" />
+                {profile.postCount} postingan
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CalendarDays className="size-4" />
+                Bergabung {formatDate(profile.createdAt)}
+              </span>
+            </div>
           </div>
-        </div>
+        </Reveal>
 
         <div className="grid gap-6">
           {/* ── Profile Info Card ──────────────────────────────────────────── */}
-          <Card>
-            <CardHeader className="border-b pb-4">
-              <div className="flex items-center justify-between">
+          <Reveal delay={150}>
+            <section className="rounded-2xl bg-card p-8 shadow-sm ring-1 ring-border md:p-10 dark:bg-[#191c1d] dark:shadow-black/20 dark:ring-[#373a3b]">
+              <div className="mb-6 flex items-center justify-between border-b border-border pb-4 dark:border-[#373a3b]">
                 <div>
-                  <CardTitle>Informasi Profil</CardTitle>
-                  <CardDescription className="mt-1">
+                  <h3 className="text-2xl font-bold tracking-tight dark:text-white">
+                    Informasi Profil
+                  </h3>
+                  <p className="mt-1 text-sm text-muted-foreground dark:text-[#b0b4b5]">
                     {isOwner
                       ? "Kelola informasi akun Anda."
                       : "Informasi publik pengguna ini."}
-                  </CardDescription>
+                  </p>
                 </div>
                 {isOwner && !editing && (
                   <Button
@@ -403,147 +426,159 @@ export default function ProfilPage() {
                   </Button>
                 )}
               </div>
-            </CardHeader>
 
-            <CardContent className="grid gap-5 pt-4">
-              {/* Name field */}
-              <div className="grid gap-1.5">
-                <Label htmlFor="name">Nama Lengkap</Label>
-                {editing ? (
-                  <div className="flex gap-2">
-                    <Input
-                      id="name"
-                      ref={nameRef}
-                      value={nameInput}
-                      onChange={(e) => setNameInput(e.target.value)}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter") handleSave();
-                        if (e.key === "Escape") handleCancelEdit();
-                      }}
-                      placeholder="Nama lengkap"
-                      aria-invalid={!!saveError}
-                      className="flex-1"
-                    />
-                    <Button
-                      size="sm"
-                      onClick={handleSave}
-                      disabled={saving}
-                      className="gap-1.5"
-                    >
-                      {saving ? (
-                        <span className="size-3.5 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />
-                      ) : (
-                        <Save className="size-3.5" />
-                      )}
-                      Simpan
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant="ghost"
-                      onClick={handleCancelEdit}
-                      disabled={saving}
-                    >
-                      <X className="size-3.5" />
-                    </Button>
-                  </div>
-                ) : (
-                  <p className="text-sm font-medium text-foreground">
-                    {profile.name}
-                  </p>
-                )}
-                {saveError && (
-                  <p className="text-xs text-red-500">{saveError}</p>
+              <div className="grid gap-5">
+                {/* Name field */}
+                <div className="grid gap-1.5">
+                  <Label htmlFor="name">Nama Lengkap</Label>
+                  {editing ? (
+                    <div className="flex gap-2">
+                      <Input
+                        id="name"
+                        ref={nameRef}
+                        value={nameInput}
+                        onChange={(e) => setNameInput(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") handleSave();
+                          if (e.key === "Escape") handleCancelEdit();
+                        }}
+                        placeholder="Nama lengkap"
+                        aria-invalid={!!saveError}
+                        className="flex-1"
+                      />
+                      <Button
+                        size="sm"
+                        onClick={handleSave}
+                        disabled={saving}
+                        className="gap-1.5"
+                      >
+                        {saving ? (
+                          <span className="size-3.5 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />
+                        ) : (
+                          <Save className="size-3.5" />
+                        )}
+                        Simpan
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        onClick={handleCancelEdit}
+                        disabled={saving}
+                      >
+                        <X className="size-3.5" />
+                      </Button>
+                    </div>
+                  ) : (
+                    <p className="text-sm font-medium text-foreground dark:text-white">
+                      {profile.name}
+                    </p>
+                  )}
+                  {saveError && (
+                    <p className="text-xs text-red-500">{saveError}</p>
+                  )}
+                </div>
+
+                {/* Email (owner only) */}
+                {isOwner && profile.email && (
+                  <>
+                    <Separator className="dark:bg-[#373a3b]" />
+                    <div className="grid gap-1.5">
+                      <Label className="flex items-center gap-1.5">
+                        <Mail className="size-3.5 text-foreground/40 dark:text-[#b0b4b5]/60" />
+                        Email
+                      </Label>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <p className="text-sm font-medium text-foreground dark:text-white">
+                          {profile.email}
+                        </p>
+                        {profile.emailVerified ? (
+                          <span className="flex items-center gap-1 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary dark:bg-[#32735f]/20 dark:text-[#84bd3a]">
+                            <CheckCircle2 className="size-3" />
+                            Terverifikasi
+                          </span>
+                        ) : (
+                          <span className="flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-[10px] font-semibold text-amber-600 dark:bg-amber-900/30 dark:text-amber-400">
+                            <Clock className="size-3" />
+                            Belum terverifikasi
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </>
                 )}
               </div>
-
-              {/* Email (owner only) */}
-              {isOwner && profile.email && (
-                <>
-                  <Separator />
-                  <div className="grid gap-1.5">
-                    <Label className="flex items-center gap-1.5">
-                      <Mail className="size-3.5 text-foreground/40" />
-                      Email
-                    </Label>
-                    <div className="flex items-center gap-2">
-                      <p className="text-sm font-medium text-foreground">
-                        {profile.email}
-                      </p>
-                      {profile.emailVerified ? (
-                        <span className="flex items-center gap-1 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">
-                          <CheckCircle2 className="size-3" />
-                          Terverifikasi
-                        </span>
-                      ) : (
-                        <span className="flex items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-[10px] font-semibold text-amber-600 dark:bg-amber-900/30 dark:text-amber-400">
-                          <Clock className="size-3" />
-                          Belum terverifikasi
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                </>
-              )}
-            </CardContent>
-          </Card>
+            </section>
+          </Reveal>
 
           {/* ── Linked Accounts Card (owner only) ───────────────────────── */}
           {isOwner && profile.providers.length > 0 && (
-            <Card>
-              <CardHeader className="border-b pb-4">
-                <CardTitle>Metode Login</CardTitle>
-                <CardDescription>
-                  Akun yang terhubung dengan profil Anda.
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex flex-col gap-3 pt-4">
-                {profile.providers.map((provider) => (
-                  <div
-                    key={provider}
-                    className="flex items-center gap-3 rounded-lg border bg-foreground/5 px-4 py-3"
-                  >
-                    {PROVIDER_ICONS[provider] ?? (
-                      <div className="size-5 rounded-full bg-foreground/20" />
-                    )}
-                    <span className="text-sm font-medium text-foreground">
-                      {PROVIDER_LABELS[provider] ?? provider}
-                    </span>
-                    <span className="ml-auto flex items-center gap-1 text-xs text-primary">
-                      <CheckCircle2 className="size-3.5" />
-                      Terhubung
-                    </span>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
+            <Reveal delay={200}>
+              <section className="rounded-2xl bg-card p-8 shadow-sm ring-1 ring-border md:p-10 dark:bg-[#191c1d] dark:shadow-black/20 dark:ring-[#373a3b]">
+                <div className="mb-6 border-b border-border pb-4 dark:border-[#373a3b]">
+                  <h3 className="text-2xl font-bold tracking-tight dark:text-white">
+                    Metode Login
+                  </h3>
+                  <p className="mt-1 text-sm text-muted-foreground dark:text-[#b0b4b5]">
+                    Akun yang terhubung dengan profil Anda.
+                  </p>
+                </div>
+                <div className="flex flex-col gap-3">
+                  {profile.providers.map((provider) => (
+                    <div
+                      key={provider}
+                      className="flex items-center gap-3 rounded-lg border bg-foreground/5 px-4 py-3 dark:border-[#373a3b] dark:bg-[#111411]/60"
+                    >
+                      {PROVIDER_ICONS[provider] ?? (
+                        <div className="size-5 rounded-full bg-foreground/20 dark:bg-[#b0b4b5]/30" />
+                      )}
+                      <span className="text-sm font-medium text-foreground dark:text-white">
+                        {PROVIDER_LABELS[provider] ?? provider}
+                      </span>
+                      <span className="ml-auto flex items-center gap-1 text-xs text-primary dark:text-[#84bd3a]">
+                        <CheckCircle2 className="size-3.5" />
+                        Terhubung
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </Reveal>
           )}
 
           {/* ── Recent Activity Placeholder ─────────────────────────────── */}
-          <Card>
-            <CardHeader className="border-b pb-4">
-              <CardTitle>Statistik</CardTitle>
-              <CardDescription>Ringkasan aktivitas pengguna.</CardDescription>
-            </CardHeader>
-            <CardContent className="grid grid-cols-2 gap-4 pt-4 sm:grid-cols-3">
-              <StatBox
-                label="Total Postingan"
-                value={profile.postCount}
-                icon={<FileText className="size-5 text-blue-500" />}
-              />
-              <StatBox
-                label="Peran"
-                value={ROLE_LABELS[profile.role] ?? profile.role}
-                icon={<Shield className="size-5 text-purple-500" />}
-              />
-              <StatBox
-                label="Bergabung"
-                value={formatDate(profile.createdAt)}
-                icon={<CalendarDays className="size-5 text-amber-500" />}
-              />
-            </CardContent>
-          </Card>
+          <Reveal delay={250}>
+            <section className="rounded-2xl bg-card p-8 shadow-sm ring-1 ring-border md:p-10 dark:bg-[#191c1d] dark:shadow-black/20 dark:ring-[#373a3b]">
+              <div className="mb-6 border-b border-border pb-4 dark:border-[#373a3b]">
+                <h3 className="text-2xl font-bold tracking-tight dark:text-white">
+                  Statistik
+                </h3>
+                <p className="mt-1 text-sm text-muted-foreground dark:text-[#b0b4b5]">
+                  Ringkasan aktivitas pengguna.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 gap-4 pt-1 sm:grid-cols-3">
+                <StatBox
+                  label="Total Postingan"
+                  value={profile.postCount}
+                  icon={<FileText className="size-5 text-[#84bd3a]" />}
+                />
+                <StatBox
+                  label="Peran"
+                  value={ROLE_LABELS[profile.role] ?? profile.role}
+                  icon={<Shield className="size-5 text-[#32735f]" />}
+                />
+                <StatBox
+                  label="Bergabung"
+                  value={formatDate(profile.createdAt)}
+                  icon={<CalendarDays className="size-5 text-[#febe0d]" />}
+                />
+              </div>
+            </section>
+          </Reveal>
         </div>
       </main>
+
+      <Footer />
     </div>
   );
 }
@@ -559,10 +594,10 @@ function StatBox({
   icon: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col gap-2 rounded-xl border bg-card p-4 shadow-xs">
+    <div className="flex flex-col gap-2 rounded-xl border bg-card p-4 shadow-sm ring-1 ring-border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:ring-primary/30 dark:border-[#373a3b] dark:bg-[#111411]/60 dark:hover:ring-[#32735f]/60">
       {icon}
-      <p className="text-lg font-bold text-foreground">{value}</p>
-      <p className="text-xs text-foreground/50">{label}</p>
+      <p className="text-lg font-bold text-foreground dark:text-white">{value}</p>
+      <p className="text-xs text-foreground/50 dark:text-[#b0b4b5]">{label}</p>
     </div>
   );
 }
