@@ -184,7 +184,7 @@ export default function AdminSidebar() {
           variant="ghost"
           size="icon"
           onClick={() => setMobileOpen(true)}
-          className="rounded-md bg-paper text-obsidian shadow-paper-sm dark:bg-[#1a1a1a] dark:text-white"
+          className="rounded-md bg-white text-[#171717] shadow-sm dark:bg-[#1a1a1a] dark:text-white"
           aria-label="Buka menu"
         >
           <Menu className="size-5" />
@@ -192,7 +192,7 @@ export default function AdminSidebar() {
       </div>
 
       {/* ── Desktop Sidebar ── */}
-      <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 border-r border-sage bg-paper lg:block dark:border-[#414943] dark:bg-[#1a1a1a]">
+      <aside className="fixed inset-y-0 left-0 z-30 hidden w-64 border-r border-sage bg-white lg:block dark:border-[#414943] dark:bg-[#1a1a1a]">
         {navContent}
       </aside>
 
@@ -214,7 +214,7 @@ export default function AdminSidebar() {
         {/* Panel */}
         <div
           className={cn(
-            "absolute inset-y-0 left-0 w-64 bg-paper transition-transform duration-200 ease-in-out dark:bg-[#1a1a1a]",
+            "absolute inset-y-0 left-0 w-64 bg-white transition-transform duration-200 ease-in-out dark:bg-[#1a1a1a]",
             mobileOpen ? "translate-x-0" : "-translate-x-full",
           )}
         >
