@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { BerandaResmi } from "./beranda-resmi";
 import { BerandaDark } from "./beranda-dark";
@@ -43,6 +44,16 @@ interface BerandaPageClientProps {
 
 export default function BerandaPageClient({ data }: BerandaPageClientProps) {
   const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
+
+  // Hindari hydration mismatch: saat SSR / sebelum mounted,
+  // render kosong dulu agar server & client menghasilkan HTML yang sama.
+  if (!mounted) return null;
 
   return resolvedTheme === "dark" ? (
     <BerandaDark data={data} />
