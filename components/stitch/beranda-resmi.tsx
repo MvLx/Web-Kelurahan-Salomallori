@@ -24,8 +24,7 @@ import {
 } from "lucide-react";
 import { SiInstagram } from "react-icons/si";
 import { NavbarBeranda } from "@/components/custom/navbar-beranda";
-
-const YOUTUBE_VIDEO_ID = process.env.NEXT_PUBLIC_YOUTUBE_SEJARAH;
+import { YOUTUBE_VIDEO_ID, VideoSejarah } from "./video-sejarah";
 
 export function BerandaResmi({ data }: { data: BerandaData }) {
   const stats = [
@@ -195,19 +194,9 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
               </h2>
             </Reveal>
             <Reveal delay={100}>
-              {YOUTUBE_VIDEO_ID ? (
-                <div className="relative mb-6 w-full overflow-hidden rounded-xl">
-                  <div className="aspect-video w-full">
-                    <iframe
-                      src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?rel=0&modestbranding=1&controls=1`}
-                      title="Video Sejarah Kelurahan Salomallori"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      allowFullScreen
-                      className="h-full w-full"
-                    />
-                  </div>
-                </div>
-              ) : data.fotoSejarah ? (
+              <VideoSejarah />
+              {!YOUTUBE_VIDEO_ID &&
+                (data.fotoSejarah ? (
                 <div className="relative mb-6 h-[220px] w-full overflow-hidden rounded-xl sm:h-[350px] lg:h-[400px]">
                   <img
                     src={data.fotoSejarah}
@@ -217,7 +206,7 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
                 </div>
               ) : (
                 <div className="mb-6 h-[220px] w-full overflow-hidden rounded-xl bg-[#dee2de]/50 dark:bg-[#414943]/50 sm:h-[350px] lg:h-[400px]" />
-              )}
+              ))}
             </Reveal>
             <Reveal delay={200}>
               <p className="mb-6 text-[16px] leading-[1.6] text-[#666666] dark:text-[#b0b4b5]">
