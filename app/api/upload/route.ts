@@ -17,12 +17,18 @@ cloudinary.config({
 });
 
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/gif", "image/webp"];
-const MAX_SIZE_BYTES = 5 * 1024 * 1024; // 5 MB
+// Note: Vercel serverless functions limit request bodies to ~4.5 MB,
+// so we cap the upload at 4 MB to avoid the connection being reset
+// before the request ever reaches this route.
+const MAX_SIZE_BYTES = 4 * 1024 * 1024; // 4 MB
+
+// Allow up to 30 seconds for the Cloudinary upload to complete.
+export const maxDuration = 30;
 
 // POST /api/upload
 // Uploads an image file to Cloudinary. Requires authentication.
 // Body: multipart/form-data — fields: file (image), folder (optional, default: "portal-berita")
-// Allowed types: JPG, PNG, GIF, WebP. Max size: 5 MB.
+// Allowed types: JPG, PNG, GIF, WebP. Max size: 4 MB.
 export async function POST(req: NextRequest) {
   try {
     const authResult = await requireAuth();
@@ -60,7 +66,7 @@ export async function POST(req: NextRequest) {
 
     if (file.size > MAX_SIZE_BYTES) {
       return NextResponse.json(
-        { error: "Ukuran file melebihi batas 5 MB." },
+        { error: "Ukuran file melebihi batas 4 MB." },
         { status: 400 },
       );
     }

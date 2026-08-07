@@ -20,6 +20,8 @@ interface ImageUploadProps {
   className?: string;
 }
 
+const MAX_SIZE_BYTES = 4 * 1024 * 1024; // 4 MB — match server-side limit
+
 export function ImageUpload({
   value,
   onChange,
@@ -39,6 +41,14 @@ export function ImageUpload({
     const file = e.target.files?.[0];
     if (!file) return;
 
+    // Validate size client-side first so a too-large file produces a clear
+    // message instead of a network error (Vercel resets the connection
+    // for request bodies over ~4.5 MB before the API route can respond).
+    if (file.size > MAX_SIZE_BYTES) {
+      toast.error("Ukuran file melebihi batas 4 MB.");
+      return;
+    }
+
     setUploading(true);
 
     try {
@@ -47,15 +57,20 @@ export function ImageUpload({
       body.append("folder", folder);
 
       const res = await fetch("/api/upload", { method: "POST", body });
-      const json = (await res.json()) as { url?: string; error?: string };
+      const json = (await res.json().catch(() => null)) as {
+        url?: string;
+        error?: string;
+      } | null;
 
       if (!res.ok) {
-        toast.error(json.error ?? "Gagal mengunggah gambar.");
+        toast.error(json?.error ?? "Gagal mengunggah gambar.");
         return;
       }
-      if (json.url) onChange(json.url);
+      if (json?.url) onChange(json.url);
     } catch {
-      toast.error("Tidak dapat menghubungi server.");
+      toast.error(
+        "Koneksi terputus saat mengunggah. Pastikan koneksi internet stabil dan file di bawah 4 MB.",
+      );
     } finally {
       setUploading(false);
       // reset so the same file can be re-selected
@@ -147,7 +162,7 @@ export function ImageUpload({
           </p>
           {!uploading && (
             <p className="text-xs opacity-70">
-              JPG, PNG, GIF, WebP · maks 5 MB
+              JPG, PNG, GIF, WebP · maks 4 MB
             </p>
           )}
         </button>
