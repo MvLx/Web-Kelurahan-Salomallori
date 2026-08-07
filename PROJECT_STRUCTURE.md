@@ -403,7 +403,7 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 
 ### 5.6 UI Components (`components/ui/` — shadcn/ui)
 
-`avatar`, `badge`, `button`, `calendar`, `card`, `dialog`, `dropdown-menu`, `field`, `input`, `label`, `navigation-menu`, `popover`, `select`, `separator`, `skeleton`, `sonner`, `table`, `tabs`, `toggle`
+`avatar`, `badge`, `button`, `calendar`, `card`, `dialog`, `dropdown-menu`, `field`, `input`, `label`, `navigation-menu`, `popover`, `select`, `separator`, `sheet`, `skeleton`, `sonner`, `table`, `tabs`, `toggle`
 
 ---
 
