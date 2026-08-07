@@ -684,14 +684,6 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
               </li>
               <li>
                 <Link
-                  href="/profil/visi-misi"
-                  className="link-underline text-white/60 transition-colors hover:text-white [&::after]:bg-white"
-                >
-                  Visi & Misi
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/umkm"
                   className="link-underline text-white/60 transition-colors hover:text-white [&::after]:bg-white"
                 >
@@ -718,13 +710,6 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
                 <div>
                   <p className="text-white/80">Senin - Jumat</p>
                   <p className="text-white/60">07.30 - 16.00 WITA</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-2">
-                <Clock size={16} className="mt-0.5 shrink-0 text-[#febe0d]" />
-                <div>
-                  <p className="text-white/80">Sabtu</p>
-                  <p className="text-white/60">07.30 - 12.00 WITA</p>
                 </div>
               </div>
             </div>
@@ -787,20 +772,9 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
               © {new Date().getFullYear()} Website Kelurahan Salomallori. Hak
               cipta dilindungi.
             </p>
-            <div className="flex gap-4">
-              <Link
-                href="/aduan"
-                className="link-underline transition-colors hover:text-white [&::after]:bg-white"
-              >
-                Kontak
-              </Link>
-              <Link
-                href="/"
-                className="link-underline transition-colors hover:text-white [&::after]:bg-white"
-              >
-                Beranda
-              </Link>
-            </div>
+            <p>
+              Dibuat dan dikembangkan oleh KKN-T 116 Universitas Hasanuddin
+            </p>
           </div>
         </div>
       </footer>
