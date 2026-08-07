@@ -121,7 +121,7 @@ export function NavbarBeranda() {
             : "border border-transparent bg-[#0b2b40]/30"
         }`}
       >
-        {/* Logo — tetap di kiri, teks nama hanya tampil di >= sm */}
+        {/* Logo — tetap di kiri, teks nama hanya tampil di >= md (bersama menu desktop) */}
         <Link href="/" className="flex shrink-0 items-center gap-3">
           <Image
             src="/images/logo_kab.png"
@@ -131,7 +131,7 @@ export function NavbarBeranda() {
             className="rounded-sm object-contain"
             priority
           />
-          <div className="hidden flex-col leading-tight sm:flex">
+          <div className="hidden flex-col leading-tight md:flex">
             <span className="text-[14px] font-extrabold tracking-tight text-white">
               Kelurahan Salomallori
             </span>
@@ -222,7 +222,7 @@ export function NavbarBeranda() {
                 <Button
                   variant="ghost"
                   aria-label="Buka menu navigasi"
-                  className="size-10 rounded-full p-0 text-white hover:bg-white/10 hover:text-white focus-visible:ring-2 focus-visible:ring-white/50"
+                  className="size-10 rounded-full bg-white/10 p-0 text-white hover:bg-white/15 hover:text-white focus-visible:ring-2 focus-visible:ring-white/50"
                 >
                   <Menu className="size-5" />
                 </Button>
