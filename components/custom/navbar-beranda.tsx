@@ -75,6 +75,33 @@ export function NavbarBeranda() {
   const isDark = resolvedTheme === "dark";
   const dropdownBorder = isDark ? "border-[#373a3b]" : "border-white/10";
 
+  // Gaya drawer — berbeda untuk light & dark agar lebih immersive
+  const drawerClasses = isDark
+    ? "border-l border-white/10 bg-[#0b2b40]/95 text-white data-[state=open]:slide-in-from-right"
+    : "border-l border-gray-200 bg-white/95 text-[#0b2b40] backdrop-blur-xl data-[state=open]:slide-in-from-right";
+  const headerBorder = isDark ? "border-white/10" : "border-gray-200";
+  const headerTitle = isDark ? "text-white" : "text-[#0b2b40]";
+  const headerSubtitle = isDark ? "text-white/70" : "text-[#0b2b40]/60";
+  const navItem = isDark
+    ? "text-white/90 hover:bg-white/10 hover:text-white"
+    : "text-[#0b2b40]/90 hover:bg-[#0b2b40]/5 hover:text-[#0b2b40]";
+  const navItemSub = isDark
+    ? "text-white/70 hover:bg-white/10 hover:text-white"
+    : "text-[#0b2b40]/70 hover:bg-[#0b2b40]/5 hover:text-[#0b2b40]";
+  const actionButton = isDark
+    ? "bg-white/10 text-white hover:bg-white/15"
+    : "bg-[#0b2b40]/5 text-[#0b2b40] hover:bg-[#0b2b40]/10";
+  const avatarFallback = isDark ? "bg-white/20 text-white" : "bg-[#0b2b40]/10 text-[#0b2b40]";
+  const userName = isDark ? "text-white" : "text-[#0b2b40]";
+  const userEmail = isDark ? "text-white/60" : "text-[#0b2b40]/60";
+  const bottomBorder = isDark ? "border-white/10" : "border-gray-200";
+  const logoutButton = isDark
+    ? "text-red-300 hover:bg-white/10 hover:text-red-200"
+    : "text-red-500 hover:bg-red-50 hover:text-red-600";
+  const daftarButton = isDark
+    ? "bg-white/10 text-white hover:bg-white/15"
+    : "bg-[#0b2b40]/5 text-[#0b2b40] hover:bg-[#0b2b40]/10";
+
   function toggleMenu(menu: "profil" | "publikasi") {
     setOpenMenu((current) => (current === menu ? null : menu));
   }
@@ -188,7 +215,7 @@ export function NavbarBeranda() {
         </div>
 
         <div className="flex items-center gap-1 sm:gap-2">
-          {/* Hamburger — tampil hanya di mobile (< md), sejajar dengan profil di kanan */}
+          {/* Hamburger — tampil hanya di mobile (< md), di kanan sejajar profil */}
           <div className="flex items-center md:hidden">
             <Sheet>
               <SheetTrigger asChild>
@@ -201,11 +228,16 @@ export function NavbarBeranda() {
                 </Button>
               </SheetTrigger>
               <SheetContent
-                side="left"
+                side="right"
                 showCloseButton={false}
-                className="w-[85%] max-w-[320px] border-r border-white/10 bg-[#0b2b40] p-0 text-white data-[state=open]:slide-in-from-left"
+                className={cn("w-[85%] max-w-[320px] p-0", drawerClasses)}
               >
-                <SheetHeader className="border-b border-white/10 px-4 py-5 text-left">
+                <SheetHeader
+                  className={cn(
+                    "border-b px-4 py-5 text-left",
+                    headerBorder
+                  )}
+                >
                   <SheetTitle className="sr-only">
                     Menu Navigasi Kelurahan Salomallori
                   </SheetTitle>
@@ -218,10 +250,20 @@ export function NavbarBeranda() {
                       className="rounded-sm object-contain"
                     />
                     <div className="flex flex-col leading-tight">
-                      <span className="text-sm font-extrabold tracking-tight text-white">
+                      <span
+                        className={cn(
+                          "text-sm font-extrabold tracking-tight",
+                          headerTitle
+                        )}
+                      >
                         Kelurahan Salomallori
                       </span>
-                      <span className="text-[10px] font-bold tracking-wide text-white/70">
+                      <span
+                        className={cn(
+                          "text-[10px] font-bold tracking-wide",
+                          headerSubtitle
+                        )}
+                      >
                         Kec. Dua Pitue, Kab. Sidenreng Rappang
                       </span>
                     </div>
@@ -232,7 +274,10 @@ export function NavbarBeranda() {
                   <SheetClose asChild>
                     <Link
                       href="/"
-                      className="flex items-center rounded-lg px-4 py-3.5 text-sm font-semibold text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                      className={cn(
+                        "flex items-center rounded-lg px-4 py-3.5 text-sm font-semibold transition-colors",
+                        navItem
+                      )}
                     >
                       Beranda
                     </Link>
@@ -242,7 +287,10 @@ export function NavbarBeranda() {
                   <div>
                     <button
                       onClick={() => toggleMenu("profil")}
-                      className="flex w-full items-center justify-between rounded-lg px-4 py-3.5 text-sm font-semibold text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                      className={cn(
+                        "flex w-full items-center justify-between rounded-lg px-4 py-3.5 text-sm font-semibold transition-colors",
+                        navItem
+                      )}
                       aria-expanded={openMenu === "profil"}
                     >
                       Profil
@@ -259,7 +307,10 @@ export function NavbarBeranda() {
                           <SheetClose key={item.href} asChild>
                             <Link
                               href={item.href}
-                              className="block rounded-lg px-4 py-2.5 text-[13px] font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+                              className={cn(
+                                "block rounded-lg px-4 py-2.5 text-[13px] font-medium transition-colors",
+                                navItemSub
+                              )}
                             >
                               {item.label}
                             </Link>
@@ -272,7 +323,10 @@ export function NavbarBeranda() {
                   <SheetClose asChild>
                     <Link
                       href="/umkm"
-                      className="flex items-center rounded-lg px-4 py-3.5 text-sm font-semibold text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                      className={cn(
+                        "flex items-center rounded-lg px-4 py-3.5 text-sm font-semibold transition-colors",
+                        navItem
+                      )}
                     >
                       UMKM
                     </Link>
@@ -282,7 +336,10 @@ export function NavbarBeranda() {
                   <div>
                     <button
                       onClick={() => toggleMenu("publikasi")}
-                      className="flex w-full items-center justify-between rounded-lg px-4 py-3.5 text-sm font-semibold text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                      className={cn(
+                        "flex w-full items-center justify-between rounded-lg px-4 py-3.5 text-sm font-semibold transition-colors",
+                        navItem
+                      )}
                       aria-expanded={openMenu === "publikasi"}
                     >
                       Publikasi
@@ -299,7 +356,10 @@ export function NavbarBeranda() {
                           <SheetClose key={item.href} asChild>
                             <Link
                               href={item.href}
-                              className="block rounded-lg px-4 py-2.5 text-[13px] font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+                              className={cn(
+                                "block rounded-lg px-4 py-2.5 text-[13px] font-medium transition-colors",
+                                navItemSub
+                              )}
                             >
                               {item.label}
                             </Link>
@@ -312,7 +372,10 @@ export function NavbarBeranda() {
                   <SheetClose asChild>
                     <Link
                       href="/aduan"
-                      className="flex items-center rounded-lg px-4 py-3.5 text-sm font-semibold text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                      className={cn(
+                        "flex items-center rounded-lg px-4 py-3.5 text-sm font-semibold transition-colors",
+                        navItem
+                      )}
                     >
                       Kontak
                     </Link>
@@ -320,7 +383,7 @@ export function NavbarBeranda() {
                 </div>
 
                 {/* Bagian user/auth di bawah drawer */}
-                <div className="border-t border-white/10 p-4">
+                <div className={cn("border-t p-4", bottomBorder)}>
                   {mounted && session ? (
                     <div className="space-y-3">
                       <div className="flex items-center gap-3">
@@ -329,15 +392,27 @@ export function NavbarBeranda() {
                             src={session.user.image ?? undefined}
                             alt={session.user.name ?? "Pengguna"}
                           />
-                          <AvatarFallback className="bg-white/20 text-xs text-white">
+                          <AvatarFallback
+                            className={cn("text-xs", avatarFallback)}
+                          >
                             {getInitials(session.user.name)}
                           </AvatarFallback>
                         </Avatar>
                         <div className="min-w-0 flex-1 leading-tight">
-                          <p className="truncate text-sm font-semibold text-white">
+                          <p
+                            className={cn(
+                              "truncate text-sm font-semibold",
+                              userName
+                            )}
+                          >
                             {session.user.name}
                           </p>
-                          <p className="truncate text-xs text-white/60">
+                          <p
+                            className={cn(
+                              "truncate text-xs",
+                              userEmail
+                            )}
+                          >
                             {session.user.email}
                           </p>
                         </div>
@@ -347,7 +422,10 @@ export function NavbarBeranda() {
                           <SheetClose asChild>
                             <Link
                               href="/dashboard"
-                              className="flex items-center gap-2 rounded-lg bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/15"
+                              className={cn(
+                                "flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors",
+                                actionButton
+                              )}
                             >
                               <LayoutDashboard className="size-4" />
                               Dashboard
@@ -357,7 +435,10 @@ export function NavbarBeranda() {
                         <SheetClose asChild>
                           <Link
                             href={`/akun/${session.user.id}`}
-                            className="flex items-center gap-2 rounded-lg bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/15"
+                            className={cn(
+                              "flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors",
+                              actionButton
+                            )}
                           >
                             <User className="size-4" />
                             Profil
@@ -366,7 +447,10 @@ export function NavbarBeranda() {
                         <Button
                           onClick={handleSignOut}
                           variant="ghost"
-                          className="flex h-auto w-full justify-start gap-2 rounded-lg bg-transparent px-4 py-2.5 text-sm font-semibold text-red-300 transition-colors hover:bg-white/10 hover:text-red-200"
+                          className={cn(
+                            "flex h-auto w-full justify-start gap-2 rounded-lg bg-transparent px-4 py-2.5 text-sm font-semibold transition-colors",
+                            logoutButton
+                          )}
                         >
                           <LogOut className="size-4" />
                           Keluar
@@ -387,7 +471,10 @@ export function NavbarBeranda() {
                       <SheetClose asChild>
                         <Link
                           href="/auth/signup"
-                          className="flex items-center justify-center gap-2 rounded-lg bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/15"
+                          className={cn(
+                            "flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors",
+                            daftarButton
+                          )}
                         >
                           <UserPlus className="size-4" />
                           Daftar
