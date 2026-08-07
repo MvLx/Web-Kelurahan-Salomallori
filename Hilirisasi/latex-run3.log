@@ -1,0 +1,851 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex.fmt)
+ restricted \write18 enabled.
+entering extended mode
+(d:/Web_Salomallori/Hilirisasi/Modul.tex
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-05-26>
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/base\report.cls
+Document Class: report 2025/01/22 v1.4n Standard LaTeX document class
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/base\size12.clo))
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
+*************************************
+* Local config file bblopts.cfg used
+*
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cfg)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/id\babe
+l-indonesian.tex)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/babel-indonesian\indon
+esian.ldf))
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty))
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg)
+)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.
+cfg)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.de
+f)))
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.st
+y)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefin
+ekeys.sty)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.
+sty
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty)
+
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmd
+s.sty
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.
+sty)))
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty)
+
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\getti
+tlestring.sty
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.st
+y)))
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty)
+
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\stringenc.
+sty)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcal
+c.sty)))
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfi
+lecheck.sty
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\unique
+counter.sty)))
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
+)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx
+)) (C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty))
+
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/caption\subcaption.sty
+)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty)
+ (C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/tools\longtable.sty)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/tools\tabularx.sty)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty)
+ (C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
+)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/titlesec\titlesec.sty)
+ (C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty))
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty))
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty)
+ (C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty)
+ (C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/setspace\setspace.sty
+) (C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/parskip\parskip.sty)
+
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pd
+ftex.def) (d:\Web_Salomallori\Hilirisasi\Modul.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.m
+kii
+[Loading MPS to PDF converter (version 2006.09.02).]
+)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-
+base.sty
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.
+cfg)) (d:\Web_Salomallori\Hilirisasi\Modul.out)
+(d:\Web_Salomallori\Hilirisasi\Modul.out)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/caption\ltcaption.sty)
+
+LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <20> not available
+(Font)              size <20.74> substituted on input line 103.
+
+
+LaTeX Font Warning: Font shape `T1/cmr/bx/n' in size <20> not available
+(Font)              size <20.74> substituted on input line 103.
+
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd)
+Overfull \hbox (92.60411pt too wide) in paragraph at lines 116--121
+ [][] 
+[1{C:/Users/LENOVO/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.163 \tableofcontents
+                       [1] (d:\Web_Salomallori\Hilirisasi\Modul.toc [2]
+Overfull \hbox (3.51814pt too wide) in paragraph at lines 54--54
+ [] [][][]\T1/cmr/bx/n/12 LAMPIRAN B: KA-MUS DA-TA / SKE-MA DA-TA-BA-SE PRIS- 
+) [3] (d:\Web_Salomallori\Hilirisasi\Modul.lof) [4]
+(d:\Web_Salomallori\Hilirisasi\Modul.lot) [5]
+Bab 1.
+[6] [7]
+Bab 2.
+
+Overfull \hbox (2.08304pt too wide) in paragraph at lines 239--240
+[]\T1/cmr/m/n/12 Desain vi-su-al web-si-te me-ne-rapk-an ga-ya \T1/cmr/m/it/12 
+Editorial-First\T1/cmr/m/n/12 , \T1/cmr/m/it/12 Mi-ni-ma-lism\T1/cmr/m/n/12 , d
+an \T1/cmr/m/it/12 Glass-
+[8]
+Overfull \vbox (491.38313pt too high) has occurred while \output is active
+[9 <d:/Web_Salomallori/Hilirisasi/images/beranda.png (PNG copy)>]
+Overfull \hbox (16.04251pt too wide) in paragraph at lines 259--259
+|[]\T1/cmr/bx/n/17.28 Pembagian Hak Ak-ses Peng-gu-na (\T1/cmr/bx/it/17.28 Role
+-Based
+[10] [11]
+Bab 3.
+
+Overfull \hbox (6.33708pt too wide) in paragraph at lines 294--294
+|\T1/cmr/bx/n/24.88 PERSYARATAN & KE-BU-TUH-AN
+
+Overfull \hbox (17.60924pt too wide) in paragraph at lines 296--296
+|[]\T1/cmr/bx/n/17.28 Kebutuhan Per-ang-kat Peng-gu-na Umum (War-
+
+Package tabularx Warning: X Columns too narrow (table too wide)
+(tabularx)                 on input line 313.
+
+
+Overfull \hbox (56.76387pt too wide) in paragraph at lines 313--313
+[]|\T1/cmr/bx/n/12 Keterangan| 
+
+Overfull \hbox (22.25427pt too wide) in paragraph at lines 313--313
+[]|\T1/cmr/m/n/12 Sistem
+
+Overfull \hbox (1.95784pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 di-
+
+Overfull \hbox (9.13666pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 ran-
+
+Overfull \hbox (11.74712pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 cang
+
+Overfull \hbox (6.59145pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 res-
+
+Overfull \hbox (11.4208pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 pon-
+
+Underfull \hbox (badness 10000) in paragraph at lines 313--313
+\T1/cmr/m/n/12 sif
+
+Overfull \hbox (2.02312pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 se-
+
+Overfull \hbox (14.35759pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 hing-
+
+Overfull \hbox (12.39975pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 tam-
+
+Overfull \hbox (1.3052pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 pil
+
+Overfull \hbox (4.56833pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 op-
+
+Underfull \hbox (badness 10000) in paragraph at lines 313--313
+\T1/cmr/m/n/12 ti-
+
+Overfull \hbox (7.17879pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 mal
+
+Underfull \hbox (badness 10000) in paragraph at lines 313--313
+\T1/cmr/m/n/12 di
+
+Overfull \hbox (2.02312pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 se-
+
+Overfull \hbox (10.11559pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 mua
+
+Overfull \hbox (15.98914pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 ukur-
+
+Overfull \hbox (0.65262pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 an
+
+Overfull \hbox (1.30522pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 la-
+
+Overfull \hbox (4.56831pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 yar| 
+
+Overfull \hbox (13.76607pt too wide) in paragraph at lines 313--313
+[]|\T1/cmr/m/n/12 Versi
+
+Overfull \hbox (6.5262pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 ter-
+
+Overfull \hbox (4.56833pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 ba-
+
+Underfull \hbox (badness 10000) in paragraph at lines 313--313
+\T1/cmr/m/n/12 ru
+
+Overfull \hbox (12.39973pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 yang
+
+Overfull \hbox (13.705pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 men-
+
+Overfull \hbox (5.22095pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 du-
+
+Overfull \hbox (13.37866pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 kung
+
+Overfull \hbox (13.77023pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 stan-
+
+Overfull \hbox (5.22095pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 dar
+
+Overfull \hbox (8.15775pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 web
+
+Overfull \hbox (7.83142pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 mo-
+
+Overfull \hbox (11.09453pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 dern| 
+
+Overfull \hbox (44.86537pt too wide) in paragraph at lines 313--313
+[]|\T1/cmr/m/n/12 Diperlukan
+
+Overfull \hbox (5.22095pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 un-
+
+Overfull \hbox (5.54724pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 tuk
+
+Overfull \hbox (7.17882pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 me-
+
+Overfull \hbox (8.15773pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 mu-
+
+Underfull \hbox (badness 10000) in paragraph at lines 313--313
+\T1/cmr/m/n/12 at
+
+Overfull \hbox (10.44188pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 kon-
+
+Overfull \hbox (7.83142pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 ten,
+
+Overfull \hbox (13.70499pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 gam-
+
+Overfull \hbox (8.48402pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 bar,
+
+Overfull \hbox (7.1788pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 dan
+
+Overfull \hbox (4.24202pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 pe-
+
+Overfull \hbox (17.74702pt too wide) in paragraph at lines 313--313
+[]|\T1/cmr/m/n/12 Akses
+
+Overfull \hbox (10.44188pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 kon-
+
+Overfull \hbox (4.56834pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 ten
+
+Overfull \hbox (5.22095pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 pu-
+
+Overfull \hbox (7.50507pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 blik
+
+Overfull \hbox (4.56833pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 da-
+
+Overfull \hbox (5.22095pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 pat
+
+Overfull \hbox (1.95784pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 di-
+
+Overfull \hbox (1.30522pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 la-
+
+Overfull \hbox (11.09448pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 kuk-
+
+Overfull \hbox (0.65262pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 an
+
+Overfull \hbox (9.13666pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 tan-
+
+Overfull \hbox (0.65262pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 pa
+
+Overfull \hbox (1.30522pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 lo-
+
+Overfull \hbox (3.9157pt too wide) in paragraph at lines 313--313
+\T1/cmr/m/n/12 gin| 
+
+Overfull \hbox (21.59108pt too wide) in alignment at lines 313--313
+[][][] 
+[12]
+Overfull \vbox (290.58372pt too high) has occurred while \output is active
+[13]
+Overfull \hbox (58.68489pt too wide) in paragraph at lines 333--333
+[]|\T1/cmr/bx/n/12 Keterangan| 
+
+Overfull \hbox (47.83058pt too wide) in paragraph at lines 333--333
+[]|\T1/cmr/m/n/12 Disarankan
+
+Overfull \hbox (3.22624pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 la-
+
+Overfull \hbox (6.48933pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 yar
+
+Overfull \hbox (7.14195pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 mi-
+
+Overfull \hbox (3.87886pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 ni-
+
+Overfull \hbox (9.09981pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 mal
+
+Overfull \hbox (1.92102pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 13
+
+Overfull \hbox (3.87886pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 in-
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--333
+\T1/cmr/m/n/12 ci
+
+Overfull \hbox (7.14197pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 un-
+
+Overfull \hbox (7.46826pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 tuk
+
+Overfull \hbox (5.18411pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 ke-
+
+Overfull \hbox (12.03659pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 nya-
+
+Overfull \hbox (16.27863pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 man-
+
+Overfull \hbox (2.57364pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 an
+
+Overfull \hbox (21.49959pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 meng-
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--333
+\T1/cmr/m/n/12 e-
+
+Overfull \hbox (3.22624pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 lo-
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--333
+\T1/cmr/m/n/12 la
+
+Overfull \hbox (6.48935pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 da-
+
+Overfull \hbox (17.6491pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 shbo-
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--333
+\T1/cmr/m/n/12 a-
+
+Overfull \hbox (1.2684pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 rd| 
+
+Overfull \hbox (22.47432pt too wide) in paragraph at lines 333--333
+[]|\T1/cmr/m/n/12 Untuk
+
+Overfull \hbox (21.49959pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 meng-
+
+Overfull \hbox (6.16302pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 ak-
+
+Overfull \hbox (4.662pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 ses
+
+Overfull \hbox (6.48935pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 ha-
+
+Overfull \hbox (13.01552pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 lam-
+
+Overfull \hbox (2.57364pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 an
+
+Overfull \hbox (6.48935pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 da-
+
+Overfull \hbox (17.6491pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 shbo-
+
+Underfull \hbox (badness 10000) in paragraph at lines 333--333
+\T1/cmr/m/n/12 a-
+
+Overfull \hbox (1.2684pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 rd| 
+
+Overfull \hbox (44.6327pt too wide) in paragraph at lines 333--333
+[]|\T1/cmr/m/n/12 Difasilitasi
+
+Overfull \hbox (11.05768pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 oleh
+
+Overfull \hbox (6.61983pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 sis-
+
+Overfull \hbox (9.75246pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 tem
+
+Overfull \hbox (26.55531pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 Better-
+
+Overfull \hbox (16.60077pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 Auth| 
+
+Overfull \hbox (46.78639pt too wide) in paragraph at lines 333--333
+[]|\T1/cmr/m/n/12 Diperlukan
+
+Overfull \hbox (4.59674pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 sa-
+
+Overfull \hbox (0.61578pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 at
+
+Overfull \hbox (9.09984pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 me-
+
+Overfull \hbox (26.06787pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 nyimp-
+
+Overfull \hbox (2.57364pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 an
+
+Overfull \hbox (12.3629pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 kon-
+
+Overfull \hbox (6.48936pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 ten
+
+Overfull \hbox (9.09982pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 dan
+
+Overfull \hbox (21.49959pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 meng-
+
+Overfull \hbox (13.01553pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 ung-
+
+Overfull \hbox (8.4472pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 gah
+
+Overfull \hbox (9.09984pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 me-
+
+Overfull \hbox (5.83672pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 dia
+
+Overfull \hbox (1.2684pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 ke
+
+Overfull \hbox (11.71028pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 Clo-
+
+Overfull \hbox (0.61578pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 u-
+
+Overfull \hbox (3.87886pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 di-
+
+Overfull \hbox (13.34183pt too wide) in paragraph at lines 333--333
+\T1/cmr/m/n/12 nary| 
+[14]
+Overfull \vbox (232.58372pt too high) has occurred while \output is active
+[15]
+Overfull \hbox (11.85568pt too wide) in paragraph at lines 357--358
+\T1/cmr/m/n/12 Administrator dan Edi-tor meng-e-lo-la se-lu-ruh kon-ten me-la-l
+ui ha-lam-an \T1/cmtt/m/n/12 /dashboard
+[16] [17 <d:/Web_Salomallori/Hilirisasi/images/login.png (PNG copy)>]
+Bab 4.
+
+Overfull \hbox (14.00757pt too wide) in paragraph at lines 369--369
+|\T1/cmr/bx/n/24.88 LANGKAH-LANGKAH PENG-GU-
+[18]
+Overfull \vbox (491.38313pt too high) has occurred while \output is active
+[19] [20] [21 <d:/Web_Salomallori/Hilirisasi/images/sejarah-kelurahan.png (PNG 
+copy)> <d:/Web_Salomallori/Hilirisasi/images/pejabat-kelurahan.png (PNG copy)>]
+
+Overfull \vbox (66.60364pt too high) has occurred while \output is active
+[22 <d:/Web_Salomallori/Hilirisasi/images/infografis.png (PNG copy)>] [23 <d:/W
+eb_Salomallori/Hilirisasi/images/berita.png (PNG copy)> <d:/Web_Salomallori/Hil
+irisasi/images/galeri.png (PNG copy)>] [24 <d:/Web_Salomallori/Hilirisasi/image
+s/umkm.png (PNG copy)>] [25]
+Overfull \vbox (2.36478pt too high) has occurred while \output is active
+[26 <d:/Web_Salomallori/Hilirisasi/images/kontak.png (PNG copy)>] [27] [28 <d:/
+Web_Salomallori/Hilirisasi/images/dashboard.png (PNG copy)>] [29] [30 <d:/Web_S
+alomallori/Hilirisasi/images/admin-profil-desa.png (PNG copy)>] [31 <d:/Web_Sal
+omallori/Hilirisasi/images/admin-posts.png (PNG copy)> <d:/Web_Salomallori/Hili
+risasi/images/admin-posts-create.png (PNG copy)>] [32 <d:/Web_Salomallori/Hilir
+isasi/images/admin-galeri.png (PNG copy)>] [33 <d:/Web_Salomallori/Hilirisasi/i
+mages/admin-umkm.png (PNG copy)>]
+Overfull \hbox (1.66379pt too wide) in paragraph at lines 615--615
+|[]\T1/cmr/bx/n/14.4 Mengelola Kon-tak & Pes-an Ma-suk (Khu-sus Admin)| 
+[34 <d:/Web_Salomallori/Hilirisasi/images/admin-infografis.png (PNG copy)>]
+[35 <d:/Web_Salomallori/Hilirisasi/images/admin-kontak.png (PNG copy)>]
+[36 <d:/Web_Salomallori/Hilirisasi/images/admin-messages.png (PNG copy)>]
+Bab 5.
+
+Overfull \hbox (11.37608pt too wide) in paragraph at lines 660--660
+|\T1/cmr/bx/n/24.88 STUDI KA-SUS / CON-TOH PRAK-
+
+Underfull \hbox (badness 1629) in paragraph at lines 692--692
+[]|\T1/cmr/m/n/12 Label sum-bu ka-te-go-ri
+
+Underfull \hbox (badness 2726) in paragraph at lines 692--692
+[]|\T1/cmr/m/n/12 Kumpulan da-ta yang
+
+Overfull \hbox (39.73126pt too wide) in paragraph at lines 692--692
+[]|\T1/cmtt/m/n/12 datasets[].backgroundColor| 
+
+Underfull \hbox (badness 10000) in paragraph at lines 692--692
+[]|\T1/cmr/m/n/12 Warna ba-tang/area
+[37] [38]
+Overfull \vbox (66.60364pt too high) has occurred while \output is active
+[39] [40] [41] [42] [43] [44]
+Bab 6.
+[45] [46]
+Overfull \hbox (21.30257pt too wide) in paragraph at lines 862--863
+[]\T1/cmr/m/n/12 Tailwind CSS. (2026). \T1/cmr/m/it/12 Ta-i-lwind CSS Do-cu-men
+-ta-tion\T1/cmr/m/n/12 . [][]$\T1/cmtt/m/n/12 https : / / tailwindcss .
+
+Overfull \hbox (32.06055pt too wide) in paragraph at lines 863--864
+[]\T1/cmr/m/n/12 Better Au-th. (2026). \T1/cmr/m/it/12 Bet-ter Au-th Do-cu-men-
+ta-tion\T1/cmr/m/n/12 . [][]$\T1/cmtt/m/n/12 https : / / www . better-[]auth .
+[47]
+Lampiran A.
+
+Overfull \hbox (39.52544pt too wide) in paragraph at lines 877--877
+|\T1/cmr/bx/n/24.88 LAMPIRAN A: PE-TA \T1/cmr/bx/it/24.88 RO-U-TE MAP-
+
+Overfull \hbox (29.27841pt too wide) in paragraph at lines 877--877
+\T1/cmr/bx/it/24.88 PING \T1/cmr/bx/n/24.88 SE-LU-RUH HA-LAM-AN WEB-
+
+Overfull \hbox (10.94623pt too wide) in paragraph at lines 877--877
+\T1/cmr/bx/n/24.88 SI-TE PU-BLIK & DAS-BOR ADMIN| 
+
+Overfull \hbox (16.13216pt too wide) in alignment at lines 883--888
+ [] [] [] [] 
+
+Overfull \hbox (16.13216pt too wide) in alignment at lines 888--892
+ [] [] [] [] 
+
+Overfull \hbox (16.13216pt too wide) in alignment at lines 892--894
+ [] [] [] [] 
+
+Overfull \hbox (34.83452pt too wide) in paragraph at lines 897--897
+[]|\T1/cmtt/m/n/12 /profil/sejarah-kelurahan| 
+
+Overfull \hbox (34.83452pt too wide) in paragraph at lines 898--898
+[]|\T1/cmtt/m/n/12 /profil/pejabat-kelurahan| 
+
+Overfull \hbox (47.1815pt too wide) in paragraph at lines 900--900
+[]|\T1/cmtt/m/n/12 /profil/struktur-organisasi| 
+
+Overfull \hbox (16.13216pt too wide) in alignment at lines 894--910
+ [] [] [] [] 
+
+Overfull \hbox (16.13216pt too wide) in alignment at lines 914--919
+ [] [] [] [] 
+
+Overfull \hbox (16.13216pt too wide) in alignment at lines 919--923
+ [] [] [] [] 
+
+Overfull \hbox (16.13216pt too wide) in alignment at lines 923--925
+ [] [] [] [] 
+
+Overfull \hbox (16.13216pt too wide) in alignment at lines 925--929
+ [] [] [] [] 
+[48]
+Overfull \hbox (16.13216pt too wide) in alignment at lines 933--938
+ [] [] [] [] 
+
+Overfull \hbox (16.13216pt too wide) in alignment at lines 938--942
+ [] [] [] [] 
+
+Overfull \hbox (16.13216pt too wide) in alignment at lines 942--944
+ [] [] [] [] 
+
+Overfull \hbox (22.48753pt too wide) in paragraph at lines 947--947
+[]|\T1/cmtt/m/n/12 /dashboard/posts/create| 
+
+Overfull \hbox (10.14055pt too wide) in paragraph at lines 948--948
+[]|\T1/cmtt/m/n/12 /dashboard/posts/[id]| 
+
+Overfull \hbox (34.83452pt too wide) in paragraph at lines 951--951
+[]|\T1/cmtt/m/n/12 /dashboard/umkm/[id]/edit| 
+
+Overfull \hbox (10.14055pt too wide) in paragraph at lines 953--953
+[]|\T1/cmtt/m/n/12 /dashboard/wisata/new| 
+
+Overfull \hbox (47.1815pt too wide) in paragraph at lines 954--954
+[]|\T1/cmtt/m/n/12 /dashboard/wisata/[id]/edit| 
+
+Overfull \hbox (16.31404pt too wide) in paragraph at lines 956--956
+[]|\T1/cmtt/m/n/12 /dashboard/profil-desa| 
+
+Underfull \hbox (badness 1728) in paragraph at lines 956--957
+[]|\T1/cmr/m/n/12 Edit pro-fil ke-lu-rah-an &
+
+Overfull \hbox (10.14055pt too wide) in paragraph at lines 957--957
+[]|\T1/cmtt/m/n/12 /dashboard/infografis| 
+
+Overfull \hbox (10.14055pt too wide) in paragraph at lines 960--960
+[]|\T1/cmtt/m/n/12 /dashboard/categories| 
+
+Underfull \hbox (badness 10000) in paragraph at lines 961--962
+[]|\T1/cmr/m/n/12 Manajemen peng-gu-na
+
+Overfull \hbox (16.13216pt too wide) in alignment at lines 944--962
+ [] [] [] [] 
+[49]
+Lampiran B.
+
+Overfull \hbox (4.13216pt too wide) in alignment at lines 970--975
+ [] [] [] 
+
+Overfull \hbox (4.13216pt too wide) in alignment at lines 975--979
+ [] [] [] 
+
+Overfull \hbox (4.13216pt too wide) in alignment at lines 979--981
+ [] [] [] 
+
+Underfull \hbox (badness 10000) in paragraph at lines 982--983
+[]|\T1/cmr/m/n/12 id, na-me, ema-il, ro-le
+
+Overfull \hbox (24.48825pt too wide) in paragraph at lines 985--985
+[]|\T1/cmtt/m/n/12 breaking_news| 
+
+Overfull \hbox (30.66174pt too wide) in paragraph at lines 988--988
+[]|\T1/cmtt/m/n/12 perangkat_desa| 
+
+Underfull \hbox (badness 6236) in paragraph at lines 990--991
+\T1/cmr/m/n/12 TA_ALAM/KULINER/BUDAYA), gam-
+
+Overfull \hbox (5.96777pt too wide) in paragraph at lines 992--992
+[]|\T1/cmtt/m/n/12 infografis| 
+
+Overfull \hbox (4.13216pt too wide) in alignment at lines 981--994
+ [] [] [] 
+[50]
+Lampiran C.
+
+Overfull \hbox (7.07285pt too wide) in paragraph at lines 998--998
+|\T1/cmr/bx/n/24.88 LAMPIRAN C: PAN-DU-AN DE-SA-
+[51] [52]
+Lampiran D.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1067--1067
+[]|\T1/cmr/bx/n/12 SSR \T1/cmr/m/n/12 (Server-Side
+
+Underfull \hbox (badness 10000) in paragraph at lines 1069--1069
+[]|\T1/cmr/bx/n/12 ORM \T1/cmr/m/n/12 (Object-
+
+Underfull \hbox (badness 3386) in paragraph at lines 1073--1073
+[]|\T1/cmr/bx/n/12 RBAC \T1/cmr/m/n/12 (Role-Based
+[53] [54] (d:\Web_Salomallori\Hilirisasi\Modul.aux)
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 0.74pt have occurred.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
+(see the transcript file for additional information) <C:\Users\LENOVO\AppData\L
+ocal\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbi2488.pk> <C:\Users\LENOVO\Ap
+pData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcti1200.pk> <C:\Users\LE
+NOVO\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1095.pk> <C:\U
+sers\LENOVO\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk
+> <C:\Users\LENOVO\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm
+1000.pk> <C:\Users\LENOVO\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi6
+00\ecbx1000.pk> <C:\Users\LENOVO\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/
+ec/dpi600\ecbi1440.pk> <C:\Users\LENOVO\AppData\Local\MiKTeX\fonts/pk/ljfour/jk
+nappen/ec/dpi600\ecbi1728.pk> <C:\Users\LENOVO\AppData\Local\MiKTeX\fonts/pk/lj
+four/jknappen/ec/dpi600\tcbx1200.pk>Trying to make PK font ecbi1200 at 600 DPI...
+The METAFONT mode is: ljfour
+Creating ecbi1200.pk...
+Running miktex-mf.exe...
+This is METAFONT, Version 2.71828182 (MiKTeX 26.5)
+
+
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\fonts/source/jknappen/ec\ecbi120
+0.mf
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\fonts/source/jknappen/ec\exbase.
+mf)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\fonts/source/jknappen/ec\ecbi.mf
+
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\fonts/source/jknappen/ec\extexti
+t.mf
+ Ok
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\fonts/source/jknappen/ec\exacces
+s.mf
+ Ok)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\fonts/source/jknappen/ec\expseud
+o.mf
+ Ok)
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\fonts/source/jknappen/ec\exileas
+t.mf
+ Ok [158] [160] [161] [162] [163] [164] [165] [166] [167] [168] [169] [170]
+[171] [172] [173] [174] [175] [176] [177] [178] [179] [180] [181] [182]
+[183] [184] [185] [186] [187] [188])
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\fonts/source/jknappen/ec\exilwes
+t.mf
+ Ok [224] [225] [226] [227] [228] [229] [230] [231] [232] [233] [234] [235]
+[236] [237] [238] [239] [240] [241] [242] [243] [244] [245] [246] [247]
+[248] [249] [250] [251] [252] [253] [254] [255])
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\fonts/source/jknappen/ec\exruwes
+t.mf
+ Ok [192] [193] [194] [195] [196] [197] [198] [199] [200] [201] [202] [203]
+[204] [205] [206] [207] [208] [209] [210] [211] [212] [213] [214] [215]
+[216] [217] [218] [219] [220] [221] [222] [223])
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\fonts/source/jknappen/ec\exrueas
+t.mf
+ Ok [128] [129] [130] [131] [132] [133] [134] [135] [136] [137] [138] [139]
+[140] [141] [142] [143] [144] [145] [146] [147] [148] [149] [150] [151]
+[152] [153] [154] [155] [156] [157])
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\fonts/source/jknappen/ec\exbrace
+s.mf
+ Ok [94] [126] [23] [40] [41] [60] [124] [62] [91] [93] [92] [123] [125]
+[95] [127] [32])
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\fonts/source/jknappen/ec\expunct
+.mf
+ Ok [14] [15] [19] [20] [13] [18] [33] [39] [42] [43] [44] [46] [47] [58]
+[59] [61] [96] [189] [17] [45] [16] [21] [22])
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\fonts/source/jknappen/ec\exaccen
+t.mf
+ Ok [0] [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12])
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\fonts/source/jknappen/ec\exsign.
+mf
+ Ok [24] [34] [35] [36] [37] [64] [191] [159])
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\fonts/source/jknappen/ec\exilig.
+mf
+ Ok [25] [26] [27] [28] [29] [30] [31])
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\fonts/source/jknappen/ec\exitalp
+.mf
+ Ok [38] [63] [190])
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\fonts/source/jknappen/ec\exrulet
+t.mf
+ Ok [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77] [78]
+[79] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90])
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\fonts/source/jknappen/ec\exillet
+t.mf
+ Ok [97] [98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108]
+[109] [110] [111] [112] [113] [114] [115] [116] [117] [118] [119] [120]
+[121] [122])
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\fonts/source/jknappen/ec\exidigi
+t.mf
+ Ok [48] [49] [50] [51] [52] [53] [54] [55] [56] [57])
+(C:\Users\LENOVO\AppData\Local\Programs\MiKTeX\fonts/source/jknappen/ec\exiligt
+b.mf
+ Ok) ) ) )
+(some charht values had to be adjusted by as much as 0.09164pt)
+Font metrics written on ecbi1200.tfm.
+Output written on ecbi1200.600gf (256 characters, 62216 bytes).
+Transcript written on ecbi1200.log.
+Running miktex-gftopk.exe...
+This is GFtoPK, Version 2.4 (MiKTeX 26.5)
+'METAFONT output 2026.08.07:2043'
+62216 bytes packed to 42728 bytes.
+Installing C:\Users\LENOVO\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbi1200.pk...
+ <C:\Users\LENOVO\AppData\Local\MiKTeX\font
+s/pk/ljfour/jknappen/ec/dpi600\ecbi1200.pk> <C:\Users\LENOVO\AppData\Local\MiKT
+eX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\LENOVO\AppData\Loc
+al\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\LENOVO\AppD
+ata\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\LENO
+VO\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Use
+rs\LENOVO\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> 
+<C:\Users\LENOVO\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx14
+40.pk> <C:\Users\LENOVO\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600
+\ectt1200.pk> <C:\Users\LENOVO\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec
+/dpi600\ecrm1200.pk> <C:\Users\LENOVO\AppData\Local\MiKTeX\fonts/pk/ljfour/jkna
+ppen/ec/dpi600\ecbx1200.pk> <C:\Users\LENOVO\AppData\Local\MiKTeX\fonts/pk/ljfo
+ur/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\LENOVO\AppData\Local\MiKTeX\fonts/
+pk/ljfour/jknappen/ec/dpi600\ecbx2074.pk><C:/Users/LENOVO/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on d:\Web_Salomallori\Hilirisasi\Modul.pdf (55 pages, 5252241 by
+tes).
+Transcript written on d:\Web_Salomallori\Hilirisasi\Modul.log.
