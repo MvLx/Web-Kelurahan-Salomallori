@@ -94,218 +94,7 @@ export function NavbarBeranda() {
             : "border border-transparent bg-[#0b2b40]/30"
         }`}
       >
-        {/* Hamburger — tampil hanya di mobile (< md) */}
-        <div className="flex items-center md:hidden">
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button
-                variant="ghost"
-                aria-label="Buka menu navigasi"
-                className="size-10 rounded-full p-0 text-white hover:bg-white/10 hover:text-white focus-visible:ring-2 focus-visible:ring-white/50"
-              >
-                <Menu className="size-5" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent
-              side="left"
-              showCloseButton={false}
-              className="w-[85%] max-w-[320px] border-r border-white/10 bg-[#0b2b40] p-0 text-white data-[state=open]:slide-in-from-left"
-            >
-              <SheetHeader className="border-b border-white/10 px-4 py-5 text-left">
-                <SheetTitle className="sr-only">
-                  Menu Navigasi Kelurahan Salomallori
-                </SheetTitle>
-                <div className="flex items-center gap-3">
-                  <Image
-                    src="/images/logo_kab.png"
-                    alt="Logo Kelurahan Salomallori"
-                    width={40}
-                    height={40}
-                    className="rounded-sm object-contain"
-                  />
-                  <div className="flex flex-col leading-tight">
-                    <span className="text-sm font-extrabold tracking-tight text-white">
-                      Kelurahan Salomallori
-                    </span>
-                    <span className="text-[10px] font-bold tracking-wide text-white/70">
-                      Kec. Dua Pitue, Kab. Sidenreng Rappang
-                    </span>
-                  </div>
-                </div>
-              </SheetHeader>
-
-              <div className="flex-1 overflow-y-auto py-2">
-                <SheetClose asChild>
-                  <Link
-                    href="/"
-                    className="flex items-center rounded-lg px-4 py-3.5 text-sm font-semibold text-white/90 transition-colors hover:bg-white/10 hover:text-white"
-                  >
-                    Beranda
-                  </Link>
-                </SheetClose>
-
-                {/* Dropdown Profil */}
-                <div>
-                  <button
-                    onClick={() => toggleMenu("profil")}
-                    className="flex w-full items-center justify-between rounded-lg px-4 py-3.5 text-sm font-semibold text-white/90 transition-colors hover:bg-white/10 hover:text-white"
-                    aria-expanded={openMenu === "profil"}
-                  >
-                    Profil
-                    <ChevronRight
-                      className={cn(
-                        "size-4 transition-transform duration-200",
-                        openMenu === "profil" && "rotate-90"
-                      )}
-                    />
-                  </button>
-                  {openMenu === "profil" && (
-                    <div className="space-y-0.5 px-3 pb-2">
-                      {NAV_PROFIL_LINKS.map((item) => (
-                        <SheetClose key={item.href} asChild>
-                          <Link
-                            href={item.href}
-                            className="block rounded-lg px-4 py-2.5 text-[13px] font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white"
-                          >
-                            {item.label}
-                          </Link>
-                        </SheetClose>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                <SheetClose asChild>
-                  <Link
-                    href="/umkm"
-                    className="flex items-center rounded-lg px-4 py-3.5 text-sm font-semibold text-white/90 transition-colors hover:bg-white/10 hover:text-white"
-                  >
-                    UMKM
-                  </Link>
-                </SheetClose>
-
-                {/* Dropdown Publikasi */}
-                <div>
-                  <button
-                    onClick={() => toggleMenu("publikasi")}
-                    className="flex w-full items-center justify-between rounded-lg px-4 py-3.5 text-sm font-semibold text-white/90 transition-colors hover:bg-white/10 hover:text-white"
-                    aria-expanded={openMenu === "publikasi"}
-                  >
-                    Publikasi
-                    <ChevronRight
-                      className={cn(
-                        "size-4 transition-transform duration-200",
-                        openMenu === "publikasi" && "rotate-90"
-                      )}
-                    />
-                  </button>
-                  {openMenu === "publikasi" && (
-                    <div className="space-y-0.5 px-3 pb-2">
-                      {NAV_PUBLIKASI_LINKS.map((item) => (
-                        <SheetClose key={item.href} asChild>
-                          <Link
-                            href={item.href}
-                            className="block rounded-lg px-4 py-2.5 text-[13px] font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white"
-                          >
-                            {item.label}
-                          </Link>
-                        </SheetClose>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                <SheetClose asChild>
-                  <Link
-                    href="/aduan"
-                    className="flex items-center rounded-lg px-4 py-3.5 text-sm font-semibold text-white/90 transition-colors hover:bg-white/10 hover:text-white"
-                  >
-                    Kontak
-                  </Link>
-                </SheetClose>
-              </div>
-
-              {/* Bagian user/auth di bawah drawer */}
-              <div className="border-t border-white/10 p-4">
-                {mounted && session ? (
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <Avatar className="size-9">
-                        <AvatarImage
-                          src={session.user.image ?? undefined}
-                          alt={session.user.name ?? "Pengguna"}
-                        />
-                        <AvatarFallback className="bg-white/20 text-xs text-white">
-                          {getInitials(session.user.name)}
-                        </AvatarFallback>
-                      </Avatar>
-                      <div className="min-w-0 flex-1 leading-tight">
-                        <p className="truncate text-sm font-semibold text-white">
-                          {session.user.name}
-                        </p>
-                        <p className="truncate text-xs text-white/60">
-                          {session.user.email}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="grid gap-1.5">
-                      {isPrivileged && (
-                        <SheetClose asChild>
-                          <Link
-                            href="/dashboard"
-                            className="flex items-center gap-2 rounded-lg bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/15"
-                          >
-                            <LayoutDashboard className="size-4" />
-                            Dashboard
-                          </Link>
-                        </SheetClose>
-                      )}
-                      <SheetClose asChild>
-                        <Link
-                          href={`/akun/${session.user.id}`}
-                          className="flex items-center gap-2 rounded-lg bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/15"
-                        >
-                          <User className="size-4" />
-                          Profil
-                        </Link>
-                      </SheetClose>
-                      <Button
-                        onClick={handleSignOut}
-                        variant="ghost"
-                        className="flex h-auto w-full justify-start gap-2 rounded-lg bg-transparent px-4 py-2.5 text-sm font-semibold text-red-300 transition-colors hover:bg-white/10 hover:text-red-200"
-                      >
-                        <LogOut className="size-4" />
-                        Keluar
-                      </Button>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="grid gap-1.5">
-                    <SheetClose asChild>
-                      <Link
-                        href="/auth/signin"
-                        className="flex items-center justify-center gap-2 rounded-lg bg-[#84bd3a] px-4 py-2.5 text-sm font-semibold text-[#0b2b40] transition-colors hover:bg-[#84bd3a]/90"
-                      >
-                        <LogIn className="size-4" />
-                        Masuk
-                      </Link>
-                    </SheetClose>
-                    <SheetClose asChild>
-                      <Link
-                        href="/auth/signup"
-                        className="flex items-center justify-center gap-2 rounded-lg bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/15"
-                      >
-                        <UserPlus className="size-4" />
-                        Daftar
-                      </Link>
-                    </SheetClose>
-                  </div>
-                )}
-              </div>
-            </SheetContent>
-          </Sheet>
-        </div>
-
+        {/* Logo — tetap di kiri, teks nama hanya tampil di >= sm */}
         <Link href="/" className="flex shrink-0 items-center gap-3">
           <Image
             src="/images/logo_kab.png"
@@ -399,6 +188,218 @@ export function NavbarBeranda() {
         </div>
 
         <div className="flex items-center gap-1 sm:gap-2">
+          {/* Hamburger — tampil hanya di mobile (< md), sejajar dengan profil di kanan */}
+          <div className="flex items-center md:hidden">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button
+                  variant="ghost"
+                  aria-label="Buka menu navigasi"
+                  className="size-10 rounded-full p-0 text-white hover:bg-white/10 hover:text-white focus-visible:ring-2 focus-visible:ring-white/50"
+                >
+                  <Menu className="size-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent
+                side="left"
+                showCloseButton={false}
+                className="w-[85%] max-w-[320px] border-r border-white/10 bg-[#0b2b40] p-0 text-white data-[state=open]:slide-in-from-left"
+              >
+                <SheetHeader className="border-b border-white/10 px-4 py-5 text-left">
+                  <SheetTitle className="sr-only">
+                    Menu Navigasi Kelurahan Salomallori
+                  </SheetTitle>
+                  <div className="flex items-center gap-3">
+                    <Image
+                      src="/images/logo_kab.png"
+                      alt="Logo Kelurahan Salomallori"
+                      width={40}
+                      height={40}
+                      className="rounded-sm object-contain"
+                    />
+                    <div className="flex flex-col leading-tight">
+                      <span className="text-sm font-extrabold tracking-tight text-white">
+                        Kelurahan Salomallori
+                      </span>
+                      <span className="text-[10px] font-bold tracking-wide text-white/70">
+                        Kec. Dua Pitue, Kab. Sidenreng Rappang
+                      </span>
+                    </div>
+                  </div>
+                </SheetHeader>
+
+                <div className="flex-1 overflow-y-auto py-2">
+                  <SheetClose asChild>
+                    <Link
+                      href="/"
+                      className="flex items-center rounded-lg px-4 py-3.5 text-sm font-semibold text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                    >
+                      Beranda
+                    </Link>
+                  </SheetClose>
+
+                  {/* Dropdown Profil */}
+                  <div>
+                    <button
+                      onClick={() => toggleMenu("profil")}
+                      className="flex w-full items-center justify-between rounded-lg px-4 py-3.5 text-sm font-semibold text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                      aria-expanded={openMenu === "profil"}
+                    >
+                      Profil
+                      <ChevronRight
+                        className={cn(
+                          "size-4 transition-transform duration-200",
+                          openMenu === "profil" && "rotate-90"
+                        )}
+                      />
+                    </button>
+                    {openMenu === "profil" && (
+                      <div className="space-y-0.5 px-3 pb-2">
+                        {NAV_PROFIL_LINKS.map((item) => (
+                          <SheetClose key={item.href} asChild>
+                            <Link
+                              href={item.href}
+                              className="block rounded-lg px-4 py-2.5 text-[13px] font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+                            >
+                              {item.label}
+                            </Link>
+                          </SheetClose>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  <SheetClose asChild>
+                    <Link
+                      href="/umkm"
+                      className="flex items-center rounded-lg px-4 py-3.5 text-sm font-semibold text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                    >
+                      UMKM
+                    </Link>
+                  </SheetClose>
+
+                  {/* Dropdown Publikasi */}
+                  <div>
+                    <button
+                      onClick={() => toggleMenu("publikasi")}
+                      className="flex w-full items-center justify-between rounded-lg px-4 py-3.5 text-sm font-semibold text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                      aria-expanded={openMenu === "publikasi"}
+                    >
+                      Publikasi
+                      <ChevronRight
+                        className={cn(
+                          "size-4 transition-transform duration-200",
+                          openMenu === "publikasi" && "rotate-90"
+                        )}
+                      />
+                    </button>
+                    {openMenu === "publikasi" && (
+                      <div className="space-y-0.5 px-3 pb-2">
+                        {NAV_PUBLIKASI_LINKS.map((item) => (
+                          <SheetClose key={item.href} asChild>
+                            <Link
+                              href={item.href}
+                              className="block rounded-lg px-4 py-2.5 text-[13px] font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+                            >
+                              {item.label}
+                            </Link>
+                          </SheetClose>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  <SheetClose asChild>
+                    <Link
+                      href="/aduan"
+                      className="flex items-center rounded-lg px-4 py-3.5 text-sm font-semibold text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                    >
+                      Kontak
+                    </Link>
+                  </SheetClose>
+                </div>
+
+                {/* Bagian user/auth di bawah drawer */}
+                <div className="border-t border-white/10 p-4">
+                  {mounted && session ? (
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-3">
+                        <Avatar className="size-9">
+                          <AvatarImage
+                            src={session.user.image ?? undefined}
+                            alt={session.user.name ?? "Pengguna"}
+                          />
+                          <AvatarFallback className="bg-white/20 text-xs text-white">
+                            {getInitials(session.user.name)}
+                          </AvatarFallback>
+                        </Avatar>
+                        <div className="min-w-0 flex-1 leading-tight">
+                          <p className="truncate text-sm font-semibold text-white">
+                            {session.user.name}
+                          </p>
+                          <p className="truncate text-xs text-white/60">
+                            {session.user.email}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="grid gap-1.5">
+                        {isPrivileged && (
+                          <SheetClose asChild>
+                            <Link
+                              href="/dashboard"
+                              className="flex items-center gap-2 rounded-lg bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/15"
+                            >
+                              <LayoutDashboard className="size-4" />
+                              Dashboard
+                            </Link>
+                          </SheetClose>
+                        )}
+                        <SheetClose asChild>
+                          <Link
+                            href={`/akun/${session.user.id}`}
+                            className="flex items-center gap-2 rounded-lg bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/15"
+                          >
+                            <User className="size-4" />
+                            Profil
+                          </Link>
+                        </SheetClose>
+                        <Button
+                          onClick={handleSignOut}
+                          variant="ghost"
+                          className="flex h-auto w-full justify-start gap-2 rounded-lg bg-transparent px-4 py-2.5 text-sm font-semibold text-red-300 transition-colors hover:bg-white/10 hover:text-red-200"
+                        >
+                          <LogOut className="size-4" />
+                          Keluar
+                        </Button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="grid gap-1.5">
+                      <SheetClose asChild>
+                        <Link
+                          href="/auth/signin"
+                          className="flex items-center justify-center gap-2 rounded-lg bg-[#84bd3a] px-4 py-2.5 text-sm font-semibold text-[#0b2b40] transition-colors hover:bg-[#84bd3a]/90"
+                        >
+                          <LogIn className="size-4" />
+                          Masuk
+                        </Link>
+                      </SheetClose>
+                      <SheetClose asChild>
+                        <Link
+                          href="/auth/signup"
+                          className="flex items-center justify-center gap-2 rounded-lg bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/15"
+                        >
+                          <UserPlus className="size-4" />
+                          Daftar
+                        </Link>
+                      </SheetClose>
+                    </div>
+                  )}
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
+
           <ThemeToggle />
           {mounted ? (
             <DropdownMenu>
