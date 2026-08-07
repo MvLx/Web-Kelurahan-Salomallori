@@ -136,7 +136,7 @@ export function BerandaDark({ data }: { data: BerandaData }) {
             style={{ backgroundImage: `url('${heroImage}')` }}
           />
           <div className="absolute inset-0 bg-black/30 mix-blend-multiply" />
-          <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-[#111415] to-transparent" />
+          <div className="absolute bottom-0 left-0 right-0 h-3/4 bg-gradient-to-t from-[#111415] via-[#111415]/60 to-transparent" />
         </div>
         <div className="relative z-10 mx-auto mt-12 flex max-w-3xl flex-col items-center text-center">
           <div className="w-full rounded-tl-[48px] rounded-br-[48px] rounded-tr-lg rounded-bl-lg border border-white/20 bg-white/10 p-6 shadow-lg backdrop-blur sm:p-8">
@@ -301,18 +301,30 @@ export function BerandaDark({ data }: { data: BerandaData }) {
       </section>
 
       {/* Statistik Kelurahan */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <section className="relative mx-auto max-w-6xl px-6 pb-24 pt-20">
+        <div className="pointer-events-none absolute inset-0 rounded-[24px] bg-[radial-gradient(ellipse_at_top,rgba(132,189,58,0.07),transparent_65%)]" />
+        <div className="relative mb-12 flex items-center justify-center gap-4">
+          <span className="h-px w-12 bg-[#84bd3a]/40" />
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#84bd3a]">
+            Statistik Kelurahan
+          </span>
+          <span className="h-px w-12 bg-[#84bd3a]/40" />
+        </div>
+        <div className="relative grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {stats.map(({ icon: Icon, value, label }, i) => (
             <Reveal key={label} delay={i * 100}>
-              <div className="flex flex-col items-center rounded-[12px] border border-[#373a3b] bg-[#191c1d] p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#32735f]/60 hover:shadow-lg hover:shadow-black/20">
-                <div className="mb-4 text-[#32735f] transition-transform duration-300 hover:scale-110">
+              <div
+                className={`group flex flex-col items-center rounded-[16px] border border-[#373a3b] bg-[#191c1d] p-8 text-center shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-[#32735f]/60 hover:shadow-xl hover:shadow-black/30 dark:hover:border-[#84bd3a]/60 ${
+                  i % 2 === 1 ? "lg:translate-y-8" : ""
+                }`}
+              >
+                <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#32735f]/15 text-[#32735f] transition-transform duration-300 group-hover:scale-110 dark:bg-[#84bd3a]/10 dark:text-[#84bd3a]">
                   <Icon className="h-8 w-8" />
                 </div>
-                <h3 className="mb-1 font-serif text-[28px] font-semibold text-white">
+                <h3 className="mb-2 font-serif text-[32px] font-bold leading-none text-white sm:text-[36px]">
                   {value}
                 </h3>
-                <p className="text-sm text-[#b0b4b5]">{label}</p>
+                <p className="text-sm font-medium text-[#b0b4b5]">{label}</p>
               </div>
             </Reveal>
           ))}
