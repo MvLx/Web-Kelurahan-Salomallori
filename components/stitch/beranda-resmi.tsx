@@ -25,6 +25,7 @@ import {
 import { SiInstagram } from "react-icons/si";
 import { NavbarBeranda } from "@/components/custom/navbar-beranda";
 
+const YOUTUBE_VIDEO_ID = process.env.NEXT_PUBLIC_YOUTUBE_SEJARAH;
 
 export function BerandaResmi({ data }: { data: BerandaData }) {
   const stats = [
@@ -194,7 +195,19 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
               </h2>
             </Reveal>
             <Reveal delay={100}>
-              {data.fotoSejarah ? (
+              {YOUTUBE_VIDEO_ID ? (
+                <div className="relative mb-6 w-full overflow-hidden rounded-xl">
+                  <div className="aspect-video w-full">
+                    <iframe
+                      src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?rel=0&modestbranding=1&controls=1`}
+                      title="Video Sejarah Kelurahan Salomallori"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      className="h-full w-full"
+                    />
+                  </div>
+                </div>
+              ) : data.fotoSejarah ? (
                 <div className="relative mb-6 h-[220px] w-full overflow-hidden rounded-xl sm:h-[350px] lg:h-[400px]">
                   <img
                     src={data.fotoSejarah}
