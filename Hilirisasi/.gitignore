@@ -1,0 +1,14 @@
+# File build LaTeX
+*.aux
+*.toc
+*.lof
+*.lot
+*.out
+*.log
+*.gz
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Log kompilasi sementara
+latex-run*.log
