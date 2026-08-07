@@ -184,24 +184,73 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
         </div>
       </header>
 
-      {/* Statistik Kelurahan */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {stats.map(({ icon: Icon, value, label }, i) => (
-            <Reveal key={label} delay={i * 100}>
-              <div className="flex flex-col items-center rounded-[12px] border border-[#dee2de] bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#32735f]/60 hover:shadow-lg dark:border-[#414943] dark:bg-[#1a1a1a] dark:hover:border-[#84bd3a]/60 dark:hover:shadow-black/30">
-                <div className="mb-4 text-[#32735f] transition-transform duration-300 hover:scale-110">
-                  <Icon className="h-8 w-8" />
+      {/* Sejarah Kelurahan */}
+      <section className="border-y border-[#dee2de] bg-white py-20 dark:border-[#414943] dark:bg-[#1a1a1a]">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-12">
+            <Reveal>
+              <h2 className="mb-6 font-serif text-[36px] font-semibold text-[#171717] dark:text-white">
+                Sejarah Salomallori
+              </h2>
+            </Reveal>
+            <Reveal delay={100}>
+              {data.fotoSejarah ? (
+                <div className="relative mb-6 h-[220px] w-full overflow-hidden rounded-xl sm:h-[350px] lg:h-[400px]">
+                  <img
+                    src={data.fotoSejarah}
+                    alt="Sejarah Kelurahan Salomallori"
+                    className="h-full w-full object-cover"
+                  />
                 </div>
-                <h3 className="mb-1 font-serif text-[28px] font-semibold text-[#171717] dark:text-white">
-                  {value}
+              ) : (
+                <div className="mb-6 h-[220px] w-full overflow-hidden rounded-xl bg-[#dee2de]/50 dark:bg-[#414943]/50 sm:h-[350px] lg:h-[400px]" />
+              )}
+            </Reveal>
+            <Reveal delay={200}>
+              <p className="mb-6 text-[16px] leading-[1.6] text-[#666666] dark:text-[#b0b4b5]">
+                {sejarahPreview}
+              </p>
+            </Reveal>
+            <Reveal delay={300}>
+              <Link
+                href="/profil/sejarah-kelurahan"
+                className="inline-block rounded-md bg-[#32735f] px-6 py-3 font-semibold text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0b2b40] hover:shadow-lg hover:shadow-black/10 dark:hover:shadow-black/40"
+              >
+                Baca Sejarah Lengkap
+              </Link>
+            </Reveal>
+          </div>
+          <div className="flex flex-col gap-6 lg:col-span-12">
+            <Reveal delay={150}>
+              <div className="rounded-xl border border-[#dee2de] bg-[#f9faf7] p-6 shadow-sm transition-colors duration-300 hover:border-[#32735f]/60 dark:border-[#414943] dark:bg-[#111411] dark:hover:border-[#84bd3a]/60">
+              <div className="mb-4 flex items-center gap-3">
+                <div className="rounded-lg bg-white p-2 shadow-sm dark:bg-black">
+                  <Map className="h-5 w-5 text-[#32735f]" />
+                </div>
+                <h3 className="font-serif text-xl font-semibold text-[#171717] dark:text-white">
+                  Batas Wilayah
                 </h3>
-                <p className="text-sm text-[#666666] dark:text-[#b0b4b5]">
-                  {label}
-                </p>
+              </div>
+              <ul className="space-y-3 text-sm text-[#666666] dark:text-[#b0b4b5]">
+                {batasWilayah.map(({ arah, wilayah }, index) => (
+                  <li
+                    key={arah}
+                    className={`flex justify-between ${
+                      index < batasWilayah.length - 1
+                        ? "border-b border-[#dee2de]/50 pb-2 dark:border-[#414943]/50"
+                        : ""
+                    }`}
+                  >
+                    <span>{arah}</span>
+                    <span className="font-semibold text-[#171717] dark:text-white">
+                      {wilayah}
+                    </span>
+                  </li>
+                ))}
+              </ul>
               </div>
             </Reveal>
-          ))}
+          </div>
         </div>
       </section>
 
@@ -255,76 +304,24 @@ export function BerandaResmi({ data }: { data: BerandaData }) {
         </div>
       </section>
 
-      {/* Sejarah Kelurahan */}
-      <section className="border-y border-[#dee2de] bg-white py-20 dark:border-[#414943] dark:bg-[#1a1a1a]">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-12">
-            <Reveal>
-              <h2 className="mb-6 font-serif text-[36px] font-semibold text-[#171717] dark:text-white">
-                Sejarah Salomallori
-              </h2>
-            </Reveal>
-            <Reveal delay={100}>
-              {data.fotoSejarah ? (
-                <div className="relative mb-6 h-[400px] w-full overflow-hidden rounded-xl">
-                  <img
-                    src={data.fotoSejarah}
-                    alt="Sejarah Kelurahan Salomallori"
-                    className="h-full w-full object-cover"
-                  />
+      {/* Statistik Kelurahan */}
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {stats.map(({ icon: Icon, value, label }, i) => (
+            <Reveal key={label} delay={i * 100}>
+              <div className="flex flex-col items-center rounded-[12px] border border-[#dee2de] bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#32735f]/60 hover:shadow-lg dark:border-[#414943] dark:bg-[#1a1a1a] dark:hover:border-[#84bd3a]/60 dark:hover:shadow-black/30">
+                <div className="mb-4 text-[#32735f] transition-transform duration-300 hover:scale-110">
+                  <Icon className="h-8 w-8" />
                 </div>
-              ) : (
-                <div
-                  className="mb-6 h-full w-full overflow-hidden rounded-xl bg-[#dee2de]/50 dark:bg-[#414943]/50"
-                  style={{ height: 400 }}
-                />
-              )}
-            </Reveal>
-            <Reveal delay={200}>
-              <p className="mb-6 text-[16px] leading-[1.6] text-[#666666] dark:text-[#b0b4b5]">
-                {sejarahPreview}
-              </p>
-            </Reveal>
-            <Reveal delay={300}>
-              <Link
-                href="/profil/sejarah-kelurahan"
-                className="inline-block rounded-md bg-[#32735f] px-6 py-3 font-semibold text-white shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0b2b40] hover:shadow-lg hover:shadow-black/10 dark:hover:shadow-black/40"
-              >
-                Baca Sejarah Lengkap
-              </Link>
-            </Reveal>
-          </div>
-          <div className="flex flex-col gap-6 lg:col-span-12">
-            <Reveal delay={150}>
-              <div className="rounded-xl border border-[#dee2de] bg-[#f9faf7] p-6 shadow-sm transition-colors duration-300 hover:border-[#32735f]/60 dark:border-[#414943] dark:bg-[#111411] dark:hover:border-[#84bd3a]/60">
-              <div className="mb-4 flex items-center gap-3">
-                <div className="rounded-lg bg-white p-2 shadow-sm dark:bg-black">
-                  <Map className="h-5 w-5 text-[#32735f]" />
-                </div>
-                <h3 className="font-serif text-xl font-semibold text-[#171717] dark:text-white">
-                  Batas Wilayah
+                <h3 className="mb-1 font-serif text-[28px] font-semibold text-[#171717] dark:text-white">
+                  {value}
                 </h3>
-              </div>
-              <ul className="space-y-3 text-sm text-[#666666] dark:text-[#b0b4b5]">
-                {batasWilayah.map(({ arah, wilayah }, index) => (
-                  <li
-                    key={arah}
-                    className={`flex justify-between ${
-                      index < batasWilayah.length - 1
-                        ? "border-b border-[#dee2de]/50 pb-2 dark:border-[#414943]/50"
-                        : ""
-                    }`}
-                  >
-                    <span>{arah}</span>
-                    <span className="font-semibold text-[#171717] dark:text-white">
-                      {wilayah}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+                <p className="text-sm text-[#666666] dark:text-[#b0b4b5]">
+                  {label}
+                </p>
               </div>
             </Reveal>
-          </div>
+          ))}
         </div>
       </section>
 
