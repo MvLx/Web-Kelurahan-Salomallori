@@ -44,3 +44,13 @@ next-env.d.ts
 /lib/generated/prisma
 dev-server.log  
 .vscode/  
+
+# LaTeX build artifacts
+*.aux
+*.toc
+*.lof
+*.lot
+*.out
+*.log
+texput.log
+latex-run*.log
