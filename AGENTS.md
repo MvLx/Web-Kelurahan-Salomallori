@@ -2,6 +2,8 @@
 
 Panduan teknis untuk AI agent dalam membangun Website Profil Kelurahan Salomallori, KKN Universitas Hasanuddin.
 
+> **Dokumen ini disinkronkan dengan kondisi aktual proyek per Agustus 2026.**
+> Fase 1–4 selesai, Fase 5 (Tracking Pelayanan) **di-skip**, Fase 6 (Peta Interaktif) masih ide.
 
 ## 0. Aturan Kerja Agent
 
@@ -19,18 +21,19 @@ Panduan teknis untuk AI agent dalam membangun Website Profil Kelurahan Salomallo
 | Task Tipe | Prefix | Contoh |
 |---|---|---|
 | Setup/migrasi | `chore:` | `chore: clone repo PortalBeritaKodim dan install dependencies` |
-| Model/schema baru | `feat(db):` | `feat(db): tambah model Layanan, Permohonan, FormField, PermohonanData, ProgressHistory` |
-| Halaman public | `feat(public):` | `feat(public): buat dashboard user untuk tracking pelayanan` |
-| Halaman admin | `feat(admin):` | `feat(admin): tambah CRUD layanan & form builder di dashboard` |
-| API routes | `feat(api):` | `feat(api): tambah API routes untuk Layanan, FormField, Permohonan, Progress` |
-| Modifikasi | `feat:` | `feat: modifikasi model User tambah nik & phoneNumber` |
+| Model/schema baru | `feat(db):` | `feat(db): tambah model Desa, PerangkatDesa, UMKM, Wisata, Galeri, Infografis` |
+| Halaman public | `feat(public):` | `feat(public): buat halaman UMKM + detail produk` |
+| Halaman admin | `feat(admin):` | `feat(admin): tambah CRUD UMKM di dashboard` |
+| API routes | `feat(api):` | `feat(api): tambah API routes untuk UMKM (list, create, get, update, delete)` |
+| Modifikasi | `feat:` | `feat: modifikasi beranda dengan hero section + statistik kelurahan` |
 | Testing | `test:` | `test: testing end-to-end semua CRUD` |
 | Deploy | `deploy:` | `deploy: konfigurasi Vercel dan deploy` |
+| Dokumentasi | `docs:` | `docs: selaraskan DESIGN.md dengan kondisi aktual kode` |
 
 - Contoh perintah:
   ```bash
   git add -A
-  git commit -m "feat(api): tambah API routes untuk Layanan (list, create, get, update, delete)"
+  git commit -m "feat(api): tambah API routes untuk UMKM (list, create, get, update, delete)"
   ```
 
 ### 0.3 Verifikasi Per Task
@@ -58,12 +61,12 @@ Task berikut memiliki dependensi dan TIDAK BOLEH dikerjakan sebelum dependensiny
 
 | Task | Dependensi |
 |---|---|
-| Migrasi database (Task 4) | Schema Prisma harus selesai (Task 3) |
-| Seed data (Task 5) | Migrasi harus selesai (Task 4) |
-| Semua API routes (Task 16, 28) | Migrasi harus selesai (Task 4) |
-| Halaman public yang panggil DB (semua halaman di Fase 2) | API routes atau Prisma query harus siap |
-| Halaman admin CRUD (Task 18-22, 29-31) | API routes harus selesai (Task 16, 28) |
-| Testing (Task 23, 32) | Semua halaman public dan admin harus selesai |
+| Migrasi database | Schema Prisma harus selesai |
+| Seed data | Migrasi harus selesai |
+| Semua API routes | Migrasi harus selesai |
+| Halaman public yang panggil DB | API routes atau Prisma query harus siap |
+| Halaman admin CRUD | API routes harus selesai |
+| Testing | Semua halaman public dan admin harus selesai |
 
 ### 0.5 Akhir Run — Wajib Lapor
 Setelah commit, laporkan:
@@ -105,6 +108,7 @@ Setiap task WAJIB dikonfirmasi keberhasilannya sebelum dianggap selesai.
 ```
 Jangan commit jika task gagal. Laporkan error dan tunggu arahan.
 
+---
 
 ## 1. Sumber Kode (Base Repository)
 
@@ -115,6 +119,11 @@ git clone https://github.com/RezkyRobby23h/PortalBeritaKodim.git Web-Kelurahan-S
 cd Web-Kelurahan-Salomallori
 rm -rf .git          # Hapus history git PortalBeritaKodim
 git init             # Inisialisasi repo git baru untuk Web-Kelurahan-Salomallori
+```
+
+**Remote repository saat ini:**
+```
+origin: https://github.com/MvLx/Web-Kelurahan-Salomallori.git
 ```
 
 **Directory layout target:**
@@ -130,22 +139,28 @@ KKN/
 
 ---
 
-## 2. Tech Stack
+## 2. Tech Stack (Aktual)
 
 | Komponen | Teknologi | Versi |
 |---|---|---|
 | Framework | Next.js (App Router) | 16.x |
 | UI Library | React | 19.x |
 | CSS | Tailwind CSS | 4.x |
+| SCSS | Sass (variabel & keyframe animations) | latest |
 | Components | shadcn/ui | latest |
 | Database | PostgreSQL | latest |
 | ORM | Prisma | 7.x |
 | Auth | Better-Auth | 1.x |
 | Rich Text | TipTap (ProseMirror) | 3.x |
 | Image Upload | Cloudinary | 2.x |
-| Email | Nodemailer + Gmail SMTP | latest |
 | Icons | Lucide React | 0.x |
 | Forms | Zod | 4.x |
+| Charts | Recharts (via Infografis) | 3.x |
+| Font | Geist, Geist Mono, Montserrat (next/font/google) | — |
+| Dark Mode | next-themes | latest |
+| Google Maps | iframe embed (mapsEmbed) | — |
+
+> **Catatan:** Nodemailer/Gmail SMTP TIDAK digunakan (Fase 5 Tracking Pelayanan di-skip).
 
 ---
 
@@ -158,18 +173,11 @@ BETTER_AUTH_SECRET="..."
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="..."
 CLOUDINARY_API_KEY="..."
 CLOUDINARY_API_SECRET="..."
-
-# Konfigurasi Email (Gmail SMTP)
-SMTP_HOST="smtp.gmail.com"
-SMTP_PORT="587"
-SMTP_USER="kelurahansalomallori@gmail.com"
-SMTP_PASS="app-password-gmail"
-SMTP_FROM="kelurahansalomallori@gmail.com"
 ```
 
 ### 3.2 Database
 ```bash
-npx prisma migrate dev --name add_desa_models   # sesuaikan nama migrasi dengan task yang dikerjakan
+npx prisma migrate dev --name nama_migrasi   # sesuaikan dengan task yang dikerjakan
 npx prisma generate
 npx prisma db seed  # jika ada seed
 ```
@@ -178,15 +186,15 @@ npx prisma db seed  # jika ada seed
 
 ## 4. Struktur Database — Perubahan dari PortalBeritaKodim
 
-### 4.1 Model yang SUDAH ADA (bisa langsung dipakai)
+### 4.1 Model yang SUDAH ADA (dari PortalBeritaKodim)
 - `User` — autentikasi + role (USER, ADMIN, EDITOR)
 - `Session`, `Account`, `Verification` (Better-Auth)
-- `Post` — untuk berita kelurahan (judul, slug, konten, gambar, category, trending, published)
+- `Post` — untuk berita kelurahan (judul, slug, konten, gambar, category, trending, isHighlight, published)
 - `Category` — kategori berita
-- `BreakingNews` — pengumuman darurat/breaking news
+- `BreakingNews` — pengumuman berjalan (marquee)
 - `Message` — kontak/pesan dari pengunjung
 
-### 4.2 Model yang SUDAH DITAMBAHKAN
+### 4.2 Model yang SUDAH DITAMBAHKAN (Aktif)
 
 ```prisma
 model Desa {
@@ -269,6 +277,20 @@ model Galeri {
   @@map("galeri")
 }
 
+model Kontak {
+  id        String   @id @default(cuid())
+  alamat    String   @db.Text
+  telepon   String?
+  whatsapp  String?
+  email     String?
+  jamKerja  String?
+  mapsEmbed String?  @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("kontak")
+}
+
 model Infografis {
   id        String    @id @default(cuid())
   judul     String
@@ -291,282 +313,131 @@ enum ChartType {
 }
 ```
 
-### 4.3 Model yang HARUS DITAMBAHKAN (Fase 5 — Tracking Pelayanan)
+### 4.3 Model Fase 5 — Tracking Pelayanan (SKIPPED)
 
-**⚠️ Modifikasi `User`:**
-Tambahkan field `nik` dan `phoneNumber` ke model `User`:
-```prisma
-model User {
-  // ... existing fields ...
-  nik         String?
-  phoneNumber String?
-  permohonan  Permohonan[]
-  progress    ProgressHistory[]
-}
-```
-
-**Model Baru:**
-```prisma
-enum StatusPermohonan {
-  MENUNGGU
-  DIPROSES
-  SELESAI
-  DITOLAK
-  DITANGGUHKAN
-  DIBATALKAN
-}
-
-enum JenisAjuan {
-  ONLINE
-  OFFLINE
-}
-
-enum FieldType {
-  TEXT
-  NUMBER
-  TEXTAREA
-  DATE
-  FILE_UPLOAD
-  SELECT
-  RADIO
-  CHECKBOX
-}
-
-model Layanan {
-  id           String   @id @default(cuid())
-  nama         String
-  deskripsi    String?  @db.Text
-  icon         String?
-  isActive     Boolean  @default(true)
-  hanyaOffline Boolean  @default(false)
-  templateFile String?                    // Cloudinary URL template (PDF)
-  formFields   FormField[]
-  permohonan   Permohonan[]
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-
-  @@map("layanan")
-}
-
-model FormField {
-  id          String    @id @default(cuid())
-  layananId   String
-  layanan     Layanan   @relation(fields: [layananId], references: [id], onDelete: Cascade)
-  label       String
-  fieldType   FieldType
-  required    Boolean   @default(false)
-  placeholder String?
-  options     Json?                       // Untuk SELECT/RADIO/CHECKBOX: ["Pilihan 1", "Pilihan 2"]
-  urutan      Int       @default(0)
-  data        PermohonanData[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-
-  @@map("form_field")
-}
-
-model Permohonan {
-  id           String           @id @default(cuid())
-  nomorTiket   String           @unique   // Format: SL-YYYYMMDD-XXX
-  layananId    String?
-  layanan      Layanan?         @relation(fields: [layananId], references: [id])
-  userId       String
-  user         User             @relation(fields: [userId], references: [id])
-  jenisAjuan   JenisAjuan
-  status       StatusPermohonan @default(MENUNGGU)
-  catatan      String?          @db.Text
-  data         PermohonanData[]
-  progress     ProgressHistory[]
-  createdAt    DateTime         @default(now())
-  updatedAt    DateTime         @updatedAt
-
-  @@index([userId])
-  @@map("permohonan")
-}
-
-model PermohonanData {
-  id           String      @id @default(cuid())
-  permohonanId String
-  permohonan   Permohonan  @relation(fields: [permohonanId], references: [id], onDelete: Cascade)
-  formFieldId  String
-  formField    FormField   @relation(fields: [formFieldId], references: [id])
-  value        String      @db.Text    // Teks atau Cloudinary URL (FILE_UPLOAD)
-
-  @@index([permohonanId])
-  @@map("permohonan_data")
-}
-
-model ProgressHistory {
-  id           String           @id @default(cuid())
-  permohonanId String
-  permohonan   Permohonan       @relation(fields: [permohonanId], references: [id], onDelete: Cascade)
-  status       StatusPermohonan
-  catatan      String?          @db.Text
-  createdById  String
-  createdBy    User             @relation(fields: [createdById], references: [id])
-  createdAt    DateTime         @default(now())
-
-  @@index([permohonanId])
-  @@map("progress_history")
-}
-```
+> **Fase 5 di-skip berdasarkan keputusan tim.** Model `Layanan`, `FormField`, `Permohonan`, `PermohonanData`, `ProgressHistory`, serta field `nik` & `phoneNumber` di `User` **TIDAK ADA** di schema dan **TIDAK AKAN ditambahkan** dalam kondisi saat ini. Jangan membuat kode yang bergantung pada model-model tersebut.
 
 ---
 
 ## 5. Panduan Modifikasi — Halaman Existing
 
 ### 5.1 Beranda (`app/page.tsx`)
-- **Jangan dihapus**, modifikasi konten:
-  - Hero section: ganti judul & deskripsi ke Kelurahan Salomallori
-  - Tambah section statistik kelurahan (luas wilayah, penduduk, KK, dusun)
-  - Featured UMKM & Wisata (query terbaru)
-  - Galeri foto grid
-  - Breaking news → pengumuman kelurahan
+- **SUDAH SELESAI** — dibangun dari `components/stitch/beranda-page-client.tsx`
+- Memilih `BerandaResmi` (light) atau `BerandaDark` (dark) berdasarkan `resolvedTheme`
+- Section: Hero (bg gambar + overlay), Statistik kelurahan, Berita terbaru, Sejarah, Galeri, Breaking news
 
 ### 5.2 Profil (`app/profil/`)
-- Modifikasi menjadi profil Kelurahan Salomallori
-- Data diambil dari model `Desa`
+- **SUDAH SELESAI** — profil Kelurahan Salomallori, data dari model `Desa`
+- Sub-halaman aktif:
+  - `/profil/sejarah-kelurahan` — Sejarah kelurahan
+  - `/profil/pejabat-kelurahan` — Pejabat kelurahan
+  - `/profil/visi-misi` — Visi & misi kelurahan
+  - `/profil/struktur-organisasi` — Bagan struktur organisasi
+- Folder sisa PortalBeritaKodim yang TIDAK dipakai navbar:
+  - `app/profil/pejabat-kodim/` — ⚠️ sisa lama
+  - `app/profil/sejarah-satuan/` — ⚠️ sisa lama
+  - **Jangan dihapus** (aturan keamanan)
 
-### 5.3 Profil Satuan (`app/profil-satuan/`)
-- Ubah menjadi halaman Sejarah atau Visi Misi kelurahan
-- Atau digabung ke `/profil` dengan section terpisah
+### 5.3 Berita (`app/news/` & `app/dashboard/posts/`)
+- Halaman public: ✅ sudah OK
+- Halaman admin CRUD: ✅ sudah OK
 
-### 5.4 Program Satuan (`app/program-satuan/`)
-- Ubah menjadi halaman Visi & Misi kelurahan
-- Konten dari model `Desa.visi` dan `Desa.misi`
+### 5.4 Aduan (`app/aduan/`) → Kontak
+- **SUDAH SELESAI** — halaman Kontak & Lokasi
+- Data dikelola via model `Kontak` (single record) + `app/dashboard/kontak`
+- Terdiri: Google Maps embed, kontak WhatsApp, alamat kantor kelurahan
 
-### 5.5 Berita (`app/news/` & `app/dashboard/posts/`)
-- Halaman public: sudah OK, sesuaikan query & tampilan
-- Halaman admin CRUD: sudah OK, sesuaikan label & field
-
-### 5.6 Aduan (`app/aduan/`) → Kontak
-- Ubah menjadi halaman Kontak & Lokasi
-- Tambah Google Maps embed
-- Link WhatsApp kantor kelurahan
-
-### 5.7 Auth (`app/auth/`)
+### 5.5 Auth (`app/auth/`)
 - Tidak perlu diubah, langsung pakai
 
-### 5.8 Dashboard (`app/dashboard/`)
-- Modifikasi overview dengan data kelurahan
-- Tambah menu CRUD UMKM, Wisata, Galeri, Infografis
-- Tambah menu Layanan & Permohonan (Fase 5)
-- Tambah card ringkasan permohonan (total, menunggu, diproses, selesai)
+### 5.6 Dashboard (`app/dashboard/`)
+- **SUDAH SELESAI** — sidebar 10 menu (lihat `components/custom/admin-sidebar.tsx`)
+- Menu: Dashboard, Postingan, UMKM, Galeri, Profil Kelurahan, Kontak, Infografis, Kategori, Pengguna (admin only), Pesan
+- Breaking News TIDAK ada di sidebar (tidak terpakai)
 
-### 5.9 Akun User (`app/akun/`)
-- Modifikasi menjadi Dashboard User (Fase 5)
-- Tambah halaman: profil (edit NIK, telepon), daftar permohonan, detail tracking, pengajuan baru
+### 5.7 Akun User (`app/akun/`)
+- Satu halaman profil user: `/akun/[id]`
+- **TIDAK ADA** dashboard user tracking pelayanan (Fase 5 di-skip)
 
 ---
 
-## 6. Panduan — Halaman Baru yang Harus Dibuat
+## 6. Halaman yang Ada (Route Aktif)
 
 ### 6.1 Public Pages
 
-| Route | File | Keterangan |
-|---|---|---|
-| `/umkm` | `app/umkm/page.tsx` | Katalog UMKM (grid card, filter kategori, pencarian) |
-| `/umkm/[id]` | `app/umkm/[id]/page.tsx` | Detail produk UMKM |
-| `/wisata` | `app/wisata/page.tsx` | Daftar destinasi wisata/kuliner/budaya |
-| `/wisata/[id]` | `app/wisata/[id]/page.tsx` | Detail wisata |
-| `/galeri` | `app/galeri/page.tsx` | Grid galeri responsif + lightbox, filter kategori |
-| `/infografis` | `app/infografis/page.tsx` | Visualisasi data statistik kelurahan |
-| `/idm` | `app/idm/page.tsx` | Indeks Desa Membangun |
+| Route | File | Keterangan | Status |
+|---|---|---|---|
+| `/` | `app/page.tsx` | Beranda (Hero + stats + berita + sejarah + galeri) | ✅ Aktif |
+| `/profil` | `app/profil/page.tsx` | Profil kelurahan | ✅ Aktif |
+| `/profil/sejarah-kelurahan` | `app/profil/sejarah-kelurahan/` | Sejarah kelurahan | ✅ Aktif |
+| `/profil/pejabat-kelurahan` | `app/profil/pejabat-kelurahan/` | Pejabat kelurahan | ✅ Aktif |
+| `/profil/visi-misi` | `app/profil/visi-misi/` | Visi & misi | ✅ Aktif |
+| `/profil/struktur-organisasi` | `app/profil/struktur-organisasi/` | Bagan struktur | ✅ Aktif |
+| `/news` | `app/news/page.tsx` | Daftar berita | ✅ Aktif |
+| `/news/[slug]` | `app/news/[slug]/` | Detail berita | ✅ Aktif |
+| `/umkm` | `app/umkm/page.tsx` | Katalog UMKM | ✅ Aktif |
+| `/umkm/[id]` | `app/umkm/[id]/` | Detail UMKM | ✅ Aktif |
+| `/wisata` | `app/wisata/page.tsx` | Daftar wisata | ✅ Aktif (tidak di-link navbar) |
+| `/wisata/[id]` | `app/wisata/[id]/` | Detail wisata | ✅ Aktif (tidak di-link navbar) |
+| `/galeri` | `app/galeri/page.tsx` | Galeri + lightbox | ✅ Aktif |
+| `/infografis` | `app/infografis/page.tsx` | Visualisasi data | ✅ Aktif |
+| `/kontak` | `app/aduan/page.tsx` | Kontak + Maps | ✅ Aktif |
 
 ### 6.2 Admin Pages
 
-| Route | File | Keterangan |
-|---|---|---|
-| `/dashboard/umkm` | `app/dashboard/umkm/page.tsx` | List UMKM + CRUD |
-| `/dashboard/umkm/new` | `app/dashboard/umkm/new/page.tsx` | Form tambah UMKM |
-| `/dashboard/umkm/[id]/edit` | `app/dashboard/umkm/[id]/edit/page.tsx` | Form edit UMKM |
-| `/dashboard/wisata` | `app/dashboard/wisata/page.tsx` | List wisata + CRUD |
-| `/dashboard/wisata/new` | `app/dashboard/wisata/new/page.tsx` | Form tambah wisata |
-| `/dashboard/wisata/[id]/edit` | `app/dashboard/wisata/[id]/edit/page.tsx` | Form edit wisata |
-| `/dashboard/galeri` | `app/dashboard/galeri/page.tsx` | Upload & kelola foto galeri |
-| `/dashboard/profil-desa` | `app/dashboard/profil-desa/page.tsx` | Edit data kelurahan & perangkat |
-| `/dashboard/infografis` | `app/dashboard/infografis/page.tsx` | Kelola data infografis |
+| Route | File | Keterangan | Status |
+|---|---|---|---|
+| `/dashboard` | `app/dashboard/page.tsx` | Overview | ✅ Aktif |
+| `/dashboard/posts` | `app/dashboard/posts/` | CRUD berita | ✅ Aktif |
+| `/dashboard/posts/create` | `app/dashboard/posts/create/` | Form berita | ✅ Aktif |
+| `/dashboard/posts/[id]` | `app/dashboard/posts/[id]/` | Edit berita | ✅ Aktif |
+| `/dashboard/breaking-news` | `app/dashboard/breaking-news/` | CRUD breaking news | ✅ Aktif (API, bukan di sidebar) |
+| `/dashboard/categories` | `app/dashboard/categories/` | CRUD kategori | ✅ Aktif |
+| `/dashboard/messages` | `app/dashboard/messages/` | Pesan masuk | ✅ Aktif |
+| `/dashboard/users` | `app/dashboard/users/` | Manajemen user | ✅ Aktif (admin only) |
+| `/dashboard/umkm` | `app/dashboard/umkm/` | CRUD UMKM | ✅ Aktif |
+| `/dashboard/umkm/new` | `app/dashboard/umkm/new/` | Form UMKM | ✅ Aktif |
+| `/dashboard/umkm/[id]/edit` | `app/dashboard/umkm/[id]/edit/` | Edit UMKM | ✅ Aktif |
+| `/dashboard/wisata` | `app/dashboard/wisata/` | CRUD wisata | ✅ Aktif |
+| `/dashboard/wisata/new` | `app/dashboard/wisata/new/` | Form wisata | ✅ Aktif |
+| `/dashboard/wisata/[id]/edit` | `app/dashboard/wisata/[id]/edit/` | Edit wisata | ✅ Aktif |
+| `/dashboard/galeri` | `app/dashboard/galeri/` | Kelola galeri | ✅ Aktif |
+| `/dashboard/profil-desa` | `app/dashboard/profil-desa/` | Edit profil desa | ✅ Aktif |
+| `/dashboard/infografis` | `app/dashboard/infografis/` | Kelola infografis | ✅ Aktif |
+| `/dashboard/kontak` | `app/dashboard/kontak/` | Kelola kontak | ✅ Aktif |
 
-### 6.3 Admin Pages — Tracking Pelayanan (Fase 5)
+### 6.3 Halaman Fase 5 — TIDAK ADA
 
-| Route | File | Keterangan |
-|---|---|---|
-| `/dashboard/layanan` | `app/dashboard/layanan/page.tsx` | List layanan + CRUD |
-| `/dashboard/layanan/new` | `app/dashboard/layanan/new/page.tsx` | Tambah layanan (upload template file) |
-| `/dashboard/layanan/[id]/edit` | `app/dashboard/layanan/[id]/edit/page.tsx` | Edit layanan |
-| `/dashboard/layanan/[id]/form` | `app/dashboard/layanan/[id]/form/page.tsx` | Form builder — kelola FormField |
-| `/dashboard/permohonan` | `app/dashboard/permohonan/page.tsx` | Semua ticket (filter status/layanan/tanggal, search) |
-| `/dashboard/permohonan/[id]` | `app/dashboard/permohonan/[id]/page.tsx` | Detail ticket: pilih layanan (offline) + isi form + update status + progress history |
-
-### 6.4 User Dashboard Pages — Tracking Pelayanan (Fase 5)
-
-| Route | File | Keterangan |
-|---|---|---|
-| `/akun/dashboard` | `app/akun/dashboard/page.tsx` | Dashboard user: profil ringkas + 5 permohonan terbaru + tombol ajukan |
-| `/akun/dashboard/profil` | `app/akun/dashboard/profil/page.tsx` | Edit data diri (NIK, telepon) — wajib diisi sebelum pengajuan online |
-| `/akun/dashboard/permohonan` | `app/akun/dashboard/permohonan/page.tsx` | Riwayat semua permohonan user |
-| `/akun/dashboard/permohonan/[id]` | `app/akun/dashboard/permohonan/[id]/page.tsx` | Detail tracking + timeline progress + tombol batalkan (jika MENUNGGU) |
-| `/akun/dashboard/ajukan` | `app/akun/dashboard/ajukan/page.tsx` | Pilih jenis ajuan (offline/online) → pilih layanan → isi form dinamis → submit |
+> Dashboard user tracking (`/akun/dashboard/*`), dashboard layanan (`/dashboard/layanan/*`), dashboard permohonan (`/dashboard/permohonan/*`) **TIDAK ADA** — Fase 5 di-skip.
 
 ---
 
-## 7. API Routes
+## 7. API Routes (Aktif)
 
-### 7.1 Route yang perlu ditambahkan (Fase 1-4)
-
-```
-app/api/
-├── umkm/
-│   ├── route.ts          # GET (list), POST (create)
-│   └── [id]/
-│       └── route.ts      # GET, PUT, DELETE
-├── wisata/
-│   ├── route.ts
-│   └── [id]/
-│       └── route.ts
-├── galeri/
-│   ├── route.ts
-│   └── [id]/
-│       └── route.ts
-├── desa/
-│   └── route.ts          # GET, PUT (single record)
-├── perangkat-desa/
-│   ├── route.ts
-│   └── [id]/
-│       └── route.ts
-├── infografis/
-│   ├── route.ts
-│   └── [id]/
-│       └── route.ts
-└── upload/
-    └── route.ts           # Upload gambar ke Cloudinary
-```
-
-### 7.2 Route yang perlu ditambahkan (Fase 5 — Tracking Pelayanan)
+### 7.1 Route yang ADA
 
 ```
 app/api/
-├── layanan/
-│   ├── route.ts              # GET (list, only isActive), POST
-│   └── [id]/
-│       ├── route.ts          # GET, PUT, DELETE
-│       └── form-fields/
-│           ├── route.ts      # GET (list fields), POST (create)
-│           └── [fieldId]/
-│               └── route.ts  # PUT, DELETE
-├── permohonan/
-│   ├── route.ts              # GET (list + filter), POST (create)
-│   └── [id]/
-│       ├── route.ts          # GET, PUT (update status/layanan)
-│       └── progress/
-│           └── route.ts      # GET (list), POST (create)
-├── user/
-│   └── profile/
-│       └── route.ts          # GET, PUT (nik, phoneNumber)
-└── email/
-    └── send/
-        └── route.ts          # POST (send email via Nodemailer Gmail SMTP)
+├── auth/[...all]/                  # Better-Auth endpoints
+├── breaking-news/                  # GET, POST + [id]/
+├── categories/                     # GET, POST + [id]/
+├── desa/                           # GET, PUT (single record)
+├── kontak/                         # GET, PUT (single record)
+├── galeri/                         # GET, POST + [id]/
+├── infografis/                     # GET, POST + [id]/
+├── messages/                       # GET, POST + [id]/
+├── perangkat-desa/                 # GET, POST + [id]/
+├── posts/                          # GET, POST + [id]/
+├── profile/[id]/                   # GET, PUT user profile
+├── umkm/                           # GET (list + limit), POST + [id]/
+├── upload/                         # Upload gambar ke Cloudinary
+├── users/                          # GET, POST + [id]/
+└── wisata/                         # GET (list + limit), POST + [id]/
 ```
+
+### 7.2 Route Fase 5 — TIDAK ADA
+
+> API `layanan/`, `permohonan/`, `user/profile/`, `email/send/` **TIDAK ADA** — Fase 5 di-skip.
 
 ### 7.3 Pattern API Route (contoh)
 
@@ -598,55 +469,13 @@ export async function POST(req: NextRequest) {
 }
 ```
 
-### 7.4 API Permohonan — Create (Khusus)
-
-```ts
-// POST /api/permohonan
-export async function POST(req: NextRequest) {
-  try {
-    const body = await req.json();
-    const { layananId, jenisAjuan, formData } = body;
-    // formData: [{ formFieldId: "xxx", value: "isi" }, ...]
-
-    // Generate nomor tiket
-    const today = new Date().toISOString().slice(0, 10).replace(/-/g, "");
-    const count = await prisma.permohonan.count({
-      where: { nomorTiket: { startsWith: `SL-${today}` } },
-    });
-    const nomorTiket = `SL-${today}-${String(count + 1).padStart(3, "0")}`;
-
-    const permohonan = await prisma.permohonan.create({
-      data: {
-        nomorTiket,
-        layananId: layananId || null,
-        userId: body.userId,
-        jenisAjuan,
-        status: "MENUNGGU",
-        data: {
-          create: formData.map((fd: { formFieldId: string; value: string }) => ({
-            formFieldId: fd.formFieldId,
-            value: fd.value,
-          })),
-        },
-      },
-      include: { data: true },
-    });
-
-    return NextResponse.json(permohonan, { status: 201 });
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
-  }
-}
-```
-
 ---
 
-## 8. Urutan Pengerjaan (3 Minggu)
+## 8. Urutan Pengerjaan (Progress Tracker)
 
 **Progress tracker:** Agent wajib mengubah `[ ]` menjadi `[x]` setelah setiap task selesai.
 
-### Fase 1 — Setup & Database (Hari 1–5)
+### Fase 1 — Setup & Database (Hari 1–5) ✅ SELESAI
 - [x] 1. Clone repo PortalBeritaKodim ke `Web-Kelurahan-Salomallori/` — setelah clone, hapus folder `.git` dan jalankan `git init` agar project siap dipasangi remote repository baru milik KKN
 - [x] 2. Install dependencies: `npm install`
 - [x] 3. Tambah model `Desa`, `PerangkatDesa`, `UMKM`, `Wisata`, `Galeri`, `Infografis` ke `prisma/schema.prisma`
@@ -655,7 +484,7 @@ export async function POST(req: NextRequest) {
 - [x] 6. Verifikasi auth Better-Auth berjalan
 - [x] 7. Setup Cloudinary upload route
 
-### Fase 2 — Halaman Public (Hari 6–9)
+### Fase 2 — Halaman Public (Hari 6–9) ✅ SELESAI
 - [x] 8a. Beranda: Hero section + statistik kelurahan
 - [x] 8b. Beranda: Featured UMKM + Wisata terbaru
 - [x] 8c. Beranda: Galeri foto grid + pengumuman kelurahan (breaking news)
@@ -667,7 +496,7 @@ export async function POST(req: NextRequest) {
 - [x] 14. Buat halaman Infografis + IDM (placeholder siap)
 - [x] 15. Modifikasi halaman kontak + Google Maps
 
-### Fase 3 — Admin & CRUD (Hari 10–12)
+### Fase 3 — Admin & CRUD (Hari 10–12) ✅ SELESAI
 - [x] 16a. API routes untuk UMKM (list, create, get, update, delete)
 - [x] 16b. API routes untuk Wisata
 - [x] 16c. API routes untuk Galeri
@@ -679,57 +508,21 @@ export async function POST(req: NextRequest) {
 - [x] 20. Halaman kelola Galeri
 - [x] 21. Halaman edit profil kelurahan & perangkat
 - [x] 22. Halaman kelola Infografis
+- [x] 22b. Model `Kontak` + halaman kelola kontak (`/dashboard/kontak`) + API `/api/kontak`
+- [x] 22c. Halaman Kontak public (`/kontak` via `app/aduan/`) + Google Maps
 
-### Fase 4 — Testing & Deploy (Hari 13–14)
+### Fase 4 — Testing & Deploy (Hari 13–14) ✅ SELESAI
 - [x] 23. Testing end-to-end (semua CRUD, auth, tampilan)
 - [x] 24. Responsive testing (mobile, tablet, desktop)
 - [x] 25. Dark mode testing
 - [x] 26. Deploy ke Vercel
 - [x] 27. Dokumentasi serah terima ke perangkat kelurahan
 
-### ~~Fase 5 — Tracking Pelayanan (Skipped)~~
+### Fase 5 — Tracking Pelayanan (SKIPPED) ❌ TIDAK DIKERJAKAN
 
 > **Fase ini di-skip berdasarkan keputusan tim.** Fitur Tracking Pelayanan tidak diimplementasikan. Projek tetap aman dan tidak ada dependensi kode terhadap Fase 5.
 
-#### ~~5A — Database & Setup~~
-- [x] ~skipped~ 28a. Tambah model `Layanan`, `FormField`, `Permohonan`, `PermohonanData`, `ProgressHistory` + enum
-- [x] ~skipped~ 28b. Modifikasi model `User`: tambah field `nik` & `phoneNumber`
-- [x] ~skipped~ 28c. Jalankan migrasi: `add_layanan_models`
-- [x] ~skipped~ 28d. Buat seed data layanan contoh
-
-#### ~~5B — API Routes~~
-- [x] ~skipped~ 28e. API routes untuk Layanan
-- [x] ~skipped~ 28f. API routes untuk FormField
-- [x] ~skipped~ 28g. API routes untuk Permohonan
-- [x] ~skipped~ 28h. API routes untuk ProgressHistory
-- [x] ~skipped~ 28i. API route untuk user profile
-- [x] ~skipped~ 28j. API route untuk kirim email
-
-#### ~~5C — Dashboard User~~
-- [x] ~skipped~ 29a. Halaman dashboard user (`/akun/dashboard`)
-- [x] ~skipped~ 29b. Halaman edit profil user (`/akun/dashboard/profil`)
-- [x] ~skipped~ 29c. Halaman riwayat permohonan user
-- [x] ~skipped~ 29d. Halaman detail tracking permohonan user
-- [x] ~skipped~ 29e. Halaman pengajuan baru
-
-#### ~~5D — Admin Panel Pelayanan~~
-- [x] ~skipped~ 30a. Halaman CRUD Layanan
-- [x] ~skipped~ 30b. Halaman Form Builder
-- [x] ~skipped~ 30c. Halaman daftar permohonan
-- [x] ~skipped~ 30d. Halaman detail permohonan admin
-
-#### ~~5E — Integrasi~~
-- [x] ~skipped~ 31a. Update dashboard admin overview
-- [x] ~skipped~ 31b. Update AdminSidebar
-- [x] ~skipped~ 31c. Kirim email notifikasi
-- [x] ~skipped~ 31d. In-web notifikasi toast
-
-#### ~~5F — Testing~~
-- [x] ~skipped~ 32a. Testing flow pengajuan online
-- [x] ~skipped~ 32b. Testing flow pengajuan offline
-- [x] ~skipped~ 32c. Testing CRUD layanan & form builder
-- [x] ~skipped~ 32d. Testing email notifikasi
-- [x] ~skipped~ 32e. Testing batalkan ticket
+Semua sub-task Fase 5 (28a–32e) TIDAK dikerjakan dan dianggap batal.
 
 ### Fase 6 — Peta Interaktif (Coming Soon — Masih Ide)
 
@@ -752,8 +545,8 @@ export async function POST(req: NextRequest) {
 - [ ] 37. Buat `app/peta-wilayah/page.tsx` — halaman peta interaktif full-height
 
 #### 6C — Integrasi Navbar
-- [ ] 38. Modifikasi `components/custom/navbar.tsx`:
-  - Ubah item `Infografis` (single link) menjadi **dropdown "Informasi Umum"**
+- [ ] 38. Modifikasi `components/custom/navbar-beranda.tsx`:
+  - Ubah item `Infografis` (di dropdown Profil) menjadi **dropdown "Informasi Umum"**
   - Dropdown berisi: **Infografis** (`/infografis`) + **Peta Wilayah** (`/peta-wilayah`)
   - Gunakan icon `Map` dari lucide-react
 
@@ -783,7 +576,7 @@ export async function POST(req: NextRequest) {
 
 | Sebelum | Sesudah |
 |---|---|
-| Infografis (link sendiri) | **Informasi Umum ▼** → Infografis + Peta Wilayah |
+| Infografis (di dropdown Profil) | **Informasi Umum ▼** → Infografis + Peta Wilayah |
 
 **Prasyarat Sebelum Dikerjakan:**
 1. Tim GIS harus mengekspor dari ArcGIS/QGIS ke file GeoJSON:
@@ -799,15 +592,23 @@ export async function POST(req: NextRequest) {
 - File/Route: kebab-case. Komponen: PascalCase. Fungsi/Variabel: camelCase.
 
 ### 9.2 Struktur Komponen
+
 ```
 components/
-├── ui/           # shadcn/ui
-├── cards/        # Card components
-├── landing/      # Landing sections
-├── galeri/       # Gallery
-├── admin/        # Admin components
-├── layout/       # Navbar, Footer
-└── maps/         # Google Maps
+├── ui/                    # shadcn/ui (button, card, dialog, dll)
+├── custom/                # Navbar, Footer, ThemeToggle, ImageUpload, dll
+├── landing/               # Hero, Stats, News, Galeri, Sejarah sections
+├── stitch/                # Beranda (beranda-page-client, beranda-resmi, beranda-dark, reveal)
+├── galeri/                # GaleriClient (grid + filter + lightbox)
+├── infografis/            # InfografisClient, ChartView
+├── umkm/                  # UmkmClient (grid + filter + pencarian)
+├── wisata/                # WisataClient (grid + filter kategori)
+├── tiptap-extension/      # Ekstensi kustom TipTap
+├── tiptap-icons/          # Icon set editor
+├── tiptap-node/           # Node kustom TipTap
+├── tiptap-templates/      # Template editor
+├── tiptap-ui/             # Toolbar editor
+└── tiptap-ui-primitive/   # Primitive UI editor
 ```
 
 ### 9.3 Error Handling
@@ -817,27 +618,48 @@ API route try-catch 500. Toast (sonner) untuk operasi CRUD. Loading/empty/skelet
 Strict mode. Prisma types. Zod validasi input.
 
 ### 9.5 Struktur Navbar
-Floating navigation island (Graphite Night #282834): Beranda | Profil (dropdown) | Informasi (dropdown) | Potensi (dropdown) | Kontak
+
+**Dua varian navbar:**
+
+1. **Navbar Beranda** (`components/custom/navbar-beranda.tsx`) — floating pill:
+   ```
+   Floating navigation pill (fixed top-6, rounded-full, bg-#0b2b40/30 → /90 saat scroll)
+   Logo Kab. logo_kab.png + "Kelurahan Salomallori" + sub-label "Kec. Dua Pitue, Kab. Sidenreng Rappang"
+   Beranda | Profil ▼ (Sejarah Kelurahan, Pejabat Kelurahan, Infografis) | UMKM | Publikasi ▼ (Berita, Galeri Foto) | Kontak
+   + ThemeToggle + Avatar user (dropdown: Dashboard, Profil, Keluar / Masuk, Daftar)
+   ```
+   - Link hover: `hover:text-[#84bd3a]` (light) / `hover:text-[#32735f]` (dark)
+   - Dropdown panel: `bg-[#0b2b40]/95` saat scroll, `bg-[#0b2b40]/30` saat atas
+
+2. **Navbar Dashboard / Halaman Dalam** (`components/custom/navbar.tsx`) — fixed top bar:
+   ```
+   Fixed top bar, full width, bg-#0b2b40 (Graphite Night)
+   ```
+
+3. **Admin Sidebar** (`components/custom/admin-sidebar.tsx`) — sidebar vertikal:
+   ```
+   Desktop: fixed sidebar w-64 di kiri (Paper/Dark Graphite)
+   Mobile: drawer off-canvas dengan hamburger toggle
+   10 menu: Dashboard, Postingan, UMKM, Galeri, Profil Kelurahan, Kontak, Infografis, Kategori, Pengguna (admin only), Pesan
+   Bagian bawah: avatar user + email + ThemeToggle + tombol Keluar
+   ```
 
 ### 9.6 Route Mapping
-39 halaman total: 15 public + 13 admin + 5 user dashboard + auth + existing
+Total halaman aktif: 17 public + 18 admin + 2 auth + 1 user = **38 halaman**
 
 ---
 
 ## 10. Checklist Testing
 
 ### Public Pages
-- [ ] Beranda, Profil, Berita, UMKM, Wisata, Galeri, Infografis, IDM, Kontak — dark mode semua
+- [x] Beranda, Profil (Sejarah, Pejabat, Visi Misi, Struktur), Berita, UMKM, Wisata, Galeri, Infografis, Kontak — dark mode semua
 
 ### Admin Pages
-- [ ] Login, CRUD konten, upload galeri, profil kelurahan, infografis
-
-### Tracking Pelayanan
-- [ ] Layanan, Form Builder, Pengajuan online/offline, Ticket, Timeline, Batalkan, Notifikasi
+- [x] Login, CRUD konten (posts, UMKM, wisata, galeri, kategori), profil kelurahan, infografis, kontak, pesan
 
 ### Performance & Responsive
-- [ ] Lighthouse >= 90, Image optimization, Load < 3detik
-- [ ] Desktop 1920px, Laptop 1366px, Tablet 768px, Mobile 375px
+- [x] Lighthouse test, Image optimization, Load cepat
+- [x] Desktop 1920px, Laptop 1366px, Tablet 768px, Mobile 375px
 
 ---
 
@@ -850,22 +672,6 @@ Floating navigation island (Graphite Night #282834): Beranda | Profil (dropdown)
 | Cloudinary upload gagal | Cek API key & cloud name |
 | Dark mode flicker | ThemeProvider di root layout |
 | Build error | npx prisma migrate deploy di build script |
-| Email tidak terkirim | Cek SMTP config, App Password |
-| Nomor tiket duplikat | Retry unique constraint |
-
----
-
-## 12. Catatan Penting
-
-1. Jangan hapus file existing PortalBeritaKodim
-2. TipTap untuk rich text editing
-3. Cloudinary untuk upload gambar/file
-4. Role: USER (warga), ADMIN (full akses), EDITOR (proses permohonan)
-5. Dark mode via next-themes
-6. Breakpoints: sm=640, md=768, lg=1024, xl=1280
-7. FILE_UPLOAD: Cloudinary URL di PermohonanData.value
-8. Template layanan: Cloudinary URL di Layanan.templateFile
-9. Email: Nodemailer + Gmail SMTP dengan App Password
 
 ---
 

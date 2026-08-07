@@ -13,7 +13,7 @@
 | Framework | Next.js (App Router) | 16.x |
 | UI Library | React | 19.x |
 | CSS | Tailwind CSS | 4.x |
-| SCSS | Sass (variabel & keyframe styles) | latest |
+| SCSS | Sass (variabel & keyframe animations) | latest |
 | Components | shadcn/ui | latest |
 | Database | PostgreSQL | latest |
 | ORM | Prisma | 7.x |
@@ -23,6 +23,8 @@
 | Icons | Lucide React | 0.x |
 | Forms | Zod | 4.x |
 | Charts | Recharts (via Infografis) | 3.x |
+| Font | Geist, Geist Mono, Montserrat (next/font/google) | — |
+| Dark Mode | next-themes | latest |
 | Google Maps | iframe embed (mapsEmbed) | — |
 
 ---
@@ -32,11 +34,13 @@
 ```
 Web-Kelurahan-Salomallori/                  # Root proyek
 ├── app/                                    # Next.js App Router
-│   ├── page.tsx                            # Beranda (/)
+│   ├── page.tsx                            # Beranda (/) — stitch beranda
 │   ├── layout.tsx                          # Root layout
-│   ├── globals.css                         # Global styles (Tailwind)
+│   ├── globals.css                         # Global styles (Tailwind + CSS vars)
 │   ├── error.tsx                           # Error boundary global
 │   ├── global-error.tsx                    # Global error boundary
+│   ├── robots.ts                           # robots.txt
+│   ├── sitemap.ts                          # sitemap.xml
 │   │
 │   ├── aduan/                              # → /kontak (halaman Kontak & Lokasi)
 │   │   └── page.tsx
@@ -49,7 +53,7 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 │   │   └── signup/                         # Register
 │   │
 │   ├── dashboard/                          # Admin dashboard
-│   │   ├── layout.tsx                      # Admin layout (sidebar/navbar)
+│   │   ├── layout.tsx                      # Admin layout (sidebar + navbar)
 │   │   ├── page.tsx                        # Dashboard overview
 │   │   ├── breaking-news/                  # CRUD breaking news (+ create/)
 │   │   ├── categories/                     # CRUD kategori (+ create/)
@@ -72,7 +76,7 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 │   │   └── [slug]/
 │   ├── profil/                             # → /profil & sub-halaman
 │   │   ├── page.tsx
-│   │   ├── pejabat-kelurahan/              # Struktur perangkat kelurahan
+│   │   ├── pejabat-kelurahan/              # Pejabat kelurahan
 │   │   ├── pejabat-kodim/                  # ⚠️ Sisa PortalBeritaKodim (tidak dipakai navbar)
 │   │   ├── sejarah-kelurahan/              # Sejarah kelurahan
 │   │   ├── sejarah-satuan/                 # ⚠️ Sisa PortalBeritaKodim (tidak dipakai navbar)
@@ -98,34 +102,41 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 │       ├── perangkat-desa/                 # GET, POST + [id]/
 │       ├── posts/                          # GET, POST + [id]/
 │       ├── profile/[id]/                   # GET, PUT user profile
-│       ├── umkm/                           # GET, POST + [id]/
+│       ├── umkm/                           # GET (list + limit), POST + [id]/
 │       ├── upload/                         # Upload gambar ke Cloudinary
 │       ├── users/                          # GET, POST + [id]/
-│       └── wisata/                         # GET, POST + [id]/
+│       └── wisata/                         # GET (list + limit), POST + [id]/
 │
 ├── components/                             # Komponen React
 │   ├── custom/                             # Komponen custom utama
+│   │   ├── admin-sidebar.tsx               # Sidebar dashboard (10 menu)
+│   │   ├── navbar.tsx                      # Navbar dashboard/halaman dalam (fixed top, bg #0b2b40)
+│   │   ├── navbar-beranda.tsx              # Navbar beranda floating pill
 │   │   ├── breaking-news.tsx
 │   │   ├── category-badge.tsx
 │   │   ├── color-picker.tsx
 │   │   ├── date-range-picker.tsx
 │   │   ├── footer.tsx
 │   │   ├── image-upload.tsx
-│   │   ├── navbar.tsx                      # Navbar public + dashboard (fixed top, bg graphite-night)
 │   │   ├── news-card.tsx
 │   │   ├── posts-grid.tsx
 │   │   ├── scroll-to-top.tsx
 │   │   ├── theme-provider.tsx
 │   │   ├── theme-toggle.tsx
 │   │   └── user-multi-select.tsx
-│   ├── landing/                            # Komponen beranda
-│   │   ├── hero-section.tsx                # Hero
-│   │   ├── stats-section.tsx               # Statistik kelurahan
-│   │   ├── breaking-news-section.tsx       # Marquee pengumuman
-│   │   ├── news-section.tsx                # Berita terbaru
-│   │   ├── sejarah-section.tsx             # Sejarah kelurahan
-│   │   ├── featured-section.tsx            # UMKM + Wisata unggulan
-│   │   └── galeri-section.tsx              # Galeri foto grid
+│   ├── landing/                            # Komponen beranda lama (tidak lagi dipakai beranda)
+│   │   ├── hero-section.tsx
+│   │   ├── stats-section.tsx
+│   │   ├── breaking-news-section.tsx
+│   │   ├── news-section.tsx
+│   │   ├── sejarah-section.tsx
+│   │   ├── featured-section.tsx
+│   │   └── galeri-section.tsx
+│   ├── stitch/                             # Komponen beranda baru (aktif)
+│   │   ├── beranda-page-client.tsx         # Client wrapper beranda
+│   │   ├── beranda-resmi.tsx               # Beranda light mode
+│   │   ├── beranda-dark.tsx                # Beranda dark mode
+│   │   └── reveal.tsx                      # Scroll reveal animation
 │   ├── galeri/                             # Komponen galeri
 │   │   └── galeri-client.tsx               # Grid + filter + lightbox (client)
 │   ├── infografis/                         # Komponen infografis
@@ -137,10 +148,10 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 │   │   └── wisata-client.tsx               # Grid + filter kategori
 │   ├── tiptap-extension/                   # Ekstensi TipTap (node-background)
 │   ├── tiptap-icons/                       # Icon set editor TipTap
-│   ├── tiptap-node/                        # Node kustom TipTap (heading, image, list, dll)
-│   ├── tiptap-templates/                   # Template editor (simple/)
-│   ├── tiptap-ui/                          # UI toolbar editor (heading, link, mark, dll)
-│   ├── tiptap-ui-primitive/                # Primitive UI editor (button, card, toolbar, dll)
+│   ├── tiptap-node/                        # Node kustom TipTap
+│   ├── tiptap-templates/                   # Template editor
+│   ├── tiptap-ui/                          # UI toolbar editor
+│   ├── tiptap-ui-primitive/                # Primitive UI editor
 │   └── ui/                                 # shadcn/ui components (button, card, dialog, dll)
 │
 ├── hooks/                                  # Custom React hooks (tiptap, breakpoint, dll)
@@ -155,7 +166,7 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 │   ├── tiptap-utils.ts
 │   ├── utils.ts                            # Tailwind helper (cn)
 │   ├── generated/prisma/                   # Generated Prisma client
-│   └── schemas/                            # Zod schemas (desa, kontak, message, dll)
+│   └── schemas/                            # Zod schemas (desa, kontak, message, wisata, dll)
 │
 ├── prisma/                                 # Database
 │   ├── schema.prisma                       # Schema lengkap
@@ -163,9 +174,11 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 │   ├── config.ts
 │   └── migrations/                         # Migrasi Prisma
 │
-├── public/                                 # Static assets (logo, favicon, placeholder)
-│   └── images/                             # Placeholder images
+├── public/                                 # Static assets (logo, favicon, images)
+│   └── images/                             # logo_kab.png, hero-bg.jpg, dll
+├── scripts/                                # Script pendukung (verify-seed, dll)
 ├── styles/                                 # SCSS (variabel & keyframe animations)
+├── stitch-output/                          # Output HTML Stitch (beranda-resmi, beranda-dark)
 ├── utils/                                  # Utility murni (string helpers)
 ├── docs/                                   # Dokumentasi (SERAH_TERIMA.md)
 │
@@ -173,13 +186,17 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 ├── AGENTS.md                               # Agent guide & task tracker
 ├── DESIGN.md                               # Design system reference
 ├── PROJECT_STRUCTURE.md                    # ← FILE INI
+├── PRD_Website_Kelurahan_Salomallori.md    # Product requirement document
 ├── llms.txt
 ├── next.config.ts
 ├── package.json
 ├── tsconfig.json
 ├── postcss.config.mjs
+├── prisma.config.ts
 ├── vercel.json
 ├── proxy.ts
+├── docker-compose.yml                      # Opsional: PostgreSQL container
+├── verify-seed.mjs                         # Verifikasi seed data
 └── components.json                         # shadcn/ui config
 ```
 
@@ -191,7 +208,7 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 
 | # | Route | Tipe | Status | File | Catatan |
 |---|---|---|---|---|---|
-| 1 | `/` | Beranda | ✅ Aktif | `app/page.tsx` | Hero + stats + berita + sejarah + galeri + breaking news |
+| 1 | `/` | Beranda | ✅ Aktif | `app/page.tsx` | Dibangun dari `components/stitch/` — Hero + stats + berita + sejarah + galeri + breaking news |
 | 2 | `/profil` | Profil | ✅ Aktif | `app/profil/page.tsx` | Profil kelurahan (data Desa) |
 | 3 | `/profil/sejarah-kelurahan` | Sejarah | ✅ Aktif | `app/profil/sejarah-kelurahan/` | Submenu Profil |
 | 4 | `/profil/pejabat-kelurahan` | Pejabat | ✅ Aktif | `app/profil/pejabat-kelurahan/` | Submenu Profil |
@@ -204,7 +221,7 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 | 11 | `/umkm` | UMKM | ✅ Aktif | `app/umkm/page.tsx` | Grid + filter + pencarian |
 | 12 | `/umkm/[id]` | Detail UMKM | ✅ Aktif | `app/umkm/[id]/` | Detail produk |
 | 13 | `/wisata` | Wisata | ✅ Aktif (tidak di-link navbar) | `app/wisata/page.tsx` | Grid + filter kategori — halaman ada & bisa diakses langsung, tapi tidak tampil di navbar/footer |
-| 14 | `/wisata/[id]` | Detail Wisata | ✅ Aktif (tidak di-link navbar) | `app/wisata/[id]/` | Detail destinasi — halaman ada & bisa diakses langsung |
+| 14 | `/wisata/[id]` | Detail Wisata | ✅ Aktif (tidak di-link navbar) | `app/wisata/[id]/` | Detail destinasi |
 | 15 | `/galeri` | Galeri | ✅ Aktif | `app/galeri/page.tsx` | Grid + lightbox + filter |
 | 16 | `/infografis` | Infografis | ✅ Aktif | `app/infografis/page.tsx` | Visualisasi data statistik |
 | 17 | `/kontak` | Kontak | ✅ Aktif | `app/aduan/page.tsx` | Kontak + Google Maps + WhatsApp |
@@ -222,6 +239,8 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 |---|---|---|
 | `/akun/[id]` | ✅ Aktif | `app/akun/[id]/page.tsx` |
 
+> **TIDAK ADA** dashboard user tracking pelayanan (`/akun/dashboard/*`) — Fase 5 di-skip.
+
 ### 3.4 Admin Pages (Dashboard)
 
 | # | Route | Tipe | Status | File |
@@ -235,17 +254,19 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 | 24 | `/dashboard/categories` | CRUD Kategori | ✅ Aktif | `app/dashboard/categories/` |
 | 25 | `/dashboard/categories/create` | Form Kategori | ✅ Aktif | `app/dashboard/categories/create/` |
 | 26 | `/dashboard/messages` | Pesan Masuk | ✅ Aktif | `app/dashboard/messages/` |
-| 27 | `/dashboard/users` | Manajemen User | ✅ Aktif | `app/dashboard/users/` |
+| 27 | `/dashboard/users` | Manajemen User | ✅ Aktif (admin only) | `app/dashboard/users/` |
 | 28 | `/dashboard/umkm` | CRUD UMKM | ✅ Aktif | `app/dashboard/umkm/` |
 | 29 | `/dashboard/umkm/new` | Form UMKM | ✅ Aktif | `app/dashboard/umkm/new/` |
-| 30 | `/dashboard/umkm/[id]` | Edit UMKM | ✅ Aktif | `app/dashboard/umkm/[id]/` |
+| 30 | `/dashboard/umkm/[id]/edit` | Edit UMKM | ✅ Aktif | `app/dashboard/umkm/[id]/edit/` |
 | 31 | `/dashboard/wisata` | CRUD Wisata | ✅ Aktif | `app/dashboard/wisata/` |
 | 32 | `/dashboard/wisata/new` | Form Wisata | ✅ Aktif | `app/dashboard/wisata/new/` |
-| 33 | `/dashboard/wisata/[id]` | Edit Wisata | ✅ Aktif | `app/dashboard/wisata/[id]/` |
+| 33 | `/dashboard/wisata/[id]/edit` | Edit Wisata | ✅ Aktif | `app/dashboard/wisata/[id]/edit/` |
 | 34 | `/dashboard/galeri` | Kelola Galeri | ✅ Aktif | `app/dashboard/galeri/` |
 | 35 | `/dashboard/profil-desa` | Edit Profil Desa | ✅ Aktif | `app/dashboard/profil-desa/` |
 | 36 | `/dashboard/infografis` | Kelola Infografis | ✅ Aktif | `app/dashboard/infografis/` |
 | 37 | `/dashboard/kontak` | Kelola Kontak | ✅ Aktif | `app/dashboard/kontak/` |
+
+> **TIDAK ADA** dashboard layanan/permohonan (`/dashboard/layanan/*`, `/dashboard/permohonan/*`) — Fase 5 di-skip.
 
 ### 3.5 API Routes
 
@@ -276,6 +297,8 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 | `/api/breaking-news` | GET, POST | ✅ Aktif | `app/api/breaking-news/route.ts` |
 | `/api/breaking-news/[id]` | GET, PUT, DELETE | ✅ Aktif | `app/api/breaking-news/[id]/route.ts` |
 | `/api/profile/[id]` | GET, PUT | ✅ Aktif | `app/api/profile/[id]/route.ts` |
+
+> **TIDAK ADA** API `layanan/`, `permohonan/`, `user/profile/`, `email/send/` — Fase 5 di-skip.
 
 ---
 
@@ -309,27 +332,42 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 | `ChartType` (enum) | — | BAR_CHART, LINE_CHART, PIE_CHART, DOUGHNUT_CHART, AREA_CHART, STAT_CARDS | ✅ Aktif |
 | `Kontak` | `kontak` | alamat, telepon, whatsapp, email, jamKerja, mapsEmbed | ✅ Aktif |
 
+### 4.3 Model Fase 5 — TIDAK ADA
+
+> Model `Layanan`, `FormField`, `Permohonan`, `PermohonanData`, `ProgressHistory`, enum `StatusPermohonan`, `JenisAjuan`, `FieldType`, serta field `nik` & `phoneNumber` di `User` **TIDAK ADA** — Fase 5 di-skip.
+
 ---
 
 ## 5. Komponen yang Tersedia
 
-### 5.1 Landing Page Components (`components/landing/`)
+### 5.1 Beranda (Aktif — `components/stitch/`)
 
 | Komponen | Status | Fungsi |
 |---|---|---|
-| `HeroSection` | ✅ Aktif | Hero section beranda dengan overlay gelap |
-| `StatsSection` | ✅ Aktif | Statistik kelurahan (luas, penduduk, KK, dusun) — data dari `/api/desa` |
-| `BreakingNewsSection` | ✅ Aktif | Marquee pengumuman kelurahan |
-| `NewsSection` | ✅ Aktif | Grid berita terbaru di beranda |
-| `SejarahSection` | ✅ Aktif | Section sejarah kelurahan di beranda — data dari `/api/desa` |
-| `FeaturedSection` | ⚠️ Tidak dipakai | Grid UMKM + Wisata unggulan (tidak lagi di-import di beranda; halaman `/umkm` & `/wisata` tetap aktif) |
-| `GaleriSection` | ✅ Aktif | Galeri foto grid di beranda |
+| `BerandaPageClient` | ✅ Aktif | Client wrapper beranda — memilih `BerandaResmi` (light) atau `BerandaDark` (dark) |
+| `BerandaResmi` | ✅ Aktif | Beranda light mode (hero, stats, berita, sejarah, galeri, breaking news) |
+| `BerandaDark` | ✅ Aktif | Beranda dark mode |
+| `Reveal` | ✅ Aktif | Scroll reveal animation |
 
-### 5.2 Custom Components (`components/custom/`)
+### 5.2 Landing Components Lama (`components/landing/`)
 
 | Komponen | Status | Fungsi |
 |---|---|---|
-| `Navbar` | ✅ Aktif | Navigasi utama (public + dashboard variant, fixed top + backdrop blur) |
+| `HeroSection` | ⚠️ Tidak dipakai beranda | Digantikan komponen stitch |
+| `StatsSection` | ⚠️ Tidak dipakai beranda | Digantikan komponen stitch |
+| `BreakingNewsSection` | ⚠️ Tidak dipakai beranda | Digantikan komponen stitch |
+| `NewsSection` | ⚠️ Tidak dipakai beranda | Digantikan komponen stitch |
+| `SejarahSection` | ⚠️ Tidak dipakai beranda | Digantikan komponen stitch |
+| `FeaturedSection` | ⚠️ Tidak dipakai | Tidak di-import di beranda |
+| `GaleriSection` | ⚠️ Tidak dipakai beranda | Digantikan komponen stitch |
+
+### 5.3 Custom Components (`components/custom/`)
+
+| Komponen | Status | Fungsi |
+|---|---|---|
+| `NavbarBeranda` | ✅ Aktif | Navbar beranda — floating pill (`navbar-beranda.tsx`) |
+| `Navbar` | ✅ Aktif | Navbar dashboard/halaman dalam — fixed top bar (`navbar.tsx`) |
+| `AdminSidebar` | ✅ Aktif | Sidebar dashboard — 10 menu (`admin-sidebar.tsx`) |
 | `Footer` | ✅ Aktif | Footer halaman public |
 | `BreakingNews` | ✅ Aktif | Breaking news ticker |
 | `NewsCard` | ✅ Aktif | Card berita untuk daftar artikel |
@@ -342,7 +380,7 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 | `DateRangePicker` | ✅ Aktif | Picker rentang tanggal |
 | `UserMultiSelect` | ✅ Aktif | Multi-select user (author post) |
 
-### 5.3 Domain Components
+### 5.4 Domain Components
 
 | Direktori | Komponen | Fungsi |
 |---|---|---|
@@ -351,10 +389,8 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 | `components/infografis/` | `ChartView` | Render chart (Bar/Line/Pie/Doughnut/Area/StatCards) |
 | `components/umkm/` | `UmkmClient` | Grid UMKM + filter + pencarian |
 | `components/wisata/` | `WisataClient` | Grid wisata + filter kategori |
-| `components/custom/` | `Footer` | Footer |
-| `components/custom/` | `ImageUpload` | Upload komponen |
 
-### 5.4 TipTap Editor Components
+### 5.5 TipTap Editor Components
 
 | Direktori | Isi |
 |---|---|
@@ -365,7 +401,7 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 | `components/tiptap-ui/` | Toolbar UI (heading dropdown, link popover, mark button, dll) |
 | `components/tiptap-ui-primitive/` | Primitive UI (button, card, dropdown, input, toolbar, dll) |
 
-### 5.5 UI Components (`components/ui/` — shadcn/ui)
+### 5.6 UI Components (`components/ui/` — shadcn/ui)
 
 `avatar`, `badge`, `button`, `calendar`, `card`, `dialog`, `dropdown-menu`, `field`, `input`, `label`, `navigation-menu`, `popover`, `select`, `separator`, `skeleton`, `sonner`, `table`, `tabs`, `toggle`
 
@@ -374,8 +410,10 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 ## 6. Konvensi
 
 - **Naming:** File/route kebab-case, komponen PascalCase, fungsi/variabel camelCase.
-- **Navbar:** Fixed top bar (background `#0b2b40` Graphite Night, backdrop blur) — struktur menu: Beranda | Profil ▼ | UMKM | Publikasi ▼ | Kontak.
-- **Color palette:** Brand colors `#0b2b40` (Graphite Night), `#84bd3a` (Primary Green), `#32735f` (Teal Dark), `#febe0d` (Gold) — lihat `DESIGN.md` Section 2.
+- **Navbar Beranda:** Floating pill (`fixed top-6`, rounded-full, `bg-[#0b2b40]/30` → `/90` saat scroll) — menu: Beranda | Profil ▼ | UMKM | Publikasi ▼ | Kontak + ThemeToggle + Avatar.
+- **Navbar Dashboard:** Fixed top bar (background `#0b2b40` Graphite Night, backdrop blur).
+- **Admin Sidebar:** 10 menu — Dashboard, Postingan, UMKM, Galeri, Profil Kelurahan, Kontak, Infografis, Kategori, Pengguna (admin only), Pesan.
+- **Color palette:** Brand colors `#0b2b40` (Midnight Blue), `#84bd3a` (Primary Green), `#32735f` (Teal Dark), `#febe0d` (Gold) — lihat `DESIGN.md` Section 2.
 - **Dark mode:** via `components/custom/theme-provider.tsx` (next-themes).
 - **Upload:** Cloudinary via `app/api/upload/route.ts`.
 - **Error handling:** API route try-catch 500, toast (sonner) untuk CRUD, loading/empty/skeleton state.
@@ -390,9 +428,12 @@ Web-Kelurahan-Salomallori/                  # Root proyek
 3. Cloudinary untuk upload gambar/file.
 4. Role: USER (warga), ADMIN (full akses), EDITOR (kelola konten).
 5. Breakpoints: sm=640, md=768, lg=1024, xl=1280.
-6. Dashboard navbar menyembunyikan menu `/dashboard/users` untuk non-ADMIN.
+6. Dashboard sidebar menyembunyikan menu `/dashboard/users` untuk non-ADMIN.
 7. Kontak & Google Maps dikelola via model `Kontak` (single record) + `app/dashboard/kontak`.
+8. Beranda dibangun dari `components/stitch/` — komponen `components/landing/` lama tidak lagi dipakai di beranda.
+9. Navbar ada dua varian: `navbar-beranda.tsx` (floating pill) & `navbar.tsx` (fixed top bar dashboard).
+10. Fase 5 (Tracking Pelayanan) di-skip — jangan buat kode yang bergantung pada model `Layanan`, `Permohonan`, dll.
 
 ---
 
-*Dokumen struktur proyek — disinkronkan dengan kondisi aktual kode per Maret 2026.*
+*Dokumen struktur proyek — disinkronkan dengan kondisi aktual kode per Agustus 2026.*
