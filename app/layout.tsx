@@ -20,9 +20,67 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Kelurahan Salomallori — Website Profil & Pelayanan",
+  metadataBase: new URL("https://www.salomallori.web.id"),
+  title: {
+    default: "Kelurahan Salomallori — Website Profil & Pelayanan",
+    template: "%s | Kelurahan Salomallori",
+  },
   description:
     "Website resmi Kelurahan Salomallori, Kec. Dua Pitue, Kab. Sidenreng Rappang. Menyajikan informasi profil kelurahan, UMKM, wisata, galeri, dan pelayanan publik.",
+  keywords: [
+    "Kelurahan Salomallori",
+    "Salomallori",
+    "Dua Pitue",
+    "Sidenreng Rappang",
+    "Sidrap",
+    "Profil Kelurahan",
+    "UMKM Salomallori",
+    "Wisata Salomallori",
+    "Website Kelurahan",
+    "KKN Unhas",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  verification: {
+    google: "X9cPct-uu9THGL88XCpe2Se_Dp9FO6RFTx59-lpYykY",
+  },
+  alternates: {
+    canonical: "https://www.salomallori.web.id",
+  },
+  openGraph: {
+    title: "Kelurahan Salomallori — Website Profil & Pelayanan",
+    description:
+      "Website resmi Kelurahan Salomallori, Kec. Dua Pitue, Kab. Sidenreng Rappang. Menyajikan informasi profil kelurahan, UMKM, wisata, galeri, dan pelayanan publik.",
+    url: "https://www.salomallori.web.id",
+    siteName: "Kelurahan Salomallori",
+    locale: "id_ID",
+    type: "website",
+    images: [
+      {
+        url: "https://www.salomallori.web.id/images/hero-bg.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Kelurahan Salomallori",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kelurahan Salomallori — Website Profil & Pelayanan",
+    description:
+      "Website resmi Kelurahan Salomallori, Kec. Dua Pitue, Kab. Sidenreng Rappang. Menyajikan informasi profil kelurahan, UMKM, wisata, galeri, dan pelayanan publik.",
+    images: ["https://www.salomallori.web.id/images/hero-bg.jpg"],
+  },
+  category: "government",
   icons: {
     icon: "/favicon.svg",
     apple: "/apple-touch-icon.svg",
