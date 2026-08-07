@@ -82,8 +82,8 @@ export const metadata: Metadata = {
   },
   category: "government",
   icons: {
-    icon: "/favicon.svg",
-    apple: "/apple-touch-icon.svg",
+    icon: "/images/logo_kab.png",
+    apple: "/images/logo_kab.png",
   },
 };
 
