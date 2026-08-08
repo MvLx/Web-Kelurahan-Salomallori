@@ -185,14 +185,14 @@ export default function AduanPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           {/* Hero Image */}
           <Reveal>
-          <div className="mb-12 overflow-hidden rounded-2xl shadow-2xl">
+          <div className="relative mb-12 aspect-video w-full overflow-hidden rounded-2xl shadow-2xl">
             {kontak.fotoKantor ? (
               <Image
                 src={kontak.fotoKantor}
                 alt="Kantor Kelurahan Salomallori"
                 width={1200}
                 height={500}
-                className="w-full h-auto object-cover"
+                className="h-full w-full object-cover"
                 priority
               />
             ) : (
@@ -201,7 +201,7 @@ export default function AduanPage() {
                 alt="Kantor Kelurahan Salomallori"
                 width={1200}
                 height={500}
-                className="w-full h-auto object-cover"
+                className="h-full w-full object-cover"
                 priority
               />
             )}
