@@ -25,6 +25,9 @@ export const updateKontakSchema = z.object({
   mapsEmbed: emptyToUndefined(
     z.string().max(2000, "Link Google Maps terlalu panjang").nullish(),
   ),
+  fotoKantor: emptyToUndefined(
+    z.string().max(1000, "URL foto kantor terlalu panjang").nullish(),
+  ),
 });
 
 export type UpdateKontakInput = z.infer<typeof updateKontakSchema>;

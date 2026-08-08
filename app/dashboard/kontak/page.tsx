@@ -10,6 +10,7 @@ import {
   Clock,
   MessageCircle,
   ExternalLink,
+  Building2,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -17,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ImageUpload } from "@/components/custom/image-upload";
 
 // ── Type ──
 interface KontakData {
@@ -27,6 +29,7 @@ interface KontakData {
   email: string | null;
   jamKerja: string | null;
   mapsEmbed: string | null;
+  fotoKantor: string | null;
 }
 
 const EMPTY_KONTAK: KontakData = {
@@ -37,6 +40,7 @@ const EMPTY_KONTAK: KontakData = {
   email: "",
   jamKerja: "",
   mapsEmbed: "",
+  fotoKantor: "",
 };
 
 function Field({ label, children, error }: { label: string; children: React.ReactNode; error?: string }) {
@@ -70,6 +74,7 @@ export default function KontakPage() {
           email: data.email ?? "",
           jamKerja: data.jamKerja ?? "",
           mapsEmbed: data.mapsEmbed ?? "",
+          fotoKantor: data.fotoKantor ?? "",
         });
       } else {
         toast.error("Gagal memuat data kontak");
@@ -99,6 +104,7 @@ export default function KontakPage() {
           email: kontak.email || null,
           jamKerja: kontak.jamKerja || null,
           mapsEmbed: kontak.mapsEmbed || null,
+          fotoKantor: kontak.fotoKantor || null,
         }),
       });
       if (res.ok) {
@@ -155,6 +161,24 @@ export default function KontakPage() {
         </p>
 
         <div className="space-y-6">
+          {/* Foto Kantor */}
+          <div className="rounded-lg border border-foreground/10 bg-card p-4 sm:p-6">
+            <h2 className="mb-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              <Building2 className="size-4" /> Foto Kantor Kelurahan
+            </h2>
+            <Field label="Foto Gedung Kantor" error={errors.fotoKantor?.[0]}>
+              <ImageUpload
+                value={kontak.fotoKantor ?? ""}
+                onChange={(url) => setKontak({ ...kontak, fotoKantor: url })}
+                folder="kontak"
+                aspectRatio="video"
+              />
+            </Field>
+            <p className="mt-2 text-xs text-muted-foreground">
+              Foto ini tampil di bagian paling atas halaman <strong>Kontak & Lokasi</strong> (publik). Upload foto terbaru kantor kelurahan — akan otomatis diperbarui di website.
+            </p>
+          </div>
+
           {/* Alamat */}
           <div className="rounded-lg border border-foreground/10 bg-card p-4 sm:p-6">
             <h2 className="mb-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">

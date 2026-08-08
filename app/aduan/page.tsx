@@ -26,6 +26,7 @@ interface KontakData {
   email: string | null;
   jamKerja: string | null;
   mapsEmbed: string | null;
+  fotoKantor: string | null;
 }
 
 // Data placeholder — akan ditimpa dari API /api/kontak setelah load
@@ -38,6 +39,7 @@ const defaultKontak: KontakData = {
   jamKerja: "Senin – Jumat: 08.00 – 16.00 WITA",
   mapsEmbed:
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15899.234567!2d119.6!3d-3.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM8KwNTQnMDAuMCJTIDExOcKwMzYnMDAuMCJF!5e1!3m2!1sid!2sid!4v1",
+  fotoKantor: null,
 };
 
 // Kelola format WA: terima "+62 812-3456-7890", "081234567890", dst → "6281234567890"
@@ -184,14 +186,25 @@ export default function AduanPage() {
           {/* Hero Image */}
           <Reveal>
           <div className="mb-12 overflow-hidden rounded-2xl shadow-2xl">
-            <Image
-              src="/kontak.jpg"
-              alt="Kantor Kelurahan Salomallori"
-              width={1200}
-              height={500}
-              className="w-full h-auto object-cover"
-              priority
-            />
+            {kontak.fotoKantor ? (
+              <Image
+                src={kontak.fotoKantor}
+                alt="Kantor Kelurahan Salomallori"
+                width={1200}
+                height={500}
+                className="w-full h-auto object-cover"
+                priority
+              />
+            ) : (
+              <Image
+                src="/kontak.jpg"
+                alt="Kantor Kelurahan Salomallori"
+                width={1200}
+                height={500}
+                className="w-full h-auto object-cover"
+                priority
+              />
+            )}
           </div>
           </Reveal>
 
