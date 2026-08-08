@@ -145,7 +145,7 @@ export function ImageUpload({
           disabled={disabled || uploading}
           className={cn(
             "flex w-full flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-zinc-300 bg-zinc-100 text-zinc-400 transition dark:border-zinc-700 dark:bg-zinc-800/50",
-            aspectRatio === "square" ? "aspect-square" : "h-44",
+            "h-44",
             !disabled &&
               !uploading &&
               "cursor-pointer hover:border-zinc-400 hover:text-zinc-500 dark:hover:border-zinc-500",
